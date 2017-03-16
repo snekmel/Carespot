@@ -7,7 +7,12 @@
         mc:Ignorable="d"
         Title="CliëntOverzicht" Height="800" Width="800">
     <Grid>
-        <Image HorizontalAlignment="Left" Height="80" Margin="21,27,0,0" VerticalAlignment="Top" Width="80" Source="pack://application:,,,/image/user.png"/>
+        <Image HorizontalAlignment="Left" Height="80" Margin="10,10,0,0" VerticalAlignment="Top" Width="80" Source="pack://application:,,,/image/user.png"/>
+        <Label x:Name="lblName" Content="Name
+               " HorizontalAlignment="Left" Margin="92,15,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,0.5" FontSize="18"/>
+        <Label x:Name="lblFunction" Content="Function" HorizontalAlignment="Left" Margin="92,43,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <ListBox HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="200" Margin="10,95,0,0"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="501,143,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
