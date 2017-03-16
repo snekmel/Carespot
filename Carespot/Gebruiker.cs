@@ -10,21 +10,22 @@ namespace Carespot
     public abstract class Gebruiker
     {
         //Fields / properties
-        public int Id { get; private set; }
-        public string Naam { get; private set; }
-        public string Wachtwoord { get; private set; }
-        public string Straat { get; private set; }
-        public string Huisnummer { get; private set; }
-        public string Postcode { get; private set; }
-        public string Land { get; private set; }
-        public string Email { get; private set; }
-        public string Telefoonnummer { get; private set; }
-        public string Foto { get; private set; }
+        public int Id { get; protected set; }
+        public string Naam { get; protected set; }
+        public string Wachtwoord { get; protected set ; }
+        public string Straat { get; protected set; }
+        public string Huisnummer { get; protected set; }
+        public string Postcode { get; protected set; }
+        public string Plaats { get; protected set; }
+        public string Land { get; protected set; }
+        public string Email { get; protected set; }
+        public string Telefoonnummer { get; protected set; }
+        public string Foto { get; protected set; }
         //public Geslacht Geslacht { get; private set; }
 
 
         //Constructor
-        Gebruiker(int id, string naam, string wachtwoord, string straat, string huisnummer, string postcode, string plaats, string land, string email, string telefoonnummer, string foto)
+        public Gebruiker(int id, string naam, string wachtwoord, string straat, string huisnummer, string postcode, string plaats, string land, string email, string telefoonnummer, string foto)
         {
             
         }
