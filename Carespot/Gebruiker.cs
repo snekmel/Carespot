@@ -27,7 +27,17 @@ namespace Carespot
         //Constructor
         public Gebruiker(int id, string naam, string wachtwoord, string straat, string huisnummer, string postcode, string plaats, string land, string email, string telefoonnummer, string foto)
         {
-            
+            Id = id;
+            Naam = naam;
+            Wachtwoord = wachtwoord;
+            Straat = straat;
+            Huisnummer = huisnummer;
+            Postcode = postcode;
+            Plaats = plaats;
+            Land = land;
+            Email = email;
+            Telefoonnummer = telefoonnummer;
+            Foto = foto;
         }
     }
 }

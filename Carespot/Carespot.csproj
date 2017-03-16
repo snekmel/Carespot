@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Vrijwilleger.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -64,6 +65,8 @@
     </Compile>
     <Compile Include="Beheerder.cs" />
     <Compile Include="Gebruiker.cs" />
+    <Compile Include="Hulpbehoevende.cs" />
+    <Compile Include="Hulpverlener.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

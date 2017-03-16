@@ -23,6 +23,9 @@ namespace Carespot
         public MainWindow()
         {
             InitializeComponent();
+            Hulpverlener h = new Hulpverlener(1,"Tesst","","","","","","","","","");
+
+            MessageBox.Show(h.Naam);
         }
     }
 }
