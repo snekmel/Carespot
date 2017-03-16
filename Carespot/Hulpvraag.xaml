@@ -5,8 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Carespot"
         mc:Ignorable="d"
-        Title="Hulpvraagxaml" Height="300" Width="300">
+        Title="Hulpvraagxaml" Height="800" Width="800">
     <Grid>
-        
+        <TextBox x:Name="tbTitel" HorizontalAlignment="Left" Height="23" Margin="56,132,0,0" TextWrapping="Wrap" Text="Opdracht titel" VerticalAlignment="Top" Width="530" RenderTransformOrigin="0.2,-0.35"/>
+        <RichTextBox x:Name="tbBeschrijving" HorizontalAlignment="Left" Height="527" Margin="56,188,0,0" VerticalAlignment="Top" Width="530">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="Voeg een beschrijving toe"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <Button x:Name="btToevoegen" Content="Voeg toe" HorizontalAlignment="Left" Margin="618,663,0,0" VerticalAlignment="Top" Width="111" Height="52" FontSize="18.667"/>
+        <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="131,45,0,0" VerticalAlignment="Top" FontSize="21.333"/>
+
     </Grid>
 </Window>
