@@ -70,6 +70,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Keuzescherm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -89,6 +93,9 @@
     </Compile>
     <Compile Include="Inlogscherm.xaml.cs">
       <DependentUpon>Inlogscherm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Keuzescherm.xaml.cs">
+      <DependentUpon>Keuzescherm.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
