@@ -501,8 +501,5 @@
     <Resource Include="image\angle-pointing-to-left.png" />
     <Resource Include="image\user-shape.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="cross-mark-on-a-black-circle-background.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
