@@ -17,8 +17,9 @@
         </RichTextBox>
         <Button x:Name="btToevoegen" Content="Voeg toe" HorizontalAlignment="Left" Margin="618,663,0,0" VerticalAlignment="Top" Width="111" Height="52" FontSize="18.667"/>
         <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="131,45,0,0" VerticalAlignment="Top" FontSize="21.333"/>
-        <Image HorizontalAlignment="Left" Height="80" Margin="46,28,0,0" VerticalAlignment="Top" Width="80" Source="image/avatar.png"/>
-        <CheckBox x:Name="checkBox" Content="Urgent" HorizontalAlignment="Left" Margin="618,132,0,0" VerticalAlignment="Top" Height="23" Width="80"/>
+        <Image HorizontalAlignment="Left" Height="80" Margin="46,28,0,0" VerticalAlignment="Top" Width="80" Source="image/user-shape.png"/>
+        <CheckBox x:Name="chbUrgent" Content="Urgent" HorizontalAlignment="Left" Margin="618,132,0,0" VerticalAlignment="Top" Height="23" Width="80"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="56" Margin="689,28,0,0" VerticalAlignment="Top" Width="68" Source="image/cross-mark-on-a-black-circle-background.png"/>
 
     </Grid>
 </Window>

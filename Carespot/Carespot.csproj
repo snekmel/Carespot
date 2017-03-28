@@ -58,6 +58,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GebruikerAanmaken.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Hulpvraag.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -76,6 +80,9 @@
     </Compile>
     <Compile Include="CliëntOverzicht.xaml.cs">
       <DependentUpon>CliëntOverzicht.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GebruikerAanmaken.xaml.cs">
+      <DependentUpon>GebruikerAanmaken.xaml</DependentUpon>
     </Compile>
     <Compile Include="Hulpvraag.xaml.cs">
       <DependentUpon>Hulpvraag.xaml</DependentUpon>
@@ -122,6 +129,9 @@
     <Resource Include="image\exit.png" />
     <Resource Include="image\list.png" />
     <Resource Include="image\megaphone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="cross-mark-on-a-black-circle-background.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
