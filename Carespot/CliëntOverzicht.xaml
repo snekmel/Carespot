@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Carespot"
         mc:Ignorable="d"
-        Title="CliëntOverzicht" Height="800" Width="800">
+        Title="CliëntOverzicht" Height="800" Width="900">
     <Grid>
-        <Image x:Name="imgGebruiker" HorizontalAlignment="Left" Height="80" Margin="10,10,0,0" VerticalAlignment="Top" Width="80" Source="pack://application:,,,/image/user.png"/>
-        <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="92,15,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,0.5" FontSize="18"/>
-        <Label x:Name="lblFunctie" Content="Functie" HorizontalAlignment="Left" Margin="92,43,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <ListBox x:Name="lbTaken" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="200" Margin="10,128,0,0"/>
+        <Image x:Name="imgGebruiker" HorizontalAlignment="Left" Height="80" Margin="10,10,0,0" VerticalAlignment="Top" Width="80" Source="pack://application:,,,/image/user.png" />
+        <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="92,15,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,0.5" FontSize="18" />
+        <Label x:Name="lblFunctie" Content="Functie" HorizontalAlignment="Left" Margin="92,43,0,0" VerticalAlignment="Top" FontSize="18" />
+        <ListBox x:Name="lbTaken" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="200" Margin="10,128,0,0" />
         <ListView x:Name="lvVrijwilligers" HorizontalAlignment="Left" Height="600" Margin="230,128,0,0" VerticalAlignment="Top" Width="550">
             <ListView.View>
                 <GridView>
@@ -18,11 +18,10 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Image x:Name="imgBoek" HorizontalAlignment="Left" Height="41" Margin="90,86,0,0" VerticalAlignment="Top" Width="41" Source="pack://application:,,,/image/list.png"/>
-        <Image x:Name="imgMegafoon" HorizontalAlignment="Left" Height="41" Margin="474,86,0,0" VerticalAlignment="Top" Width="41" Source="pack://application:,,,/image/megaphone.png"/>
-        <Image x:Name="imgUitloggen" HorizontalAlignment="Left" Height="41" Margin="739,15,0,0" VerticalAlignment="Top" Width="41" Source="image/exit.png" RenderTransformOrigin="0.463,0.512"/>
-        <Image x:Name="imgVoegHulpvraagToe" HorizontalAlignment="Left" Height="41" Margin="333,12,0,0" VerticalAlignment="Top" Width="41" Source="image/calendar.png"/>
-        <Label x:Name="lblVoegHulpvraagToe" Content="Voeg hulpvraag toe" HorizontalAlignment="Left" Margin="374,15,0,0" VerticalAlignment="Top" FontSize="18"/>
-
+        <Image x:Name="imgUitloggen" HorizontalAlignment="Left" Height="41" Margin="739,15,0,0" VerticalAlignment="Top" Width="41" Source="image/exit.png" RenderTransformOrigin="0.463,0.512" />
+        <Image x:Name="imgVoegHulpvraagToe" HorizontalAlignment="Left" Height="41" Margin="333,12,0,0" VerticalAlignment="Top" Width="41" Source="image/calendar.png" />
+        <Label x:Name="lblVoegHulpvraagToe" Content="Voeg hulpvraag toe" HorizontalAlignment="Left" Margin="374,15,0,0" VerticalAlignment="Top" FontSize="18" />
+        <Label Content="Mijn opdrachten" HorizontalAlignment="Left" Margin="52,102,0,0" VerticalAlignment="Top" FontSize="14" />
+        <Label Content="Mogelijke vrijwilligers" HorizontalAlignment="Left" Margin="436,102,0,0" VerticalAlignment="Top" FontSize="14" />
     </Grid>
 </Window>
