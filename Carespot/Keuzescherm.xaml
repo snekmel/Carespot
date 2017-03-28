@@ -8,7 +8,7 @@
         Title="Keuzescherm" Height="290" Width="470">
     <Grid>
         <Label x:Name="label" Content="Als wie wil je inloggen?" HorizontalAlignment="Left" Margin="20,23,0,0" VerticalAlignment="Top" FontSize="21.333" Width="372"/>
-        <Image x:Name="image_Copy" HorizontalAlignment="Left" Height="51" Margin="400,23,0,0" VerticalAlignment="Top" Width="54" Source="cross-mark-on-a-black-circle-background.png"/>
+        <Image x:Name="image_Copy" HorizontalAlignment="Left" Height="51" Margin="400,23,0,0" VerticalAlignment="Top" Width="54" Source="image/cross-mark-on-a-black-circle-background.png"/>
         <Button x:Name="btHulpbehoevende" Content="Hulpbehoevende" HorizontalAlignment="Left" Margin="20,91,0,0" VerticalAlignment="Top" Width="420" Height="72" FontSize="16"/>
         <Button x:Name="btVrijwilliger" Content="Vrijwilliger" HorizontalAlignment="Left" Margin="20,178,0,0" VerticalAlignment="Top" Width="420" Height="72" FontSize="16"/>
 

@@ -9,7 +9,7 @@
     <Grid Margin="0,0,3.8,0.4">
         <Image x:Name="image" HorizontalAlignment="Left" Height="100" Margin="147,140,0,0" VerticalAlignment="Top" Width="100"/>
         <Label x:Name="label" Content="Maak een nieuwe gebruiker aan" HorizontalAlignment="Left" Margin="169,10,0,0" VerticalAlignment="Top" FontSize="26.667" Width="466"/>
-        <Image x:Name="image_Copy" HorizontalAlignment="Left" Height="56" Margin="847,10,0,0" VerticalAlignment="Top" Width="68" Source="cross-mark-on-a-black-circle-background.png"/>
+        <Image x:Name="image_Copy" HorizontalAlignment="Left" Height="56" Margin="847,10,0,0" VerticalAlignment="Top" Width="68" Source="image/cross-mark-on-a-black-circle-background.png"/>
         <Label x:Name="lblgebruikersnaam" Content="Gebruikersnaam:" HorizontalAlignment="Left" Margin="27,96,0,0" VerticalAlignment="Top" FontSize="18.667"/>
         <Label x:Name="lblWachtwoord" Content="Wachtwoord:" HorizontalAlignment="Left" Margin="54,136,0,0" VerticalAlignment="Top" FontSize="18.667"/>
         <Label x:Name="lblHerhalen" Content="Herhalen:" HorizontalAlignment="Left" Margin="84,176,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="0.917,0.67"/>
