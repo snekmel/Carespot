@@ -77,6 +77,9 @@
     <Compile Include="CliëntOverzicht.xaml.cs">
       <DependentUpon>CliëntOverzicht.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Context\GebruikerSQLContext.cs" />
+    <Compile Include="DAL\Interfaces\IGebruikerContext.cs" />
+    <Compile Include="DAL\Repositorys\GebruikerRepository.cs" />
     <Compile Include="Hulpvraag.xaml.cs">
       <DependentUpon>Hulpvraag.xaml</DependentUpon>
     </Compile>
@@ -89,6 +92,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Beheerder.cs" />
+    <Compile Include="Models\Gebruiker.cs" />
+    <Compile Include="Models\Hulpbehoevende.cs" />
+    <Compile Include="Models\Hulpverlener.cs" />
+    <Compile Include="Models\Vrijwilleger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
