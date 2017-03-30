@@ -54,9 +54,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ProfielVrijwilliger.xaml.cs">
-      <DependentUpon>ProfielVrijwilliger.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Recensie.xaml.cs">
       <DependentUpon>Recensie.xaml</DependentUpon>
     </Compile>
@@ -71,6 +68,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GebruikerAanmaken.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HulpverlenerHoofdscherm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
