@@ -14,7 +14,7 @@ namespace UnitTestCarespot
             var inf = new ChatSQLContext();
             var cr = new ChatRepository(inf);
 
-            cr.CreateChatBericht(DateTime.Now, "Ik heb egt heel snel hulp nodig", 1, 3);
+            cr.CreateChatBericht(DateTime.Now, "Ik ben over 10 min bij je", 2, 3);
 
             var lijst = cr.RetrieveAllChatBerichtenByOpdracht(3);
 
