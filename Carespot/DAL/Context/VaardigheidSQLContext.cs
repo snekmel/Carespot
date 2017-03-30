@@ -6,7 +6,7 @@ using Carespot.Models;
 
 namespace Carespot.DAL.Context
 {
-    internal class VaardigheidSQLContext : IVaardigheidContext
+    public class VaardigheidSQLContext : IVaardigheidContext
     {
         private readonly SqlConnection _con =
             new SqlConnection(
@@ -14,12 +14,28 @@ namespace Carespot.DAL.Context
 
         public void Create(Vaardigheid obj)
         {
-            throw new NotImplementedException();
+            _con.Open();
+            var cmdString = "INSERT INTO Vaardigheid (" + obj.VaardigheidText + ")VALUES(Vaardigheid); ";
+            var command = new SqlCommand(cmdString, _con);
+            var reader = command.ExecuteReader();
+            _con.Close();
         }
 
         public Vaardigheid Retrieve(int id)
         {
-            throw new NotImplementedException();
+            _con.Open();
+            var cmdString = "SELECT * FROM Vaardigheid WHERE id = " + id;
+            var command = new SqlCommand(cmdString, _con);
+            var reader = command.ExecuteReader();
+            Vaardigheid v = null;
+            while (reader.Read())
+            {
+                v = new Vaardigheid(reader.GetString(1));
+                v.Id = reader.GetInt32(0);
+            }
+
+            _con.Close();
+            return v;
         }
 
         public List<Vaardigheid> RetrieveAll()
@@ -48,7 +64,11 @@ namespace Carespot.DAL.Context
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            _con.Open();
+            var cmdString = "DELETE FROM Vaardigheid WHERE id =" + id;
+            var command = new SqlCommand(cmdString, _con);
+            var reader = command.ExecuteReader();
+            _con.Close();
         }
     }
 }
