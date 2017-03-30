@@ -5,8 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Carespot"
         mc:Ignorable="d"
-        Title="Opdracht" Height="600" Width="500">
+        Title="Opdracht" Height="560" Width="500">
     <Grid>
-        
+        <TabControl HorizontalAlignment="Left" Height="436" VerticalAlignment="Top" Width="472" Margin="10,82,0,0">
+            <TabItem x:Name="tabOmschrijving" Header="Omschrijving">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem x:Name="tabChat" Header="Chat">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem x:Name="tabContact" Header="Contacten">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+        <Image x:Name="imgGebruiker" HorizontalAlignment="Left" Height="41" Margin="9,15,0,0" VerticalAlignment="Top" Width="41" Source="image/user-shape.png" />
+        <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="50,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,0.5" FontSize="16" Height="28" Width="61" />
+        <Label x:Name="lblFunctie" Content="Functie" HorizontalAlignment="Left" Margin="50,29,0,0" VerticalAlignment="Top" FontSize="16" Height="27" Width="61" />
+        <Image x:Name="imgSluitAf" HorizontalAlignment="Left" Height="41" Margin="441,15,0,0" VerticalAlignment="Top" Width="41" Source="image/cross-mark-on-a-black-circle-background.png"/>
+
     </Grid>
 </Window>
