@@ -54,13 +54,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-<<<<<<< HEAD
     <Compile Include="Opdracht.xaml.cs">
       <DependentUpon>Opdracht.xaml</DependentUpon>
-=======
+    </Compile>
     <Compile Include="HulpverlenerToevoegen.xaml.cs">
       <DependentUpon>HulpverlenerToevoegen.xaml</DependentUpon>
->>>>>>> be847e3a71c8d33b8880a5c538a56234aa7cafbf
     </Compile>
     <Compile Include="Recensie.xaml.cs">
       <DependentUpon>Recensie.xaml</DependentUpon>
