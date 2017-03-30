@@ -54,6 +54,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GebruikerBeheer.xaml.cs">
+      <DependentUpon>GebruikerBeheer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Opdracht.xaml.cs">
       <DependentUpon>Opdracht.xaml</DependentUpon>
     </Compile>
@@ -62,6 +65,9 @@
     </Compile>
     <Compile Include="Recensie.xaml.cs">
       <DependentUpon>Recensie.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VerwijderBevestiging.xaml.cs">
+      <DependentUpon>VerwijderBevestiging.xaml</DependentUpon>
     </Compile>
     <Compile Include="VrijwilligerHoofdscherm.xaml.cs">
       <DependentUpon>VrijwilligerHoofdscherm.xaml</DependentUpon>
@@ -74,6 +80,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GebruikerAanmaken.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GebruikerBeheer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -133,6 +143,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Recensie.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VerwijderBevestiging.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
