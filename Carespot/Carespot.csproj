@@ -54,6 +54,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Opdracht.xaml.cs">
+      <DependentUpon>Opdracht.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Recensie.xaml.cs">
       <DependentUpon>Recensie.xaml</DependentUpon>
     </Compile>
@@ -114,6 +117,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Opdracht.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ProfielVrijwilliger.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
