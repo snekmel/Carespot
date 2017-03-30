@@ -7,9 +7,6 @@
         mc:Ignorable="d"
         Title="CliëntOverzicht" Height="800" Width="900">
     <Grid>
-        <Image x:Name="imgGebruiker" HorizontalAlignment="Left" Height="80" Margin="10,10,0,0" VerticalAlignment="Top" Width="80" Source="pack://application:,,,/image/user-shape.png" />
-        <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="92,15,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,0.5" FontSize="18" />
-        <Label x:Name="lblFunctie" Content="Functie" HorizontalAlignment="Left" Margin="92,43,0,0" VerticalAlignment="Top" FontSize="18" />
         <ListBox x:Name="lbTaken" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="200" Margin="10,128,0,0" />
         <ListView x:Name="lvVrijwilligers" HorizontalAlignment="Left" Height="600" Margin="230,128,0,0" VerticalAlignment="Top" Width="550">
             <ListView.View>
@@ -23,5 +20,8 @@
         <Label x:Name="lblVoegHulpvraagToe" Content="Voeg hulpvraag toe" HorizontalAlignment="Left" Margin="374,15,0,0" VerticalAlignment="Top" FontSize="18" />
         <Label Content="Mijn opdrachten" HorizontalAlignment="Left" Margin="52,102,0,0" VerticalAlignment="Top" FontSize="14" />
         <Label Content="Mogelijke vrijwilligers" HorizontalAlignment="Left" Margin="436,102,0,0" VerticalAlignment="Top" FontSize="14" />
+        <Image x:Name="imgGebruiker" HorizontalAlignment="Left" Height="41" Margin="28,22,0,0" VerticalAlignment="Top" Width="41" Source="image/user-shape.png" />
+        <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="69,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,0.5" FontSize="16" Height="28" Width="61" />
+        <Label x:Name="lblFunctie" Content="Functie" HorizontalAlignment="Left" Margin="69,36,0,0" VerticalAlignment="Top" FontSize="16" Height="27" Width="61" />
     </Grid>
 </Window>
