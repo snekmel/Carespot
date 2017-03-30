@@ -93,8 +93,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Beheerder.cs" />
+    <Compile Include="Models\ChatBericht.cs" />
     <Compile Include="Models\Gebruiker.cs" />
     <Compile Include="Models\Hulpbehoevende.cs" />
+    <Compile Include="Models\HulpOpdracht.cs" />
     <Compile Include="Models\Hulpverlener.cs" />
     <Compile Include="Models\Vrijwilliger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
