@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Carespot.Models;
 
 namespace Carespot.DAL.Interfaces
 {
-    interface IVaardigheidContext
+    public interface IVaardigheidContext
     {
+        void Create(Vaardigheid obj);
+
+        Vaardigheid Retrieve(int id);
+
+        List<Vaardigheid> RetrieveAll();
+
+        void Update(int id, Vaardigheid obj);
+
+        void Delete(int id);
     }
 }
