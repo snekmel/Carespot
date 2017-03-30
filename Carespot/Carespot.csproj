@@ -54,6 +54,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="HulpverlenerToevoegen.xaml.cs">
+      <DependentUpon>HulpverlenerToevoegen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Recensie.xaml.cs">
       <DependentUpon>Recensie.xaml</DependentUpon>
     </Compile>
@@ -72,6 +75,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HulpverlenerHoofdscherm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HulpverlenerToevoegen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
