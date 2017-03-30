@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Carespot.DAL.Interfaces
 {
-    interface IChatContext
+    public interface IChatContext
     {
+        void CreateChatBericht(DateTime tijd, string bericht);
+
+        void RetrieveAllChatBerichtenByOpdracht(int id);
+
+        void DeleteChatBericht(int id);
     }
 }
