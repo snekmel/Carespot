@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Carespot.DAL.Interfaces;
+using Carespot.Models;
 
 namespace Carespot.DAL.Repositorys
 {
@@ -16,16 +17,19 @@ namespace Carespot.DAL.Repositorys
             this._chatContext = IchatContext;
         }
 
-        public void CreateChatBericht()
+        public void CreateChatBericht(DateTime tijd, string bericht, int gebruikerId, int hulpopdrachtId)
         {
+            _chatContext.CreateChatBericht(tijd, bericht, gebruikerId, hulpopdrachtId);
         }
 
-        public void RetrieveAllChatBerichtenByOpdracht()
+        public List<ChatBericht> RetrieveAllChatBerichtenByOpdracht(int id)
         {
+            return _chatContext.RetrieveAllChatBerichtenByOpdracht(id);
         }
 
-        public void DeleteChatBericht()
+        public void DeleteChatBericht(int id)
         {
+            _chatContext.DeleteChatBericht(id);
         }
     }
 }
