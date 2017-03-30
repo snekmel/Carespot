@@ -77,21 +77,9 @@
     <Compile Include="CliëntOverzicht.xaml.cs">
       <DependentUpon>CliëntOverzicht.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DAL\Context\BeoordelingSQLContext.cs" />
-    <Compile Include="DAL\Context\ChatSQLContext.cs" />
     <Compile Include="DAL\Context\GebruikerSQLContext.cs" />
-    <Compile Include="DAL\Context\HulpopdrachtSQLContext.cs" />
-    <Compile Include="DAL\Context\VaardigheidSQLContext.cs" />
-    <Compile Include="DAL\Interfaces\IBeoordelingContext.cs" />
-    <Compile Include="DAL\Interfaces\IChatContext.cs" />
     <Compile Include="DAL\Interfaces\IGebruikerContext.cs" />
-    <Compile Include="DAL\Interfaces\IHulpopdrachtContext.cs" />
-    <Compile Include="DAL\Interfaces\IVaardigheidContext.cs" />
-    <Compile Include="DAL\Repositorys\BeoordelingRepository.cs" />
-    <Compile Include="DAL\Repositorys\ChatRepository.cs" />
     <Compile Include="DAL\Repositorys\GebruikerRepository.cs" />
-    <Compile Include="DAL\Repositorys\HulpopdrachtRepository.cs" />
-    <Compile Include="DAL\Repositorys\VaardigheidRepository.cs" />
     <Compile Include="Hulpvraag.xaml.cs">
       <DependentUpon>Hulpvraag.xaml</DependentUpon>
     </Compile>
@@ -105,12 +93,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Beheerder.cs" />
-    <Compile Include="Models\ChatBericht.cs" />
     <Compile Include="Models\Gebruiker.cs" />
     <Compile Include="Models\Hulpbehoevende.cs" />
-    <Compile Include="Models\HulpOpdracht.cs" />
     <Compile Include="Models\Hulpverlener.cs" />
-    <Compile Include="Models\Vrijwilleger.cs" />
+    <Compile Include="Models\Vrijwilliger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

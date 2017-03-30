@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Carespot.Models
 {
-    public class Vrijwilleger : Gebruiker
+    public class Vrijwilliger : Gebruiker
     {
         //Fields / properties
 
         //Constructor
-        public Vrijwilleger(string naam, string wachtwoord, string email) : base(naam, wachtwoord, email)
+        public Vrijwilliger(string naam, string wachtwoord, string email) : base(naam, wachtwoord, email)
         {
         }
     }
