@@ -15,7 +15,7 @@ namespace Carespot.DAL.Context
         public void Create(Vaardigheid obj)
         {
             _con.Open();
-            var cmdString = "INSERT INTO Vaardigheid (" + obj.VaardigheidText + ")VALUES(Vaardigheid); ";
+            var cmdString = "INSERT INTO Vaardigheid (vaardigheid)VALUES('" + obj.VaardigheidText + "'); ";
             var command = new SqlCommand(cmdString, _con);
             var reader = command.ExecuteReader();
             _con.Close();
