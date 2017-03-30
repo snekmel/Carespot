@@ -60,6 +60,9 @@
     <Compile Include="VrijwilligerHoofdscherm.xaml.cs">
       <DependentUpon>VrijwilligerHoofdscherm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VrijwilligerOpdrachtAannemen.xaml.cs">
+      <DependentUpon>VrijwilligerOpdrachtAannemen.xaml</DependentUpon>
+    </Compile>
     <Page Include="CliëntOverzicht.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -112,6 +115,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="VrijwilligerHoofdscherm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VrijwilligerOpdrachtAannemen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
