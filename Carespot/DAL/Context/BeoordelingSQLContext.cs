@@ -24,6 +24,7 @@ namespace Carespot.DAL.Context
                 while (reader.Read())
                     b = new Beoordeling(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetString(3),
                         reader.GetInt32(4), reader.GetInt32(5));
+                reader.Close();
                 _con.Close();
                 return b;
             }
