@@ -32,10 +32,23 @@ namespace Carespot.DAL.Context
 
             while (reader.Read())
             {
-                var p = new Beheerder(reader.GetString(1), reader.GetString(2), reader.GetString(9));
-                p.Id = reader.GetInt32(0);
+                switch (reader.GetString(11))
+                {
 
-                ReturnList.Add(p);
+                    case "Hulpverlener":
+                       
+                        break;
+
+                    case "Hulpbehoevende":
+                        break;
+
+                    case "Beheerder":
+                        break;
+
+                    case "Vrijwilliger":
+                        break;
+
+                }
             }
 
             _con.Close();
