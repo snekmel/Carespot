@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Carespot.DAL.Context;
 using Carespot.DAL.Interfaces;
 using Carespot.Models;
 
@@ -12,9 +13,10 @@ namespace Carespot.DAL.Repositorys
     {
         private IHulpopdrachtContext _context;
 
-        HulpopdrachtRepository(IHulpopdrachtContext context)
+
+        public HulpopdrachtRepository(HulpopdrachtSQLContext context)
         {
-            _context = context;
+            this._context = context;
         }
 
         public List<HulpOpdracht> GetAllHulpopdrachten()
