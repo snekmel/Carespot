@@ -10,7 +10,7 @@ namespace Carespot.DAL.Context
     public class HulpopdrachtSQLContext : IHulpopdrachtContext
     {
         private static string connectionString =
-            "Data Source = 'WIN-SRV-WEB.fhict.local, 1433'; Integrated Security = False; User ID = carespot; Password=**;Connect Timeout = 15; Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            "Data Source = 'WIN-SRV-WEB.fhict.local, 1433'; Integrated Security = False; User ID = carespot; Password=Test1234;Connect Timeout = 15; Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         private readonly SqlConnection connection = new SqlConnection(connectionString);
 
@@ -102,8 +102,8 @@ namespace Carespot.DAL.Context
 
                 //Let op: De koppeltabellen worden niet aangepast
                 cmd.CommandText =
-                    "INSERT INTO table_name (titel, omschrijving, aanmaakDatum, opdrachtDatum) VALUES ('" +
-                    hulopdracht.Titel + "', '" + hulopdracht.Omschrijving + "', '" + hulopdracht.AanmaakDatum + "', '" + hulopdracht.OpdrachtDatum + "');";
+                    "INSERT INTO hulpopdracht (titel, omschrijving) VALUES ('" +
+                    hulopdracht.Titel + "', '" + hulopdracht.Omschrijving + "');";
                 cmd.CommandType = CommandType.Text;
                 cmd.Connection = connection;
 

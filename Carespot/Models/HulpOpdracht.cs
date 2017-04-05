@@ -17,6 +17,12 @@ namespace Carespot.Models
         public Hulpbehoevende Hulpbehoevende { get; private set; }
         public Vrijwilliger Vrijwilleger { get; private set; }
 
+        public HulpOpdracht(string titel, string omschrijving)
+        {
+            Titel = titel;
+            Omschrijving = omschrijving;
+        }
+
         public HulpOpdracht(int id, string titel)
         {
             Id = id;
