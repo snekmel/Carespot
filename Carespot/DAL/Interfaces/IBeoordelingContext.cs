@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Carespot.Models;
 
 namespace Carespot.DAL.Interfaces
 {
-    interface IBeoordelingContext
+    internal interface IBeoordelingContext
     {
+        Beoordeling RetrieveBeoordeling(int vrijwilligersId);
+
+        void Create(Beoordeling obj);
+
+        void Delete(int id);
     }
 }
