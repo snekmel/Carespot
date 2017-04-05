@@ -26,5 +26,10 @@ namespace Carespot.DAL.Repositorys
         {
             return _context.GetHulpopdrachtByID(id);
         }
+
+        public void CreateHulpopdracht(HulpOpdracht hulpopdracht)
+        {
+            _context.CreateHulpopdracht(hulpopdracht);
+        }
     }
 }
