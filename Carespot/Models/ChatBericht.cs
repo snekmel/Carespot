@@ -6,7 +6,20 @@ using System.Threading.Tasks;
 
 namespace Carespot.Models
 {
-    class ChatBericht
+    public class ChatBericht
     {
+        public int Id { get; set; }
+        public DateTime Tijd { get; private set; }
+        public string Bericht { get; private set; }
+
+        public int HulpopdrachtId { get; private set; }
+
+        public ChatBericht(DateTime tijd, string bericht, int gebruikerId, int hulpopdrachtId)
+        {
+            this.Id = gebruikerId;
+            this.Tijd = tijd;
+            this.Bericht = bericht;
+            this.HulpopdrachtId = hulpopdrachtId;
+        }
     }
 }

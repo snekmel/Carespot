@@ -111,6 +111,7 @@
     <Compile Include="Models\Hulpbehoevende.cs" />
     <Compile Include="Models\HulpOpdracht.cs" />
     <Compile Include="Models\Hulpverlener.cs" />
+    <Compile Include="Models\Vaardigheid.cs" />
     <Compile Include="Models\Vrijwilliger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
