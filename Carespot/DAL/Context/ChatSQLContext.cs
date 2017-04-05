@@ -48,7 +48,7 @@ namespace Carespot.DAL.Context
             }
 
             _con.Close();
-
+            reader.Close();
             return ReturnList;
         }
     }
