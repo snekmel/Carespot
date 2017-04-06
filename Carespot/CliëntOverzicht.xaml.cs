@@ -22,6 +22,14 @@ namespace Carespot
         public CliëntOverzicht()
         {
             InitializeComponent();
+            //laad naam
+            //laad functie
+        }
+        //Geef lijst van mijn hulpvragen
+        //Geef lijst van mogelijke vrijwilligers bij specifieke hulpvraag
+        private void imgVoegHulpvraagToe_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            //'Hulpvraag' openen
         }
     }
 }
