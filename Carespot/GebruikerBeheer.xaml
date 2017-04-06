@@ -15,8 +15,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Image x:Name="imgGebruiker" HorizontalAlignment="Left" Height="41" Margin="14,705,0,0" VerticalAlignment="Top" Width="41" Source="image/trash.png" />
-        <Image x:Name="imgSluitAf" HorizontalAlignment="Left" Height="41" Margin="941,705,0,0" VerticalAlignment="Top" Width="41" Source="image/cross-mark-on-a-black-circle-background.png"/>
+        <Image x:Name="imgGebruiker" HorizontalAlignment="Left" Height="41" Margin="14,705,0,0" VerticalAlignment="Top" Width="41" Source="image/trash.png" MouseLeftButtonUp="imgGebruiker_MouseLeftButtonUp" />
+        <Image x:Name="imgSluitAf" HorizontalAlignment="Left" Height="41" Margin="941,705,0,0" VerticalAlignment="Top" Width="41" Source="image/cross-mark-on-a-black-circle-background.png" MouseLeftButtonUp="imgSluitAf_MouseLeftButtonUp"/>
 
     </Grid>
 </Window>

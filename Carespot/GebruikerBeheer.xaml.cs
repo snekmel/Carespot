@@ -22,6 +22,18 @@ namespace Carespot
         public GebruikerBeheer()
         {
             InitializeComponent();
+            //lijst van gebruikers ophalen in de listview
+        }
+
+        private void imgGebruiker_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            //geselecteerde gebruiker verwijderen
+        }
+
+        private void imgSluitAf_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            //als hulpverlener ingelogd is ga terug naar HulpverlenerHoofdscherm.
+            //als beheerder ignelgod is ga tertug naar Beheerderscherm
         }
     }
 }

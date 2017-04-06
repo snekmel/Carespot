@@ -19,9 +19,27 @@ namespace Carespot
     /// </summary>
     public partial class GebruikerAanmaken : Window
     {
+       
         public GebruikerAanmaken()
         {
             InitializeComponent();
+            //cbGeslacht krijgt Enum Geslacht {man, vrouw} 
+        }
+
+
+        private void btGebruikerAanmaken_Click(object sender, RoutedEventArgs e)
+        {
+            //gebruiker aanmaken
+        }
+
+        private void imgSluiten_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            //terug naar inlogscherm
+        }
+
+        private void btUploaden_Click(object sender, RoutedEventArgs e)
+        {
+            //foto uploaden
         }
     }
 }
