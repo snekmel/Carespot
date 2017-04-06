@@ -13,9 +13,36 @@ namespace Carespot.DAL.Context
     {
         private SqlConnection _con = new SqlConnection("Data Source=WIN-SRV-WEB.fhict.local;Initial Catalog=Carespot;User ID=carespot;Password=Test1234;Encrypt=False;TrustServerCertificate=True;MultipleActiveResultSets=true");
 
-        public void CreateHulpbehoevende(string naam, string wachtwoord, string geslacht, string straat, string huisnummer, string postcode, string plaats, string land, string email, string telefoon, string gebruikertype)
+        public void CreateHulpbehoevende(string naam, string wachtwoord, string geslacht, string straat, string huisnummer, string postcode, string plaats, string land, string email, string telefoon, string gebruikertype, string foto, int hulpverlenerId)
         {
-            throw new NotImplementedException();
+            object newID;
+
+            string query = "INSERT INTO Gebruiker (naam, wachtwoord, geslacht, straat, huisnummer, postcode, plaats, land, email, telefoonnummer, gebruikerType, foto) VALUES(@naam,@wachtwoord,@geslacht,@straat,@huisnummer,@postcode,@plaats,@land,@email,@telefoonnummer,@gebruikerType,NULL);SELECT CAST(scope_identity() AS int)";
+            SqlCommand cmd = new SqlCommand(query, _con);
+
+            _con.Open();
+            cmd.Parameters.AddWithValue("@naam", naam);
+            cmd.Parameters.AddWithValue("@wachtwoord", wachtwoord);
+            cmd.Parameters.AddWithValue("@geslacht", geslacht);
+            cmd.Parameters.AddWithValue("@straat", straat);
+            cmd.Parameters.AddWithValue("@huisnummer", huisnummer);
+            cmd.Parameters.AddWithValue("@postcode", postcode);
+            cmd.Parameters.AddWithValue("@plaats", plaats);
+            cmd.Parameters.AddWithValue("@land", land);
+            cmd.Parameters.AddWithValue("@email", email);
+            cmd.Parameters.AddWithValue("@telefoonnummer", telefoon);
+            cmd.Parameters.AddWithValue("@gebruikerType", gebruikertype);
+
+            newID = (int)cmd.ExecuteScalar();
+
+            if (newID != null && DBNull.Value != newID)
+            {
+                string query1 = "INSERT INTO Hulpbehoevende (gebruikerId, hulpverlenerId) VALUES (@newID, '" + hulpverlenerId + "')";
+                SqlCommand command1 = new SqlCommand(query1, _con);
+                command1.Parameters.AddWithValue("@newID", newID);
+                command1.ExecuteScalar();
+            }
+            _con.Close();
         }
 
         public void DeleteHulpbehoevende(int id)
@@ -82,6 +109,7 @@ namespace Carespot.DAL.Context
             }
 
             reader.Close();
+
             return hulpverlener;
         }
 
@@ -93,6 +121,34 @@ namespace Carespot.DAL.Context
             SqlCommand command = new SqlCommand(cmdString, _con);
             command.ExecuteNonQuery();
             _con.Close();
+        }
+
+        public Hulpbehoevende RetrieveHulpbehoevendeById(int id)
+        {
+            _con.Open();
+            string cmdString = "SELECT Gebruiker.*, Hulpbehoevende.hulpverlenerId FROM Gebruiker INNER JOIN Hulpbehoevende ON Gebruiker.id = Hulpbehoevende.gebruikerId WHERE Gebruiker.id = '" + id + "'";
+            SqlCommand command = new SqlCommand(cmdString, _con);
+            SqlDataReader reader = command.ExecuteReader();
+            var hulpbehoevende = new Hulpbehoevende();
+
+            while (reader.Read())
+            {
+                hulpbehoevende.Email = reader.GetString(9);
+
+                hulpbehoevende.Geslacht =
+                    (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
+                hulpbehoevende.Huisnummer = reader.GetString(5);
+                hulpbehoevende.Id = reader.GetInt32(0);
+                hulpbehoevende.Land = reader.GetString(8);
+                hulpbehoevende.Naam = reader.GetString(1);
+                hulpbehoevende.Plaats = reader.GetString(7);
+                hulpbehoevende.Postcode = reader.GetString(6);
+                hulpbehoevende.Hulpverlener = RetrieveHulpverlener(reader.GetInt32(13));
+            }
+
+            reader.Close();
+            _con.Close();
+            return hulpbehoevende;
         }
     }
 }
