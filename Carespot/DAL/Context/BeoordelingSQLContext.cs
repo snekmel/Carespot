@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using Carespot.DAL.Interfaces;
 using Carespot.Models;
 
 namespace Carespot.DAL.Context
 {
-    internal class BeoordelingSQLContext : IBeoordelingContext
+    public class BeoordelingSQLContext : IBeoordelingContext
     {
         private readonly SqlConnection _con =
             new SqlConnection(
@@ -16,7 +17,7 @@ namespace Carespot.DAL.Context
             try
             {
                 _con.Open();
-                var cmdString = "SELECT * FROM Producten WHERE Id = @id";
+                var cmdString = "SELECT * FROM Beoordeling WHERE Id = @id";
                 var command = new SqlCommand(cmdString, _con);
                 command.Parameters.AddWithValue("@id", vrijwilligerId);
                 var reader = command.ExecuteReader();
@@ -37,12 +38,33 @@ namespace Carespot.DAL.Context
 
         public void Create(Beoordeling obj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _con.Open();
+                var cmdString =
+                    "INSERT INTO Beoordeling(opmerking, cijfer, reactie, vrijwilligerId, hulpbehoevendeId) VALUES(@opmerking, @cijfer, NULL, @vrijwilligerId, @hulpbehoevendeId);";
+                var command = new SqlCommand(cmdString, _con);
+                command.Parameters.AddWithValue("@opmerking", obj.Opmerking);
+                command.Parameters.AddWithValue("@cijfer", obj.Cijfer);
+                command.Parameters.AddWithValue("@hulpbehoevendeId", obj.HulpbehoevendeId);
+                command.Parameters.AddWithValue("@vrijwilligerId", obj.VrijwilligerId);
+                command.ExecuteNonQuery();
+                _con.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
         }
 
         public void Delete(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public List<Beoordeling> GetBeoordelingenByGebruikerId(int gebruikersId)
+        {
+            return null;
         }
     }
 }

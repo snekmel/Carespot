@@ -2,10 +2,11 @@
 {
     public class Beoordeling
     {
-        public Beoordeling(string opmerking, int cijfer, int hulpbehoevendeId)
+        public Beoordeling(string opmerking, int cijfer, int voorGebruikersId, int hulpbehoevendeId)
         {
             Opmerking = opmerking;
             Cijfer = cijfer;
+            VrijwilligerId = voorGebruikersId;
             HulpbehoevendeId = hulpbehoevendeId;
         }
 
