@@ -2,7 +2,7 @@
 
 namespace Carespot.DAL.Interfaces
 {
-    internal interface IBeoordelingContext
+    public interface IBeoordelingContext
     {
         Beoordeling RetrieveBeoordeling(int vrijwilligersId);
 
