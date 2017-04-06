@@ -24,12 +24,40 @@ namespace Carespot.DAL.Context
             string cmdString = "DELETE FROM Gebruiker WHERE id = '" + id + "'";
             SqlCommand command = new SqlCommand(cmdString, _con);
             command.ExecuteNonQuery();
+            command.CommandText = "DELETE FROM Hulpbehoevende WHERE = '" + id + "'";
+            command.ExecuteNonQuery();
             _con.Close();
         }
 
         public List<Hulpbehoevende> RetrieveAllHulpbehoevende()
         {
-            throw new NotImplementedException();
+            var hulpbehoevende = "Hulpbehoevende";
+            _con.Open(); string cmdString = "SELECT * FROM Gebruiker WHERE gebruikerType = '" + hulpbehoevende + "'";
+            SqlCommand command = new SqlCommand(cmdString, _con);
+            SqlDataReader reader = command.ExecuteReader();
+            var hulpbehoevendeList = new List<Hulpbehoevende>();
+
+            while (reader.Read())
+            {
+                var hulpBehoevende = new Hulpbehoevende();
+                hulpBehoevende.Id = reader.GetInt32(0);
+                hulpBehoevende.Naam = reader.GetString(1);
+                hulpBehoevende.Wachtwoord = reader.GetString(2);
+                hulpBehoevende.Geslacht = (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
+                hulpBehoevende.Straat = reader.GetString(4);
+                hulpBehoevende.Huisnummer = reader.GetString(5);
+                hulpBehoevende.Postcode = reader.GetString(6);
+                hulpBehoevende.Plaats = reader.GetString(7);
+                hulpBehoevende.Land = reader.GetString(8);
+                hulpBehoevende.Email = reader.GetString(9);
+                hulpBehoevende.Telefoonnummer = reader.GetString(10);
+
+                hulpbehoevendeList.Add(hulpBehoevende);
+            }
+
+            _con.Close();
+            reader.Close();
+            return hulpbehoevendeList;
         }
 
         public Hulpverlener RetrieveHulpverlener(int hulpverlenerId)
