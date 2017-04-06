@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Carespot.Models
 {
@@ -27,7 +23,6 @@ namespace Carespot.Models
             Omschrijving = omschrijving;
             OpdrachtDatum = opdrachtDatum;
 
-
             //Haal hier ook de gebruikers op aan de hand van de ID's
         }
 
@@ -37,7 +32,6 @@ namespace Carespot.Models
             Omschrijving = omschrijving;
             AanmaakDatum = aanmaakDatum;
             OpdrachtDatum = opdrachtDatum;
-
         }
 
         public static bool ConvertIntToBool(int i)
@@ -47,8 +41,7 @@ namespace Carespot.Models
                 return true;
             }
 
-                return false; 
-
+            return false;
         }
     }
 }

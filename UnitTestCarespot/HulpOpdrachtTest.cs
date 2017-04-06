@@ -21,6 +21,10 @@ namespace UnitTestCarespot
 
             HulpOpdracht h = new HulpOpdracht("Testopdracht", "Testomschrijving", opdrachDatum, aanmaakDatum);
 
+            //vrijwiliger toevoegen
+            //hulpbehoevende toevoegen +
+            //hulp verlener +
+
             hr.CreateHulpopdracht(h);
         }
 

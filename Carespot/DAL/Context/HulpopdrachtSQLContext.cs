@@ -114,7 +114,7 @@ namespace Carespot.DAL.Context
 
                 //Let op: De koppeltabellen worden niet aangepast
                 cmd.CommandText =
-                    "INSERT INTO Hulpopdracht (isGeaccepteerd, titel, omschrijving, aanmaakDatum, opdrachtDatum) VALUES (0, '" + hulpopdracht.Titel + "', '" + hulpopdracht.Omschrijving + "', '" + aanmaakDatum + "', '" + opdrachtDatum + "')";
+                    "INSERT INTO Hulpopdracht (isGeaccepteerd, titel, omschrijving, aanmaakDatum, opdrachtDatum, vrijwilligerId, hulpverlenerId, hulpbehoevendeId) VALUES (0, '" + hulpopdracht.Titel + "', '" + hulpopdracht.Omschrijving + "', '" + aanmaakDatum + "', '" + opdrachtDatum + "', '2', '3', '4')";
                 cmd.CommandType = CommandType.Text;
                 cmd.Connection = connection;
 
