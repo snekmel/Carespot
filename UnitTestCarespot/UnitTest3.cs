@@ -10,6 +10,21 @@ namespace UnitTestCarespot
     [TestClass]
     public class VrijwilligerTests
     {
+
+        [TestMethod]
+        public void UpdateVrijwilliger()
+        {
+
+
+            var vsc = new VrijwilligerSQLContext();
+            var vr = new VrijwilligerRepository(vsc);
+            Vrijwilliger v = vr.RetrieveById(7);
+            v.Naam = v.Naam + "aangepast";
+
+
+            vr.UpdateVrijwilliger(v);
+
+        }
         [TestMethod]
         public void VrijwilligerALL()
         {
@@ -42,6 +57,17 @@ namespace UnitTestCarespot
 
             
             vr.CreateVrijwilliger(v);
+
+
+        }
+
+        [TestMethod]
+        public void DeleteVrijwilliger()
+        {
+            var vsc = new VrijwilligerSQLContext();
+            var vr = new VrijwilligerRepository(vsc);
+
+            vr.DeleteVrijwilliger(6);
 
 
         }
