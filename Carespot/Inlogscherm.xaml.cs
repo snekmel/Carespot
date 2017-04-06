@@ -27,6 +27,9 @@ namespace Carespot
         private void btAanmelden_Click(object sender, RoutedEventArgs e)
         {
             //'GebruikerAanmaken' openen
+            GebruikerAanmaken aanmaken = new GebruikerAanmaken();
+            aanmaken.Show();
+            this.Close();
         }
 
         private void btInloggen_Click(object sender, RoutedEventArgs e)

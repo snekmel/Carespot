@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Carespot"
         mc:Ignorable="d"
-        Title="GebruikerAanmaken" Height="500" Width="930.8">
+        Title="GebruikerAanmaken" Height="500" Width="930.8" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid Margin="0,0,3.8,0.4">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="217*"/>

@@ -34,7 +34,9 @@ namespace Carespot
 
         private void imgSluiten_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            //terug naar inlogscherm
+            Inlogscherm inlog = new Inlogscherm();
+            inlog.Show();
+            this.Close();
         }
 
         private void btUploaden_Click(object sender, RoutedEventArgs e)

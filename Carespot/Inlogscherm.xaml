@@ -5,20 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Carespot"
         mc:Ignorable="d"
-        Title="Inlogscherm" Height="300" Width="500">
+        Title="Inlogscherm" Height="250" Width="450" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="7*"/>
             <ColumnDefinition Width="76*"/>
             <ColumnDefinition Width="64*"/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="label" Content="Voer uw gegevens in om in te loggen" Grid.Column="1" HorizontalAlignment="Left" Margin="41.6,34,0,0" VerticalAlignment="Top" FontSize="21.333" Grid.ColumnSpan="2" Width="372"/>
-        <Label x:Name="label1" Content="Gebruikersnaam:" Grid.Column="1" HorizontalAlignment="Left" Margin="11.6,89,0,0" VerticalAlignment="Top" FontSize="18.667"/>
-        <Label x:Name="label2" Content="Wachtwoord:" Grid.Column="1" HorizontalAlignment="Left" Margin="41.6,129,0,0" VerticalAlignment="Top" FontSize="18.667"/>
-        <TextBox x:Name="tbGebruikersnaam" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="189.6,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="213"/>
-        <TextBox x:Name="tbWachtwoord" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="189.6,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="213"/>
-        <Button x:Name="btAanmelden" Content="Aanmelden" Grid.Column="1" HorizontalAlignment="Left" Margin="229.6,197,0,0" VerticalAlignment="Top" Width="85" Grid.ColumnSpan="2" Click="btAanmelden_Click"/>
-        <Button x:Name="btInloggen" Content="Log in" Grid.Column="2" HorizontalAlignment="Left" Margin="87.6,197,0,0" VerticalAlignment="Top" Width="75" Click="btInloggen_Click"/>
+        <Label x:Name="label" Content="Voer uw gegevens in om in te loggen" Grid.Column="1" HorizontalAlignment="Left" Margin="25,13,0,0" VerticalAlignment="Top" FontSize="21.333" Grid.ColumnSpan="2" Width="372"/>
+        <Label x:Name="label1" Content="Gebruikersnaam:" HorizontalAlignment="Left" Margin="18,68,0,0" VerticalAlignment="Top" FontSize="18.667" Grid.ColumnSpan="2"/>
+        <Label x:Name="label2" Content="Wachtwoord:" Grid.Column="1" HorizontalAlignment="Left" Margin="25,108,0,0" VerticalAlignment="Top" FontSize="18.667"/>
+        <TextBox x:Name="tbGebruikersnaam" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="173,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="213"/>
+        <TextBox x:Name="tbWachtwoord" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="173,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="213"/>
+        <Button x:Name="btAanmelden" Content="Aanmelden" Grid.Column="1" HorizontalAlignment="Left" Margin="213,176,0,0" VerticalAlignment="Top" Width="85" Grid.ColumnSpan="2" Click="btAanmelden_Click"/>
+        <Button x:Name="btInloggen" Content="Log in" Grid.Column="2" HorizontalAlignment="Left" Margin="81,176,0,0" VerticalAlignment="Top" Width="75" Click="btInloggen_Click"/>
 
     </Grid>
 </Window>
