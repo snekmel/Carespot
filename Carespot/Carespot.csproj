@@ -60,6 +60,9 @@
     <Compile Include="GebruikerBeheer.xaml.cs">
       <DependentUpon>GebruikerBeheer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HulpverlenerHoofdscherm.xaml.cs">
+      <DependentUpon>HulpverlenerHoofdscherm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Opdracht.xaml.cs">
       <DependentUpon>Opdracht.xaml</DependentUpon>
     </Compile>

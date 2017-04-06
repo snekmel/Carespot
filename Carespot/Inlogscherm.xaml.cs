@@ -23,5 +23,15 @@ namespace Carespot
         {
             InitializeComponent();
         }
+
+        private void btAanmelden_Click(object sender, RoutedEventArgs e)
+        {
+            //'GebruikerAanmaken' openen
+        }
+
+        private void btInloggen_Click(object sender, RoutedEventArgs e)
+        {
+            //Controleer gegevens en log in, indien er meerdere soorten gebruik binnen die persoon mogelijk zijn, opent eerst het scherm 'Keuzescherm'
+        }
     }
 }
