@@ -3,7 +3,7 @@ using Carespot.Models;
 
 namespace Carespot.DAL.Repositorys
 {
-    internal class BeoordelingRepository
+    public class BeoordelingRepository
     {
         private readonly IBeoordelingContext _context;
 
