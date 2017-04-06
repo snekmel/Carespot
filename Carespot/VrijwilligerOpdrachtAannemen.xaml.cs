@@ -22,6 +22,14 @@ namespace Carespot
         public VrijwilligerOpdrachtAannemen()
         {
             InitializeComponent();
+            //laad naam
+            //laad functie
+            //vul combobox
+        }
+        //Geef lijst met beschikbare hulpvragen
+        private void image_Copy1_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            //'VrijwilligerHoofdscherm' openen
         }
     }
 }

@@ -22,6 +22,29 @@ namespace Carespot
         public Opdracht()
         {
             InitializeComponent();
+            //Laad naam
+            //Laad functie
+            //laad omschrijvingstab
+        }
+
+        private void imgSluitAf_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            //'VrijwilligerHoofdscherm openen'
+        }
+
+        private void tabOmschrijving_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            //laad omschrijvingstab
+        }
+
+        private void tabChat_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            //laad chatberichten
+        }
+
+        private void tabContact_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            //laad contacteninfo
         }
     }
 }

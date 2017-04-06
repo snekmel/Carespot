@@ -23,5 +23,20 @@ namespace Carespot
         {
             InitializeComponent();
         }
+
+        private void btHulpbehoevende_Click(object sender, RoutedEventArgs e)
+        {
+            //log in als hulpbehoevende --> open 'CliëntOverzicht'
+        }
+
+        private void btVrijwilliger_Click(object sender, RoutedEventArgs e)
+        {
+            //log in als vrijwilliger --> open 'VrijwilligerHoofdscherm'
+        }
+
+        private void imgSluiten_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            //Annuleer het inloggen, open 'Inlogscherm' opnieuw
+        }
     }
 }

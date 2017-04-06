@@ -22,6 +22,20 @@ namespace Carespot
         public HulpverlenerHoofdscherm()
         {
             InitializeComponent();
+            //laad naam
+            //laad functie
+        }
+        //Geef lijst met gekoppelde cliënten
+        //Geef lijst met de daarbijhorende hulpvragen
+
+        private void imgHulpverlenerToevoegen_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            //'Hulpverlener toevoegen' openen
+        }
+
+        private void imgUitloggen_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            //hulpverlener uitloggen en terug naar inlogscherm
         }
     }
 }
