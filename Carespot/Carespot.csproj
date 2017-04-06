@@ -66,6 +66,9 @@
     <Compile Include="HulpverlenerToevoegen.xaml.cs">
       <DependentUpon>HulpverlenerToevoegen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProfielVrijwilliger.xaml.cs">
+      <DependentUpon>ProfielVrijwilliger.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Recensie.xaml.cs">
       <DependentUpon>Recensie.xaml</DependentUpon>
     </Compile>

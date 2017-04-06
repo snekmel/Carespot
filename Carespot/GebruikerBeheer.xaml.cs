@@ -27,7 +27,7 @@ namespace Carespot
 
         private void imgGebruiker_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            //geselecteerde gebruiker verwijderen
+            //VerwijderBevestiging openen en geselecteerde gebruiker mee geven
         }
 
         private void imgSluitAf_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)

@@ -22,6 +22,21 @@ namespace Carespot
         public VrijwilligerHoofdscherm()
         {
             InitializeComponent();
+            //laad naam gebruiker
+            //laad functie gebruiker
+            //lijst actieve opdrachten ophalen en in listbox zetten
+        }
+
+
+
+        private void imgLogout_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            //gebruiker uitloggen en terug naar Inlogscherm
+        }
+
+        private void btOpgeven_Click(object sender, RoutedEventArgs e)
+        {
+            //open scherm: VrijwilligerOpdrachtAannemen
         }
     }
 }

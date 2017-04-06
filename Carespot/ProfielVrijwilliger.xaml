@@ -7,16 +7,22 @@
         mc:Ignorable="d"
         Title="ProfielVrijwilliger" Height="600" Width="700">
     <Grid>
-        <Image x:Name="imgProfielfoto" HorizontalAlignment="Left" Height="150" VerticalAlignment="Top" Width="130" Margin="35,30,0,0"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="121*"/>
+            <ColumnDefinition Width="388*"/>
+            <ColumnDefinition Width="37*"/>
+            <ColumnDefinition Width="148*"/>
+        </Grid.ColumnDefinitions>
+        <Image x:Name="imgProfielfoto" HorizontalAlignment="Left" Height="150" VerticalAlignment="Top" Width="130" Margin="35,30,0,0" Grid.ColumnSpan="2"/>
         <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,185,0,0" FontSize="18"/>
         <Label x:Name="lblRol" Content="Rol" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,224,0,0" FontSize="18"/>
-        <Image x:Name="imgSluitAf" HorizontalAlignment="Left" Height="41" Margin="640,30,0,0" VerticalAlignment="Top" Width="41" Source="image/cross-mark-on-a-black-circle-background.png" />
-        <Image x:Name="imgSchrijfRecensie" HorizontalAlignment="Left" Height="41" Margin="290,30,0,0" VerticalAlignment="Top" Width="41" Source="D:\Lance\GIT\Carespot\Carespot\image\font-selection-editor.png" />
-        <Label x:Name="lblSchrijfRecensie" Content="Schrijf een recensie" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="346,34,0,0" FontSize="18"/>
-        <ListView HorizontalAlignment="Left" Height="440" VerticalAlignment="Top" Width="490" Margin="191,119,0,0">
+        <Image x:Name="imgSluitAf" HorizontalAlignment="Left" Height="41" Margin="94.4,30,0,0" VerticalAlignment="Top" Width="41" Source="image/cross-mark-on-a-black-circle-background.png" Grid.Column="3" MouseLeftButtonUp="imgSluitAf_MouseLeftButtonUp" />
+        <Image x:Name="imgSchrijfRecensie" HorizontalAlignment="Left" Height="41" Margin="169.2,30,0,0" VerticalAlignment="Top" Width="41" Source="image/font-selection-editor.png" Grid.Column="1" />
+        <Label x:Name="lblSchrijfRecensie" Content="Schrijf een recensie" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="225.2,34,0,0" FontSize="18" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <ListView HorizontalAlignment="Left" Height="440" VerticalAlignment="Top" Width="490" Margin="70.2,119,0,0" Grid.ColumnSpan="3" Grid.Column="1" SelectionChanged="ListView_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Taak" Width="250"/>
+                    <GridViewColumn Header="Recensies" Width="250"/>
                 </GridView>
             </ListView.View>
         </ListView>

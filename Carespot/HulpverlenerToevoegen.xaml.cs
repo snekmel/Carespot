@@ -22,6 +22,22 @@ namespace Carespot
         public HulpverlenerToevoegen()
         {
             InitializeComponent();
+            //cbGeslacht krijgt enum Geslacht {man, vrouw} 
+        }
+
+        private void imgSluiten_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            //terug naar HulpverlenerHoofdscherm
+        }
+
+        private void btUploaden_Click(object sender, RoutedEventArgs e)
+        {
+            //foto uploaden
+        }
+
+        private void btOpslaan_Click(object sender, RoutedEventArgs e)
+        {
+            //gebruiker wordt toegevoegd met ingevulde gegevens
         }
     }
 }

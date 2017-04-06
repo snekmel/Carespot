@@ -19,7 +19,7 @@
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <Button x:Name="button" Content="Recensie opslaan" HorizontalAlignment="Left" Margin="615,410,0,0" VerticalAlignment="Top" Width="134" Height="24"/>
+        <Button x:Name="button" Content="Recensie opslaan" HorizontalAlignment="Left" Margin="615,410,0,0" VerticalAlignment="Top" Width="134" Height="24" Click="button_Click"/>
         <Image x:Name="image" HorizontalAlignment="Left" Height="41" Margin="79,397,0,0" VerticalAlignment="Top" Width="41" Source="image/star-1.png"/>
         <Image x:Name="image_Copy" HorizontalAlignment="Left" Height="41" Margin="189,397,0,0" VerticalAlignment="Top" Width="41" Source="image/star-1.png" RenderTransformOrigin="1.582,0.558"/>
         <Image x:Name="image_Copy1" HorizontalAlignment="Left" Height="41" Margin="134,397,0,0" VerticalAlignment="Top" Width="41" Source="image/star-1.png"/>

@@ -22,6 +22,20 @@ namespace Carespot
         public ProfielVrijwilliger()
         {
             InitializeComponent();
+            //laad lijst van recensies 
+            //laad naam
+            //laad functie
+            //laadt profielfoto
+        }
+
+        private void imgSluitAf_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            //terug naar vorige scherm
+        }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

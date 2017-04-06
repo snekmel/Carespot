@@ -22,6 +22,17 @@ namespace Carespot
         public VerwijderBevestiging()
         {
             InitializeComponent();
+            //haal gebruiker op
+        }
+
+        private void btnJa_Click(object sender, RoutedEventArgs e)
+        {
+            //verwijder gebruiker
+        }
+
+        private void btnNee_Click(object sender, RoutedEventArgs e)
+        {
+            //terug naar GebruikerBeheer
         }
     }
 }

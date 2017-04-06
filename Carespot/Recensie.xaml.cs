@@ -22,6 +22,12 @@ namespace Carespot
         public Recensie()
         {
             InitializeComponent();
+            //laad vrijwilliger
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            //voeg recensie toe aan vrijwilliger
         }
     }
 }

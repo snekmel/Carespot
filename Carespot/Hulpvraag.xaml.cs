@@ -22,6 +22,17 @@ namespace Carespot
         public Hulpvraagxaml()
         {
             InitializeComponent();
+            //laadt naam
+        }
+
+        private void image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            //ga terug naar CliëntOverzicht
+        }
+
+        private void btToevoegen_Click(object sender, RoutedEventArgs e)
+        {
+            //plaats hulpvraag
         }
     }
 }

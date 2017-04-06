@@ -29,7 +29,6 @@
         <TextBox x:Name="tbNaam" HorizontalAlignment="Left" Height="22" Margin="200,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188"/>
         <TextBox x:Name="tbEmail" HorizontalAlignment="Left" Height="22" Margin="200,368,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188"/>
         <TextBox x:Name="tbTelefoon" HorizontalAlignment="Left" Height="22" Margin="200,403,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188"/>
-        <ComboBox x:Name="cbGeslacht" HorizontalAlignment="Left" Margin="200,293,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbGeslacht_SelectionChanged"/>
         <CheckBox x:Name="chbHulpbehoevende" Content="Hulpbehoevende" HorizontalAlignment="Left" Margin="200,333,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="chbVrijwilliger" Content="Vrijwilliger" HorizontalAlignment="Left" Margin="316,333,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblAdres" Content="Adres:" HorizontalAlignment="Left" Margin="430,99,0,0" VerticalAlignment="Top" FontSize="18.667"/>
@@ -46,6 +45,7 @@
         <Button x:Name="btGebruikerAanmaken" Content="Maak gebruiker aan" HorizontalAlignment="Left" Margin="89.6,389,0,0" VerticalAlignment="Top" Width="159" Height="35" FontSize="16" Click="btGebruikerAanmaken_Click" Grid.Column="1"/>
         <Label x:Name="lblNummer" Content="Nummer:" HorizontalAlignment="Left" Margin="100.6,99,0,0" VerticalAlignment="Top" FontSize="18.667" Grid.Column="1"/>
         <TextBox x:Name="tbNummer" HorizontalAlignment="Left" Height="22" Margin="195.6,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="53" Grid.Column="1"/>
+        <ComboBox x:Name="cbGeslacht" HorizontalAlignment="Left" Margin="200,296,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>

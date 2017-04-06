@@ -8,7 +8,7 @@
         Title="HulpverlenerToevoegen" Height="700" Width="500">
     <Grid>
         <Label x:Name="label" Content="Voeg een nieuwe hulpverlener toe" HorizontalAlignment="Left" Margin="84,10,-56.4,0" VerticalAlignment="Top" FontSize="18.667" Width="466"/>
-        <Image x:Name="imgSluiten" HorizontalAlignment="Left" Height="41" Margin="426,10,0,0" VerticalAlignment="Top" Width="41" Source="image/cross-mark-on-a-black-circle-background.png"/>
+        <Image x:Name="imgSluiten" HorizontalAlignment="Left" Height="41" Margin="426,10,0,0" VerticalAlignment="Top" Width="41" Source="image/cross-mark-on-a-black-circle-background.png" MouseLeftButtonUp="imgSluiten_MouseLeftButtonUp"/>
         <Image x:Name="image" HorizontalAlignment="Left" Height="100" Margin="147,115,0,0" VerticalAlignment="Top" Width="100"/>
         <Label x:Name="lblgebruikersnaam" Content="Gebruikersnaam:" HorizontalAlignment="Left" Margin="27,71,0,0" VerticalAlignment="Top" FontSize="18.667"/>
         <Label x:Name="lblWachtwoord" Content="Wachtwoord:" HorizontalAlignment="Left" Margin="54,111,0,0" VerticalAlignment="Top" FontSize="18.667"/>
@@ -26,8 +26,8 @@
         <ComboBox x:Name="cbGeslacht" HorizontalAlignment="Left" Margin="200,268,0,0" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="lblFoto" Content="Foto:" HorizontalAlignment="Left" Margin="125,451,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="0.673,1.446"/>
         <Image x:Name="imgProfielfoto" HorizontalAlignment="Left" Height="150" Margin="200,456,0,0" VerticalAlignment="Top" Width="130"/>
-        <Button x:Name="btUploaden" Content="Uploaden" HorizontalAlignment="Left" Margin="352,456,0,0" VerticalAlignment="Top" Width="89" Height="27" FontSize="16"/>
-        <Button x:Name="btOpslaan" Content="Sla op" HorizontalAlignment="Left" Margin="352,620,0,0" VerticalAlignment="Top" Width="89" Height="27" FontSize="16"/>
+        <Button x:Name="btUploaden" Content="Uploaden" HorizontalAlignment="Left" Margin="352,456,0,0" VerticalAlignment="Top" Width="89" Height="27" FontSize="16" Click="btUploaden_Click"/>
+        <Button x:Name="btOpslaan" Content="Sla op" HorizontalAlignment="Left" Margin="352,620,0,0" VerticalAlignment="Top" Width="89" Height="27" FontSize="16" Click="btOpslaan_Click"/>
 
     </Grid>
 </Window>
