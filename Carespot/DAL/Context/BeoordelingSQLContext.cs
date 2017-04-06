@@ -17,7 +17,7 @@ namespace Carespot.DAL.Context
             try
             {
                 _con.Open();
-                var cmdString = "SELECT * FROM Producten WHERE Id = @id";
+                var cmdString = "SELECT * FROM Beoordeling WHERE Id = @id";
                 var command = new SqlCommand(cmdString, _con);
                 command.Parameters.AddWithValue("@id", vrijwilligerId);
                 var reader = command.ExecuteReader();
@@ -41,7 +41,8 @@ namespace Carespot.DAL.Context
             try
             {
                 _con.Open();
-                var cmdString = "INSERT INTO Beoordeling(opmerking, cijfer, reactie, hulpbehoevendeId, vrijwilligerId) VALUES(@opmerking, @cijfer, NULL, @hulpbehoevendeId, @vrijwilligerId);";
+                var cmdString =
+                    "INSERT INTO Beoordeling(opmerking, cijfer, reactie, vrijwilligerId, hulpbehoevendeId) VALUES(@opmerking, @cijfer, NULL, @vrijwilligerId, @hulpbehoevendeId);";
                 var command = new SqlCommand(cmdString, _con);
                 command.Parameters.AddWithValue("@opmerking", obj.Opmerking);
                 command.Parameters.AddWithValue("@cijfer", obj.Cijfer);

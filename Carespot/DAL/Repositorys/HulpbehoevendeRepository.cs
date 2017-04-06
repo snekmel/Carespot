@@ -26,5 +26,15 @@ namespace Carespot.DAL.Repositorys
         {
             return _hulpbehoevendeContext.RetrieveAllHulpbehoevende();
         }
+
+        public void DeleteHulpbehoevende(int id)
+        {
+            _hulpbehoevendeContext.DeleteHulpbehoevende(id);
+        }
+
+        public void UpdateHulpbehoevende(Hulpbehoevende hulpbehoevende)
+        {
+            _hulpbehoevendeContext.UpdateHulpbehoevende(hulpbehoevende);
+        }
     }
 }

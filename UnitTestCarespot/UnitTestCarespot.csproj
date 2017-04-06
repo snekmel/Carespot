@@ -53,7 +53,11 @@
     <Compile Include="TestChat.cs" />
     <Compile Include="TestHulpbehoevende.cs" />
     <Compile Include="HulpOpdrachtTest.cs" />
+<<<<<<< HEAD
     <Compile Include="UnitTest3.cs" />
+=======
+    <Compile Include="BeoordelingTest.cs" />
+>>>>>>> f6a3df29c0fd9d405ba525b0e391de2253b607d3
     <Compile Include="VaardigheidTest.cs" />
   </ItemGroup>
   <ItemGroup>

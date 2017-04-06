@@ -11,7 +11,7 @@ namespace Carespot.DAL.Context
 {
     public class HulpbehoevendeSQLContext : IHulpbehoevendeContext
     {
-        private SqlConnection _con = new SqlConnection("Data Source=WIN-SRV-WEB.fhict.local;Initial Catalog=Carespot;User ID=carespot;Password=Test1234;Encrypt=False;TrustServerCertificate=True");
+        private SqlConnection _con = new SqlConnection("Data Source=WIN-SRV-WEB.fhict.local;Initial Catalog=Carespot;User ID=carespot;Password=Test1234;Encrypt=False;TrustServerCertificate=True;MultipleActiveResultSets=true");
 
         public void CreateHulpbehoevende(string naam, string wachtwoord, string geslacht, string straat, string huisnummer, string postcode, string plaats, string land, string email, string telefoon, string gebruikertype)
         {
@@ -31,8 +31,7 @@ namespace Carespot.DAL.Context
 
         public List<Hulpbehoevende> RetrieveAllHulpbehoevende()
         {
-            var hulpbehoevende = "Hulpbehoevende";
-            _con.Open(); string cmdString = "SELECT * FROM Gebruiker WHERE gebruikerType = '" + hulpbehoevende + "'";
+            _con.Open(); string cmdString = "SELECT Gebruiker.*, Hulpbehoevende.hulpverlenerId FROM Gebruiker INNER JOIN Hulpbehoevende ON Gebruiker.id = Hulpbehoevende.gebruikerId WHERE gebruikerType = 'Hulpbehoevende'";
             SqlCommand command = new SqlCommand(cmdString, _con);
             SqlDataReader reader = command.ExecuteReader();
             var hulpbehoevendeList = new List<Hulpbehoevende>();
@@ -52,17 +51,18 @@ namespace Carespot.DAL.Context
                 hulpBehoevende.Email = reader.GetString(9);
                 hulpBehoevende.Telefoonnummer = reader.GetString(10);
 
+                hulpBehoevende.Hulpverlener = RetrieveHulpverlener(reader.GetInt32(13));
                 hulpbehoevendeList.Add(hulpBehoevende);
             }
-
-            _con.Close();
             reader.Close();
+            _con.Close();
+
             return hulpbehoevendeList;
         }
 
         public Hulpverlener RetrieveHulpverlener(int hulpverlenerId)
         {
-            _con.Open(); string cmdString = "SELECT * FROM Gebruiker AS g WHERE g.id = '" + hulpverlenerId + "'";
+            string cmdString = "SELECT * FROM Gebruiker AS g WHERE g.id = '" + hulpverlenerId + "'";
             SqlCommand command = new SqlCommand(cmdString, _con);
             SqlDataReader reader = command.ExecuteReader();
             var hulpverlener = new Hulpverlener();
@@ -81,14 +81,18 @@ namespace Carespot.DAL.Context
                 hulpverlener.Postcode = reader.GetString(6);
             }
 
-            _con.Close();
             reader.Close();
             return hulpverlener;
         }
 
         public void UpdateHulpbehoevende(Hulpbehoevende hulpbehoevende)
         {
-            throw new NotImplementedException();
+            _con.Open();
+            //naam, wachtwoord, geslacht, straat, huisnummer, postcode, plaats, land, e-mail, telefoonnummer, foto
+            string cmdString = "UPDATE Gebruiker SET naam = '" + hulpbehoevende.Naam + "', wachtwoord = '" + hulpbehoevende.Wachtwoord + "', geslacht = '" + hulpbehoevende.Geslacht + "', straat = '" + hulpbehoevende.Straat + "', huisnummer = '" + hulpbehoevende.Huisnummer + "', postcode = '" + hulpbehoevende.Postcode + "', plaats = '" + hulpbehoevende.Plaats + "', land = '" + hulpbehoevende.Land + "', email = '" + hulpbehoevende.Email + "', telefoonnummer = '" + hulpbehoevende.Telefoonnummer + "', foto = '" + hulpbehoevende.Foto + "'  WHERE id = '" + hulpbehoevende.Id + "'";
+            SqlCommand command = new SqlCommand(cmdString, _con);
+            command.ExecuteNonQuery();
+            _con.Close();
         }
     }
 }
