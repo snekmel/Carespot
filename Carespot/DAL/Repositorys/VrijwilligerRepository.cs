@@ -8,7 +8,7 @@ using Carespot.Models;
 
 namespace Carespot.DAL.Repositorys
 {
-    class VrijwilligerRepository
+    public class VrijwilligerRepository
     {
 
         private readonly IVrijwilligerContext _interface;
@@ -21,6 +21,11 @@ namespace Carespot.DAL.Repositorys
         public List<Vrijwilliger> RetrieveAll()
         {
             return _interface.RetrieveAll();
+        }
+
+        public Vrijwilliger RetrieveById(int id)
+        {
+            return _interface.RetrieveVrijwilliger(id);
         }
 
         public void CreateVrijwilliger(Vrijwilliger v)
