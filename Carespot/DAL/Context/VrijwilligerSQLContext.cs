@@ -48,43 +48,36 @@ namespace Carespot.DAL.Context
         public void CreateVrijwilliger(Vrijwilliger v)
         {
             object newID;
-            try
-            {
-               
-                string query = "INSERT INTO Gebruiker r(naam, wachtwoord, geslacht, straat, huisnummer, postcode, plaats, land, email, telefoonnummer, gebruikerType, foto) VALUES(@naam,@wachtwoord,@geslacht,@straat,@huisnummer,@postcode,@plaats,@land,@email,@telefoonnummer,@gebruikerType,@foto);SELECT CAST(scope_identity() AS int)";        
-                using (SqlCommand cmd = new SqlCommand(query, _con))
-                {
+         
+                string query = "INSERT INTO Gebruiker (naam, wachtwoord, geslacht, straat, huisnummer, postcode, plaats, land, email, telefoonnummer, gebruikerType, foto) VALUES(@naam,@wachtwoord,@geslacht,@straat,@huisnummer,@postcode,@plaats,@land,@email,@telefoonnummer,@gebruikerType,NULL);SELECT CAST(scope_identity() AS int)";
+                SqlCommand cmd = new SqlCommand(query, _con);
+                
                     _con.Open();
                     cmd.Parameters.AddWithValue("@naam", v.Naam);
                     cmd.Parameters.AddWithValue("@wachtwoord", v.Wachtwoord);
                     cmd.Parameters.AddWithValue("@geslacht", v.Geslacht);
                     cmd.Parameters.AddWithValue("@straat", v.Straat);
-                    cmd.Parameters.AddWithValue("@text", _text);
-                    cmd.Parameters.AddWithValue("@text", _text);
-                    cmd.Parameters.AddWithValue("@text", _text);
-                    cmd.Parameters.AddWithValue("@text", _text);
+                    cmd.Parameters.AddWithValue("@huisnummer", v.Huisnummer);
+                    cmd.Parameters.AddWithValue("@postcode", v.Postcode);
+                    cmd.Parameters.AddWithValue("@plaats", v.Plaats);
+                    cmd.Parameters.AddWithValue("@land", v.Land);
+                    cmd.Parameters.AddWithValue("@email", v.Email);
+                    cmd.Parameters.AddWithValue("@telefoonnummer", v.Telefoonnummer);
+                    cmd.Parameters.AddWithValue("@gebruikerType", v.Type);
 
 
                     newID = (int)cmd.ExecuteScalar();
 
                     if (newID != null && DBNull.Value != newID)
                     {
-                        string query1 = "INSERT INTO placed_comments VALUES (@newEventId, @newCommentId)";
-                        SqlCommand command1 = new SqlCommand(query1, con);
-
-                        command1.Parameters.AddWithValue("@newCommentId", newID);
-                        command1.Parameters.AddWithValue("@newEventId", _event_id);
-
+                        string query1 = "INSERT INTO Vrijwilliger VALUES (@newID)";
+                        SqlCommand command1 = new SqlCommand(query1, _con);
+                        command1.Parameters.AddWithValue("@newID", newID);               
                         command1.ExecuteScalar();
                     }
 
                     _con.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                Error = ex.Message;
-            }
+          
 
             /*
             int newID = 0;
