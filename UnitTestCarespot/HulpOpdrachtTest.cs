@@ -19,11 +19,14 @@ namespace UnitTestCarespot
             DateTime aanmaakDatum = DateTime.Today;
             DateTime opdrachDatum = DateTime.Today;
 
-            HulpOpdracht h = new HulpOpdracht("Testopdracht", "Testomschrijving", opdrachDatum, aanmaakDatum);
+            var inf = new HulpbehoevendeSQLContext();
+            var repo = new HulpbehoevendeRepository(inf);
 
-            //vrijwiliger toevoegen
-            //hulpbehoevende toevoegen +
-            //hulp verlener +
+            var hulpList = repo.HulpbehoevendeList();
+
+            Hulpbehoevende hb = (Hulpbehoevende)hulpList[0];
+
+            HulpOpdracht h = new HulpOpdracht(false, "test", aanmaakDatum, "test", opdrachDatum, hb);
 
             hr.CreateHulpopdracht(h);
         }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 
 namespace Carespot.DAL.Context
 {
@@ -36,9 +37,9 @@ namespace Carespot.DAL.Context
                     int opdrachtid = reader.GetInt32(0);
                     bool isGeaccepteerd = HulpOpdracht.ConvertIntToBool(reader.GetInt32(1));
                     string titel = reader.GetString(2);
-                    DateTime aanmaakDatum = Convert.ToDateTime(reader.GetString(3));
+                    DateTime aanmaakDatum = reader.GetDateTime(3);
                     string omschrijving = reader.GetString(4);
-                    DateTime opdrachtDatum = Convert.ToDateTime(reader.GetString(5));
+                    DateTime opdrachtDatum = reader.GetDateTime(5);
 
                     HulpOpdracht h = new HulpOpdracht(opdrachtid, isGeaccepteerd, titel, aanmaakDatum, omschrijving, opdrachtDatum);
                     _hulpopdrachten.Add(h);
@@ -80,9 +81,9 @@ namespace Carespot.DAL.Context
                 int opdrachtid = reader.GetInt32(0);
                 bool isGeaccepteerd = HulpOpdracht.ConvertIntToBool(reader.GetInt32(1));
                 string titel = reader.GetString(2);
-                DateTime aanmaakDatum = Convert.ToDateTime(reader.GetString(3));
+                DateTime aanmaakDatum = reader.GetDateTime(3);
                 string omschrijving = reader.GetString(4);
-                DateTime opdrachtDatum = Convert.ToDateTime(reader.GetString(5));
+                DateTime opdrachtDatum = reader.GetDateTime(5);
 
                 h = new HulpOpdracht(opdrachtid, isGeaccepteerd, titel, aanmaakDatum, omschrijving, opdrachtDatum);
 
@@ -114,7 +115,7 @@ namespace Carespot.DAL.Context
 
                 //Let op: De koppeltabellen worden niet aangepast
                 cmd.CommandText =
-                    "INSERT INTO Hulpopdracht (isGeaccepteerd, titel, omschrijving, aanmaakDatum, opdrachtDatum, vrijwilligerId, hulpverlenerId, hulpbehoevendeId) VALUES (0, '" + hulpopdracht.Titel + "', '" + hulpopdracht.Omschrijving + "', '" + aanmaakDatum + "', '" + opdrachtDatum + "', '2', '3', '4')";
+                    "INSERT INTO Hulpopdracht (isGeaccepteerd, titel, omschrijving, aanmaakDatum, opdrachtDatum, hulpverlenerId, hulpbehoevendeId) VALUES (0, '" + hulpopdracht.Titel + "', '" + hulpopdracht.Omschrijving + "', '" + aanmaakDatum + "', '" + opdrachtDatum + "', '" + hulpopdracht.Hulpbehoevende.Hulpverlener.Id +"', '"+ hulpopdracht.Hulpbehoevende.Id +"')";
                 cmd.CommandType = CommandType.Text;
                 cmd.Connection = connection;
 
