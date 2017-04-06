@@ -22,6 +22,28 @@ namespace Carespot
         public Beheerderscherm()
         {
             InitializeComponent();
+            //vul combobox geslacht
+            //vul combobox hulpverlener/beheerder
+        }
+
+        private void btUploaden_Click(object sender, RoutedEventArgs e)
+        {
+            //profielfoto uploaden
+        }
+
+        private void btOpslaan_Click(object sender, RoutedEventArgs e)
+        {
+            //gebruik gegevens om hulpverlener/beheerder (afhankelijk van de combobox) aan te maken
+        }
+
+        private void imgUitloggen_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            //beheerder uitloggen
+        }
+
+        private void imgGebruikersbeheer_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            //gebruikersoverzicht openen
         }
     }
 }
