@@ -51,11 +51,11 @@
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestChat.cs" />
-<<<<<<< HEAD
+
     <Compile Include="TestHulpbehoevende.cs" />
-=======
+
     <Compile Include="HulpOpdrachtTest.cs" />
->>>>>>> 231d654657248bc8f8f360c9effbce8e18c2205a
+
     <Compile Include="VaardigheidTest.cs" />
   </ItemGroup>
   <ItemGroup>

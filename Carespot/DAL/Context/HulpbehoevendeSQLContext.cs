@@ -34,7 +34,7 @@ namespace Carespot.DAL.Context
 
         public Hulpverlener RetrieveHulpverlener(int hulpverlenerId)
         {
-            _con.Open(); string cmdString = "SELECT * FROM Gebruiker AS g INNER JOIN Hulpbehoevende AS h ON g.id = h.gebruikerId WHERE h.hulpverlenerId = '" + hulpverlenerId + "'";
+            _con.Open(); string cmdString = "SELECT * FROM Gebruiker AS g WHERE g.id = '" + hulpverlenerId + "'";
             SqlCommand command = new SqlCommand(cmdString, _con);
             SqlDataReader reader = command.ExecuteReader();
             var hulpverlener = new Hulpverlener();
