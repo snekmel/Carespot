@@ -1,10 +1,11 @@
-﻿using Carespot.Models;
+﻿using System.Collections.Generic;
+using Carespot.Models;
 
 namespace Carespot.DAL.Interfaces
 {
     public interface IBeoordelingContext
     {
-        Beoordeling RetrieveBeoordeling(int vrijwilligersId);
+        List<Beoordeling> RetrieveBeoordeling(int vrijwilligersId);
 
         void Create(Beoordeling obj);
 

@@ -2,6 +2,10 @@
 {
     public class Beoordeling
     {
+        public Beoordeling()
+        {
+        }
+
         public Beoordeling(string opmerking, int cijfer, int voorGebruikersId, int hulpbehoevendeId)
         {
             Opmerking = opmerking;
@@ -21,16 +25,21 @@
             HulpbehoevendeId = hulpbehoevendeId;
         }
 
-        public int Id { get; private set; }
-        public string Opmerking { get; private set; }
+        public int Id { get; set; }
+        public string Opmerking { get; set; }
 
         //ID van de vrijwilliger waarvoor deze beoordeling is
-        public int VrijwilligerId { get; private set; }
+        public int VrijwilligerId { get; set; }
 
-        public int Cijfer { get; private set; }
-        public string Reactie { get; private set; }
+        public int Cijfer { get; set; }
+        public string Reactie { get; set; }
 
         //ID van de auteur van de beoordeling
-        public int HulpbehoevendeId { get; private set; }
+        public int HulpbehoevendeId { get; set; }
+
+        public override string ToString()
+        {
+            return "ID:" + Id + " Opmerking: " + Opmerking + " Cijfer: " + Cijfer;
+        }
     }
 }
