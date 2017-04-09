@@ -17,7 +17,7 @@ namespace Carespot.DAL.Repositorys
             this._hulpbehoevendeContext = hulpbehoevendeContext;
         }
 
-        public Hulpverlener Hulpverlener(int id)
+        public Hulpverlener RetrieveHulpverlener(int id)
         {
             return _hulpbehoevendeContext.RetrieveHulpverlener(id);
         }
@@ -25,6 +25,28 @@ namespace Carespot.DAL.Repositorys
         public List<Hulpbehoevende> HulpbehoevendeList()
         {
             return _hulpbehoevendeContext.RetrieveAllHulpbehoevende();
+        }
+
+        public void DeleteHulpbehoevende(int id)
+        {
+            _hulpbehoevendeContext.DeleteHulpbehoevende(id);
+        }
+
+        public void UpdateHulpbehoevende(Hulpbehoevende hulpbehoevende)
+        {
+            _hulpbehoevendeContext.UpdateHulpbehoevende(hulpbehoevende);
+        }
+
+        public void CreateHulpbehoevende(string naam, string wachtwoord, Gebruiker.GebruikerGeslacht geslacht, string straat,
+            string huisnummer, string postcode, string plaats, string land, string email, string telefoon,
+            Gebruiker.GebruikerType gebruikertype, string foto, int hulpverlenerId)
+        {
+            _hulpbehoevendeContext.CreateHulpbehoevende(naam, wachtwoord, geslacht.ToString(), straat, huisnummer, postcode, plaats, land, email, telefoon, gebruikertype.ToString(), foto, hulpverlenerId);
+        }
+
+        public Hulpbehoevende RetrieveHulpbehoevendeById(int id)
+        {
+            return _hulpbehoevendeContext.RetrieveHulpbehoevendeById(id);
         }
     }
 }

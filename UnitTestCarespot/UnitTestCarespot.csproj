@@ -53,10 +53,14 @@
     <Compile Include="TestChat.cs" />
     <Compile Include="TestHulpbehoevende.cs" />
     <Compile Include="HulpOpdrachtTest.cs" />
+    <Compile Include="UnitTest3.cs" />
     <Compile Include="BeoordelingTest.cs" />
     <Compile Include="VaardigheidTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="GenericTest1.GenericTest">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

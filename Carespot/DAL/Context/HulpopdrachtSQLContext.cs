@@ -4,13 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 
 namespace Carespot.DAL.Context
 {
     public class HulpopdrachtSQLContext : IHulpopdrachtContext
     {
         private static string connectionString =
-            "Data Source = 'WIN-SRV-WEB.fhict.local, 1433'; Integrated Security = False; User ID = carespot; Password=Test1234;Connect Timeout = 15; Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            "Data Source=WIN-SRV-WEB.fhict.local;Initial Catalog=Carespot;User ID=carespot;Password=Test1234;Encrypt=False;TrustServerCertificate=True";
 
         private readonly SqlConnection connection = new SqlConnection(connectionString);
 
@@ -29,16 +30,18 @@ namespace Carespot.DAL.Context
                 cmd.CommandType = CommandType.Text;
                 cmd.Connection = connection;
 
-                connection.Open();
-
                 reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    int id = reader.GetInt32(0);
+                    int opdrachtid = reader.GetInt32(0);
+                    bool isGeaccepteerd = HulpOpdracht.ConvertIntToBool(reader.GetInt32(1));
                     string titel = reader.GetString(2);
+                    DateTime aanmaakDatum = reader.GetDateTime(3);
+                    string omschrijving = reader.GetString(4);
+                    DateTime opdrachtDatum = reader.GetDateTime(5);
 
-                    HulpOpdracht h = new HulpOpdracht(id, titel);
+                    HulpOpdracht h = new HulpOpdracht(opdrachtid, isGeaccepteerd, titel, aanmaakDatum, omschrijving, opdrachtDatum);
                     _hulpopdrachten.Add(h);
                 }
 
@@ -71,14 +74,20 @@ namespace Carespot.DAL.Context
                 cmd.CommandType = CommandType.Text;
                 cmd.Connection = connection;
 
-                connection.Open();
-
                 reader = cmd.ExecuteReader();
 
-                int opdrachtid = reader.GetInt32(0);
-                string titel = reader.GetString(2);
+                reader.Read();
 
-                h = new HulpOpdracht(opdrachtid, titel);
+                int opdrachtid = reader.GetInt32(0);
+                bool isGeaccepteerd = HulpOpdracht.ConvertIntToBool(reader.GetInt32(1));
+                string titel = reader.GetString(2);
+                DateTime aanmaakDatum = reader.GetDateTime(3);
+                string omschrijving = reader.GetString(4);
+                DateTime opdrachtDatum = reader.GetDateTime(5);
+
+                h = new HulpOpdracht(opdrachtid, isGeaccepteerd, titel, aanmaakDatum, omschrijving, opdrachtDatum);
+
+                reader.Close();
             }
             catch (Exception e)
             {
@@ -92,22 +101,27 @@ namespace Carespot.DAL.Context
             return h;
         }
 
-        public void CreateHulpopdracht(HulpOpdracht hulopdracht)
+        public void CreateHulpopdracht(HulpOpdracht hulpopdracht)
         {
             try
             {
                 connection.Open();
 
+                //Converteer datums naar string
+                string aanmaakDatum = hulpopdracht.AanmaakDatum.ToString("yyyy-MM-dd");
+                string opdrachtDatum = hulpopdracht.OpdrachtDatum.ToString("yyyy-MM-dd");
+
                 SqlCommand cmd = new SqlCommand();
 
                 //Let op: De koppeltabellen worden niet aangepast
                 cmd.CommandText =
-                    "INSERT INTO hulpopdracht (titel, omschrijving) VALUES ('" +
-                    hulopdracht.Titel + "', '" + hulopdracht.Omschrijving + "');";
+                    "INSERT INTO Hulpopdracht (isGeaccepteerd, titel, omschrijving, aanmaakDatum, opdrachtDatum, hulpverlenerId, hulpbehoevendeId) VALUES (0, '" + hulpopdracht.Titel + "', '" + hulpopdracht.Omschrijving + "', '" + aanmaakDatum + "', '" + opdrachtDatum + "', '" + hulpopdracht.Hulpbehoevende.Hulpverlener.Id +"', '"+ hulpopdracht.Hulpbehoevende.Id +"')";
                 cmd.CommandType = CommandType.Text;
                 cmd.Connection = connection;
 
                 cmd.ExecuteReader();
+
+                //cmd.ExecuteNonQuery();
             }
             catch (Exception e)
             {
