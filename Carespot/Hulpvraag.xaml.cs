@@ -23,6 +23,12 @@ namespace Carespot
     public partial class Hulpvraagxaml : Window
     {
         Hulpbehoevende hulpbehoevende;
+
+        public Hulpvraagxaml()
+        {
+            InitializeComponent();
+        }
+
         public Hulpvraagxaml(Hulpbehoevende hb)
         {
             InitializeComponent();

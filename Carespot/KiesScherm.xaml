@@ -8,19 +8,19 @@
         Title="KiesScherm" Height="250" Width="320">
     <Grid>
         <Button Content="Startscenario" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="12,18,0,0" Click="Button_Click"/>
-        <Button x:Name="HulpverlenerOverzicht"  Content="HulpverlenerOverzicht" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="162,168,0,0"/>
-        <Button x:Name="OpdrachtScherm" Content="OpdrachtScherm" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="162,18,0,0"/>
-        <Button x:Name="RecensieScherm" Content="RecensieScherm" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="162,143,0,0"/>
-        <Button x:Name="OpdrachtAannemen" Content="OpdrachtAannemen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="12,168,0,0"/>
-        <Button x:Name="VrijwilligerOverzicht" Content="VrijwilligerOverzicht" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="12,143,0,0"/>
-        <Button x:Name="Hulpvraag" Content="Hulpvraag" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="12,118,0,0"/>
-        <Button x:Name="Cliëntoverzicht" Content="CliëntOverzicht" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="12,93,0,0"/>
-        <Button x:Name="Aanmelden" Content="Aanmelden" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="12,68,0,0"/>
-        <Button x:Name="Keuzescherm" Content="Keuzescherm" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="12,43,0,0"/>
-        <Button x:Name="HulpverlenerToevoegen" Content="HulpverlenerToevoegen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="162,43,0,0"/>
-        <Button x:Name="BeheerderScherm" Content="BeheerderScherm" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="162,118,0,0"/>
-        <Button x:Name="VerwijderBevestiging" Content="VerwijderBevestiging" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="162,93,0,0"/>
-        <Button x:Name="GebruikerBeheer" Content="GebruikerBeheer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="162,68,0,0"/>
+        <Button x:Name="HulpverlenerOverzicht"  Content="HulpverlenerOverzicht" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="162,143,0,0" Click="HulpverlenerOverzicht_Click"/>
+        <Button x:Name="OpdrachtScherm" Content="OpdrachtScherm" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="162,18,0,0" Click="OpdrachtScherm_Click"/>
+        <Button x:Name="RecensieScherm" Content="RecensieScherm" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="162,43,0,0" Click="RecensieScherm_Click"/>
+        <Button x:Name="OpdrachtAannemen" Content="OpdrachtAannemen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="12,168,0,0" Click="OpdrachtAannemen_Click"/>
+        <Button x:Name="VrijwilligerOverzicht" Content="VrijwilligerOverzicht" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="12,143,0,0" Click="VrijwilligerOverzicht_Click"/>
+        <Button x:Name="Hulpvraag" Content="Hulpvraag" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="12,118,0,0" Click="Hulpvraag_Click"/>
+        <Button x:Name="Cliëntoverzicht" Content="CliëntOverzicht" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="12,93,0,0" Click="Cliëntoverzicht_Click"/>
+        <Button x:Name="Aanmelden" Content="Aanmelden" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="12,68,0,0" Click="Aanmelden_Click"/>
+        <Button x:Name="Keuzescherm" Content="Keuzescherm" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="12,43,0,0" Click="Keuzescherm_Click"/>
+        <Button x:Name="HulpverlenerToevoegen" Content="HulpverlenerToevoegen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="162,68,0,0" Click="HulpverlenerToevoegen_Click"/>
+        <Button x:Name="BeheerderScherm" Content="BeheerderScherm" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="162,168,0,0" Click="BeheerderScherm_Click"/>
+        <Button x:Name="VerwijderBevestiging" Content="VerwijderBevestiging" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="162,118,0,0" Click="VerwijderBevestiging_Click"/>
+        <Button x:Name="GebruikerBeheer" Content="GebruikerBeheer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="162,93,0,0" Click="GebruikerBeheer_Click"/>
 
     </Grid>
 </Window>

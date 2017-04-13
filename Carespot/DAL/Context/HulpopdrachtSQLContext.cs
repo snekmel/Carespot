@@ -86,6 +86,75 @@ namespace Carespot.DAL.Context
             return _hulpopdrachten;
         }
 
+        public List<HulpOpdracht> GetAllHulpopdrachtenByHulpbehoevendeID(int hbid)
+        {
+            List<HulpOpdracht> _hulpopdrachten = new List<HulpOpdracht>();
+
+            try
+            {
+                connection.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                SqlDataReader reader;
+
+                cmd.CommandText = "SELECT * FROM Hulpopdracht WHERE Hulpbehoevendeid =" + hbid + ";";
+                cmd.CommandType = CommandType.Text;
+                cmd.Connection = connection;
+
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    int opdrachtid = reader.GetInt32(0);
+                    bool isGeaccepteerd = HulpOpdracht.ConvertIntToBool(reader.GetInt32(1));
+                    string titel = reader.GetString(2);
+                    DateTime aanmaakDatum = reader.GetDateTime(3);
+                    string omschrijving = reader.GetString(4);
+                    DateTime opdrachtDatum = reader.GetDateTime(5);
+                    int vrijwillegerid = 0;
+                    int hulpbehoevendeid = reader.GetInt32(8);
+
+                    //Controleer of vrijwillegerid niet nul is, anders vul vrijwillegerid
+                    if (!reader.IsDBNull(6))
+                    {
+                        vrijwillegerid = reader.GetInt32(6);
+                    }
+
+                    HulpOpdracht h = new HulpOpdracht(opdrachtid, isGeaccepteerd, titel, aanmaakDatum, omschrijving, opdrachtDatum);
+                    _hulpopdrachten.Add(h);
+
+                    //Haal de passende vrijwilleger op en voeg deze toe aan de hulpopdracht
+                    if (vrijwillegerid > 0)
+                    {
+                        var vsc = new VrijwilligerSQLContext();
+                        var vr = new VrijwilligerRepository(vsc);
+
+                        Vrijwilliger v = vr.RetrieveById(vrijwillegerid);
+                        h.Vrijwilleger = v;
+                    }
+
+                    //Haal de passende hulpbehoevende (incl hulpverlener) op en voeg deze toe aan de hulpopdracht
+                    var inf = new HulpbehoevendeSQLContext();
+                    var repo = new HulpbehoevendeRepository(inf);
+
+                    Hulpbehoevende hb = repo.RetrieveHulpbehoevendeById(hulpbehoevendeid);
+                    h.Hulpbehoevende = hb;
+                }
+
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return _hulpopdrachten;
+        }
+
         public HulpOpdracht GetHulpopdrachtByID(int id)
         {
             HulpOpdracht h;

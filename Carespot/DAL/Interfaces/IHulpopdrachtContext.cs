@@ -12,5 +12,6 @@ namespace Carespot.DAL.Interfaces
         List<HulpOpdracht> GetAllHulpopdrachten();
         HulpOpdracht GetHulpopdrachtByID(int id);
         void CreateHulpopdracht(HulpOpdracht hulpodracht);
+        List<HulpOpdracht> GetAllHulpopdrachtenByHulpbehoevendeID(int hbid);
     }
 }
