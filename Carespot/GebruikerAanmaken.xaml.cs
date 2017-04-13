@@ -23,14 +23,10 @@ namespace Carespot
     /// </summary>
     public partial class GebruikerAanmaken : Window
     {
-        private HulpbehoevendeSQLContext inf;
-        private HulpbehoevendeRepository repo;
-
         public GebruikerAanmaken()
         {
             InitializeComponent();
-            inf = new HulpbehoevendeSQLContext();
-            repo = new HulpbehoevendeRepository(inf);
+
             //cbGeslacht krijgt Enum Geslacht {man, vrouw}
             vulComboBox();
         }
@@ -51,19 +47,42 @@ namespace Carespot
                 var postcode = tbPostcode.Text;
                 var plaats = tbPlaats.Text;
                 var land = tbLand.Text;
-                var foto = imgProfielfoto.Source.ToString();
+                // var foto = imgProfielfoto.Source.ToString();
+
                 if (wachtwoord == wachtwoordOpnieuw)
                 {
-                    if (chbHulpbehoevnde.IsChecked == true && chbVrijwilliger.IsChecked == true)
+                    var inf = new GebruikerSQLContext();
+                    var repo = new GebruikerRepository(inf);
+                    var g = new Gebruiker
                     {
-                    }
-                    if (chbHulpbehoevnde.IsChecked == true && chbVrijwilliger.IsChecked == false)
+                        Email = email,
+                        //   Foto = foto,
+                        Geslacht = geslacht,
+                        Huisnummer = huisNummer,
+                        Land = land,
+                        Naam = naam,
+                        Plaats = plaats,
+                        Postcode = postcode,
+                        Straat = adres,
+                        Wachtwoord = wachtwoord,
+                        Telefoonnummer = telNr
+                    };
+
+                    if (chbHulpbehoevnde.IsChecked == true)
                     {
+                        var hlp = new HulpbehoevendeSQLContext();
+                        var repohlp = new HulpbehoevendeRepository(hlp);
+                        var id = repo.CreateGebruiker(g);
+                        repohlp.CreateHulpbehoevende(id, 3);
                     }
-                    if (chbHulpbehoevnde.IsChecked == false && chbVrijwilliger.IsChecked == true)
+                    if (chbVrijwilliger.IsChecked == true)
                     {
+                        var vrw = new VrijwilligerSQLContext();
+                        var repovrw = new VrijwilligerRepository(vrw);
+                        var id = repo.CreateGebruiker(g);
+                        repovrw.CreateVrijwilliger(id);
                     }
-                    else
+                    if (chbHulpbehoevnde.IsChecked == false && chbVrijwilliger.IsChecked == false)
                     {
                         MessageBox.Show("Er moet een gebruikers type aangeklikt zijn.");
                     }
