@@ -42,7 +42,7 @@
         <Label x:Name="lblNummer" Content="Nummer:" HorizontalAlignment="Left" Margin="100.6,99,0,0" VerticalAlignment="Top" FontSize="18.667" Grid.Column="1" />
         <TextBox x:Name="tbNummer" HorizontalAlignment="Left" Height="22" Margin="195.6,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="53" Grid.Column="1" />
         <ComboBox x:Name="cbGeslacht" HorizontalAlignment="Left" Margin="200,296,0,0" VerticalAlignment="Top" Width="120" />
-        <ComboBox x:Name="cmGebruikerType" HorizontalAlignment="Left" Margin="200,331,0,0" VerticalAlignment="Top" Width="120" />
-        <RadioButton x:Name="rdHulpbehoevnde" Content="Hulpbehoevende" HorizontalAlignment="Left" Margin="200,400,0,0" VerticalAlignment="Top" />
+        <CheckBox x:Name="chbHulpbehoevnde" Content="Hulpbehoevende" HorizontalAlignment="Left" Margin="200,333,0,0" VerticalAlignment="Top" />
+        <CheckBox x:Name="chbVrijwilliger" Content="Vrijwilliger" HorizontalAlignment="Left" Margin="332,333,0,0" VerticalAlignment="Top" />
     </Grid>
 </Window>

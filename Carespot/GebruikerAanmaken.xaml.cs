@@ -32,13 +32,11 @@ namespace Carespot
             inf = new HulpbehoevendeSQLContext();
             repo = new HulpbehoevendeRepository(inf);
             //cbGeslacht krijgt Enum Geslacht {man, vrouw}
+            vulComboBox();
         }
 
         private void btGebruikerAanmaken_Click(object sender, RoutedEventArgs e)
         {
-            //if (rdHulpbehoevnde.IsChecked == true)
-            //{
-            //}
             try
             {
                 var email = tbEmail.Text;
@@ -46,7 +44,7 @@ namespace Carespot
                 var wachtwoordOpnieuw = tbHerhalen.Text;
                 var naam = tbNaam.Text;
                 var geslacht = (Gebruiker.GebruikerGeslacht)cbGeslacht.SelectedItem;
-                var gebruikertype = (Gebruiker.GebruikerType)cmGebruikerType.SelectedItem;
+                // var gebruikertype = (Gebruiker.GebruikerType)cmGebruikerType.SelectedItem;
                 var telNr = tbTelefoon.Text;
                 var adres = tbAdres.Text;
                 var huisNummer = tbNummer.Text;
@@ -56,8 +54,19 @@ namespace Carespot
                 var foto = imgProfielfoto.Source.ToString();
                 if (wachtwoord == wachtwoordOpnieuw)
                 {
-                    repo.CreateHulpbehoevende(naam, wachtwoord, geslacht, adres, huisNummer, postcode, plaats, land, email,
-                        telNr, gebruikertype, foto, 3);
+                    if (chbHulpbehoevnde.IsChecked == true && chbVrijwilliger.IsChecked == true)
+                    {
+                    }
+                    if (chbHulpbehoevnde.IsChecked == true && chbVrijwilliger.IsChecked == false)
+                    {
+                    }
+                    if (chbHulpbehoevnde.IsChecked == false && chbVrijwilliger.IsChecked == true)
+                    {
+                    }
+                    else
+                    {
+                        MessageBox.Show("Er moet een gebruikers type aangeklikt zijn.");
+                    }
                 }
                 else
                 {
@@ -66,7 +75,7 @@ namespace Carespot
             }
             catch (NullReferenceException)
             {
-                MessageBox.Show("Er moet een geslacht en een gebruikerstype gekozen zijn.");
+                MessageBox.Show("Er moet een geslacht gekozen zijn.");
             }
         }
 
@@ -80,6 +89,14 @@ namespace Carespot
         private void btUploaden_Click(object sender, RoutedEventArgs e)
         {
             //foto uploaden
+        }
+
+        private void vulComboBox()
+        {
+            foreach (var item in Enum.GetValues(typeof(Gebruiker.GebruikerGeslacht)))
+            {
+                cbGeslacht.Items.Add(item);
+            }
         }
     }
 }
