@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
+using System.Windows;
+using Carespot.DAL.Repositorys;
 
 namespace Carespot.DAL.Context
 {
@@ -40,9 +42,29 @@ namespace Carespot.DAL.Context
                     DateTime aanmaakDatum = reader.GetDateTime(3);
                     string omschrijving = reader.GetString(4);
                     DateTime opdrachtDatum = reader.GetDateTime(5);
+                    int vrijwillegerid = reader.GetInt32(6);
+                    int hulpbehoevendeid = reader.GetInt32(8);
 
                     HulpOpdracht h = new HulpOpdracht(opdrachtid, isGeaccepteerd, titel, aanmaakDatum, omschrijving, opdrachtDatum);
                     _hulpopdrachten.Add(h);
+
+                    //Haal de passende vrijwilleger op en voeg deze toe aan de hulpopdracht
+                    if (vrijwillegerid > 0)
+                    {
+                        var vsc = new VrijwilligerSQLContext();
+                        var vr = new VrijwilligerRepository(vsc);
+
+                        Vrijwilliger v = vr.RetrieveById(vrijwillegerid);
+                        h.Vrijwilleger = v;
+                    }
+
+                    //Haal de passende hulpbehoevende (incl hulpverlener) op en voeg deze toe aan de hulpopdracht
+                    var inf = new HulpbehoevendeSQLContext();
+                    var repo = new HulpbehoevendeRepository(inf);
+
+                    Hulpbehoevende hb = repo.RetrieveHulpbehoevendeById(hulpbehoevendeid);
+                    h.Hulpbehoevende = hb;
+
                 }
 
                 reader.Close();
@@ -84,8 +106,28 @@ namespace Carespot.DAL.Context
                 DateTime aanmaakDatum = reader.GetDateTime(3);
                 string omschrijving = reader.GetString(4);
                 DateTime opdrachtDatum = reader.GetDateTime(5);
+                int vrijwillegerid = reader.GetInt32(6);
+                int hulpbehoevendeid = reader.GetInt32(8);
 
                 h = new HulpOpdracht(opdrachtid, isGeaccepteerd, titel, aanmaakDatum, omschrijving, opdrachtDatum);
+
+                //Haal de passende vrijwilleger op en voeg deze toe aan de hulpopdracht
+                if (vrijwillegerid > 0)
+                {
+                    var vsc = new VrijwilligerSQLContext();
+                    var vr = new VrijwilligerRepository(vsc);
+
+                    Vrijwilliger v = vr.RetrieveById(vrijwillegerid);
+                    h.Vrijwilleger = v;
+                }
+
+                //Haal de passende hulpbehoevende (incl hulpverlener) op en voeg deze toe aan de hulpopdracht
+                    var inf = new HulpbehoevendeSQLContext();
+                    var repo = new HulpbehoevendeRepository(inf);
+
+                    Hulpbehoevende hb = repo.RetrieveHulpbehoevendeById(hulpbehoevendeid);
+                    h.Hulpbehoevende = hb;
+                 
 
                 reader.Close();
             }
@@ -113,9 +155,8 @@ namespace Carespot.DAL.Context
 
                 SqlCommand cmd = new SqlCommand();
 
-                //Let op: De koppeltabellen worden niet aangepast
                 cmd.CommandText =
-                    "INSERT INTO Hulpopdracht (isGeaccepteerd, titel, omschrijving, aanmaakDatum, opdrachtDatum, hulpverlenerId, hulpbehoevendeId) VALUES (0, '" + hulpopdracht.Titel + "', '" + hulpopdracht.Omschrijving + "', '" + aanmaakDatum + "', '" + opdrachtDatum + "', '" + hulpopdracht.Hulpbehoevende.Hulpverlener.Id +"', '"+ hulpopdracht.Hulpbehoevende.Id +"')";
+                    "INSERT INTO Hulpopdracht (isGeaccepteerd, titel, omschrijving, aanmaakDatum, opdrachtDatum, hulpbehoevendeId) VALUES (0, '" + hulpopdracht.Titel + "', '" + hulpopdracht.Omschrijving + "', '" + aanmaakDatum + "', '" + opdrachtDatum + "', '"+ hulpopdracht.Hulpbehoevende.Id +"')";
                 cmd.CommandType = CommandType.Text;
                 cmd.Connection = connection;
 

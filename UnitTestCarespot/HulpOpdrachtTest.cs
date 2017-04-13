@@ -40,6 +40,11 @@ namespace UnitTestCarespot
             HulpOpdracht h = hr.GetHulpopdrachtByID(3);
 
             Assert.AreEqual(h.Titel, "HELP");
+
+            Assert.IsNotNull(h.Vrijwilleger);
+            Assert.AreEqual(2, h.Vrijwilleger.Id);
+            Assert.AreEqual(4,h.Hulpbehoevende.Id);
+            Assert.AreEqual(3, h.Hulpbehoevende.Hulpverlener.Id);
         }
 
         [TestMethod]
