@@ -1,0 +1,26 @@
+﻿<Window x:Class="Carespot.KiesScherm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Carespot"
+        mc:Ignorable="d"
+        Title="KiesScherm" Height="250" Width="320">
+    <Grid>
+        <Button Content="Startscenario" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="12,18,0,0" Click="Button_Click"/>
+        <Button x:Name="HulpverlenerOverzicht"  Content="HulpverlenerOverzicht" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="162,168,0,0"/>
+        <Button x:Name="OpdrachtScherm" Content="OpdrachtScherm" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="162,18,0,0"/>
+        <Button x:Name="RecensieScherm" Content="RecensieScherm" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="162,143,0,0"/>
+        <Button x:Name="OpdrachtAannemen" Content="OpdrachtAannemen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="12,168,0,0"/>
+        <Button x:Name="VrijwilligerOverzicht" Content="VrijwilligerOverzicht" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="12,143,0,0"/>
+        <Button x:Name="Hulpvraag" Content="Hulpvraag" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="12,118,0,0"/>
+        <Button x:Name="Cliëntoverzicht" Content="CliëntOverzicht" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="12,93,0,0"/>
+        <Button x:Name="Aanmelden" Content="Aanmelden" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="12,68,0,0"/>
+        <Button x:Name="Keuzescherm" Content="Keuzescherm" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="12,43,0,0"/>
+        <Button x:Name="HulpverlenerToevoegen" Content="HulpverlenerToevoegen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="162,43,0,0"/>
+        <Button x:Name="BeheerderScherm" Content="BeheerderScherm" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="162,118,0,0"/>
+        <Button x:Name="VerwijderBevestiging" Content="VerwijderBevestiging" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="162,93,0,0"/>
+        <Button x:Name="GebruikerBeheer" Content="GebruikerBeheer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="162,68,0,0"/>
+
+    </Grid>
+</Window>
