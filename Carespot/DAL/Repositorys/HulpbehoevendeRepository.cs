@@ -37,11 +37,9 @@ namespace Carespot.DAL.Repositorys
             _hulpbehoevendeContext.UpdateHulpbehoevende(hulpbehoevende);
         }
 
-        public void CreateHulpbehoevende(string naam, string wachtwoord, Gebruiker.GebruikerGeslacht geslacht, string straat,
-            string huisnummer, string postcode, string plaats, string land, string email, string telefoon,
-            Gebruiker.GebruikerType gebruikertype, string foto, int hulpverlenerId)
+        public void CreateHulpbehoevende(int gebruikerId, int hulpverlenerId)
         {
-            _hulpbehoevendeContext.CreateHulpbehoevende(naam, wachtwoord, geslacht.ToString(), straat, huisnummer, postcode, plaats, land, email, telefoon, gebruikertype.ToString(), foto, hulpverlenerId);
+            _hulpbehoevendeContext.CreateHulpbehoevende(gebruikerId, hulpverlenerId);
         }
 
         public Hulpbehoevende RetrieveHulpbehoevendeById(int id)

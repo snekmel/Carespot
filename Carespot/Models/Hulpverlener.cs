@@ -10,12 +10,6 @@ namespace Carespot.Models
     {
         public List<Hulpbehoevende> Hulpbehoevenden { get; private set; }
 
-        public Hulpverlener(string naam, string wachtwoord, string email) : base(naam, wachtwoord, email)
-        {
-        }
-
-        public Hulpverlener()
-        {
-        }
+      
     }
 }

@@ -57,9 +57,15 @@
     <Compile Include="Beheerderscherm.xaml.cs">
       <DependentUpon>Beheerderscherm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Context\BeheerderSQLContext.cs" />
     <Compile Include="DAL\Context\GebruikerSQLContext.cs" />
+    <Compile Include="DAL\Context\HulpverlenerSQLContext.cs" />
+    <Compile Include="DAL\Interfaces\IBeheerderContext.cs" />
     <Compile Include="DAL\Interfaces\IGebruikerContext.cs" />
+    <Compile Include="DAL\Interfaces\IHulpverlenerContext.cs" />
     <Compile Include="DAL\Repositorys\AuthRepository.cs" />
+    <Compile Include="DAL\Repositorys\BeheerderRepository.cs" />
+    <Compile Include="DAL\Repositorys\HulpverlenerRepository.cs" />
     <Compile Include="GebruikerBeheer.xaml.cs">
       <DependentUpon>GebruikerBeheer.xaml</DependentUpon>
     </Compile>

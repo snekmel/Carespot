@@ -9,7 +9,7 @@ namespace Carespot.DAL.Interfaces
 {
     public interface IHulpbehoevendeContext
     {
-        void CreateHulpbehoevende(string naam, string wachtwoord, string geslacht, string straat, string huisnummer, string postcode, string plaats, string land, string email, string telefoon, string gebruikertype, string foto, int hulpverlenerId);
+        void CreateHulpbehoevende(int gebruikerId, int hulpverlenerId);
 
         Hulpverlener RetrieveHulpverlener(int hulpverlenerId);
 

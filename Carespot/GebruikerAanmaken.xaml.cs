@@ -56,8 +56,8 @@ namespace Carespot
                 var foto = imgProfielfoto.Source.ToString();
                 if (wachtwoord == wachtwoordOpnieuw)
                 {
-                    repo.CreateHulpbehoevende(naam, wachtwoord, geslacht, adres, huisNummer, postcode, plaats, land, email,
-                        telNr, gebruikertype, foto, 3);
+                   // repo.CreateHulpbehoevende(naam, wachtwoord, geslacht, adres, huisNummer, postcode, plaats, land, email,
+                    //    telNr, gebruikertype, foto, 3);
                 }
                 else
                 {

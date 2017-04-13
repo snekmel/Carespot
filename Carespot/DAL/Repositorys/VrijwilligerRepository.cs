@@ -28,9 +28,9 @@ namespace Carespot.DAL.Repositorys
             return _interface.RetrieveVrijwilliger(id);
         }
 
-        public void CreateVrijwilliger(Vrijwilliger v)
+        public void CreateVrijwilliger(int gebruikerId)
         {
-            _interface.CreateVrijwilliger(v);
+            _interface.CreateVrijwilliger(gebruikerId);
         }
 
         public void DeleteVrijwilliger(int id)
