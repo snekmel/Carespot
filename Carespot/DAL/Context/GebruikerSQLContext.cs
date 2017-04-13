@@ -11,79 +11,48 @@ namespace Carespot.DAL.Context
 {
     public class GebruikerSQLContext : IGebruikerContext
     {
-        private SqlConnection _con = new SqlConnection("Data Source=WIN-SRV-WEB.fhict.local;Initial Catalog=Carespot;User ID=carespot;Password=Test1234;Encrypt=False;TrustServerCertificate=True");
+        private readonly SqlConnection _con =
+            new SqlConnection(
+                "Data Source=WIN-SRV-WEB.fhict.local;Initial Catalog=Carespot;User ID=carespot;Password=Test1234;Encrypt=False;TrustServerCertificate=True");
 
-        public void Create(Gebruiker obj)
+        public int CreateGebruiker(Gebruiker g)
         {
-            throw new NotImplementedException();
-        }
-
-        public Gebruiker Retrieve(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Gebruiker> RetrieveAll()
-        {
-            _con.Open();
-            string cmdString = "SELECT * FROM Gebruiker";
-            SqlCommand command = new SqlCommand(cmdString, _con);
-            SqlDataReader reader = command.ExecuteReader();
-            List<Gebruiker> ReturnList = new List<Gebruiker>();
-
-            while (reader.Read())
+            int returnId = 0;
+            try
             {
-                switch (reader.GetString(11))
+                using (_con)
                 {
 
-                    case "Hulpverlener":
-                       Hulpverlener g = new Hulpverlener(reader.GetString(1), reader.GetString(2), reader.GetString(9));
-                        g.Id = reader.GetInt32(0);
-                        g.Naam = reader.GetString(1);
-                        g.Wachtwoord = reader.GetString(2);              
-                        
-                        if (reader.GetString(3) == "Man" || reader.GetString(3) == "man")
-                        {
-                            g.Geslacht = Gebruiker.GebruikerGeslacht.Man;
-                        }
-                        else if (reader.GetString(3) == "Vrouw" || reader.GetString(3) == "vrouw")
-                        {
-                            g.Geslacht = Gebruiker.GebruikerGeslacht.Vrouw;
-                        }
-                        g.Straat = reader.GetString(4);
-                        g.Huisnummer = reader.GetString(5);
-                        g.Postcode = reader.GetString(6);
-                        g.Plaats = reader.GetString(7);
-                        g.Land = reader.GetString(8);
-                        g.Email = reader.GetString(9);
-                        g.Telefoonnummer = reader.GetString(10);
-                        g.Type = (Gebruiker.GebruikerType)Enum.Parse(typeof(Gebruiker.GebruikerType), reader.GetString(11));
-                        g.Foto = reader.GetString(12);
-                        ReturnList.Add(g);
-                     break;
+                    string query =
+                        "INSERT INTO Gebruiker (naam, wachtwoord, geslacht, straat, huisnummer, postcode, plaats, land, email, telefoonnummer, gebruikerType, foto) VALUES(@naam,@wachtwoord,@geslacht,@straat,@huisnummer,@postcode,@plaats,@land,@email,@telefoonnummer,@gebruikerType,NULL);SELECT CAST(scope_identity() AS int)";
+                    SqlCommand cmd = new SqlCommand(query, _con);
 
-                    case "Hulpbehoevende":
-                      
-                    case "Beheerder":
-                        break;
-
-                    case "Vrijwilliger":
-                        break;
-
+                    _con.Open();
+                    cmd.Parameters.AddWithValue("@naam", g.Naam);
+                    cmd.Parameters.AddWithValue("@wachtwoord", g.Wachtwoord);
+                    cmd.Parameters.AddWithValue("@geslacht", g.Geslacht.ToString());
+                    cmd.Parameters.AddWithValue("@straat", g.Straat);
+                    cmd.Parameters.AddWithValue("@huisnummer", g.Huisnummer);
+                    cmd.Parameters.AddWithValue("@postcode", g.Postcode);
+                    cmd.Parameters.AddWithValue("@plaats", g.Plaats);
+                    cmd.Parameters.AddWithValue("@land", g.Land);
+                    cmd.Parameters.AddWithValue("@email", g.Email);
+                    cmd.Parameters.AddWithValue("@telefoonnummer", g.Telefoonnummer);
+                    cmd.Parameters.AddWithValue("@gebruikerType", g.Type.ToString());
+                    returnId = (int) cmd.ExecuteScalar();
+                    _con.Close();
                 }
+
             }
+            catch
+            {
+                System.Windows.MessageBox.Show("woops");
+            }
+            return returnId;
 
-            _con.Close();
-
-            return ReturnList;
         }
 
-        public void Update(int id, Gebruiker obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(int id)
+        public void UpdateGebruiker(Gebruiker g)
         {
             throw new NotImplementedException();
         }

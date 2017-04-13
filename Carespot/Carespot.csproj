@@ -57,6 +57,9 @@
     <Compile Include="Beheerderscherm.xaml.cs">
       <DependentUpon>Beheerderscherm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Context\GebruikerSQLContext.cs" />
+    <Compile Include="DAL\Interfaces\IGebruikerContext.cs" />
+    <Compile Include="DAL\Repositorys\AuthRepository.cs" />
     <Compile Include="GebruikerBeheer.xaml.cs">
       <DependentUpon>GebruikerBeheer.xaml</DependentUpon>
     </Compile>
@@ -143,14 +146,12 @@
     </Compile>
     <Compile Include="DAL\Context\BeoordelingSQLContext.cs" />
     <Compile Include="DAL\Context\ChatSQLContext.cs" />
-    <Compile Include="DAL\Context\GebruikerSQLContext.cs" />
     <Compile Include="DAL\Context\HulpbehoevendeSQLContext.cs" />
     <Compile Include="DAL\Context\HulpopdrachtSQLContext.cs" />
     <Compile Include="DAL\Context\VaardigheidSQLContext.cs" />
     <Compile Include="DAL\Context\VrijwilligerSQLContext.cs" />
     <Compile Include="DAL\Interfaces\IBeoordelingContext.cs" />
     <Compile Include="DAL\Interfaces\IChatContext.cs" />
-    <Compile Include="DAL\Interfaces\IGebruikerContext.cs" />
     <Compile Include="DAL\Interfaces\IHulpbehoevendeContext.cs" />
     <Compile Include="DAL\Interfaces\IHulpopdrachtContext.cs" />
     <Compile Include="DAL\Interfaces\IVaardigheidContext.cs" />
