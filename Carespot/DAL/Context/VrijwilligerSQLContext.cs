@@ -45,36 +45,24 @@ namespace Carespot.DAL.Context
             return returnList;
         }
 
-        public void CreateVrijwilliger(Vrijwilliger v)
+        public void CreateVrijwilliger(int gebruikerId)
         {
-            object newID;
-         
-                string query = "INSERT INTO Gebruiker (naam, wachtwoord, geslacht, straat, huisnummer, postcode, plaats, land, email, telefoonnummer, gebruikerType, foto) VALUES(@naam,@wachtwoord,@geslacht,@straat,@huisnummer,@postcode,@plaats,@land,@email,@telefoonnummer,@gebruikerType,NULL);SELECT CAST(scope_identity() AS int)";
-                SqlCommand cmd = new SqlCommand(query, _con);
-                
-                    _con.Open();
-                    cmd.Parameters.AddWithValue("@naam", v.Naam);
-                    cmd.Parameters.AddWithValue("@wachtwoord", v.Wachtwoord);
-                    cmd.Parameters.AddWithValue("@geslacht", v.Geslacht.ToString());
-                    cmd.Parameters.AddWithValue("@straat", v.Straat);
-                    cmd.Parameters.AddWithValue("@huisnummer", v.Huisnummer);
-                    cmd.Parameters.AddWithValue("@postcode", v.Postcode);
-                    cmd.Parameters.AddWithValue("@plaats", v.Plaats);
-                    cmd.Parameters.AddWithValue("@land", v.Land);
-                    cmd.Parameters.AddWithValue("@email", v.Email);
-                    cmd.Parameters.AddWithValue("@telefoonnummer", v.Telefoonnummer);
-                    cmd.Parameters.AddWithValue("@gebruikerType", v.Type.ToString());
+            try
+            {
+                _con.Open();
+                string query1 = "INSERT INTO Vrijwilliger VALUES (@newID)";
+                SqlCommand command1 = new SqlCommand(query1, _con);
+                command1.Parameters.AddWithValue("@newID", gebruikerId);
+                command1.ExecuteScalar();
 
-                    newID = (int)cmd.ExecuteScalar();
+                _con.Close();
+            }
+            catch
+            {
 
-                    if (newID != null && DBNull.Value != newID)
-                    {
-                        string query1 = "INSERT INTO Vrijwilliger VALUES (@newID)";
-                        SqlCommand command1 = new SqlCommand(query1, _con);
-                        command1.Parameters.AddWithValue("@newID", newID);               
-                        command1.ExecuteScalar();
-                    }
-                    _con.Close();
+                System.Windows.MessageBox.Show("woops");
+            }
+     
          
         }
 

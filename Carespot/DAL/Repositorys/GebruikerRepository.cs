@@ -32,12 +32,10 @@ namespace Carespot.DAL.Repositorys
             var infVrijwilliger = new VrijwilligerSQLContext();
             var repoVrijwilliger = new VrijwilligerRepository(infVrijwilliger);
 
-
             foreach (var v in repoVrijwilliger.RetrieveAll())
             {
                 returnList.Add(v);
             }
-
 
             //Hulpbehoevende
             var inf = new HulpbehoevendeSQLContext();
@@ -54,28 +52,18 @@ namespace Carespot.DAL.Repositorys
 
 
         //Create gebruiker
-        public void CreateGebruiker(Gebruiker g, bool vrijwilliger, bool beheerder, bool hulpverlener, bool hulpbehoevende)
+        // moet nog: bool beheerder, bool hulpverlener,
+        public int CreateGebruiker(Gebruiker g)
         {
-            //create gebruiker
-            int id = _interface.CreateGebruiker(g);
+          
+            return  _interface.CreateGebruiker(g);     
+         
+        }
 
 
-            if (vrijwilliger)
-            {
-                
-            }
-            if (hulpverlener)
-            {
-                
-            }
-            if (hulpbehoevende)
-            {
-                
-            }
-            if (vrijwilliger)
-            {
-                
-            }
+        public void UpdateGebruiker(Gebruiker g)
+        {
+            
         }
     }
 }

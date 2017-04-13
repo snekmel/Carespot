@@ -17,7 +17,25 @@ namespace UnitTestCarespot
 
             Gebruiker g = new Gebruiker();
 
-            gr.CreateGebruiker(g,false,false,false,false);
+            g.Naam = "test";
+            g.Wachtwoord = "t";
+            g.Geslacht = Gebruiker.GebruikerGeslacht.Man;
+            g.Straat = "De";
+            g.Huisnummer = "ultieme";
+            g.Postcode = "test";
+            g.Plaats = "eindje";
+            g.Land = "t";
+            g.Email = "t";
+            g.Telefoonnummer = "234";
+
+            int id = gr.CreateGebruiker(g);
+                
+
+            BeheerderSQLContext bsc = new BeheerderSQLContext();
+            BeheerderRepository br = new BeheerderRepository(bsc);
+
+          
+            br.CreateBeheerder(id);
 
         }
     }

@@ -57,10 +57,20 @@
     <Compile Include="Beheerderscherm.xaml.cs">
       <DependentUpon>Beheerderscherm.xaml</DependentUpon>
     </Compile>
+	
+	<Compile Include="Models\Reactie.cs" />
+	
+	<Compile Include="DAL\Context\BeheerderSQLContext.cs" />
+	<Compile Include="DAL\Repositorys\BeheerderRepository.cs" />
+	<Compile Include="DAL\Context\ReactieSQLContext.cs" />
+	<Compile Include="DAL\Interfaces\IBeheerderContext.cs" />
+	<Compile Include="DAL\Interfaces\IReactieContext.cs" />
+	<Compile Include="DAL\Repositorys\ReactieRepository.cs" />
     <Compile Include="DAL\Context\GebruikerSQLContext.cs" />
     <Compile Include="DAL\Interfaces\IGebruikerContext.cs" />
     <Compile Include="DAL\Repositorys\AuthRepository.cs" />
     <Compile Include="GebruikerBeheer.xaml.cs">
+	
       <DependentUpon>GebruikerBeheer.xaml</DependentUpon>
     </Compile>
     <Compile Include="HulpverlenerHoofdscherm.xaml.cs">

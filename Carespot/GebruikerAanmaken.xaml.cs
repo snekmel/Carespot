@@ -67,6 +67,9 @@ namespace Carespot
                     {
                         MessageBox.Show("Er moet een gebruikers type aangeklikt zijn.");
                     }
+
+                    // repo.CreateHulpbehoevende(naam, wachtwoord, geslacht, adres, huisNummer, postcode, plaats, land, email,
+                    //    telNr, gebruikertype, foto, 3);
                 }
                 else
                 {
