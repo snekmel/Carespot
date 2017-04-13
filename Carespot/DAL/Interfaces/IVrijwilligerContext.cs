@@ -7,7 +7,7 @@ namespace Carespot.DAL.Interfaces
     {
         List<Vrijwilliger> RetrieveAll();
 
-        void CreateVrijwilliger(Vrijwilliger v);
+        void CreateVrijwilliger(int gebruikerId);
 
         Vrijwilliger RetrieveVrijwilliger(int id);
 

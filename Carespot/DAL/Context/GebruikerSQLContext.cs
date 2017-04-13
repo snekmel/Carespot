@@ -24,7 +24,7 @@ namespace Carespot.DAL.Context
                 {
 
                     string query =
-                        "INSERT INTO Gebruiker (naam, wachtwoord, geslacht, straat, huisnummer, postcode, plaats, land, email, telefoonnummer, gebruikerType, foto) VALUES(@naam,@wachtwoord,@geslacht,@straat,@huisnummer,@postcode,@plaats,@land,@email,@telefoonnummer,@gebruikerType,NULL);SELECT CAST(scope_identity() AS int)";
+                        "INSERT INTO Gebruiker (naam, wachtwoord, geslacht, straat, huisnummer, postcode, plaats, land, email, telefoonnummer, foto) VALUES(@naam,@wachtwoord,@geslacht,@straat,@huisnummer,@postcode,@plaats,@land,@email,@telefoonnummer,NULL);SELECT CAST(scope_identity() AS int)";
                     SqlCommand cmd = new SqlCommand(query, _con);
 
                     _con.Open();
@@ -38,7 +38,7 @@ namespace Carespot.DAL.Context
                     cmd.Parameters.AddWithValue("@land", g.Land);
                     cmd.Parameters.AddWithValue("@email", g.Email);
                     cmd.Parameters.AddWithValue("@telefoonnummer", g.Telefoonnummer);
-                    cmd.Parameters.AddWithValue("@gebruikerType", g.Type.ToString());
+                 
                     returnId = (int) cmd.ExecuteScalar();
                     _con.Close();
                 }

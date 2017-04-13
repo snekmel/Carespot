@@ -13,7 +13,6 @@ namespace Carespot.DAL.Repositorys
     {
         private IHulpopdrachtContext _context;
 
-
         public HulpopdrachtRepository(HulpopdrachtSQLContext context)
         {
             this._context = context;
@@ -22,6 +21,10 @@ namespace Carespot.DAL.Repositorys
         public List<HulpOpdracht> GetAllHulpopdrachten()
         {
             return _context.GetAllHulpopdrachten();
+        }
+        public List<HulpOpdracht> GetAllHulpopdrachtenByHulpbehoevendeID(int hbid)
+        {
+            return _context.GetAllHulpopdrachtenByHulpbehoevendeID(hbid);
         }
 
         public HulpOpdracht GetHulpopdrachtByID(int id)
@@ -33,5 +36,6 @@ namespace Carespot.DAL.Repositorys
         {
             _context.CreateHulpopdracht(hulpopdracht);
         }
+
     }
 }

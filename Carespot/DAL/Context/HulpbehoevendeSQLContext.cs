@@ -13,36 +13,28 @@ namespace Carespot.DAL.Context
     {
         private SqlConnection _con = new SqlConnection("Data Source=WIN-SRV-WEB.fhict.local;Initial Catalog=Carespot;User ID=carespot;Password=Test1234;Encrypt=False;TrustServerCertificate=True;MultipleActiveResultSets=true");
 
-        public void CreateHulpbehoevende(string naam, string wachtwoord, string geslacht, string straat, string huisnummer, string postcode, string plaats, string land, string email, string telefoon, string gebruikertype, string foto, int hulpverlenerId)
+        public void CreateHulpbehoevende(int gebruikerId, int hulpverlenerId)
         {
-            object newID;
 
-            string query = "INSERT INTO Gebruiker (naam, wachtwoord, geslacht, straat, huisnummer, postcode, plaats, land, email, telefoonnummer, gebruikerType, foto) VALUES(@naam,@wachtwoord,@geslacht,@straat,@huisnummer,@postcode,@plaats,@land,@email,@telefoonnummer,@gebruikerType,NULL);SELECT CAST(scope_identity() AS int)";
-            SqlCommand cmd = new SqlCommand(query, _con);
-
-            _con.Open();
-            cmd.Parameters.AddWithValue("@naam", naam);
-            cmd.Parameters.AddWithValue("@wachtwoord", wachtwoord);
-            cmd.Parameters.AddWithValue("@geslacht", geslacht);
-            cmd.Parameters.AddWithValue("@straat", straat);
-            cmd.Parameters.AddWithValue("@huisnummer", huisnummer);
-            cmd.Parameters.AddWithValue("@postcode", postcode);
-            cmd.Parameters.AddWithValue("@plaats", plaats);
-            cmd.Parameters.AddWithValue("@land", land);
-            cmd.Parameters.AddWithValue("@email", email);
-            cmd.Parameters.AddWithValue("@telefoonnummer", telefoon);
-            cmd.Parameters.AddWithValue("@gebruikerType", gebruikertype);
-
-            newID = (int)cmd.ExecuteScalar();
-
-            if (newID != null && DBNull.Value != newID)
+            try
             {
-                string query1 = "INSERT INTO Hulpbehoevende (gebruikerId, hulpverlenerId) VALUES (@newID, '" + hulpverlenerId + "')";
+                _con.Open();
+                string query1 = "INSERT INTO Hulpbehoevende (gebruikerId, hulpverlenerId) VALUES (@newID,@hulpverlenerId)";
                 SqlCommand command1 = new SqlCommand(query1, _con);
-                command1.Parameters.AddWithValue("@newID", newID);
+                command1.Parameters.AddWithValue("@newID", gebruikerId);
+                command1.Parameters.AddWithValue("@hulpverlenerId", hulpverlenerId);
+
+
+                
                 command1.ExecuteScalar();
+                _con.Close();
             }
-            _con.Close();
+            catch
+            {
+
+                System.Windows.MessageBox.Show("woops");
+            }
+
         }
 
         public void DeleteHulpbehoevende(int id)

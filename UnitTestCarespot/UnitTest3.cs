@@ -56,7 +56,7 @@ namespace UnitTestCarespot
             v.Naam = "testasdfasdfasdfasdf";
 
             
-            vr.CreateVrijwilliger(v);
+           // vr.CreateVrijwilliger(v);
 
 
         }
