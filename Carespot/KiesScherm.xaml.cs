@@ -1,21 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace Carespot
 {
     /// <summary>
-    /// Interaction logic for KiesScherm.xaml
+    ///     Interaction logic for KiesScherm.xaml
     /// </summary>
     public partial class KiesScherm : Window
     {
@@ -26,86 +14,85 @@ namespace Carespot
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Inlogscherm inlogscherm = new Inlogscherm();
+            var inlogscherm = new Inlogscherm();
             inlogscherm.Show();
-            
         }
 
         private void Keuzescherm_Click(object sender, RoutedEventArgs e)
         {
-            Keuzescherm keuzescherm = new Keuzescherm();
+            var keuzescherm = new Keuzescherm();
             keuzescherm.Show();
         }
 
         private void Aanmelden_Click(object sender, RoutedEventArgs e)
         {
-            GebruikerAanmaken gebruikerAanmaken = new GebruikerAanmaken();
+            var gebruikerAanmaken = new GebruikerAanmaken();
             gebruikerAanmaken.Show();
         }
 
         private void Cliëntoverzicht_Click(object sender, RoutedEventArgs e)
         {
-           CliëntOverzicht cliëntOverzicht = new CliëntOverzicht();
-           cliëntOverzicht.Show();
+            var cliëntOverzicht = new CliëntOverzicht();
+            cliëntOverzicht.Show();
         }
 
         private void Hulpvraag_Click(object sender, RoutedEventArgs e)
         {
-            Hulpvraagxaml hulpvraag = new Hulpvraagxaml();
+            var hulpvraag = new Hulpvraagxaml();
             hulpvraag.Show();
         }
 
         private void VrijwilligerOverzicht_Click(object sender, RoutedEventArgs e)
         {
-            VrijwilligerHoofdscherm vrijwilligerHoofdscherm = new VrijwilligerHoofdscherm();
+            var vrijwilligerHoofdscherm = new VrijwilligerHoofdscherm();
             vrijwilligerHoofdscherm.Show();
         }
 
         private void OpdrachtAannemen_Click(object sender, RoutedEventArgs e)
         {
-            VrijwilligerOpdrachtAannemen vrijwilligerOpdrachtAannemen = new VrijwilligerOpdrachtAannemen();
+            var vrijwilligerOpdrachtAannemen = new VrijwilligerOpdrachtAannemen();
             vrijwilligerOpdrachtAannemen.Show();
         }
 
         private void OpdrachtScherm_Click(object sender, RoutedEventArgs e)
         {
-            Opdracht opdracht = new Opdracht();
+            var opdracht = new Opdracht();
             opdracht.Show();
         }
 
         private void HulpverlenerToevoegen_Click(object sender, RoutedEventArgs e)
         {
-            Carespot.HulpverlenerToevoegen hulpverlenerToevoegen = new HulpverlenerToevoegen();
+            var hulpverlenerToevoegen = new HulpverlenerToevoegen();
             hulpverlenerToevoegen.Show();
         }
 
         private void GebruikerBeheer_Click(object sender, RoutedEventArgs e)
         {
-            Carespot.GebruikerBeheer gebruikerBeheer = new GebruikerBeheer();
+            var gebruikerBeheer = new GebruikerBeheer();
             gebruikerBeheer.Show();
         }
 
         private void VerwijderBevestiging_Click(object sender, RoutedEventArgs e)
         {
-            Carespot.VerwijderBevestiging verwijderBevestiging = new VerwijderBevestiging();
+            var verwijderBevestiging = new VerwijderBevestiging();
             verwijderBevestiging.Show();
         }
 
         private void BeheerderScherm_Click(object sender, RoutedEventArgs e)
         {
-            Beheerderscherm beheerderscherm = new Beheerderscherm();
+            var beheerderscherm = new Beheerderscherm();
             beheerderscherm.Show();
         }
 
         private void RecensieScherm_Click(object sender, RoutedEventArgs e)
         {
-            Recensie recensie = new Recensie();
+            var recensie = new Recensie();
             recensie.Show();
         }
 
         private void HulpverlenerOverzicht_Click(object sender, RoutedEventArgs e)
         {
-            HulpverlenerHoofdscherm hulpverlenerHoofdscherm = new HulpverlenerHoofdscherm();
+            var hulpverlenerHoofdscherm = new HulpverlenerHoofdscherm();
             hulpverlenerHoofdscherm.Show();
         }
     }
