@@ -7,24 +7,22 @@
         mc:Ignorable="d"
         Title="Recensie" Height="500" Width="800">
     <Grid>
-        <Label x:Name="lblTitel" Content="Titel:" HorizontalAlignment="Left" Margin="77,38,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <TextBox x:Name="tbTitel" HorizontalAlignment="Left" Height="23" Margin="147,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="602"/>
-        <RichTextBox x:Name="tbRecensie" HorizontalAlignment="Left" Height="277" Margin="77,90,0,0" VerticalAlignment="Top" Width="672">
+        <Label x:Name="lblTitel" Content="Titel:" HorizontalAlignment="Left" Margin="77,38,0,0" VerticalAlignment="Top"
+               FontSize="16" />
+        <TextBox x:Name="tbTitel" HorizontalAlignment="Left" Height="23" Margin="147,47,0,0" TextWrapping="Wrap"
+                 VerticalAlignment="Top" Width="602" />
+        <RichTextBox x:Name="tbRecensie" HorizontalAlignment="Left" Height="277" Margin="77,90,0,0"
+                     VerticalAlignment="Top" Width="672">
             <FlowDocument>
                 <Paragraph>
-                    <Run Text="G"/>
-                    <Run Text="eef hier de recensie "/>
-                    <Run Text=".."/>
-                    <Run Text=" "/>
+                    <Run Text="Schrijf hier de recensie..." />
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <Button x:Name="button" Content="Recensie opslaan" HorizontalAlignment="Left" Margin="615,410,0,0" VerticalAlignment="Top" Width="134" Height="24" Click="button_Click"/>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="41" Margin="79,397,0,0" VerticalAlignment="Top" Width="41" Source="image/star-1.png"/>
-        <Image x:Name="image_Copy" HorizontalAlignment="Left" Height="41" Margin="189,397,0,0" VerticalAlignment="Top" Width="41" Source="image/star-1.png" RenderTransformOrigin="1.582,0.558"/>
-        <Image x:Name="image_Copy1" HorizontalAlignment="Left" Height="41" Margin="134,397,0,0" VerticalAlignment="Top" Width="41" Source="image/star-1.png"/>
-        <Image x:Name="image_Copy2" HorizontalAlignment="Left" Height="41" Margin="244,397,0,0" VerticalAlignment="Top" Width="41" Source="image/star-1.png"/>
-        <Image x:Name="image_Copy3" HorizontalAlignment="Left" Height="41" Margin="299,397,0,0" VerticalAlignment="Top" Width="41" Source="image/star-1.png" RenderTransformOrigin="0.534,1.142"/>
-
+        <Button x:Name="button" Content="Recensie opslaan" HorizontalAlignment="Left" Margin="615,410,0,0"
+                VerticalAlignment="Top" Width="134" Height="24" Click="button_Click" />
+        <Slider x:Name="sldRating" HorizontalAlignment="Left" Margin="77,425,0,0" VerticalAlignment="Top" Width="198" Minimum="1" SmallChange="1" ValueChanged="sldRating_ValueChanged" />
+        <Label Content="Cijfer:" HorizontalAlignment="Left" Margin="73,395,0,0" VerticalAlignment="Top" />
+        <Label x:Name="lblRating" Content="" HorizontalAlignment="Left" Margin="107,395,0,0" VerticalAlignment="Top" />
     </Grid>
 </Window>
