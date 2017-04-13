@@ -58,8 +58,11 @@
       <DependentUpon>Beheerderscherm.xaml</DependentUpon>
     </Compile>
     <Compile Include="DAL\Context\GebruikerSQLContext.cs" />
+    <Compile Include="DAL\Context\ReactieSQLContext.cs" />
     <Compile Include="DAL\Interfaces\IGebruikerContext.cs" />
+    <Compile Include="DAL\Interfaces\IReactieContext.cs" />
     <Compile Include="DAL\Repositorys\AuthRepository.cs" />
+    <Compile Include="DAL\Repositorys\ReactieRepository.cs" />
     <Compile Include="GebruikerBeheer.xaml.cs">
       <DependentUpon>GebruikerBeheer.xaml</DependentUpon>
     </Compile>
@@ -69,6 +72,7 @@
     <Compile Include="KiesScherm.xaml.cs">
       <DependentUpon>KiesScherm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Reactie.cs" />
     <Compile Include="Opdracht.xaml.cs">
       <DependentUpon>Opdracht.xaml</DependentUpon>
     </Compile>
