@@ -52,7 +52,7 @@ namespace Carespot
             bool geaccepteerd = false;
 
             //plaats hulpvraag
-            HulpOpdracht hulpOpdracht = new HulpOpdracht(hulpbehoevende.Id, geaccepteerd , titel, DateTime.Now, omschrijving, opdrachtdatum, hulpbehoevende);
+            HulpOpdracht hulpOpdracht = new HulpOpdracht(geaccepteerd , titel, DateTime.Now, omschrijving, opdrachtdatum, hulpbehoevende);
             HulpopdrachtSQLContext hulpOpdrachtContext = new HulpopdrachtSQLContext();            
             HulpopdrachtRepository hulpOpdrachtRepo = new HulpopdrachtRepository(hulpOpdrachtContext);
             hulpOpdrachtRepo.CreateHulpopdracht(hulpOpdracht);
