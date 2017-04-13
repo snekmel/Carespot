@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Carespot.DAL.Context;
+using Carespot.DAL.Repositorys;
+using Carespot.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,20 +22,40 @@ namespace Carespot
     /// </summary>
     public partial class Hulpvraagxaml : Window
     {
-        public Hulpvraagxaml()
+        Hulpbehoevende hulpbehoevende;
+        public Hulpvraagxaml(Hulpbehoevende hb)
         {
             InitializeComponent();
+            hulpbehoevende = hb;
+            lblNaam.Content = hulpbehoevende.Naam;
             //laadt naam
         }
 
         private void image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             //ga terug naar CliëntOverzicht
+            CliëntOverzicht window = new CliëntOverzicht();
+            window.Show();
+            this.Close();
         }
 
         private void btToevoegen_Click(object sender, RoutedEventArgs e)
         {
+            tbTitel.SelectAll();
+            string titel = tbTitel.SelectedText;
+
+            tbBeschrijving.SelectAll();
+            string omschrijving = tbBeschrijving.Selection.Text;
+
+            DateTime opdrachtdatum = (DateTime)dpOpdrachtDatum.SelectedDate;
+
+            bool geaccepteerd = false;
+
             //plaats hulpvraag
+            HulpOpdracht hulpOpdracht = new HulpOpdracht(geaccepteerd , titel, DateTime.Now, omschrijving, opdrachtdatum, hulpbehoevende);
+            HulpopdrachtSQLContext hulpOpdrachtContext = new HulpopdrachtSQLContext();            
+            HulpopdrachtRepository hulpOpdrachtRepo = new HulpopdrachtRepository(hulpOpdrachtContext);
+            hulpOpdrachtRepo.CreateHulpopdracht(hulpOpdracht);
         }
     }
 }

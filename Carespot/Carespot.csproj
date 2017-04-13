@@ -63,6 +63,9 @@
     <Compile Include="HulpverlenerHoofdscherm.xaml.cs">
       <DependentUpon>HulpverlenerHoofdscherm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="KiesScherm.xaml.cs">
+      <DependentUpon>KiesScherm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Opdracht.xaml.cs">
       <DependentUpon>Opdracht.xaml</DependentUpon>
     </Compile>
@@ -117,6 +120,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Keuzescherm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="KiesScherm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
