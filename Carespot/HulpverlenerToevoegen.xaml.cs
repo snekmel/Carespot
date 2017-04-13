@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace Carespot
 {
@@ -27,12 +28,23 @@ namespace Carespot
 
         private void imgSluiten_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            //terug naar HulpverlenerHoofdscherm
+            HulpverlenerHoofdscherm hhs = new HulpverlenerHoofdscherm();
+            hhs.Show();
+            this.Close();
         }
 
         private void btUploaden_Click(object sender, RoutedEventArgs e)
         {
-            //foto uploaden
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Select a picture";
+            ofd.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+              "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
+              "Portable Network Graphic (*.png)|*.png";
+            if (ofd.ShowDialog() == true)
+            {
+                ImageSource imageSource = new BitmapImage(new Uri(ofd.FileName));
+                imgProfielfoto.Source = imageSource;
+            }
         }
 
         private void btOpslaan_Click(object sender, RoutedEventArgs e)
