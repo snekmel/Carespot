@@ -1,22 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Carespot.Models;
+﻿using Carespot.Models;
 
 namespace Carespot.DAL.Interfaces
 {
     public interface IGebruikerContext
     {
-        void Create(Gebruiker obj);
+        int CreateGebruiker(Gebruiker g);
 
-        Gebruiker Retrieve(int id);
-
-        List<Gebruiker> RetrieveAll();
-
-        void Update(int id, Gebruiker obj);
-
-        void Delete(int id);
+        void UpdateGebruiker(Gebruiker g);
     }
 }

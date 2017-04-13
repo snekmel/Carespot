@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Carespot.DAL.Repositorys;
 
 namespace Carespot
 {
@@ -35,6 +36,15 @@ namespace Carespot
         private void btInloggen_Click(object sender, RoutedEventArgs e)
         {
             //Controleer gegevens en log in, indien er meerdere soorten gebruik binnen die persoon mogelijk zijn, opent eerst het scherm 'Keuzescherm'
+            if (AuthRepository.CheckAuth(tbEmail.Text, tbWachtwoord.Text))
+            {
+                System.Windows.MessageBox.Show("ey");
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Foute inloggegevens.");
+            }
+
         }
     }
 }

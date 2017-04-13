@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Carespot.Models
 {
-    public abstract class Gebruiker
+    public  class Gebruiker
     {
         public enum GebruikerType
         {
@@ -37,14 +37,14 @@ namespace Carespot.Models
         public GebruikerType Type { get; set; }
         public GebruikerGeslacht Geslacht { get; set; }
 
-        protected Gebruiker(string naam, string wachtwoord, string email)
+        public Gebruiker(string naam, string wachtwoord, string email)
         {
             Naam = naam;
             Wachtwoord = wachtwoord;
             Email = email;
         }
 
-        protected Gebruiker()
+        public Gebruiker()
         {
         }
     }

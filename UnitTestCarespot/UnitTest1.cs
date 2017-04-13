@@ -1,5 +1,7 @@
-﻿using Carespot.DAL.Context;
+﻿using System.Collections.Generic;
+using Carespot.DAL.Context;
 using Carespot.DAL.Repositorys;
+using Carespot.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTestCarespot
@@ -10,12 +12,12 @@ namespace UnitTestCarespot
         [TestMethod]
         public void DalTester()
         {
-            var inf = new GebruikerSQLContext();
-            var gr = new GebruikerRepository(inf);
 
-            var lijstje = gr.RetrieveAll();
+            GebruikerRepository gr = new GebruikerRepository();
 
-            Assert.AreEqual("Luc", lijstje[0].Naam);
+           List<Gebruiker> g = gr.RetrieveAll();
+            Assert.IsTrue(g.Count > 10);
+
         }
     }
 }

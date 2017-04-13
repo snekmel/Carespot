@@ -55,6 +55,7 @@
     <Compile Include="HulpOpdrachtTest.cs" />
     <Compile Include="UnitTest3.cs" />
     <Compile Include="BeoordelingTest.cs" />
+    <Compile Include="GebruikerTester.cs" />
     <Compile Include="VaardigheidTest.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -65,7 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Carespot\Carespot.csproj">
-      <Project>{554BA2CE-3B3D-40F1-939B-AABCEC5C6D83}</Project>
+      <Project>{554ba2ce-3b3d-40f1-939b-aabcec5c6d83}</Project>
       <Name>Carespot</Name>
     </ProjectReference>
   </ItemGroup>
