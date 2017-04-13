@@ -99,7 +99,7 @@ namespace Carespot
 
         private void RecensieScherm_Click(object sender, RoutedEventArgs e)
         {
-            Recensie recensie = new Recensie();
+            Carespot.Recensie recensie = new Carespot.Recensie();
             recensie.Show();
         }
 
