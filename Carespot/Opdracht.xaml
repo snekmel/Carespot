@@ -1,0 +1,53 @@
+﻿<Window x:Class="Carespot.Opdracht"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Carespot"
+        mc:Ignorable="d"
+        Title="Opdracht" Height="560" Width="500">
+    <Grid>
+        <TabControl HorizontalAlignment="Left" Height="436" VerticalAlignment="Top" Width="472" Margin="10,82,0,0">
+            <TabItem x:Name="tabOmschrijving" Header="Omschrijving" MouseLeftButtonUp="tabOmschrijving_MouseLeftButtonUp">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="459*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="lblOpdrachtTitel" Content="OpdrachtTitel" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="3,10,0,0" RenderTransformOrigin="1.098,0.601" Grid.Column="1" Height="26" Width="82"/>
+                    <TextBox x:Name="tbOmschrijving" HorizontalAlignment="Left" Height="357" Margin="3,41,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="446" Grid.Column="1"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tabChat" Header="Chat" MouseLeftButtonUp="tabChat_MouseLeftButtonUp">
+                <Grid Background="#FFE5E5E5">
+                    <ListBox HorizontalAlignment="Left" Height="408" VerticalAlignment="Top" Width="466"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tabContact" Header="Contacten" MouseLeftButtonUp="tabContact_MouseLeftButtonUp">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="167*"/>
+                        <ColumnDefinition Width="299*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image x:Name="imgGebruiker_Copy" HorizontalAlignment="Left" Height="41" Margin="9,17,0,0" VerticalAlignment="Top" Width="41" Source="image/user-shape.png" />
+                    <Image x:Name="imgGebruiker_Copy1" HorizontalAlignment="Left" Height="41" Margin="10,154,0,0" VerticalAlignment="Top" Width="41" Source="image/user-shape.png" />
+                    <Image x:Name="imgGebruiker_Copy2" HorizontalAlignment="Left" Height="41" Margin="10,280,0,0" VerticalAlignment="Top" Width="41" Source="image/user-md-symbol.png" />
+                    <Label x:Name="lblNaamCliënt" Content="Naam" HorizontalAlignment="Left" Margin="55,10,0,0" VerticalAlignment="Top" Height="26" Width="42"/>
+                    <Label x:Name="lblNaamVrijwilliger" Content="Naam" HorizontalAlignment="Left" Margin="55,148,0,0" VerticalAlignment="Top" Height="26" Width="42"/>
+                    <Label x:Name="lblNaamHulpverlener" Content="Naam" HorizontalAlignment="Left" Margin="56,275,0,0" VerticalAlignment="Top" Height="26" Width="42"/>
+                    <Label x:Name="lblTelefoonCliënt" Content="Telefoonnummer" HorizontalAlignment="Left" Margin="55,28,0,0" VerticalAlignment="Top" Width="101" Height="26"/>
+                    <Label x:Name="lblTelefoonHulpverlener" Content="Telefoonnummer" HorizontalAlignment="Left" Margin="56,291,0,0" VerticalAlignment="Top" Height="26" Width="100"/>
+                    <Label x:Name="lblTelefoonVrijwilliger" Content="Telefoonnummer" HorizontalAlignment="Left" Margin="56,163,0,0" VerticalAlignment="Top" Height="26" Width="100"/>
+                    <Label x:Name="lblEmailCliënt" Content="E-mail" HorizontalAlignment="Left" Margin="56,42,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lblEmailVrijwilliger" Content="E-mail" HorizontalAlignment="Left" Margin="56,179,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lblEmailHulpverlener" Content="E-mail" HorizontalAlignment="Left" Margin="56,306,0,0" VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Image x:Name="imgGebruiker" HorizontalAlignment="Left" Height="41" Margin="9,15,0,0" VerticalAlignment="Top" Width="41" Source="image/user-shape.png" />
+        <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="50,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,0.5" FontSize="16" Height="28" Width="61" />
+        <Label x:Name="lblFunctie" Content="Functie" HorizontalAlignment="Left" Margin="50,29,0,0" VerticalAlignment="Top" FontSize="16" Height="27" Width="61" />
+        <Image x:Name="imgSluitAf" HorizontalAlignment="Left" Height="41" Margin="441,15,0,0" VerticalAlignment="Top" Width="41" Source="image/cross-mark-on-a-black-circle-background.png" MouseLeftButtonUp="imgSluitAf_MouseLeftButtonUp"/>
+
+    </Grid>
+</Window>

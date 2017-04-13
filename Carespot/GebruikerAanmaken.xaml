@@ -1,0 +1,51 @@
+﻿<Window x:Class="Carespot.GebruikerAanmaken"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Carespot"
+        mc:Ignorable="d"
+        Title="GebruikerAanmaken" Height="500" Width="930.8" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+    <Grid Margin="0,0,3.8,0.4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="217*"/>
+            <ColumnDefinition Width="90*"/>
+        </Grid.ColumnDefinitions>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="100" Margin="147,140,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label x:Name="label" Content="Maak een nieuwe gebruiker aan" HorizontalAlignment="Left" Margin="169,10,0,0" VerticalAlignment="Top" FontSize="26.667" Width="466"/>
+        <Image x:Name="imgSluiten" HorizontalAlignment="Left" Height="41" Margin="195.6,10,0,0" VerticalAlignment="Top" Width="41" Source="image/cross-mark-on-a-black-circle-background.png" MouseLeftButtonUp="imgSluiten_MouseLeftButtonUp" Grid.Column="1"/>
+        <Label x:Name="lblgebruikersnaam" Content="Gebruikersnaam:" HorizontalAlignment="Left" Margin="27,96,0,0" VerticalAlignment="Top" FontSize="18.667"/>
+        <Label x:Name="lblWachtwoord" Content="Wachtwoord:" HorizontalAlignment="Left" Margin="54,136,0,0" VerticalAlignment="Top" FontSize="18.667"/>
+        <Label x:Name="lblHerhalen" Content="Herhalen:" HorizontalAlignment="Left" Margin="84,176,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="0.917,0.67"/>
+        <Label x:Name="lblNaam" Content="Naam:" HorizontalAlignment="Left" Margin="112,248,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="0.917,0.67"/>
+        <Label x:Name="lblGeslacht" Content="Geslacht:" HorizontalAlignment="Left" Margin="91,283,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="0.917,0.67"/>
+        <Label x:Name="lblGebruiker" Content="Gebruiker:" HorizontalAlignment="Left" Margin="78,320,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="0.917,0.67"/>
+        <Label x:Name="lblEmail" Content="E-mail:" HorizontalAlignment="Left" Margin="110,360,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="0.917,0.67"/>
+        <Label x:Name="lblTelefoon" Content="Tel nummer:" HorizontalAlignment="Left" Margin="65,395,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="0.917,0.67"/>
+        <TextBox x:Name="tbGebruikersnaam" HorizontalAlignment="Left" Height="22" Margin="200,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188"/>
+        <TextBox x:Name="tbWachtwoord" HorizontalAlignment="Left" Height="22" Margin="200,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188"/>
+        <TextBox x:Name="tbHerhalen" HorizontalAlignment="Left" Height="22" Margin="200,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="7,-27,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbNaam" HorizontalAlignment="Left" Height="22" Margin="200,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188"/>
+        <TextBox x:Name="tbEmail" HorizontalAlignment="Left" Height="22" Margin="200,368,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188"/>
+        <TextBox x:Name="tbTelefoon" HorizontalAlignment="Left" Height="22" Margin="200,403,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188"/>
+        <CheckBox x:Name="chbHulpbehoevende" Content="Hulpbehoevende" HorizontalAlignment="Left" Margin="200,333,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="chbVrijwilliger" Content="Vrijwilliger" HorizontalAlignment="Left" Margin="316,333,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblAdres" Content="Adres:" HorizontalAlignment="Left" Margin="430,99,0,0" VerticalAlignment="Top" FontSize="18.667"/>
+        <Label x:Name="lblPostcode" Content="Postcode:" HorizontalAlignment="Left" Margin="401,139,0,0" VerticalAlignment="Top" FontSize="18.667"/>
+        <Label x:Name="lblPlaats" Content="Plaats:" HorizontalAlignment="Left" Margin="428,179,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="0.673,1.446"/>
+        <Label x:Name="lblLand" Content="Land:" HorizontalAlignment="Left" Margin="436,219,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="0.673,1.446"/>
+        <TextBox x:Name="tbAdres" HorizontalAlignment="Left" Height="22" Margin="510,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="205" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tbPostcode" HorizontalAlignment="Left" Height="22" Margin="510,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="205" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tbPlaats" HorizontalAlignment="Left" Height="22" Margin="510,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="205" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tbLand" HorizontalAlignment="Left" Height="22" Margin="510,232,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="205" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblFoto" Content="Foto:" HorizontalAlignment="Left" Margin="436,283,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="0.673,1.446"/>
+        <Image x:Name="imgProfielfoto" HorizontalAlignment="Left" Height="150" Margin="510,296,0,0" VerticalAlignment="Top" Width="130"/>
+        <Button x:Name="btUploaden" Content="Uploaden" HorizontalAlignment="Left" Margin="11.6,296,0,0" VerticalAlignment="Top" Width="89" Height="27" FontSize="16" Click="btUploaden_Click" Grid.Column="1"/>
+        <Button x:Name="btGebruikerAanmaken" Content="Maak gebruiker aan" HorizontalAlignment="Left" Margin="89.6,389,0,0" VerticalAlignment="Top" Width="159" Height="35" FontSize="16" Click="btGebruikerAanmaken_Click" Grid.Column="1"/>
+        <Label x:Name="lblNummer" Content="Nummer:" HorizontalAlignment="Left" Margin="100.6,99,0,0" VerticalAlignment="Top" FontSize="18.667" Grid.Column="1"/>
+        <TextBox x:Name="tbNummer" HorizontalAlignment="Left" Height="22" Margin="195.6,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="53" Grid.Column="1"/>
+        <ComboBox x:Name="cbGeslacht" HorizontalAlignment="Left" Margin="200,296,0,0" VerticalAlignment="Top" Width="120"/>
+
+    </Grid>
+</Window>

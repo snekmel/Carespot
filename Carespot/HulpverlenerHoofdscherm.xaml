@@ -1,0 +1,26 @@
+﻿<Window x:Class="Carespot.HulpverlenerHoofdscherm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Carespot"
+        mc:Ignorable="d"
+        Title="HulpverlenerHoofdscherm" Height="500" Width="800">
+    <Grid>
+        <Image x:Name="imgGebruiker" HorizontalAlignment="Left" Height="41" Margin="28,22,0,0" VerticalAlignment="Top" Width="41" Source="image/user-shape.png" />
+        <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="69,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,0.5" FontSize="16" Height="28" Width="61" />
+        <Label x:Name="lblFunctie" Content="Functie" HorizontalAlignment="Left" Margin="69,36,0,0" VerticalAlignment="Top" FontSize="16" Height="27" Width="61" />
+        <Image x:Name="imgUitloggen" HorizontalAlignment="Left" Height="41" Margin="713,15,0,0" VerticalAlignment="Top" Width="41" Source="image/sign-out-option.png" MouseLeftButtonUp="imgUitloggen_MouseLeftButtonUp"/>
+        <Image x:Name="imgHulpverlenerToevoegen" HorizontalAlignment="Left" Height="41" Margin="635,15,0,0" VerticalAlignment="Top" Width="41" Source="image/cog-wheel-silhouette.png" MouseLeftButtonUp="imgHulpverlenerToevoegen_MouseLeftButtonUp"/>
+        <ListBox x:Name="lbCliënten" HorizontalAlignment="Left" Height="305" VerticalAlignment="Top" Width="200" Margin="15,139,0,0" />
+        <ListView x:Name="lvOpdrachten" HorizontalAlignment="Left" Height="305" Margin="234,139,0,0" VerticalAlignment="Top" Width="520">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Geselecteerde opdrachten" Width="350" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Image x:Name="image_Copy2" HorizontalAlignment="Left" Height="41" Margin="95,89,0,0" VerticalAlignment="Top" Width="41" Source="image/group-profile-users.png"/>
+
+    </Grid>
+</Window>

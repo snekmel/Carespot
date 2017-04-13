@@ -1,0 +1,16 @@
+﻿<Window x:Class="Carespot.Keuzescherm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Carespot"
+        mc:Ignorable="d"
+        Title="Keuzescherm" Height="300" Width="500">
+    <Grid>
+        <Label x:Name="label" Content="Als wie wil je inloggen?" HorizontalAlignment="Left" Margin="20,23,0,0" VerticalAlignment="Top" FontSize="21.333" Width="372"/>
+        <Image x:Name="imgSluiten" HorizontalAlignment="Left" Height="41" Margin="412,23,0,0" VerticalAlignment="Top" Width="41" Source="image/cross-mark-on-a-black-circle-background.png" MouseLeftButtonUp="imgSluiten_MouseLeftButtonUp"/>
+        <Button x:Name="btHulpbehoevende" Content="Hulpbehoevende" HorizontalAlignment="Left" Margin="20,91,0,0" VerticalAlignment="Top" Width="446" Height="72" FontSize="16" Click="btHulpbehoevende_Click"/>
+        <Button x:Name="btVrijwilliger" Content="Vrijwilliger" HorizontalAlignment="Left" Margin="20,178,0,0" VerticalAlignment="Top" Width="446" Height="72" FontSize="16" Click="btVrijwilliger_Click"/>
+
+    </Grid>
+</Window>
