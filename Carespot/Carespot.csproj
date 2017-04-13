@@ -57,24 +57,20 @@
     <Compile Include="Beheerderscherm.xaml.cs">
       <DependentUpon>Beheerderscherm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DAL\Context\BeheerderSQLContext.cs" />
+	
+	<Compile Include="Models\Reactie.cs" />
+	
+	<Compile Include="DAL\Context\BeheerderSQLContext.cs" />
+	<Compile Include="DAL\Repositorys\BeheerderRepository.cs" />
+	<Compile Include="DAL\Context\ReactieSQLContext.cs" />
+	<Compile Include="DAL\Interfaces\IBeheerderContext.cs" />
+	<Compile Include="DAL\Interfaces\IReactieContext.cs" />
+	<Compile Include="DAL\Repositorys\ReactieRepository.cs" />
     <Compile Include="DAL\Context\GebruikerSQLContext.cs" />
-<<<<<<< HEAD
-    <Compile Include="DAL\Context\HulpverlenerSQLContext.cs" />
-    <Compile Include="DAL\Interfaces\IBeheerderContext.cs" />
     <Compile Include="DAL\Interfaces\IGebruikerContext.cs" />
-    <Compile Include="DAL\Interfaces\IHulpverlenerContext.cs" />
     <Compile Include="DAL\Repositorys\AuthRepository.cs" />
-    <Compile Include="DAL\Repositorys\BeheerderRepository.cs" />
-    <Compile Include="DAL\Repositorys\HulpverlenerRepository.cs" />
-=======
-    <Compile Include="DAL\Context\ReactieSQLContext.cs" />
-    <Compile Include="DAL\Interfaces\IGebruikerContext.cs" />
-    <Compile Include="DAL\Interfaces\IReactieContext.cs" />
-    <Compile Include="DAL\Repositorys\AuthRepository.cs" />
-    <Compile Include="DAL\Repositorys\ReactieRepository.cs" />
->>>>>>> 56a228c0c8de67c5f6399ef7a5022de54ae3d375
     <Compile Include="GebruikerBeheer.xaml.cs">
+	
       <DependentUpon>GebruikerBeheer.xaml</DependentUpon>
     </Compile>
     <Compile Include="HulpverlenerHoofdscherm.xaml.cs">
@@ -83,7 +79,6 @@
     <Compile Include="KiesScherm.xaml.cs">
       <DependentUpon>KiesScherm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Reactie.cs" />
     <Compile Include="Opdracht.xaml.cs">
       <DependentUpon>Opdracht.xaml</DependentUpon>
     </Compile>
