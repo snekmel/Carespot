@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Carespot"
         mc:Ignorable="d"
-        Title="Beheerderscherm" Height="630" Width="480">
+        Title="Beheerderscherm" Height="800.5" Width="480">
     <Grid Margin="-2,0,2,0">
         <Image x:Name="image" HorizontalAlignment="Left" Height="100" Margin="140,179,0,0" VerticalAlignment="Top" Width="100" />
         <Label x:Name="lblWachtwoord" Content="Wachtwoord:" HorizontalAlignment="Left" Margin="47,149,0,0" VerticalAlignment="Top" FontSize="16" />
@@ -20,14 +20,14 @@
         <TextBox x:Name="tbEmailH" HorizontalAlignment="Left" Height="22" Margin="159,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="276" />
         <TextBox x:Name="tbTelefoonH" HorizontalAlignment="Left" Height="22" Margin="159,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="276" />
         <ComboBox x:Name="cbGeslachtH" HorizontalAlignment="Left" Margin="159,264,0,0" VerticalAlignment="Top" Width="120" />
-        <Label x:Name="lblFoto" Content="Foto:" HorizontalAlignment="Left" Margin="103,345,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.673,1.446" />
-        <Image x:Name="imgProfielfotoH" HorizontalAlignment="Left" Height="113" Margin="159,345,0,0" VerticalAlignment="Top" Width="130" />
-        <Button x:Name="btUploaden" Content="Uploaden" HorizontalAlignment="Left" Margin="341,350,0,0" VerticalAlignment="Top" Width="89" Height="27" FontSize="16" Click="btUploaden_Click" />
-        <Button x:Name="btOpslaan" Content="Sla op" HorizontalAlignment="Left" Margin="341,481,0,0" VerticalAlignment="Top" Width="89" Height="27" FontSize="16" Click="btOpslaan_Click" />
+        <Label x:Name="lblFoto" Content="Foto:" HorizontalAlignment="Left" Margin="103,555,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.673,1.446" />
+        <Image x:Name="imgProfielfotoH" HorizontalAlignment="Left" Height="113" Margin="159,555,0,0" VerticalAlignment="Top" Width="130" />
+        <Button x:Name="btUploaden" Content="Uploaden" HorizontalAlignment="Left" Margin="341,560,0,0" VerticalAlignment="Top" Width="89" Height="27" FontSize="16" Click="btUploaden_Click" />
+        <Button x:Name="btOpslaan" Content="Sla op" HorizontalAlignment="Left" Margin="341,691,0,0" VerticalAlignment="Top" Width="89" Height="27" FontSize="16" Click="btOpslaan_Click" />
         <Label x:Name="label" Content="Voeg een nieuwe hulpverlener/beheerder toe" HorizontalAlignment="Left" Margin="47,72,-41,0" VerticalAlignment="Top" FontSize="18" Width="466" />
         <Image x:Name="imgUitloggen" HorizontalAlignment="Left" Height="41" Margin="394,24,0,0" VerticalAlignment="Top" Width="41" Source="image/sign-out-option.png" MouseLeftButtonUp="imgUitloggen_MouseLeftButtonUp" />
         <Image x:Name="imgGebruikersbeheer" HorizontalAlignment="Left" Height="41" Margin="329,24,0,0" VerticalAlignment="Top" Width="41" Source="image/cog-wheel-silhouette.png" MouseLeftButtonUp="imgGebruikersbeheer_MouseLeftButtonUp" />
-        <ComboBox x:Name="cbSoortH" HorizontalAlignment="Left" Margin="159,481,0,0" VerticalAlignment="Top" Width="120" />
-        <Label x:Name="lblNaam_Copy" Content="Soort" HorizontalAlignment="Left" Margin="92,477,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.917,0.67" />
+        <ComboBox x:Name="cbSoortH" HorizontalAlignment="Left" Margin="159,691,0,0" VerticalAlignment="Top" Width="120" />
+        <Label x:Name="lblNaam_Copy" Content="Soort" HorizontalAlignment="Left" Margin="92,687,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.917,0.67" />
     </Grid>
 </Window>

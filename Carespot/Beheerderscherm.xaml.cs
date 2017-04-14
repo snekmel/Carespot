@@ -65,7 +65,10 @@ namespace Carespot
                         };
                         if (soort == "Hulpverlener")
                         {
-                            //var id = repo.CreateGebruiker(g);
+                            var hlpv = new HulpverlenerSQLContext();
+                            var repohulpv = new HulpverlenerRepository(hlpv);
+                            var id = repo.CreateGebruiker(g);
+                            repohulpv.CreateHulpverlener(id);
                         }
                         if (soort == "Beheerder")
                         {
