@@ -46,5 +46,10 @@ namespace Carespot.DAL.Repositorys
         {
             return _hulpbehoevendeContext.RetrieveHulpbehoevendeById(id);
         }
+
+        public int HulpverlenerId()
+        {
+            return _hulpbehoevendeContext.BepaalHulpverlener();
+        }
     }
 }

@@ -77,7 +77,8 @@ namespace Carespot
                             var hlp = new HulpbehoevendeSQLContext();
                             var repohlp = new HulpbehoevendeRepository(hlp);
                             var id = repo.CreateGebruiker(g);
-                            repohlp.CreateHulpbehoevende(id, 3);
+                            var hulpverlener = repohlp.HulpverlenerId();
+                            repohlp.CreateHulpbehoevende(id, hulpverlener);
                         }
                         if (chbVrijwilliger.IsChecked == true)
                         {
