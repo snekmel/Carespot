@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using Carespot.DAL.Interfaces;
 using Carespot.Models;
 
@@ -54,7 +57,6 @@ namespace Carespot.DAL.Context
 
         public void UpdateGebruiker(Gebruiker g)
         {
-            // TODO: FOTO erbij zetten
             try
             {
                 using (_con)
@@ -110,6 +112,10 @@ namespace Carespot.DAL.Context
                     g.Land = reader.GetString(8);
                     g.Email = reader.GetString(9);
                     g.Telefoonnummer = reader.GetString(10);
+                    if (reader[11] != null)
+                    {
+                        g.Foto = (byte[])reader[11];
+                    }
 
                 }
                 _con.Close();
@@ -122,5 +128,7 @@ namespace Carespot.DAL.Context
             }
             return null;
         }
+
+
     }
 }

@@ -17,7 +17,6 @@ namespace Carespot.DAL.Context
         public List<Vrijwilliger> RetrieveAll()  
         {
             var returnList = new List<Vrijwilliger>();
-            //TODO FOTO TOEVOEGEN
             try
             {
                 using (_con)
@@ -37,9 +36,11 @@ namespace Carespot.DAL.Context
                         g.Postcode = reader.GetString(6);
                         g.Plaats = reader.GetString(7);
                         g.Land = reader.GetString(8);                     
-                        g.Telefoonnummer = reader.GetString(10);
-                      
-                        // g.Foto = reader.GetString(12);
+                        g.Telefoonnummer = reader.GetString(10);                                       
+                        if (reader[11] != null)
+                        {
+                            g.Foto = (byte[])reader[11];
+                        }
                         returnList.Add(g);
                     }
                     _con.Close();
@@ -89,7 +90,7 @@ namespace Carespot.DAL.Context
             v.Land = g.Land;
             v.Email = g.Email;
             v.Telefoonnummer = g.Telefoonnummer;
-            //foto
+            v.Foto = g.Foto;
 
             return v;
         }
