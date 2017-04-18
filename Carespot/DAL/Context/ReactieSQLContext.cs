@@ -25,7 +25,7 @@ namespace Carespot.DAL.Context
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.CommandText =
-                    "INSERT INTO Reactie (vrijwiligerid, hulpopdrachtid, bericht) VALUES ("+ vrijwillegerid +", "+ hulpaanvraagid +", '"+ bericht +"');";
+                    "INSERT INTO Reactie (vrijwilligerid, hulpopdrachtid, bericht) VALUES ("+ vrijwillegerid +", "+ hulpaanvraagid +", '"+ bericht +"');";
                 cmd.CommandType = CommandType.Text;
                 cmd.Connection = connection;
 
@@ -54,7 +54,7 @@ namespace Carespot.DAL.Context
                 SqlCommand cmd = new SqlCommand();
                 SqlDataReader reader;
 
-                cmd.CommandText = "SELECT * FROM Reactie WHERE =" + hulpopdrachtid + ";";
+                cmd.CommandText = "SELECT * FROM Reactie WHERE hulpopdrachtid =" + hulpopdrachtid + ";";
                 cmd.CommandType = CommandType.Text;
                 cmd.Connection = connection;
 
