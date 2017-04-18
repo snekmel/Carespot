@@ -38,5 +38,15 @@ namespace UnitTestCarespot
             br.CreateBeheerder(id);
 
         }
+
+        [TestMethod]
+
+        public void RetrieveGebruiker()
+        {
+            GebruikerSQLContext gsc = new GebruikerSQLContext();
+            GebruikerRepository gr = new GebruikerRepository(gsc);
+            Gebruiker g = gr.RetrieveGebruiker(1);
+            Assert.IsTrue(g.Naam == "Luc");
+        }
     }
 }
