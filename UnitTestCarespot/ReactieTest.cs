@@ -14,17 +14,26 @@ namespace UnitTestCarespot
     public class ReactieTest
     {
         [TestMethod]
-        public void TestCreeërHulpopdracht()
+        public void CreateReactie()
         {
             var context = new ReactieSQLContext();
-            var rp = new ReactieRepository();
+            var rr = new ReactieRepository(context);
 
-            List<Reactie> reacties = new List<Reactie>();
+            rr.CreateReactie(5, 3, "Moet ik je komen helpen ?");
+        }
 
-            reacties = rp.GetAllReactiesByHulopdrachtID(1);
+        [TestMethod]
+        public void GetAllReactiesByHulopdrachtID()
+        {
+            var context = new ReactieSQLContext();
+            var rr = new ReactieRepository(context);
 
-            Assert.AreEqual(1, reacties[0].Vrijwilliger.Id);
+            List<Reactie> reactielijst = new List<Reactie>();
+           reactielijst =  rr.GetAllReactiesByHulopdrachtID(3);
 
+            Assert.AreEqual(2 , reactielijst.Count);
+
+            
         }
     }
 }
