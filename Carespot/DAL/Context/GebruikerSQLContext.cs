@@ -22,9 +22,8 @@ namespace Carespot.DAL.Context
             {
                 using (_con)
                 {
-
                     string query =
-                        "INSERT INTO Gebruiker (naam, wachtwoord, geslacht, straat, huisnummer, postcode, plaats, land, email, telefoonnummer, foto) VALUES(@naam,@wachtwoord,@geslacht,@straat,@huisnummer,@postcode,@plaats,@land,@email,@telefoonnummer,NULL);SELECT CAST(scope_identity() AS int)";
+                        "INSERT INTO Gebruiker (naam, wachtwoord, geslacht, straat, huisnummer, postcode, plaats, land, email, telefoonnummer, foto) VALUES(@naam,@wachtwoord,@geslacht,@straat,@huisnummer,@postcode,@plaats,@land,@email,@telefoonnummer,@foto);SELECT CAST(scope_identity() AS int)";
                     SqlCommand cmd = new SqlCommand(query, _con);
 
                     _con.Open();
@@ -38,23 +37,59 @@ namespace Carespot.DAL.Context
                     cmd.Parameters.AddWithValue("@land", g.Land);
                     cmd.Parameters.AddWithValue("@email", g.Email);
                     cmd.Parameters.AddWithValue("@telefoonnummer", g.Telefoonnummer);
-                 
-                    returnId = (int) cmd.ExecuteScalar();
+                    cmd.Parameters.AddWithValue("@foto", g.Foto);
+
+                    returnId = (int)cmd.ExecuteScalar();
                     _con.Close();
                 }
-
             }
             catch
             {
                 System.Windows.MessageBox.Show("woops");
             }
             return returnId;
-
         }
 
         public void UpdateGebruiker(Gebruiker g)
         {
             throw new NotImplementedException();
+        }
+
+        public Gebruiker RetrieveGebruiker(int id)
+        {
+            try
+            {
+                _con.Open();
+                var cmdString = "SELECT * FROM Gebruiker g WHERE id=" + id;
+                var command = new SqlCommand(cmdString, _con);
+                var reader = command.ExecuteReader();
+
+                Gebruiker g = new Gebruiker();
+
+                while (reader.Read())
+                {
+                    g.Id = reader.GetInt32(0);
+                    g.Naam = reader.GetString(1);
+                    g.Wachtwoord = reader.GetString(2);
+                    g.Geslacht = (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
+                    g.Straat = reader.GetString(4);
+                    g.Huisnummer = reader.GetString(5);
+                    g.Postcode = reader.GetString(6);
+                    g.Plaats = reader.GetString(7);
+                    g.Land = reader.GetString(8);
+                    g.Email = reader.GetString(9);
+                    g.Telefoonnummer = reader.GetString(10);
+
+                }
+                _con.Close();
+                return g;
+
+            }
+            catch
+            {
+                System.Windows.MessageBox.Show("Woops");
+            }
+            return null;
         }
     }
 }
