@@ -26,7 +26,16 @@ namespace Carespot
         public HulpverlenerToevoegen()
         {
             InitializeComponent();
+            VulComboBox();
             //cbGeslacht krijgt enum Geslacht {man, vrouw} 
+        }
+
+        private void VulComboBox()
+        {
+            foreach (var item in Enum.GetValues(typeof(Gebruiker.GebruikerGeslacht)))
+            {
+                cbGeslacht.Items.Add(item);
+            }
         }
 
         private void imgSluiten_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
