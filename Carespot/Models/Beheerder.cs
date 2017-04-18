@@ -14,5 +14,9 @@ namespace Carespot.Models
         public Beheerder(string naam, string wachtwoord, string email) : base(naam, wachtwoord, email)
         {
         }
+
+        public Beheerder()
+        {
+        }
     }
 }

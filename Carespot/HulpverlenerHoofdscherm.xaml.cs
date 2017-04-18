@@ -23,10 +23,6 @@ namespace Carespot
     ///
     public partial class HulpverlenerHoofdscherm : Window
     {
-        private readonly SqlConnection _con =
-            new SqlConnection(
-                "Data Source=WIN-SRV-WEB.fhict.local;Initial Catalog=Carespot;User ID=carespot;Password=Test1234;Encrypt=False;TrustServerCertificate=True");
-
         public HulpverlenerHoofdscherm()
         {
             InitializeComponent();
@@ -48,7 +44,6 @@ namespace Carespot
             //hulpverlener uitloggen en terug naar inlogscherm
         }
 
-
         public static ImageSource ByteToImage(byte[] imageData)
         {
             BitmapImage biImg = new BitmapImage();
@@ -64,7 +59,7 @@ namespace Carespot
 
         private void SetProfielImg()
         {
-          //  profielImg.Source = ByteToImage(g().Foto);
+            //  profielImg.Source = ByteToImage(g().Foto);
         }
     }
 }
