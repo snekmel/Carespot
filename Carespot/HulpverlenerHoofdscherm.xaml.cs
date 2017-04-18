@@ -13,6 +13,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Carespot.DAL.Context;
+using Carespot.DAL.Repositorys;
 using Carespot.Models;
 
 namespace Carespot
@@ -59,7 +61,9 @@ namespace Carespot
 
         private void SetProfielImg()
         {
-            //  profielImg.Source = ByteToImage(g().Foto);
+            var inf = new GebruikerSQLContext();
+            var repo = new GebruikerRepository(inf);
+            profielImg.Source = ByteToImage(repo.RetrieveGebruiker(1039).Foto);
         }
     }
 }

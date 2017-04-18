@@ -37,7 +37,7 @@ namespace Carespot.DAL.Context
                         g.Plaats = reader.GetString(7);
                         g.Land = reader.GetString(8);
                         g.Telefoonnummer = reader.GetString(10);
-                        if (reader[11] != null)
+                        if (!reader.IsDBNull(11))
                         {
                             g.Foto = (byte[])reader[11];
                         }
