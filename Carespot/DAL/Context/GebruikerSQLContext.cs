@@ -22,9 +22,8 @@ namespace Carespot.DAL.Context
             {
                 using (_con)
                 {
-
                     string query =
-                        "INSERT INTO Gebruiker (naam, wachtwoord, geslacht, straat, huisnummer, postcode, plaats, land, email, telefoonnummer, foto) VALUES(@naam,@wachtwoord,@geslacht,@straat,@huisnummer,@postcode,@plaats,@land,@email,@telefoonnummer,NULL);SELECT CAST(scope_identity() AS int)";
+                        "INSERT INTO Gebruiker (naam, wachtwoord, geslacht, straat, huisnummer, postcode, plaats, land, email, telefoonnummer, foto) VALUES(@naam,@wachtwoord,@geslacht,@straat,@huisnummer,@postcode,@plaats,@land,@email,@telefoonnummer,@foto);SELECT CAST(scope_identity() AS int)";
                     SqlCommand cmd = new SqlCommand(query, _con);
 
                     _con.Open();
@@ -38,18 +37,17 @@ namespace Carespot.DAL.Context
                     cmd.Parameters.AddWithValue("@land", g.Land);
                     cmd.Parameters.AddWithValue("@email", g.Email);
                     cmd.Parameters.AddWithValue("@telefoonnummer", g.Telefoonnummer);
-                 
-                    returnId = (int) cmd.ExecuteScalar();
+                    cmd.Parameters.AddWithValue("@foto", g.Foto);
+
+                    returnId = (int)cmd.ExecuteScalar();
                     _con.Close();
                 }
-
             }
             catch
             {
                 System.Windows.MessageBox.Show("woops");
             }
             return returnId;
-
         }
 
         public void UpdateGebruiker(Gebruiker g)

@@ -7,9 +7,10 @@ using Carespot.Models;
 
 namespace Carespot.DAL.Interfaces
 {
-    interface IReactieContext
+    public interface IReactieContext
     {
         List<Reactie> GetAllReactiesByHulopdrachtID(int hulpopdrachtid);
+
         void CreateReactie(int vrijwillegerid, int hulpaanvraagid, string bericht);
     }
 }

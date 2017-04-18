@@ -1,20 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Carespot.DAL.Context;
 using Carespot.DAL.Repositorys;
 using Carespot.Models;
+using Microsoft.Win32;
 
 namespace Carespot
 {
@@ -23,6 +15,8 @@ namespace Carespot
     /// </summary>
     public partial class GebruikerAanmaken : Window
     {
+        private byte[] img;
+
         public GebruikerAanmaken()
         {
             InitializeComponent();
@@ -47,7 +41,7 @@ namespace Carespot
                 var postcode = tbPostcode.Text;
                 var plaats = tbPlaats.Text;
                 var land = tbLand.Text;
-                // var foto = imgProfielfoto.Source.ToString();
+                var foto = img;
                 if (!String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(wachtwoord) &&
                     !String.IsNullOrEmpty(wachtwoordOpnieuw) && !String.IsNullOrEmpty(naam) &&
                     !String.IsNullOrEmpty(telNr) && !String.IsNullOrEmpty(adres) && !String.IsNullOrEmpty(huisNummer) &&
@@ -60,7 +54,7 @@ namespace Carespot
                         var g = new Gebruiker
                         {
                             Email = email,
-                            //   Foto = foto,
+                            Foto = foto,
                             Geslacht = geslacht,
                             Huisnummer = huisNummer,
                             Land = land,
@@ -121,6 +115,33 @@ namespace Carespot
         private void btUploaden_Click(object sender, RoutedEventArgs e)
         {
             //foto uploaden
+            //profielfoto uploaden
+            var dlg = new OpenFileDialog
+            {
+                InitialDirectory = @"C:\",
+                FilterIndex = 2,
+                RestoreDirectory = true
+            };
+
+            dlg.DefaultExt = ".png";
+            dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+
+            // Display OpenFileDialog by calling ShowDialog method
+            bool? result = dlg.ShowDialog();
+
+            // Get the selected file name and display in a TextBox
+            if (result == true)
+            {
+                // Open document
+                var filename = dlg.FileName;
+
+                var fs = new FileStream(filename, FileMode.Open, FileAccess.Read);
+                var br = new BinaryReader(fs);
+                img = br.ReadBytes((int)fs.Length);
+                Uri imageUri = new Uri(filename);
+                BitmapImage imageBitmap = new BitmapImage(imageUri);
+                imgProfielfoto.Source = imageBitmap;
+            }
         }
 
         private void vulComboBox()

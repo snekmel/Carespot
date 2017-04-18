@@ -22,9 +22,11 @@ namespace Carespot
         public HulpverlenerHoofdscherm()
         {
             InitializeComponent();
+            byteToImg();
             //laad naam
             //laad functie
         }
+
         //Geef lijst met gekoppelde cliënten
         //Geef lijst met de daarbijhorende hulpvragen
 
@@ -36,6 +38,10 @@ namespace Carespot
         private void imgUitloggen_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             //hulpverlener uitloggen en terug naar inlogscherm
+        }
+
+        private void byteToImg()
+        {
         }
     }
 }
