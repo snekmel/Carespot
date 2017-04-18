@@ -10,30 +10,24 @@ namespace UnitTestCarespot
     [TestClass]
     public class VrijwilligerTests
     {
-
         [TestMethod]
         public void UpdateVrijwilliger()
         {
-
-
             var vsc = new VrijwilligerSQLContext();
             var vr = new VrijwilligerRepository(vsc);
             Vrijwilliger v = vr.RetrieveById(7);
             v.Naam = v.Naam + "aangepast";
 
-
-            vr.UpdateVrijwilliger(v);
-
+            // vr.UpdateVrijwilliger(v);
         }
+
         [TestMethod]
         public void VrijwilligerALL()
         {
-
             var vsc = new VrijwilligerSQLContext();
             var vr = new VrijwilligerRepository(vsc);
             List<Vrijwilliger> lijst = vr.RetrieveAll();
             Assert.IsTrue(lijst.Count > 0);
-
         }
 
         [TestMethod]
@@ -43,8 +37,6 @@ namespace UnitTestCarespot
             var vr = new VrijwilligerRepository(vsc);
 
             Assert.AreEqual("Kees", vr.RetrieveById(2).Naam);
-
-
         }
 
         [TestMethod]
@@ -55,10 +47,7 @@ namespace UnitTestCarespot
             Vrijwilliger v = vr.RetrieveById(2);
             v.Naam = "testasdfasdfasdfasdf";
 
-            
-           // vr.CreateVrijwilliger(v);
-
-
+            // vr.CreateVrijwilliger(v);
         }
 
         [TestMethod]
@@ -68,8 +57,6 @@ namespace UnitTestCarespot
             var vr = new VrijwilligerRepository(vsc);
 
             vr.DeleteVrijwilliger(6);
-
-
         }
     }
 }

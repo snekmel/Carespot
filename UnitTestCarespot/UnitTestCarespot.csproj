@@ -52,6 +52,7 @@
     <Compile Include="UnitTest3.cs" />
     <Compile Include="BeoordelingTest.cs" />
     <Compile Include="GebruikerTester.cs" />
+    <Compile Include="TestBeheerder.cs" />
     <Compile Include="VaardigheidTest.cs" />
   </ItemGroup>
   <ItemGroup>
