@@ -54,7 +54,35 @@ namespace Carespot.DAL.Context
 
         public void UpdateGebruiker(Gebruiker g)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (_con)
+                {
+
+                    string query =
+                        "";
+                    SqlCommand cmd = new SqlCommand(query, _con);
+
+                    _con.Open();
+                    cmd.Parameters.AddWithValue("@naam", g.Naam);
+                    cmd.Parameters.AddWithValue("@wachtwoord", g.Wachtwoord);
+                    cmd.Parameters.AddWithValue("@geslacht", g.Geslacht.ToString());
+                    cmd.Parameters.AddWithValue("@straat", g.Straat);
+                    cmd.Parameters.AddWithValue("@huisnummer", g.Huisnummer);
+                    cmd.Parameters.AddWithValue("@postcode", g.Postcode);
+                    cmd.Parameters.AddWithValue("@plaats", g.Plaats);
+                    cmd.Parameters.AddWithValue("@land", g.Land);
+                    cmd.Parameters.AddWithValue("@email", g.Email);
+                    cmd.Parameters.AddWithValue("@telefoonnummer", g.Telefoonnummer);
+
+                    _con.Close();
+                }
+
+            }
+            catch
+            {
+                System.Windows.MessageBox.Show("GEBRUIKERSQLCONTEXT -> Update Gebruiker");
+            }
         }
 
         public Gebruiker RetrieveGebruiker(int id)

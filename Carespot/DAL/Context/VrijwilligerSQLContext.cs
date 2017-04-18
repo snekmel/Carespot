@@ -14,7 +14,7 @@ namespace Carespot.DAL.Context
     {
         private readonly SqlConnection _con = new SqlConnection("Data Source=WIN-SRV-WEB.fhict.local;Initial Catalog=Carespot;User ID=carespot;Password=Test1234;Encrypt=False;TrustServerCertificate=True");
 
-        public List<Vrijwilliger> RetrieveAll()
+        public List<Vrijwilliger> RetrieveAll()  
         {
             _con.Open();
             var cmdString = "SELECT * FROM Gebruiker g WHERE gebruikerType = 'Vrijwilliger'";
