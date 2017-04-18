@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Carespot.DAL.Context;
+using Carespot.DAL.Repositorys;
+using Carespot.Models;
 
 namespace Carespot
 {
@@ -19,13 +22,17 @@ namespace Carespot
     /// </summary>
     public partial class ProfielVrijwilliger : Window
     {
-        public ProfielVrijwilliger()
+        Gebruiker profielGebruiker;
+        Gebruiker ingelogd;
+        string hbNaam;
+        public ProfielVrijwilliger(Gebruiker ingelogdeGebuiker, Gebruiker ontvangGebruiker)
         {
             InitializeComponent();
-            //laad lijst van recensies 
-            //laad naam
-            //laad functie
-            //laadt profielfoto
+            profielGebruiker = ontvangGebruiker;
+            ingelogd = ingelogdeGebuiker;
+            lblNaam.Content = profielGebruiker.Naam;
+            lblRol.Content = profielGebruiker.Type;
+            vulListView();
         }
 
         private void imgSluitAf_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -37,5 +44,39 @@ namespace Carespot
         {
 
         }
+
+        private void imgSchrijfRecensie_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            BeoordelingScherm window = new BeoordelingScherm(ingelogd, profielGebruiker);
+            window.Show();
+            this.Close();
+        }
+
+        public void vulListView()
+        {
+            var b = new BeoordelingSQLContext();
+            var bRepo = new BeoordelingRepository(b);
+            List<Beoordeling> beoordelingLijst = new List<Beoordeling>();
+            beoordelingLijst = bRepo.RetrieveBeoordeling(profielGebruiker.Id);
+
+            var hb = new HulpbehoevendeSQLContext();
+            var hbRepo = new HulpbehoevendeRepository(hb);
+            List<Hulpbehoevende> hulpbehoevendeLijst = new List<Hulpbehoevende>();
+            hulpbehoevendeLijst = hbRepo.HulpbehoevendeList();
+
+            foreach (var beoordeling in beoordelingLijst)
+            {
+                foreach (var h in hulpbehoevendeLijst)
+                {
+                    if (h.Id == beoordeling.HulpbehoevendeId)
+                    {
+                        hbNaam = h.Naam;
+                    }
+                }
+                lvRecensies.Items.Add("Beoordeeld door: " + hbNaam + "cijfer: " + beoordeling.Cijfer + "Opmerking: " + beoordeling.Opmerking);                
+            }
+        }
+
+
     }
 }

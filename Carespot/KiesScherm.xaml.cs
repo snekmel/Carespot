@@ -100,9 +100,8 @@ namespace Carespot
 
         private void RecensieScherm_Click(object sender, RoutedEventArgs e)
         {
-            var recensie = new Recensie();
-          //  Carespot.Recensie recensie = new Carespot.Recensie();
-          //  recensie.Show();
+            var beoordelingsScherm = new BeoordelingScherm();
+            beoordelingsScherm.Show();
         }
 
         private void HulpverlenerOverzicht_Click(object sender, RoutedEventArgs e)
