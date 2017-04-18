@@ -57,8 +57,6 @@
     <Compile Include="Beheerderscherm.xaml.cs">
       <DependentUpon>Beheerderscherm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DAL\Context\BeheerderSQLContext.cs" />
-    <Compile Include="DAL\Context\GebruikerSQLContext.cs" />
     <Compile Include="DAL\Context\HulpverlenerSQLContext.cs" />
     <Compile Include="DAL\Interfaces\IHulpverlenerContext.cs" />
     <Compile Include="DAL\Repositorys\HulpverlenerRepository.cs" />
