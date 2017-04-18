@@ -22,31 +22,12 @@ namespace Carespot.DAL.Repositorys
         {
             
         }
-        //Haal alles op uit andere repos.
+   
+
         public List<Gebruiker> RetrieveAll()
         {
-         
-            List<Gebruiker> returnList = new List<Gebruiker>();
-
-            //Vrijwilliger
-            var infVrijwilliger = new VrijwilligerSQLContext();
-            var repoVrijwilliger = new VrijwilligerRepository(infVrijwilliger);
-
-            foreach (var v in repoVrijwilliger.RetrieveAll())
-            {
-                returnList.Add(v);
-            }
-
-            //Hulpbehoevende
-            var inf = new HulpbehoevendeSQLContext();
-            var repo = new HulpbehoevendeRepository(inf);
-
-            foreach (var hulpbehoevende in repo.HulpbehoevendeList())
-            {
-                returnList.Add(hulpbehoevende);
-            }
-
-            return returnList;
+            //haal al de types.RetrieveAll op en voeg deze samen tot 1 lijst.
+            return null;
 
         }
 
@@ -60,7 +41,7 @@ namespace Carespot.DAL.Repositorys
 
         public void UpdateGebruiker(Gebruiker g)
         {
-            
+            _interface.UpdateGebruiker(g);
         }
 
         public Gebruiker RetrieveGebruiker(int id)

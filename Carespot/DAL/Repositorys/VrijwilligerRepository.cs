@@ -38,9 +38,6 @@ namespace Carespot.DAL.Repositorys
             _interface.DeleteVrijwilliger(id);
         }
 
-        public void UpdateVrijwilliger(Vrijwilliger v)
-        {
-            _interface.UpdateVrijwilliger(v);
-        }
+   
     }
 }

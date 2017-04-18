@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,18 +13,24 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Carespot.Models;
 
 namespace Carespot
 {
     /// <summary>
     /// Interaction logic for HulpverlenerHoofdscherm.xaml
     /// </summary>
+    ///
     public partial class HulpverlenerHoofdscherm : Window
     {
+        private readonly SqlConnection _con =
+            new SqlConnection(
+                "Data Source=WIN-SRV-WEB.fhict.local;Initial Catalog=Carespot;User ID=carespot;Password=Test1234;Encrypt=False;TrustServerCertificate=True");
+
         public HulpverlenerHoofdscherm()
         {
             InitializeComponent();
-            byteToImg();
+            SetProfielImg();
             //laad naam
             //laad functie
         }
@@ -40,8 +48,23 @@ namespace Carespot
             //hulpverlener uitloggen en terug naar inlogscherm
         }
 
-        private void byteToImg()
+
+        public static ImageSource ByteToImage(byte[] imageData)
         {
+            BitmapImage biImg = new BitmapImage();
+            MemoryStream ms = new MemoryStream(imageData);
+            biImg.BeginInit();
+            biImg.StreamSource = ms;
+            biImg.EndInit();
+
+            ImageSource imgSrc = biImg as ImageSource;
+
+            return imgSrc;
+        }
+
+        private void SetProfielImg()
+        {
+          //  profielImg.Source = ByteToImage(g().Foto);
         }
     }
 }

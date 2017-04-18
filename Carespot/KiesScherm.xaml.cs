@@ -14,6 +14,12 @@ namespace Carespot
         public KiesScherm()
         {
             InitializeComponent();
+
+            VrijwilligerSQLContext vsc = new VrijwilligerSQLContext();
+            VrijwilligerRepository vr = new VrijwilligerRepository(vsc);
+            vr.DeleteVrijwilliger(23);
+
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

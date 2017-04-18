@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using Carespot.DAL.Interfaces;
 using Carespot.Models;
 
@@ -22,8 +25,9 @@ namespace Carespot.DAL.Context
             {
                 using (_con)
                 {
+
                     string query =
-                        "INSERT INTO Gebruiker (naam, wachtwoord, geslacht, straat, huisnummer, postcode, plaats, land, email, telefoonnummer, foto) VALUES(@naam,@wachtwoord,@geslacht,@straat,@huisnummer,@postcode,@plaats,@land,@email,@telefoonnummer,@foto);SELECT CAST(scope_identity() AS int)";
+                        "INSERT INTO Gebruiker (naam, wachtwoord, geslacht, straat, huisnummer, postcode, plaats, land, email, telefoonnummer, foto) VALUES(@naam,@wachtwoord,@geslacht,@straat,@huisnummer,@postcode,@plaats,@land,@email,@telefoonnummer,NULL);SELECT CAST(scope_identity() AS int)";
                     SqlCommand cmd = new SqlCommand(query, _con);
 
                     _con.Open();
@@ -37,22 +41,51 @@ namespace Carespot.DAL.Context
                     cmd.Parameters.AddWithValue("@land", g.Land);
                     cmd.Parameters.AddWithValue("@email", g.Email);
                     cmd.Parameters.AddWithValue("@telefoonnummer", g.Telefoonnummer);
-                    cmd.Parameters.AddWithValue("@foto", g.Foto);
-
-                    returnId = (int)cmd.ExecuteScalar();
+                 
+                    returnId = (int) cmd.ExecuteScalar();
                     _con.Close();
                 }
+
             }
             catch
             {
-                System.Windows.MessageBox.Show("woops");
+                System.Windows.MessageBox.Show("GEBRUIKERSQL CONTEXT -> CREATE GEBRUIKER");
             }
             return returnId;
+
         }
 
         public void UpdateGebruiker(Gebruiker g)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (_con)
+                {
+
+                    string query =
+                        "UPDATE Gebruiker SET naam = @naam, wachtwoord = @wachtwoord, geslacht = @geslacht, straat = @straat, huisnummer = @huisnummer, postcode = @postcode, plaats = @plaats, land = @land, email = @email, telefoonnummer = @telefoonnummer WHERE id =" + g.Id;
+                    SqlCommand cmd = new SqlCommand(query, _con);
+
+                    _con.Open();
+                    cmd.Parameters.AddWithValue("@naam", g.Naam);
+                    cmd.Parameters.AddWithValue("@wachtwoord", g.Wachtwoord);
+                    cmd.Parameters.AddWithValue("@geslacht", g.Geslacht.ToString());
+                    cmd.Parameters.AddWithValue("@straat", g.Straat);
+                    cmd.Parameters.AddWithValue("@huisnummer", g.Huisnummer);
+                    cmd.Parameters.AddWithValue("@postcode", g.Postcode);
+                    cmd.Parameters.AddWithValue("@plaats", g.Plaats);
+                    cmd.Parameters.AddWithValue("@land", g.Land);
+                    cmd.Parameters.AddWithValue("@email", g.Email);
+                    cmd.Parameters.AddWithValue("@telefoonnummer", g.Telefoonnummer);
+                    //foto
+                    cmd.ExecuteNonQuery();
+                   _con.Close();             
+                }
+            }
+            catch
+            {
+                System.Windows.MessageBox.Show("GEBRUIKERSQLCONTEXT -> Update Gebruiker");
+            }
         }
 
         public Gebruiker RetrieveGebruiker(int id)
@@ -79,6 +112,10 @@ namespace Carespot.DAL.Context
                     g.Land = reader.GetString(8);
                     g.Email = reader.GetString(9);
                     g.Telefoonnummer = reader.GetString(10);
+                    if (reader[11] != null)
+                    {
+                        g.Foto = (byte[])reader[11];
+                    }
 
                 }
                 _con.Close();
@@ -87,9 +124,11 @@ namespace Carespot.DAL.Context
             }
             catch
             {
-                System.Windows.MessageBox.Show("Woops");
+                System.Windows.MessageBox.Show("GEBRUIKERSQLCONTEXT -> RETRIEVE GEBRUIKER");
             }
             return null;
         }
+
+
     }
 }
