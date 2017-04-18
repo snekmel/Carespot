@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ using System.Windows.Shapes;
 using Carespot.DAL.Context;
 using Carespot.DAL.Repositorys;
 using Carespot.Models;
+using Microsoft.Win32;
 
 namespace Carespot
 {
@@ -22,6 +24,8 @@ namespace Carespot
     /// </summary>
     public partial class Beheerderscherm : Window
     {
+        private byte[] img;
+
         public Beheerderscherm()
         {
             InitializeComponent();
@@ -32,6 +36,32 @@ namespace Carespot
         private void btUploaden_Click(object sender, RoutedEventArgs e)
         {
             //profielfoto uploaden
+            var dlg = new OpenFileDialog
+            {
+                InitialDirectory = @"C:\",
+                FilterIndex = 2,
+                RestoreDirectory = true
+            };
+
+            dlg.DefaultExt = ".png";
+            dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+
+            // Display OpenFileDialog by calling ShowDialog method
+            bool? result = dlg.ShowDialog();
+
+            // Get the selected file name and display in a TextBox
+            if (result == true)
+            {
+                // Open document
+                var filename = dlg.FileName;
+
+                var fs = new FileStream(filename, FileMode.Open, FileAccess.Read);
+                var br = new BinaryReader(fs);
+                img = br.ReadBytes((int)fs.Length);
+                Uri imageUri = new Uri(filename);
+                BitmapImage imageBitmap = new BitmapImage(imageUri);
+                imgProfielfotoH.Source = imageBitmap;
+            }
         }
 
         private void btOpslaan_Click(object sender, RoutedEventArgs e)
@@ -45,10 +75,16 @@ namespace Carespot
                 var naam = tbNaamH.Text;
                 var geslacht = (Gebruiker.GebruikerGeslacht)cbGeslachtH.SelectedItem;
                 var telNr = tbTelefoonH.Text;
-                //var foto = imgProfielfotoH.Source.ToString();
+                var foto = img;
                 var soort = cbSoortH.SelectedItem.ToString();
+                var adres = tbAdres.Text;
+                var nr = tbNummer.Text;
+                var postcode = tbPostcode.Text;
+                var plaats = tbPlaats.Text;
+                var land = tbLand.Text;
                 if (!String.IsNullOrEmpty(wachtwoord) && !String.IsNullOrEmpty(wachtwoordHerhalen)
-                    && !String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(naam) && !String.IsNullOrEmpty(telNr))
+                    && !String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(naam) && !String.IsNullOrEmpty(telNr) && !String.IsNullOrEmpty(adres) && !String.IsNullOrEmpty(nr)
+                    && !String.IsNullOrEmpty(postcode) && !String.IsNullOrEmpty(plaats) && !String.IsNullOrEmpty(land))
                 {
                     if (wachtwoord == wachtwoordHerhalen)
                     {
@@ -57,11 +93,16 @@ namespace Carespot
                         var g = new Gebruiker
                         {
                             Email = email,
-                            //   Foto = foto,
+                            Foto = foto,
                             Geslacht = geslacht,
                             Naam = naam,
                             Wachtwoord = wachtwoord,
-                            Telefoonnummer = telNr
+                            Telefoonnummer = telNr,
+                            Straat = adres,
+                            Huisnummer = nr,
+                            Postcode = postcode,
+                            Plaats = plaats,
+                            Land = land
                         };
                         if (soort == "Hulpverlener")
                         {

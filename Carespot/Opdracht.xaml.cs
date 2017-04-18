@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Carespot.Models;
 
 namespace Carespot
 {
@@ -19,13 +20,31 @@ namespace Carespot
     /// </summary>
     public partial class Opdracht : Window
     {
+
+        private Gebruiker _loggedInUser;
+        private HulpOpdracht _hulpOpdracht;
+
         public Opdracht()
         {
             InitializeComponent();
+        }
+        public Opdracht(Gebruiker g, HulpOpdracht h)
+        {
+            InitializeComponent();
+
+            System.Windows.MessageBox.Show("Test");
+            _loggedInUser = g;
+            _hulpOpdracht = h;
+            ViewLoader();
+        }
+
+        private void ViewLoader()
+        {
             //Laad naam
             //Laad functie
             //laad omschrijvingstab
         }
+
 
         private void imgSluitAf_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {

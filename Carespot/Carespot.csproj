@@ -57,6 +57,9 @@
     <Compile Include="Beheerderscherm.xaml.cs">
       <DependentUpon>Beheerderscherm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BeoordelingScherm.xaml.cs">
+      <DependentUpon>BeoordelingScherm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DAL\Context\HulpverlenerSQLContext.cs" />
     <Compile Include="DAL\Interfaces\IHulpverlenerContext.cs" />
     <Compile Include="DAL\Repositorys\HulpverlenerRepository.cs" />
@@ -88,9 +91,6 @@
     <Compile Include="ProfielVrijwilliger.xaml.cs">
       <DependentUpon>ProfielVrijwilliger.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Recensie.xaml.cs">
-      <DependentUpon>Recensie.xaml</DependentUpon>
-    </Compile>
     <Compile Include="VerwijderBevestiging.xaml.cs">
       <DependentUpon>VerwijderBevestiging.xaml</DependentUpon>
     </Compile>
@@ -101,6 +101,10 @@
       <DependentUpon>VrijwilligerOpdrachtAannemen.xaml</DependentUpon>
     </Compile>
     <Page Include="Beheerderscherm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BeoordelingScherm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -191,10 +195,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProfielVrijwilliger.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Recensie.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

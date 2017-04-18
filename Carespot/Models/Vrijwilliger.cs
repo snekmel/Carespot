@@ -12,5 +12,10 @@ namespace Carespot.Models
         public Vrijwilliger(string naam, string wachtwoord, string email) : base(naam, wachtwoord, email)
         {
         }
+
+        public Vrijwilliger()
+        {
+            
+        }
     }
 }
