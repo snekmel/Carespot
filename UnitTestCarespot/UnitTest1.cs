@@ -13,11 +13,14 @@ namespace UnitTestCarespot
         public void DalTester()
         {
 
-            GebruikerRepository gr = new GebruikerRepository();
+            GebruikerSQLContext gsc = new GebruikerSQLContext();
+            GebruikerRepository gr =  new GebruikerRepository(gsc);
+            Gebruiker g = gr.RetrieveGebruiker(1);
 
-           List<Gebruiker> g = gr.RetrieveAll();
-            Assert.IsTrue(g.Count > 10);
+            g.Huisnummer = g.Huisnummer + "aangepast";
 
+
+            gr.UpdateGebruiker(g);
         }
     }
 }

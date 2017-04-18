@@ -11,8 +11,6 @@ namespace Carespot.DAL.Interfaces
 
         Vrijwilliger RetrieveVrijwilliger(int id);
 
-        void UpdateVrijwilliger(Vrijwilliger v);
-
         void DeleteVrijwilliger(int id);
     }
 }
