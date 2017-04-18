@@ -15,9 +15,10 @@ namespace Carespot
         {
             InitializeComponent();
 
-            VrijwilligerSQLContext vsc = new VrijwilligerSQLContext();
-            VrijwilligerRepository vr = new VrijwilligerRepository(vsc);
-            vr.DeleteVrijwilliger(23);
+           HulpverlenerSQLContext hsc = new HulpverlenerSQLContext();
+            HulpverlenerRepository hr = new HulpverlenerRepository(hsc);
+
+            hr.DeleteHulpverlener(1);
 
             
         }
