@@ -22,19 +22,17 @@ namespace Carespot
     /// </summary>
     public partial class ProfielVrijwilliger : Window
     {
-        Gebruiker gebruiker;
+        Gebruiker profielGebruiker;
+        Gebruiker ingelogd;
         string hbNaam;
-        public ProfielVrijwilliger(Gebruiker g)
+        public ProfielVrijwilliger(Gebruiker ingelogdeGebuiker, Gebruiker ontvangGebruiker)
         {
             InitializeComponent();
-            gebruiker = g;
-            lblNaam.Content = gebruiker.Naam;
-            lblRol.Content = gebruiker.Type;
+            profielGebruiker = ontvangGebruiker;
+            ingelogd = ingelogdeGebuiker;
+            lblNaam.Content = profielGebruiker.Naam;
+            lblRol.Content = profielGebruiker.Type;
             vulListView();
-            //laad lijst van recensies 
-            //laad naam
-            //laad functie
-            //laadt profielfoto
         }
 
         private void imgSluitAf_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -49,9 +47,15 @@ namespace Carespot
 
         private void imgSchrijfRecensie_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+<<<<<<< HEAD
           //  Recensie window = new Recensie(/*gebruiker*/);
          //   window.Show();
           //  this.Close();
+=======
+            BeoordelingScherm window = new BeoordelingScherm(ingelogd, profielGebruiker);
+            window.Show();
+            this.Close();
+>>>>>>> bed7af5213e70c7c63646973a7483814c54a5d4c
         }
 
         public void vulListView()
@@ -59,7 +63,7 @@ namespace Carespot
             var b = new BeoordelingSQLContext();
             var bRepo = new BeoordelingRepository(b);
             List<Beoordeling> beoordelingLijst = new List<Beoordeling>();
-            beoordelingLijst = bRepo.RetrieveBeoordeling(gebruiker.Id);
+            beoordelingLijst = bRepo.RetrieveBeoordeling(profielGebruiker.Id);
 
             var hb = new HulpbehoevendeSQLContext();
             var hbRepo = new HulpbehoevendeRepository(hb);
