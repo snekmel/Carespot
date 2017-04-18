@@ -11,9 +11,6 @@ namespace Carespot.DAL.Interfaces
 
         Beheerder RetrieveBeheerder(int id);
 
-        void UpdateBeheerder(Beheerder b);
-
         void DeleteBeheerder(int id);
-
     }
 }

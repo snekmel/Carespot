@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Carespot.DAL.Interfaces;
+using Carespot.DAL.Repositorys;
 using Carespot.Models;
 
 namespace Carespot.DAL.Context
@@ -15,7 +16,41 @@ namespace Carespot.DAL.Context
 
         public List<Beheerder> RetrieveAll()
         {
-            throw new NotImplementedException();
+            var returnList = new List<Beheerder>();
+            try
+            {
+                using (_con)
+                {
+                    _con.Open();
+                    var cmdString = "SELECT * FROM Gebruiker INNER JOIN Beheerder ON Gebruiker.id = Beheerder.gebruikerId WHERE Gebruiker.id IN(SELECT gebruikerId FROM Beheerder)";
+                    var command = new SqlCommand(cmdString, _con);
+                    var reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Beheerder g = new Beheerder(reader.GetString(1), reader.GetString(2), reader.GetString(9));
+                        g.Id = reader.GetInt32(0);
+                        g.Geslacht = (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
+                        g.Straat = reader.GetString(4);
+                        g.Huisnummer = reader.GetString(5);
+                        g.Postcode = reader.GetString(6);
+                        g.Plaats = reader.GetString(7);
+                        g.Land = reader.GetString(8);
+                        g.Telefoonnummer = reader.GetString(10);
+                        if (reader[11] != null)
+                        {
+                            g.Foto = (byte[])reader[11];
+                        }
+                        returnList.Add(g);
+                    }
+                    _con.Close();
+                }
+            }
+            catch
+            {
+                System.Windows.MessageBox.Show("BeheerderSqlContext -> Retrieve all");
+            }
+            return returnList;
         }
 
         public void CreateBeheerder(int gebruikerId)
@@ -38,17 +73,34 @@ namespace Carespot.DAL.Context
 
         public Beheerder RetrieveBeheerder(int id)
         {
-            throw new NotImplementedException();
-        }
+            GebruikerSQLContext gsc = new GebruikerSQLContext();
+            GebruikerRepository gr = new GebruikerRepository(gsc);
+            Gebruiker g = gr.RetrieveGebruiker(id);
 
-        public void UpdateBeheerder(Beheerder b)
-        {
-            throw new NotImplementedException();
+            Beheerder b = new Beheerder();
+            b.Id = g.Id;
+            b.Naam = g.Naam;
+            b.Wachtwoord = g.Wachtwoord;
+            b.Geslacht = g.Geslacht;
+            b.Straat = g.Straat;
+            b.Huisnummer = g.Huisnummer;
+            b.Postcode = g.Postcode;
+            b.Plaats = g.Plaats;
+            b.Land = g.Land;
+            b.Email = g.Email;
+            b.Telefoonnummer = g.Telefoonnummer;
+            b.Foto = g.Foto;
+
+            return b;
         }
 
         public void DeleteBeheerder(int id)
         {
-            throw new NotImplementedException();
+            _con.Open();
+            var cmdString = "DELETE FROM Beheerder WHERE gebruikerId =" + id;
+            var command = new SqlCommand(cmdString, _con);
+            command.ExecuteNonQuery();
+            _con.Close();
         }
     }
 }
