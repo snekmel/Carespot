@@ -29,8 +29,6 @@ namespace Carespot.DAL.Context
                 cmd.CommandType = CommandType.Text;
                 cmd.Connection = connection;
 
-                //cmd.ExecuteReader();
-
                 cmd.ExecuteNonQuery();
             }
             catch (Exception e)
