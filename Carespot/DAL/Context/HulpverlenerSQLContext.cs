@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Carespot.DAL.Interfaces;
+using Carespot.DAL.Repositorys;
 using Carespot.Models;
 
 namespace Carespot.DAL.Context
@@ -40,17 +41,46 @@ namespace Carespot.DAL.Context
 
         public Hulpverlener RetrieveHulpverlener(int id)
         {
-            throw new NotImplementedException();
-        }
+         GebruikerSQLContext gsc = new GebruikerSQLContext();
+         GebruikerRepository gr = new GebruikerRepository(gsc);
+         Gebruiker g = gr.RetrieveGebruiker(id);
 
-        public void UpdateHulpverlener(Hulpverlener v)
-        {
-            throw new NotImplementedException();
+          Hulpverlener h = new Hulpverlener();
+          h.Id = g.Id;
+          h.Naam = g.Naam;
+          h.Wachtwoord = g.Wachtwoord;
+          h.Geslacht = g.Geslacht;
+          h.Straat = g.Straat;
+          h.Huisnummer = g.Huisnummer;
+          h.Postcode = g.Postcode;
+          h.Plaats = g.Plaats;
+          h.Land = g.Land;
+          h.Email = g.Email;
+          h.Telefoonnummer = g.Telefoonnummer;
+          h.Foto = g.Foto;
+
+         return h;
         }
 
         public void DeleteHulpverlener(int id)
         {
-            throw new NotImplementedException();
+
+            try
+            {
+                using (_con)
+                {
+                    _con.Open();
+                    var cmdString = "DELETE FROM Hulpverlener WHERE gebruikerId =" + id;
+                    var command = new SqlCommand(cmdString, _con);
+                    command.ExecuteNonQuery();
+                    _con.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                System.Windows.MessageBox.Show(e + "");
+            }
+       
         }
     }
 }
