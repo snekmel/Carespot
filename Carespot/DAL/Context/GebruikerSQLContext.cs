@@ -54,5 +54,42 @@ namespace Carespot.DAL.Context
         {
             throw new NotImplementedException();
         }
+
+        public Gebruiker RetrieveGebruiker(int id)
+        {
+            try
+            {
+                _con.Open();
+                var cmdString = "SELECT * FROM Gebruiker g WHERE id=" + id;
+                var command = new SqlCommand(cmdString, _con);
+                var reader = command.ExecuteReader();
+
+                Gebruiker g = new Gebruiker();
+
+                while (reader.Read())
+                {
+                    g.Id = reader.GetInt32(0);
+                    g.Naam = reader.GetString(1);
+                    g.Wachtwoord = reader.GetString(2);
+                    g.Geslacht = (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
+                    g.Straat = reader.GetString(4);
+                    g.Huisnummer = reader.GetString(5);
+                    g.Postcode = reader.GetString(6);
+                    g.Plaats = reader.GetString(7);
+                    g.Land = reader.GetString(8);
+                    g.Email = reader.GetString(9);
+                    g.Telefoonnummer = reader.GetString(10);
+
+                }
+                _con.Close();
+                return g;
+
+            }
+            catch
+            {
+                System.Windows.MessageBox.Show("Woops");
+            }
+            return null;
+        }
     }
 }

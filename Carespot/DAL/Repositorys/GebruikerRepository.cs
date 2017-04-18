@@ -50,9 +50,6 @@ namespace Carespot.DAL.Repositorys
 
         }
 
-
-        //Create gebruiker
-        // moet nog: bool beheerder, bool hulpverlener,
         public int CreateGebruiker(Gebruiker g)
         {
           
@@ -64,6 +61,11 @@ namespace Carespot.DAL.Repositorys
         public void UpdateGebruiker(Gebruiker g)
         {
             
+        }
+
+        public Gebruiker RetrieveGebruiker(int id)
+        {
+            return _interface.RetrieveGebruiker(id);
         }
     }
 }
