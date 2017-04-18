@@ -28,7 +28,7 @@ namespace Carespot
         private void btAanmelden_Click(object sender, RoutedEventArgs e)
         {
             //'GebruikerAanmaken' openen
-            GebruikerAanmaken aanmaken = new GebruikerAanmaken();
+            var aanmaken = new GebruikerAanmaken();
             aanmaken.Show();
             this.Close();
         }
@@ -44,7 +44,6 @@ namespace Carespot
             {
                 System.Windows.MessageBox.Show("Foute inloggegevens.");
             }
-
         }
     }
 }

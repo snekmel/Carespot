@@ -23,22 +23,16 @@ namespace Carespot
     /// </summary>
     public partial class GebruikerAanmaken : Window
     {
-        private HulpbehoevendeSQLContext inf;
-        private HulpbehoevendeRepository repo;
-
         public GebruikerAanmaken()
         {
             InitializeComponent();
-            inf = new HulpbehoevendeSQLContext();
-            repo = new HulpbehoevendeRepository(inf);
+
             //cbGeslacht krijgt Enum Geslacht {man, vrouw}
+            vulComboBox();
         }
 
         private void btGebruikerAanmaken_Click(object sender, RoutedEventArgs e)
         {
-            //if (rdHulpbehoevnde.IsChecked == true)
-            //{
-            //}
             try
             {
                 var email = tbEmail.Text;
@@ -46,27 +40,74 @@ namespace Carespot
                 var wachtwoordOpnieuw = tbHerhalen.Text;
                 var naam = tbNaam.Text;
                 var geslacht = (Gebruiker.GebruikerGeslacht)cbGeslacht.SelectedItem;
-                var gebruikertype = (Gebruiker.GebruikerType)cmGebruikerType.SelectedItem;
+                // var gebruikertype = (Gebruiker.GebruikerType)cmGebruikerType.SelectedItem;
                 var telNr = tbTelefoon.Text;
                 var adres = tbAdres.Text;
                 var huisNummer = tbNummer.Text;
                 var postcode = tbPostcode.Text;
                 var plaats = tbPlaats.Text;
                 var land = tbLand.Text;
-                var foto = imgProfielfoto.Source.ToString();
-                if (wachtwoord == wachtwoordOpnieuw)
+                // var foto = imgProfielfoto.Source.ToString();
+                if (!String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(wachtwoord) &&
+                    !String.IsNullOrEmpty(wachtwoordOpnieuw) && !String.IsNullOrEmpty(naam) &&
+                    !String.IsNullOrEmpty(telNr) && !String.IsNullOrEmpty(adres) && !String.IsNullOrEmpty(huisNummer) &&
+                    !String.IsNullOrEmpty(postcode) && !String.IsNullOrEmpty(plaats) && !String.IsNullOrEmpty(land))
                 {
-                   // repo.CreateHulpbehoevende(naam, wachtwoord, geslacht, adres, huisNummer, postcode, plaats, land, email,
-                    //    telNr, gebruikertype, foto, 3);
+                    if (wachtwoord == wachtwoordOpnieuw)
+                    {
+                        var inf = new GebruikerSQLContext();
+                        var repo = new GebruikerRepository(inf);
+                        var g = new Gebruiker
+                        {
+                            Email = email,
+                            //   Foto = foto,
+                            Geslacht = geslacht,
+                            Huisnummer = huisNummer,
+                            Land = land,
+                            Naam = naam,
+                            Plaats = plaats,
+                            Postcode = postcode,
+                            Straat = adres,
+                            Wachtwoord = wachtwoord,
+                            Telefoonnummer = telNr
+                        };
+
+                        if (chbHulpbehoevnde.IsChecked == true)
+                        {
+                            var hlp = new HulpbehoevendeSQLContext();
+                            var repohlp = new HulpbehoevendeRepository(hlp);
+                            var id = repo.CreateGebruiker(g);
+                            var hulpverlener = repohlp.HulpverlenerId();
+                            repohlp.CreateHulpbehoevende(id, hulpverlener);
+                        }
+                        if (chbVrijwilliger.IsChecked == true)
+                        {
+                            var vrw = new VrijwilligerSQLContext();
+                            var repovrw = new VrijwilligerRepository(vrw);
+                            var id = repo.CreateGebruiker(g);
+                            repovrw.CreateVrijwilliger(id);
+                        }
+                        if (chbHulpbehoevnde.IsChecked == false && chbVrijwilliger.IsChecked == false)
+                        {
+                            MessageBox.Show("Er moet een gebruikers type aangeklikt zijn.");
+                        }
+
+                        // repo.CreateHulpbehoevende(naam, wachtwoord, geslacht, adres, huisNummer, postcode, plaats, land, email,
+                        //    telNr, gebruikertype, foto, 3);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Wachtwoorden komen niet overeen.");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Wachtwoorden komen niet overeen.");
+                    MessageBox.Show("Alle velden moeten zijn ingevuld.");
                 }
             }
             catch (NullReferenceException)
             {
-                MessageBox.Show("Er moet een geslacht en een gebruikerstype gekozen zijn.");
+                MessageBox.Show("Er moet een geslacht gekozen zijn.");
             }
         }
 
@@ -80,6 +121,14 @@ namespace Carespot
         private void btUploaden_Click(object sender, RoutedEventArgs e)
         {
             //foto uploaden
+        }
+
+        private void vulComboBox()
+        {
+            foreach (var item in Enum.GetValues(typeof(Gebruiker.GebruikerGeslacht)))
+            {
+                cbGeslacht.Items.Add(item);
+            }
         }
     }
 }

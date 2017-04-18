@@ -20,5 +20,7 @@ namespace Carespot.DAL.Interfaces
         List<Hulpbehoevende> RetrieveAllHulpbehoevende();
 
         Hulpbehoevende RetrieveHulpbehoevendeById(int id);
+
+        int BepaalHulpverlener();
     }
 }

@@ -9,12 +9,9 @@ using Carespot.Models;
 
 namespace Carespot.DAL.Context
 {
-   public class BeheerderSQLContext : IBeheerderContext
+    public class BeheerderSQLContext : IBeheerderContext
     {
-
         private readonly SqlConnection _con = new SqlConnection("Data Source=WIN-SRV-WEB.fhict.local;Initial Catalog=Carespot;User ID=carespot;Password=Test1234;Encrypt=False;TrustServerCertificate=True");
-
-
 
         public List<Beheerder> RetrieveAll()
         {
@@ -26,7 +23,7 @@ namespace Carespot.DAL.Context
             try
             {
                 _con.Open();
-                string query1 = "INSERT INTO Beheerder VALUES (@newID)";
+                string query1 = "INSERT INTO Beheerder (gebruikerId) VALUES (@newID)";
                 SqlCommand command1 = new SqlCommand(query1, _con);
                 command1.Parameters.AddWithValue("@newID", gebruikerId);
                 command1.ExecuteScalar();
@@ -35,7 +32,6 @@ namespace Carespot.DAL.Context
             }
             catch
             {
-
                 System.Windows.MessageBox.Show("woops");
             }
         }

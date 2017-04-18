@@ -15,7 +15,6 @@ namespace Carespot.DAL.Context
 
         public void CreateHulpbehoevende(int gebruikerId, int hulpverlenerId)
         {
-
             try
             {
                 _con.Open();
@@ -24,17 +23,13 @@ namespace Carespot.DAL.Context
                 command1.Parameters.AddWithValue("@newID", gebruikerId);
                 command1.Parameters.AddWithValue("@hulpverlenerId", hulpverlenerId);
 
-
-                
                 command1.ExecuteScalar();
                 _con.Close();
             }
             catch
             {
-
                 System.Windows.MessageBox.Show("woops");
             }
-
         }
 
         public void DeleteHulpbehoevende(int id)
@@ -141,6 +136,22 @@ namespace Carespot.DAL.Context
             reader.Close();
             _con.Close();
             return hulpbehoevende;
+        }
+
+        public int BepaalHulpverlener()
+        {
+            var id = 0;
+            _con.Open();
+            var cmdString = "SELECT TOP 1 g.id FROM Hulpbehoevende AS hb INNER JOIN Hulpverlener AS hv ON hv.gebruikerId = hb.hulpverlenerId INNER JOIN Gebruiker AS g ON g.id = hv.gebruikerId GROUP BY g.id ORDER BY COUNT(hb.gebruikerId) ASC";
+            var command = new SqlCommand(cmdString, _con);
+            var reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                id = reader.GetInt32(0);
+            }
+            reader.Close();
+            _con.Close();
+            return id;
         }
     }
 }
