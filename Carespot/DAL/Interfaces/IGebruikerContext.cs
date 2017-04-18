@@ -7,5 +7,7 @@ namespace Carespot.DAL.Interfaces
         int CreateGebruiker(Gebruiker g);
 
         void UpdateGebruiker(Gebruiker g);
+
+        Gebruiker RetrieveGebruiker(int id);
     }
 }

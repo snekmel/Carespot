@@ -1,4 +1,8 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
+using Carespot.DAL.Context;
+using Carespot.DAL.Repositorys;
+using Carespot.Models;
 
 namespace Carespot
 {
@@ -56,7 +60,17 @@ namespace Carespot
 
         private void OpdrachtScherm_Click(object sender, RoutedEventArgs e)
         {
-            var opdracht = new Opdracht();
+            GebruikerSQLContext gsc = new GebruikerSQLContext();
+            GebruikerRepository gr = new GebruikerRepository(gsc);
+
+
+           HulpopdrachtSQLContext hsc = new HulpopdrachtSQLContext();
+           HulpopdrachtRepository hr = new HulpopdrachtRepository(hsc);
+
+            List<HulpOpdracht> lijst =  hr.GetAllHulpopdrachten();
+            Gebruiker g = gr.RetrieveGebruiker(1);
+
+            Opdracht opdracht = new Opdracht(g,lijst[0]);
             opdracht.Show();
         }
 
@@ -86,9 +100,8 @@ namespace Carespot
 
         private void RecensieScherm_Click(object sender, RoutedEventArgs e)
         {
-            var recensie = new Recensie();
-          //  Carespot.Recensie recensie = new Carespot.Recensie();
-          //  recensie.Show();
+            var beoordelingsScherm = new BeoordelingScherm();
+            beoordelingsScherm.Show();
         }
 
         private void HulpverlenerOverzicht_Click(object sender, RoutedEventArgs e)

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Carespot.DAL.Interfaces;
+using Carespot.DAL.Repositorys;
 using Carespot.Models;
 
 namespace Carespot.DAL.Context
@@ -62,32 +63,27 @@ namespace Carespot.DAL.Context
 
         public Vrijwilliger RetrieveVrijwilliger(int id)
         {
-            _con.Open();
-            var cmdString = "SELECT * FROM Gebruiker g WHERE gebruikerType = 'Vrijwilliger' and id=" + id;
-            var command = new SqlCommand(cmdString, _con);
-            var reader = command.ExecuteReader();
+            GebruikerSQLContext gsc = new GebruikerSQLContext();
+            GebruikerRepository gr = new GebruikerRepository(gsc);
+            Gebruiker g = gr.RetrieveGebruiker(id);
 
-            Vrijwilliger g = null;
+            Vrijwilliger v = new Vrijwilliger();
+            v.Id = g.Id;
+            v.Naam = g.Naam;
+            v.Wachtwoord = g.Wachtwoord;
+            v.Geslacht = g.Geslacht;
+            v.Straat = g.Straat;
+            v.Huisnummer = g.Huisnummer;
+            v.Postcode = g.Postcode;
+            v.Plaats = g.Plaats;
+            v.Land = g.Land;
+            v.Email = g.Email;
+            v.Telefoonnummer = g.Telefoonnummer;
+            //foto
 
-            while (reader.Read())
-            {
-                g = new Vrijwilliger(reader.GetString(1), reader.GetString(2), reader.GetString(9));
-                g.Id = reader.GetInt32(0);
-                g.Naam = reader.GetString(1);
-                g.Wachtwoord = reader.GetString(2);
-                g.Geslacht = (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
-                g.Straat = reader.GetString(4);
-                g.Huisnummer = reader.GetString(5);
-                g.Postcode = reader.GetString(6);
-                g.Plaats = reader.GetString(7);
-                g.Land = reader.GetString(8);
-                g.Email = reader.GetString(9);
-                g.Telefoonnummer = reader.GetString(10);
-                g.Type = (Gebruiker.GebruikerType)Enum.Parse(typeof(Gebruiker.GebruikerType), reader.GetString(11));
-                // g.Foto = reader.GetString(12);
-            }
-            _con.Close();
-            return g;
+
+
+            return v;
         }
 
         public void UpdateVrijwilliger(Vrijwilliger v)

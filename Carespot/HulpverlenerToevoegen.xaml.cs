@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.Win32;
+using Carespot.DAL.Context;
+using Carespot.DAL.Repositorys;
+using Carespot.Models;
 
 namespace Carespot
 {
@@ -23,7 +26,16 @@ namespace Carespot
         public HulpverlenerToevoegen()
         {
             InitializeComponent();
+            VulComboBox();
             //cbGeslacht krijgt enum Geslacht {man, vrouw} 
+        }
+
+        private void VulComboBox()
+        {
+            foreach (var item in Enum.GetValues(typeof(Gebruiker.GebruikerGeslacht)))
+            {
+                cbGeslacht.Items.Add(item);
+            }
         }
 
         private void imgSluiten_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -47,9 +59,71 @@ namespace Carespot
             }
         }
 
-        private void btOpslaan_Click(object sender, RoutedEventArgs e)
+        private void btnHulpverlenerAanmaken_Click(object sender, RoutedEventArgs e)
         {
-            //gebruiker wordt toegevoegd met ingevulde gegevens
+            try
+            {
+                var email = tbEmail.Text;
+                var wachtwoord = tbWachtwoord.Text;
+                var wachtwoordOpnieuw = tbHerhalen.Text;
+                var naam = tbNaam.Text;
+                var geslacht = (Gebruiker.GebruikerGeslacht)cbGeslacht.SelectedItem;
+                var telNr = tbTelefoon.Text;
+                var adres = tbAdres.Text;
+                var huisNummer = tbNummer.Text;
+                var postcode = tbPostcode.Text;
+                var plaats = tbPlaats.Text;
+                var land = tbLand.Text;
+                // var foto = imgProfielfoto.Source.ToString();
+                if (!String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(wachtwoord) &&
+                    !String.IsNullOrEmpty(wachtwoordOpnieuw) && !String.IsNullOrEmpty(naam) &&
+                    !String.IsNullOrEmpty(telNr) && !String.IsNullOrEmpty(adres) && !String.IsNullOrEmpty(huisNummer) &&
+                    !String.IsNullOrEmpty(postcode) && !String.IsNullOrEmpty(plaats) && !String.IsNullOrEmpty(land))
+                {
+                    if (wachtwoord == wachtwoordOpnieuw)
+                    {
+                        var inf = new GebruikerSQLContext();
+                        var repo = new GebruikerRepository(inf);
+                        var g = new Gebruiker
+                        {
+                            Email = email,
+                            //   Foto = foto,
+                            Geslacht = geslacht,
+                            Huisnummer = huisNummer,
+                            Land = land,
+                            Naam = naam,
+                            Plaats = plaats,
+                            Postcode = postcode,
+                            Straat = adres,
+                            Wachtwoord = wachtwoord,
+                            Telefoonnummer = telNr
+                        };
+
+                        var hlpv = new HulpverlenerSQLContext();
+                        var repohulpv = new HulpverlenerRepository(hlpv);
+                        var id = repo.CreateGebruiker(g);
+                        repohulpv.CreateHulpverlener(id);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Wachtwoorden komen niet overeen.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Alle velden moeten zijn ingevuld.");
+                }
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Er moet een geslacht gekozen zijn.");
+            }
+        
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
         }
     }
 }
