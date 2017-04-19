@@ -1,11 +1,10 @@
-﻿using Carespot.DAL.Interfaces;
+using Carespot.DAL.Interfaces;
 using Carespot.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
-using System.Linq.Expressions;
 using System.Windows;
 using Carespot.DAL.Repositorys;
 
@@ -21,16 +20,6 @@ namespace Carespot.DAL.Context
         public List<HulpOpdracht> GetAllHulpopdrachten()
         {
             var returnList = new List<HulpOpdracht>();
-<<<<<<< HEAD
-            try
-            {
-                using (connection)
-                {
-                    connection.Open();
-                    var cmdString = "SELECT * FROM Hulpopdracht";
-                    var command = new SqlCommand(cmdString, connection);
-                    var reader = command.ExecuteReader();
-=======
             /*            try
                         { */
             using (connection)
@@ -39,164 +28,127 @@ namespace Carespot.DAL.Context
                 var cmdString = "SELECT * FROM Hulpopdracht";
                 var command = new SqlCommand(cmdString, connection);
                 var reader = command.ExecuteReader();
->>>>>>> 03d0950771d54d24939d25b77f96814ae123956c
 
                 while (reader.Read())
                 {
+
                     HulpOpdracht ho = new HulpOpdracht(reader.GetString(2))
                     {
-<<<<<<< HEAD
-
-                        HulpOpdracht ho = new HulpOpdracht(reader.GetString(2))
-                        {
-                            Id = reader.GetInt32(0),
-                            IsGeaccepteerd = Convert.ToBoolean(reader.GetInt32(1)),
-                            AanmaakDatum = reader.GetDateTime(3),
-                            Omschrijving = reader.GetString(4),
-                            OpdrachtDatum = reader.GetDateTime(5)
-
-                        };
-
-                        //Vrijwilliger ophalen
-                        if (!reader.IsDBNull(6))
-                        {
-
-                            VrijwilligerSQLContext vsc = new VrijwilligerSQLContext();
-                            VrijwilligerRepository vr = new VrijwilligerRepository(vsc);
-                            ho.Vrijwilleger = vr.RetrieveById(reader.GetInt32(6));
-
-                        }
-
-
-                        //Hulppbehoevendeophalen
-                        if (!reader.IsDBNull(8))
-                        {
-
-                            HulpbehoevendeSQLContext hsc = new HulpbehoevendeSQLContext();
-                            HulpbehoevendeRepository hr = new HulpbehoevendeRepository(hsc);
-
-                            ho.Hulpbehoevende = hr.RetrieveHulpbehoevendeById(reader.GetInt32(8));
-
-                        }
-
-                        returnList.Add(ho);
-
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            finally
-            {
-                connection.Close();
-            }
- 
-=======
                         Id = reader.GetInt32(0),
                         IsGeaccepteerd = Convert.ToBoolean(reader.GetInt32(1)),
                         AanmaakDatum = reader.GetDateTime(3),
                         Omschrijving = reader.GetString(4),
                         OpdrachtDatum = reader.GetDateTime(5)
+
                     };
 
                     //Vrijwilliger ophalen
                     if (!reader.IsDBNull(6))
                     {
+
                         VrijwilligerSQLContext vsc = new VrijwilligerSQLContext();
                         VrijwilligerRepository vr = new VrijwilligerRepository(vsc);
                         ho.Vrijwilleger = vr.RetrieveById(reader.GetInt32(6));
+
                     }
+
 
                     //Hulppbehoevendeophalen
                     if (!reader.IsDBNull(8))
                     {
+
                         HulpbehoevendeSQLContext hsc = new HulpbehoevendeSQLContext();
                         HulpbehoevendeRepository hr = new HulpbehoevendeRepository(hsc);
 
                         ho.Hulpbehoevende = hr.RetrieveHulpbehoevendeById(reader.GetInt32(8));
+
                     }
 
                     returnList.Add(ho);
+
                 }
                 connection.Close();
             }
 
             /*    }
+
                 catch (Exception e)
                 {
+
                     throw e;
                 } */
 
->>>>>>> 03d0950771d54d24939d25b77f96814ae123956c
+
             return returnList;
         }
 
         public List<HulpOpdracht> GetAllHulpopdrachtenByHulpbehoevendeID(int hbid)
         {
-            var returnList = new List<HulpOpdracht>();
+            List<HulpOpdracht> _hulpopdrachten = new List<HulpOpdracht>();
+
             try
             {
-                using (connection)
+                connection.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                SqlDataReader reader;
+
+                cmd.CommandText = "SELECT * FROM Hulpopdracht WHERE Hulpbehoevendeid =" + hbid + ";";
+                cmd.CommandType = CommandType.Text;
+                cmd.Connection = connection;
+
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    connection.Open();
-                    var cmdString = "SELECT * FROM Hulpopdracht WHERE hulpbehoevendeid = " + hbid + ";";
-                    var command = new SqlCommand(cmdString, connection);
-                    var reader = command.ExecuteReader();
+                    int opdrachtid = reader.GetInt32(0);
+                    bool isGeaccepteerd = HulpOpdracht.ConvertIntToBool(reader.GetInt32(1));
+                    string titel = reader.GetString(2);
+                    DateTime aanmaakDatum = reader.GetDateTime(3);
+                    string omschrijving = reader.GetString(4);
+                    DateTime opdrachtDatum = reader.GetDateTime(5);
+                    int vrijwillegerid = 0;
+                    int hulpbehoevendeid = reader.GetInt32(8);
 
-                    while (reader.Read())
+                    //Controleer of vrijwillegerid niet nul is, anders vul vrijwillegerid
+                    if (!reader.IsDBNull(6))
                     {
-
-                        HulpOpdracht ho = new HulpOpdracht(reader.GetString(2))
-                        {
-                            Id = reader.GetInt32(0),
-                            IsGeaccepteerd = Convert.ToBoolean(reader.GetInt32(1)),
-                            AanmaakDatum = reader.GetDateTime(3),
-                            Omschrijving = reader.GetString(4),
-                            OpdrachtDatum = reader.GetDateTime(5)
-
-                        };
-
-                        //Vrijwilliger ophalen
-                        if (!reader.IsDBNull(6))
-                        {
-
-                            VrijwilligerSQLContext vsc = new VrijwilligerSQLContext();
-                            VrijwilligerRepository vr = new VrijwilligerRepository(vsc);
-                            ho.Vrijwilleger = vr.RetrieveById(reader.GetInt32(6));
-
-                        }
-
-
-                        //Hulppbehoevendeophalen
-                        if (!reader.IsDBNull(8))
-                        {
-
-                            HulpbehoevendeSQLContext hsc = new HulpbehoevendeSQLContext();
-                            HulpbehoevendeRepository hr = new HulpbehoevendeRepository(hsc);
-
-                            ho.Hulpbehoevende = hr.RetrieveHulpbehoevendeById(reader.GetInt32(8));
-
-                        }
-
-                        returnList.Add(ho);
-
+                        vrijwillegerid = reader.GetInt32(6);
                     }
-                }
-            }
 
+                    HulpOpdracht h = new HulpOpdracht(opdrachtid, isGeaccepteerd, titel, aanmaakDatum, omschrijving, opdrachtDatum);
+                    _hulpopdrachten.Add(h);
+
+                    //Haal de passende vrijwilleger op en voeg deze toe aan de hulpopdracht
+                    if (vrijwillegerid > 0)
+                    {
+                        var vsc = new VrijwilligerSQLContext();
+                        var vr = new VrijwilligerRepository(vsc);
+
+                        Vrijwilliger v = vr.RetrieveById(vrijwillegerid);
+                        h.Vrijwilleger = v;
+                    }
+
+                    //Haal de passende hulpbehoevende (incl hulpverlener) op en voeg deze toe aan de hulpopdracht
+                    var inf = new HulpbehoevendeSQLContext();
+                    var repo = new HulpbehoevendeRepository(inf);
+
+                    Hulpbehoevende hb = repo.RetrieveHulpbehoevendeById(hulpbehoevendeid);
+                    h.Hulpbehoevende = hb;
+                }
+
+                reader.Close();
+            }
             catch (Exception e)
             {
                 throw e;
             }
-
             finally
             {
                 connection.Close();
             }
 
-            return returnList;
+            return _hulpopdrachten;
         }
 
         public HulpOpdracht GetHulpopdrachtByID(int id)
@@ -205,50 +157,55 @@ namespace Carespot.DAL.Context
 
             try
             {
-                using (connection)
+                connection.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                SqlDataReader reader;
+
+                cmd.CommandText = "SELECT * FROM Hulpopdracht WHERE id = " + id + ";";
+                cmd.CommandType = CommandType.Text;
+                cmd.Connection = connection;
+
+                reader = cmd.ExecuteReader();
+
+                reader.Read();
+
+                int opdrachtid = reader.GetInt32(0);
+                bool isGeaccepteerd = HulpOpdracht.ConvertIntToBool(reader.GetInt32(1));
+                string titel = reader.GetString(2);
+                DateTime aanmaakDatum = reader.GetDateTime(3);
+                string omschrijving = reader.GetString(4);
+                DateTime opdrachtDatum = reader.GetDateTime(5);
+                int vrijwillegerid = 0;
+                int hulpbehoevendeid = reader.GetInt32(8);
+
+                //Controleer of vrijwillegerid niet nul is, anders vul vrijwillegerid
+                if (!reader.IsDBNull(6))
                 {
-                    connection.Open();
-                    var cmdString = "SELECT * FROM Hulpopdracht WHERE id = " + id + ";";
-                    var command = new SqlCommand(cmdString, connection);
-                    var reader = command.ExecuteReader();
-
-                     h = new HulpOpdracht(reader.GetString(2))
-                    {
-                        Id = reader.GetInt32(0),
-                        IsGeaccepteerd = Convert.ToBoolean(reader.GetInt32(1)),
-                        AanmaakDatum = reader.GetDateTime(3),
-                        Omschrijving = reader.GetString(4),
-                        OpdrachtDatum = reader.GetDateTime(5)
-
-                    };
-
-                    //Vrijwilliger ophalen
-                    if (!reader.IsDBNull(6))
-                    {
-
-                        VrijwilligerSQLContext vsc = new VrijwilligerSQLContext();
-                        VrijwilligerRepository vr = new VrijwilligerRepository(vsc);
-                        h.Vrijwilleger = vr.RetrieveById(reader.GetInt32(6));
-
-                    }
-
-
-                    //Hulppbehoevendeophalen
-                    if (!reader.IsDBNull(8))
-                    {
-
-                        HulpbehoevendeSQLContext hsc = new HulpbehoevendeSQLContext();
-                        HulpbehoevendeRepository hr = new HulpbehoevendeRepository(hsc);
-
-                        h.Hulpbehoevende = hr.RetrieveHulpbehoevendeById(reader.GetInt32(8));
-
-<<<<<<< HEAD
-                    }
-
+                    vrijwillegerid = reader.GetInt32(6);
                 }
-=======
+
+                h = new HulpOpdracht(opdrachtid, isGeaccepteerd, titel, aanmaakDatum, omschrijving, opdrachtDatum);
+
+                //Haal de passende vrijwilleger op en voeg deze toe aan de hulpopdracht
+                if (vrijwillegerid > 0)
+                {
+                    var vsc = new VrijwilligerSQLContext();
+                    var vr = new VrijwilligerRepository(vsc);
+
+                    Vrijwilliger v = vr.RetrieveById(vrijwillegerid);
+                    h.Vrijwilleger = v;
+                }
+
+                //Haal de passende hulpbehoevende (incl hulpverlener) op en voeg deze toe aan de hulpopdracht
+                var inf = new HulpbehoevendeSQLContext();
+                var repo = new HulpbehoevendeRepository(inf);
+
+                Hulpbehoevende hb = repo.RetrieveHulpbehoevendeById(hulpbehoevendeid);
+                h.Hulpbehoevende = hb;
+
+
                 reader.Close();
->>>>>>> 03d0950771d54d24939d25b77f96814ae123956c
             }
             catch (Exception e)
             {
