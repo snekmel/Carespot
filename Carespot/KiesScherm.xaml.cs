@@ -115,5 +115,11 @@ namespace Carespot
             var hulpverlenerHoofdscherm = new HulpverlenerHoofdscherm();
             hulpverlenerHoofdscherm.Show();
         }
+
+        private void Gegevenswijzigen_Click(object sender, RoutedEventArgs e)
+        {
+            var gegevenswijzigen = new GegevensWijzigen();
+            gegevenswijzigen.Show();
+        }
     }
 }
