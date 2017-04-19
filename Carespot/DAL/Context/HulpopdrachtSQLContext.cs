@@ -1,4 +1,4 @@
-﻿using Carespot.DAL.Interfaces;
+using Carespot.DAL.Interfaces;
 using Carespot.Models;
 using System;
 using System.Collections.Generic;
@@ -20,64 +20,64 @@ namespace Carespot.DAL.Context
         public List<HulpOpdracht> GetAllHulpopdrachten()
         {
             var returnList = new List<HulpOpdracht>();
-/*            try
-            { */
-                using (connection)
+            /*            try
+                        { */
+            using (connection)
+            {
+                connection.Open();
+                var cmdString = "SELECT * FROM Hulpopdracht";
+                var command = new SqlCommand(cmdString, connection);
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    connection.Open();
-                    var cmdString = "SELECT * FROM Hulpopdracht";
-                    var command = new SqlCommand(cmdString, connection);
-                    var reader = command.ExecuteReader();
 
-                    while (reader.Read())
+                    HulpOpdracht ho = new HulpOpdracht(reader.GetString(2))
                     {
-                      
-                        HulpOpdracht ho = new HulpOpdracht(reader.GetString(2))
-                        {
-                            Id = reader.GetInt32(0),
-                            IsGeaccepteerd = Convert.ToBoolean(reader.GetInt32(1)),
-                            AanmaakDatum = reader.GetDateTime(3),
-                            Omschrijving = reader.GetString(4),
-                            OpdrachtDatum = reader.GetDateTime(5)
-                                                   
-                        };
-           
-                        //Vrijwilliger ophalen
-                        if (!reader.IsDBNull(6))
-                        {
+                        Id = reader.GetInt32(0),
+                        IsGeaccepteerd = Convert.ToBoolean(reader.GetInt32(1)),
+                        AanmaakDatum = reader.GetDateTime(3),
+                        Omschrijving = reader.GetString(4),
+                        OpdrachtDatum = reader.GetDateTime(5)
 
-                         VrijwilligerSQLContext vsc = new VrijwilligerSQLContext();
-                         VrijwilligerRepository vr = new VrijwilligerRepository(vsc);
-                         ho.Vrijwilleger = vr.RetrieveById(reader.GetInt32(6));
+                    };
 
-                        }
+                    //Vrijwilliger ophalen
+                    if (!reader.IsDBNull(6))
+                    {
+
+                        VrijwilligerSQLContext vsc = new VrijwilligerSQLContext();
+                        VrijwilligerRepository vr = new VrijwilligerRepository(vsc);
+                        ho.Vrijwilleger = vr.RetrieveById(reader.GetInt32(6));
+
+                    }
 
 
-                        //Hulppbehoevendeophalen
-                        if (!reader.IsDBNull(8))
-                        {
+                    //Hulppbehoevendeophalen
+                    if (!reader.IsDBNull(8))
+                    {
 
                         HulpbehoevendeSQLContext hsc = new HulpbehoevendeSQLContext();
                         HulpbehoevendeRepository hr = new HulpbehoevendeRepository(hsc);
 
                         ho.Hulpbehoevende = hr.RetrieveHulpbehoevendeById(reader.GetInt32(8));
 
-                        }
-
-                        returnList.Add(ho);
-
                     }
-                    connection.Close();
+
+                    returnList.Add(ho);
+
                 }
+                connection.Close();
+            }
 
-        /*    }
+            /*    }
 
-            catch (Exception e)
-            {
+                catch (Exception e)
+                {
 
-                throw e;
-            } */
-       
+                    throw e;
+                } */
+
 
             return returnList;
         }

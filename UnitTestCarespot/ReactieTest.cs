@@ -31,9 +31,7 @@ namespace UnitTestCarespot
             List<Reactie> reactielijst = new List<Reactie>();
            reactielijst =  rr.GetAllReactiesByHulopdrachtID(3);
 
-            Assert.AreEqual(2 , reactielijst.Count);
-
-            
+            Assert.AreEqual(2 , reactielijst.Count);  
         }
     }
 }

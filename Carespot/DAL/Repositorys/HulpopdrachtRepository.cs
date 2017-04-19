@@ -15,7 +15,7 @@ namespace Carespot.DAL.Repositorys
 
         public HulpopdrachtRepository(HulpopdrachtSQLContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
         public List<HulpOpdracht> GetAllHulpopdrachten()

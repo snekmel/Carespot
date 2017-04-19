@@ -37,6 +37,6 @@
         <TextBox x:Name="tbLand" HorizontalAlignment="Left" Height="22" Margin="526,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="205" />
         <Label x:Name="lblNummer" Content="Nummer:" HorizontalAlignment="Left" Margin="421,117,0,0" VerticalAlignment="Top" FontSize="18.667" />
         <TextBox x:Name="tbNummer" HorizontalAlignment="Left" Height="22" Margin="526,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="53" />
-        <PasswordBox x:Name="pwbWachtwoord" HorizontalAlignment="Left" Margin="158,117,0,0" VerticalAlignment="Top" Width="241" Height="25"/>
+        <PasswordBox x:Name="pwbWachtwoordd" HorizontalAlignment="Left" Margin="158,117,0,0" VerticalAlignment="Top" Width="241" Height="25" />
     </Grid>
 </Window>

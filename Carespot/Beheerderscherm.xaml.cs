@@ -69,7 +69,8 @@ namespace Carespot
             try
             {
                 //gebruik gegevens om hulpverlener/beheerder (afhankelijk van de combobox) aan te maken
-                var wachtwoord = pwbWachtwoord.Password;
+
+                var wachtwoord = pwbWachtwoordd.Password;
                 var wachtwoordHerhalen = tbHerhalenH.Text;
                 var email = tbEmailH.Text;
                 var naam = tbNaamH.Text;
