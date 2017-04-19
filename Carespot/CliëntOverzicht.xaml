@@ -29,7 +29,7 @@
         <ListView x:Name="lvMijnOpdrachten" HorizontalAlignment="Left" Height="600" Margin="28,128,0,0" VerticalAlignment="Top" Width="183" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Opdrachtnaam" Width="183" />
+                    <GridViewColumn Width="140" Header=" Opdrachtnaam" DisplayMemberBinding="{Binding Titel}" />
                 </GridView>
             </ListView.View>
         </ListView>
