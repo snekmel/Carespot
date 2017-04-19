@@ -15,7 +15,7 @@ namespace Carespot.DAL.Repositorys
 
         public ReactieRepository(ReactieSQLContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
         public List<Reactie> GetAllReactiesByHulopdrachtID(int hulpopdrachtid)

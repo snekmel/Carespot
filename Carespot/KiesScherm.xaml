@@ -21,6 +21,7 @@
         <Button x:Name="BeheerderScherm" Content="BeheerderScherm" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="162,168,0,0" Click="BeheerderScherm_Click"/>
         <Button x:Name="VerwijderBevestiging" Content="VerwijderBevestiging" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="162,118,0,0" Click="VerwijderBevestiging_Click"/>
         <Button x:Name="GebruikerBeheer" Content="GebruikerBeheer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="162,93,0,0" Click="GebruikerBeheer_Click"/>
+        <Button x:Name="Gegevenswijzigen" Content="Gegevens wijzigen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="162,193,0,0" Click="Gegevenswijzigen_Click"/>
 
     </Grid>
 </Window>

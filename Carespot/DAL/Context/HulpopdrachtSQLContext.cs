@@ -1,4 +1,4 @@
-﻿using Carespot.DAL.Interfaces;
+using Carespot.DAL.Interfaces;
 using Carespot.Models;
 using System;
 using System.Collections.Generic;
@@ -31,6 +31,7 @@ namespace Carespot.DAL.Context
 
                 while (reader.Read())
                 {
+
                     HulpOpdracht ho = new HulpOpdracht(reader.GetString(2))
                     {
                         Id = reader.GetInt32(0),
@@ -38,35 +39,45 @@ namespace Carespot.DAL.Context
                         AanmaakDatum = reader.GetDateTime(3),
                         Omschrijving = reader.GetString(4),
                         OpdrachtDatum = reader.GetDateTime(5)
+
                     };
 
                     //Vrijwilliger ophalen
                     if (!reader.IsDBNull(6))
                     {
+
                         VrijwilligerSQLContext vsc = new VrijwilligerSQLContext();
                         VrijwilligerRepository vr = new VrijwilligerRepository(vsc);
                         ho.Vrijwilleger = vr.RetrieveById(reader.GetInt32(6));
+
                     }
+
 
                     //Hulppbehoevendeophalen
                     if (!reader.IsDBNull(8))
                     {
+
                         HulpbehoevendeSQLContext hsc = new HulpbehoevendeSQLContext();
                         HulpbehoevendeRepository hr = new HulpbehoevendeRepository(hsc);
 
                         ho.Hulpbehoevende = hr.RetrieveHulpbehoevendeById(reader.GetInt32(8));
+
                     }
 
                     returnList.Add(ho);
+
                 }
                 connection.Close();
             }
 
             /*    }
+
                 catch (Exception e)
                 {
+
                     throw e;
                 } */
+
 
             return returnList;
         }
@@ -192,6 +203,7 @@ namespace Carespot.DAL.Context
 
                 Hulpbehoevende hb = repo.RetrieveHulpbehoevendeById(hulpbehoevendeid);
                 h.Hulpbehoevende = hb;
+
 
                 reader.Close();
             }
