@@ -130,7 +130,7 @@ namespace Carespot.DAL.Context
                 hulpbehoevende.Naam = reader.GetString(1);
                 hulpbehoevende.Plaats = reader.GetString(7);
                 hulpbehoevende.Postcode = reader.GetString(6);
-                hulpbehoevende.Hulpverlener = RetrieveHulpverlener(reader.GetInt32(13));
+               // hulpbehoevende.Hulpverlener = RetrieveHulpverlener(reader.GetInt32(13));
             }
 
             reader.Close();

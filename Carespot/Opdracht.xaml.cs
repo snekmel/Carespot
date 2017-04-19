@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
+using Carespot.DAL.Context;
+using Carespot.DAL.Repositorys;
 using Carespot.Models;
 
 namespace Carespot
@@ -31,15 +34,17 @@ namespace Carespot
         public Opdracht(Gebruiker g, HulpOpdracht h)
         {
             InitializeComponent();
-
-            System.Windows.MessageBox.Show("Test");
             _loggedInUser = g;
             _hulpOpdracht = h;
+            RunTimer();
             ViewLoader();
         }
 
         private void ViewLoader()
         {
+            lblNaam.Content = _hulpOpdracht.Hulpbehoevende.Naam;
+            lblFunctie.Content ="Vrijwilliger";
+
             lblOpdrachtTitel.Content = _hulpOpdracht.Titel;
             tbOmschrijving.Text = _hulpOpdracht.Omschrijving;
 
@@ -57,12 +62,10 @@ namespace Carespot
 
 
             //Profesionele begeleider
-         // lblNaamHulpverlener.Content = _hulpOpdracht.
+          //  lblNaamHulpverlener.Content = _hulpOpdracht.Hulpbehoevende.Hulpverlener.Naam;
+         //   lblTelefoonHulpverlener.Content = _hulpOpdracht.Hulpbehoevende.Hulpverlener.Telefoonnummer;
+        //    lblEmailHulpverlener.Content = _hulpOpdracht.Hulpbehoevende.Hulpverlener.Email;
 
-
-
-
-            //laad omschrijvingstab
         }
 
 
@@ -84,6 +87,34 @@ namespace Carespot
         private void tabContact_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             //laad contacteninfo
+        }
+
+        private void RunTimer()
+        {
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += Tick;
+            timer.Start();
+        }
+
+        void Tick(object sender, EventArgs e)
+        {
+            //clear list view
+            chatListbox.Items.Clear();
+
+            //haal berichten op
+            ChatSQLContext csc = new ChatSQLContext();
+            ChatRepository cr = new ChatRepository(csc);
+            List<ChatBericht> chatBerichten = cr.RetrieveAllChatBerichtenByOpdracht(_hulpOpdracht.Id);
+
+            
+            foreach (ChatBericht chat in chatBerichten)
+            {
+                
+                chatListbox.Items.Add(chat.Tijd.ToString() + "|" + chat.Id + " : " + chat.Bericht);
+            }
+
+
         }
     }
 }
