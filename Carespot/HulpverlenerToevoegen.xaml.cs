@@ -97,7 +97,7 @@ namespace Carespot
             try
             {
                 var email = tbEmail.Text;
-                var wachtwoord = tbWachtwoord.Text;
+                var wachtwoord = pwbWachtwoordd.Password;
                 var wachtwoordOpnieuw = tbHerhalen.Text;
                 var naam = tbNaam.Text;
                 var geslacht = (Gebruiker.GebruikerGeslacht)cbGeslacht.SelectedItem;
@@ -111,7 +111,7 @@ namespace Carespot
                 {
                     var inf = new GebruikerSQLContext();
                     var repo = new GebruikerRepository(inf);
-                    foto = repo.RetrieveGebruiker(1039).Foto;
+                    foto = repo.RetrieveGebruiker(1).Foto;
                 }
                 else
                 {

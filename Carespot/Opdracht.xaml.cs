@@ -40,8 +40,28 @@ namespace Carespot
 
         private void ViewLoader()
         {
-            //Laad naam
-            //Laad functie
+            lblOpdrachtTitel.Content = _hulpOpdracht.Titel;
+            tbOmschrijving.Text = _hulpOpdracht.Omschrijving;
+
+
+            //client
+            lblNaamCliënt.Content = _hulpOpdracht.Hulpbehoevende.Naam;
+            lblTelefoonCliënt.Content = _hulpOpdracht.Hulpbehoevende.Telefoonnummer;
+            lblEmailCliënt.Content = _hulpOpdracht.Hulpbehoevende.Email;
+
+
+            //Vrijwilliger
+            lblNaamVrijwilliger.Content = _hulpOpdracht.Vrijwilleger.Naam;
+            lblTelefoonVrijwilliger.Content = _hulpOpdracht.Vrijwilleger.Telefoonnummer;
+            lblEmailVrijwilliger.Content = _hulpOpdracht.Vrijwilleger.Email;
+
+
+            //Profesionele begeleider
+         // lblNaamHulpverlener.Content = _hulpOpdracht.
+
+
+
+
             //laad omschrijvingstab
         }
 

@@ -14,11 +14,10 @@ namespace Carespot
         public KiesScherm()
         {
             InitializeComponent();
+            HulpopdrachtSQLContext hsc = new HulpopdrachtSQLContext();
+       HulpopdrachtRepository hr = new HulpopdrachtRepository(hsc);
 
-           HulpverlenerSQLContext hsc = new HulpverlenerSQLContext();
-            HulpverlenerRepository hr = new HulpverlenerRepository(hsc);
-
-            hr.DeleteHulpverlener(1);
+            System.Windows.MessageBox.Show(hr.GetAllHulpopdrachten().Count + "");
 
             
         }

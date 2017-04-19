@@ -19,74 +19,56 @@ namespace Carespot.DAL.Context
 
         public List<HulpOpdracht> GetAllHulpopdrachten()
         {
-            List<HulpOpdracht> _hulpopdrachten = new List<HulpOpdracht>();
-            try
+            var returnList = new List<HulpOpdracht>();
+            /*            try
+                        { */
+            using (connection)
             {
                 connection.Open();
-
-                SqlCommand cmd = new SqlCommand();
-                SqlDataReader reader;
-
-                cmd.CommandText = "SELECT * FROM Hulpopdracht";
-                cmd.CommandType = CommandType.Text;
-                cmd.Connection = connection;
-
-                reader = cmd.ExecuteReader();
+                var cmdString = "SELECT * FROM Hulpopdracht";
+                var command = new SqlCommand(cmdString, connection);
+                var reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    int opdrachtid = reader.GetInt32(0);
-                    bool isGeaccepteerd = HulpOpdracht.ConvertIntToBool(reader.GetInt32(1));
-                    string titel = reader.GetString(2);
-                    DateTime aanmaakDatum = reader.GetDateTime(3);
-                    string omschrijving = reader.GetString(4);
-                    DateTime opdrachtDatum = reader.GetDateTime(5);
-                    int vrijwillegerid = 0;
-                    int hulpbehoevendeid = reader.GetInt32(8);
+                    HulpOpdracht ho = new HulpOpdracht(reader.GetString(2))
+                    {
+                        Id = reader.GetInt32(0),
+                        IsGeaccepteerd = Convert.ToBoolean(reader.GetInt32(1)),
+                        AanmaakDatum = reader.GetDateTime(3),
+                        Omschrijving = reader.GetString(4),
+                        OpdrachtDatum = reader.GetDateTime(5)
+                    };
 
-                    //Controleer of vrijwillegerid niet nul is, anders vul vrijwillegerid
+                    //Vrijwilliger ophalen
                     if (!reader.IsDBNull(6))
                     {
-                        vrijwillegerid = reader.GetInt32(6);
+                        VrijwilligerSQLContext vsc = new VrijwilligerSQLContext();
+                        VrijwilligerRepository vr = new VrijwilligerRepository(vsc);
+                        ho.Vrijwilleger = vr.RetrieveById(reader.GetInt32(6));
                     }
 
-                    HulpOpdracht h = new HulpOpdracht(opdrachtid, isGeaccepteerd, titel, aanmaakDatum, omschrijving, opdrachtDatum);
-
-                    //Haal de passende vrijwilleger op en voeg deze toe aan de hulpopdracht
-                    if (vrijwillegerid != null)
+                    //Hulppbehoevendeophalen
+                    if (!reader.IsDBNull(8))
                     {
-                        var vsc = new VrijwilligerSQLContext();
-                        var vr = new VrijwilligerRepository(vsc);
+                        HulpbehoevendeSQLContext hsc = new HulpbehoevendeSQLContext();
+                        HulpbehoevendeRepository hr = new HulpbehoevendeRepository(hsc);
 
-                        Vrijwilliger v = vr.RetrieveById(vrijwillegerid);
-                        h.Vrijwilleger = v;
+                        ho.Hulpbehoevende = hr.RetrieveHulpbehoevendeById(reader.GetInt32(8));
                     }
 
-                    if (hulpbehoevendeid != null)
-                    {
-                        //Haal de passende hulpbehoevende (incl hulpverlener) op en voeg deze toe aan de hulpopdracht
-                        var inf = new HulpbehoevendeSQLContext();
-                        var repo = new HulpbehoevendeRepository(inf);
-
-                        Hulpbehoevende hb = repo.RetrieveHulpbehoevendeById(hulpbehoevendeid);
-                        h.Hulpbehoevende = hb;
-                    }
-
-                    _hulpopdrachten.Add(h);
+                    returnList.Add(ho);
                 }
-
-                reader.Close();
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            finally
-            {
                 connection.Close();
             }
 
-            return _hulpopdrachten;
+            /*    }
+                catch (Exception e)
+                {
+                    throw e;
+                } */
+
+            return returnList;
         }
 
         public List<HulpOpdracht> GetAllHulpopdrachtenByHulpbehoevendeID(int hbid)

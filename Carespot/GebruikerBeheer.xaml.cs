@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Carespot.Models;
 
 namespace Carespot
 {
@@ -23,6 +24,13 @@ namespace Carespot
         {
             InitializeComponent();
             //lijst van gebruikers ophalen in de listview
+        }
+
+        public GebruikerBeheer(Gebruiker g)
+        {
+            InitializeComponent();
+            //lijst van gebruikers ophalen in de listview
+
         }
 
         private void imgGebruiker_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
