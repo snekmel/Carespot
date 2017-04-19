@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Carespot.DAL.Interfaces;
 using Carespot.Models;
 
@@ -10,11 +6,11 @@ namespace Carespot.DAL.Repositorys
 {
     public class HulpbehoevendeRepository
     {
-        private IHulpbehoevendeContext _hulpbehoevendeContext;
+        private readonly IHulpbehoevendeContext _hulpbehoevendeContext;
 
         public HulpbehoevendeRepository(IHulpbehoevendeContext hulpbehoevendeContext)
         {
-            this._hulpbehoevendeContext = hulpbehoevendeContext;
+            _hulpbehoevendeContext = hulpbehoevendeContext;
         }
 
         public Hulpverlener RetrieveHulpverlener(int id)
@@ -22,9 +18,9 @@ namespace Carespot.DAL.Repositorys
             return _hulpbehoevendeContext.RetrieveHulpverlener(id);
         }
 
-        public List<Hulpbehoevende> HulpbehoevendeList()
+        public List<Hulpbehoevende> RetrieveAll()
         {
-            return _hulpbehoevendeContext.RetrieveAllHulpbehoevende();
+            return _hulpbehoevendeContext.RetrieveAll();
         }
 
         public void DeleteHulpbehoevende(int id)

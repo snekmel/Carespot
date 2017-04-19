@@ -22,9 +22,10 @@ namespace Carespot
     /// </summary>
     public partial class ProfielVrijwilliger : Window
     {
-        Gebruiker profielGebruiker;
-        Gebruiker ingelogd;
-        string hbNaam;
+        private Gebruiker profielGebruiker;
+        private Gebruiker ingelogd;
+        private string hbNaam;
+
         public ProfielVrijwilliger(Gebruiker ingelogdeGebuiker, Gebruiker ontvangGebruiker)
         {
             InitializeComponent();
@@ -42,20 +43,13 @@ namespace Carespot
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
         }
 
         private void imgSchrijfRecensie_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-
-          //  Recensie window = new Recensie(/*gebruiker*/);
-         //   window.Show();
-          //  this.Close();
-
             BeoordelingScherm window = new BeoordelingScherm(ingelogd, profielGebruiker);
             window.Show();
             this.Close();
-
         }
 
         public void vulListView()
@@ -68,7 +62,7 @@ namespace Carespot
             var hb = new HulpbehoevendeSQLContext();
             var hbRepo = new HulpbehoevendeRepository(hb);
             List<Hulpbehoevende> hulpbehoevendeLijst = new List<Hulpbehoevende>();
-            hulpbehoevendeLijst = hbRepo.HulpbehoevendeList();
+            hulpbehoevendeLijst = hbRepo.RetrieveAll();
 
             foreach (var beoordeling in beoordelingLijst)
             {
@@ -79,10 +73,8 @@ namespace Carespot
                         hbNaam = h.Naam;
                     }
                 }
-                lvRecensies.Items.Add("Beoordeeld door: " + hbNaam + "cijfer: " + beoordeling.Cijfer + "Opmerking: " + beoordeling.Opmerking);                
+                lvRecensies.Items.Add("Beoordeeld door: " + hbNaam + "cijfer: " + beoordeling.Cijfer + "Opmerking: " + beoordeling.Opmerking);
             }
         }
-
-
     }
 }
