@@ -13,6 +13,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Carespot.DAL.Context;
+using Carespot.DAL.Repositorys;
 using Carespot.Models;
 
 namespace Carespot
@@ -23,10 +25,6 @@ namespace Carespot
     ///
     public partial class HulpverlenerHoofdscherm : Window
     {
-        private readonly SqlConnection _con =
-            new SqlConnection(
-                "Data Source=WIN-SRV-WEB.fhict.local;Initial Catalog=Carespot;User ID=carespot;Password=Test1234;Encrypt=False;TrustServerCertificate=True");
-
         public HulpverlenerHoofdscherm()
         {
             InitializeComponent();
@@ -48,7 +46,6 @@ namespace Carespot
             //hulpverlener uitloggen en terug naar inlogscherm
         }
 
-
         public static ImageSource ByteToImage(byte[] imageData)
         {
             BitmapImage biImg = new BitmapImage();
@@ -64,7 +61,9 @@ namespace Carespot
 
         private void SetProfielImg()
         {
-          //  profielImg.Source = ByteToImage(g().Foto);
+            var inf = new GebruikerSQLContext();
+            var repo = new GebruikerRepository(inf);
+            profielImg.Source = ByteToImage(repo.RetrieveGebruiker(1039).Foto);
         }
     }
 }

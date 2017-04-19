@@ -11,8 +11,6 @@ namespace Carespot.DAL.Interfaces
 
         Hulpverlener RetrieveHulpverlener(int id);
 
-        void UpdateHulpverlener(Hulpverlener v);
-
         void DeleteHulpverlener(int id);
 
     }

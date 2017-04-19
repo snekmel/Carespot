@@ -2,8 +2,10 @@
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Carespot.DAL.Context;
+using Carespot.DAL.Interfaces;
 using Carespot.DAL.Repositorys;
 using Carespot.Models;
 using Microsoft.Win32;
@@ -16,6 +18,7 @@ namespace Carespot
     public partial class GebruikerAanmaken : Window
     {
         private byte[] img;
+        private byte[] foto;
 
         public GebruikerAanmaken()
         {
@@ -34,14 +37,23 @@ namespace Carespot
                 var wachtwoordOpnieuw = tbHerhalen.Text;
                 var naam = tbNaam.Text;
                 var geslacht = (Gebruiker.GebruikerGeslacht)cbGeslacht.SelectedItem;
-                // var gebruikertype = (Gebruiker.GebruikerType)cmGebruikerType.SelectedItem;
                 var telNr = tbTelefoon.Text;
                 var adres = tbAdres.Text;
                 var huisNummer = tbNummer.Text;
                 var postcode = tbPostcode.Text;
                 var plaats = tbPlaats.Text;
                 var land = tbLand.Text;
-                var foto = img;
+                if (img == null)
+                {
+                    var inf = new GebruikerSQLContext();
+                    var repo = new GebruikerRepository(inf);
+                    foto = repo.RetrieveGebruiker(1039).Foto;
+                }
+                else
+                {
+                    foto = img;
+                }
+
                 if (!String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(wachtwoord) &&
                     !String.IsNullOrEmpty(wachtwoordOpnieuw) && !String.IsNullOrEmpty(naam) &&
                     !String.IsNullOrEmpty(telNr) && !String.IsNullOrEmpty(adres) && !String.IsNullOrEmpty(huisNummer) &&
@@ -150,6 +162,19 @@ namespace Carespot
             {
                 cbGeslacht.Items.Add(item);
             }
+        }
+
+        public static ImageSource ByteToImage(byte[] imageData)
+        {
+            BitmapImage biImg = new BitmapImage();
+            MemoryStream ms = new MemoryStream(imageData);
+            biImg.BeginInit();
+            biImg.StreamSource = ms;
+            biImg.EndInit();
+
+            ImageSource imgSrc = biImg as ImageSource;
+
+            return imgSrc;
         }
     }
 }

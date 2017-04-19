@@ -19,78 +19,67 @@ namespace Carespot.DAL.Context
 
         public List<HulpOpdracht> GetAllHulpopdrachten()
         {
-            List<HulpOpdracht> _hulpopdrachten = new List<HulpOpdracht>();
-
-            try
-            {
-                connection.Open();
-
-                SqlCommand cmd = new SqlCommand();
-                SqlDataReader reader;
-
-                cmd.CommandText = "SELECT * FROM Hulpopdracht";
-                cmd.CommandType = CommandType.Text;
-                cmd.Connection = connection;
-
-                reader = cmd.ExecuteReader();
-
-                while (reader.Read())
+            var returnList = new List<HulpOpdracht>();
+/*            try
+            { */
+                using (connection)
                 {
-                    int opdrachtid = reader.GetInt32(0);
-                    bool isGeaccepteerd = HulpOpdracht.ConvertIntToBool(reader.GetInt32(1));
-                    string titel = reader.GetString(2);
-                    DateTime aanmaakDatum = reader.GetDateTime(3);
-                    string omschrijving = reader.GetString(4);
-                    DateTime opdrachtDatum = reader.GetDateTime(5);
-                    int vrijwillegerid = 0;
-                    int hulpbehoevendeid = reader.GetInt32(8);
+                    connection.Open();
+                    var cmdString = "SELECT * FROM Hulpopdracht";
+                    var command = new SqlCommand(cmdString, connection);
+                    var reader = command.ExecuteReader();
 
-                    //Controleer of vrijwillegerid niet nul is, anders vul vrijwillegerid
-                    if (!reader.IsDBNull(6))
+                    while (reader.Read())
                     {
-                        vrijwillegerid = reader.GetInt32(6);
+                      
+                        HulpOpdracht ho = new HulpOpdracht(reader.GetString(2))
+                        {
+                            Id = reader.GetInt32(0),
+                            IsGeaccepteerd = Convert.ToBoolean(reader.GetInt32(1)),
+                            AanmaakDatum = reader.GetDateTime(3),
+                            Omschrijving = reader.GetString(4),
+                            OpdrachtDatum = reader.GetDateTime(5)
+                                                   
+                        };
+           
+                        //Vrijwilliger ophalen
+                        if (!reader.IsDBNull(6))
+                        {
+
+                         VrijwilligerSQLContext vsc = new VrijwilligerSQLContext();
+                         VrijwilligerRepository vr = new VrijwilligerRepository(vsc);
+                         ho.Vrijwilleger = vr.RetrieveById(reader.GetInt32(6));
+
+                        }
+
+
+                        //Hulppbehoevendeophalen
+                        if (!reader.IsDBNull(8))
+                        {
+
+                        HulpbehoevendeSQLContext hsc = new HulpbehoevendeSQLContext();
+                        HulpbehoevendeRepository hr = new HulpbehoevendeRepository(hsc);
+
+                        ho.Hulpbehoevende = hr.RetrieveHulpbehoevendeById(reader.GetInt32(8));
+
+                        }
+
+                        returnList.Add(ho);
+
                     }
-
-                    HulpOpdracht h = new HulpOpdracht(opdrachtid, isGeaccepteerd, titel, aanmaakDatum, omschrijving, opdrachtDatum);
-                    
-
-            //Haal de passende vrijwilleger op en voeg deze toe aan de hulpopdracht
-                    if (vrijwillegerid != null)
-                    {
-                        var vsc = new VrijwilligerSQLContext();
-                        var vr = new VrijwilligerRepository(vsc);
-
-                        Vrijwilliger v = vr.RetrieveById(vrijwillegerid);
-                        h.Vrijwilleger = v;
-                    }
-
-                    if (hulpbehoevendeid != null)
-                    {
-                        //Haal de passende hulpbehoevende (incl hulpverlener) op en voeg deze toe aan de hulpopdracht
-                        var inf = new HulpbehoevendeSQLContext();
-                        var repo = new HulpbehoevendeRepository(inf);
-
-                        Hulpbehoevende hb = repo.RetrieveHulpbehoevendeById(hulpbehoevendeid);
-                        h.Hulpbehoevende = hb;
-                    }
-                    
-                    _hulpopdrachten.Add(h);
-
+                    connection.Close();
                 }
 
-                reader.Close();
-            }
+        /*    }
+
             catch (Exception e)
             {
 
                 throw e;
-            }
-            finally
-            {
-                connection.Close();
-            }
+            } */
+       
 
-            return _hulpopdrachten;
+            return returnList;
         }
 
         public List<HulpOpdracht> GetAllHulpopdrachtenByHulpbehoevendeID(int hbid)

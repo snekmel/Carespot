@@ -47,15 +47,15 @@ namespace Carespot
 
         private void imgSchrijfRecensie_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-<<<<<<< HEAD
+
           //  Recensie window = new Recensie(/*gebruiker*/);
          //   window.Show();
           //  this.Close();
-=======
+
             BeoordelingScherm window = new BeoordelingScherm(ingelogd, profielGebruiker);
             window.Show();
             this.Close();
->>>>>>> bed7af5213e70c7c63646973a7483814c54a5d4c
+
         }
 
         public void vulListView()

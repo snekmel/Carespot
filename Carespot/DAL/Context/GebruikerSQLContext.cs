@@ -25,9 +25,8 @@ namespace Carespot.DAL.Context
             {
                 using (_con)
                 {
-
                     string query =
-                        "INSERT INTO Gebruiker (naam, wachtwoord, geslacht, straat, huisnummer, postcode, plaats, land, email, telefoonnummer, foto) VALUES(@naam,@wachtwoord,@geslacht,@straat,@huisnummer,@postcode,@plaats,@land,@email,@telefoonnummer,NULL);SELECT CAST(scope_identity() AS int)";
+                        "INSERT INTO Gebruiker (naam, wachtwoord, geslacht, straat, huisnummer, postcode, plaats, land, email, telefoonnummer, foto) VALUES(@naam,@wachtwoord,@geslacht,@straat,@huisnummer,@postcode,@plaats,@land,@email,@telefoonnummer,@foto);SELECT CAST(scope_identity() AS int)";
                     SqlCommand cmd = new SqlCommand(query, _con);
 
                     _con.Open();
@@ -41,18 +40,16 @@ namespace Carespot.DAL.Context
                     cmd.Parameters.AddWithValue("@land", g.Land);
                     cmd.Parameters.AddWithValue("@email", g.Email);
                     cmd.Parameters.AddWithValue("@telefoonnummer", g.Telefoonnummer);
-                 
-                    returnId = (int) cmd.ExecuteScalar();
+                    cmd.Parameters.AddWithValue("@foto", g.Foto);
+                    returnId = (int)cmd.ExecuteScalar();
                     _con.Close();
                 }
-
             }
             catch
             {
                 System.Windows.MessageBox.Show("GEBRUIKERSQL CONTEXT -> CREATE GEBRUIKER");
             }
             return returnId;
-
         }
 
         public void UpdateGebruiker(Gebruiker g)
@@ -61,7 +58,6 @@ namespace Carespot.DAL.Context
             {
                 using (_con)
                 {
-
                     string query =
                         "UPDATE Gebruiker SET naam = @naam, wachtwoord = @wachtwoord, geslacht = @geslacht, straat = @straat, huisnummer = @huisnummer, postcode = @postcode, plaats = @plaats, land = @land, email = @email, telefoonnummer = @telefoonnummer WHERE id =" + g.Id;
                     SqlCommand cmd = new SqlCommand(query, _con);
@@ -79,7 +75,7 @@ namespace Carespot.DAL.Context
                     cmd.Parameters.AddWithValue("@telefoonnummer", g.Telefoonnummer);
                     //foto
                     cmd.ExecuteNonQuery();
-                   _con.Close();             
+                    _con.Close();
                 }
             }
             catch
@@ -116,11 +112,9 @@ namespace Carespot.DAL.Context
                     {
                         g.Foto = (byte[])reader[11];
                     }
-
                 }
                 _con.Close();
                 return g;
-
             }
             catch
             {
@@ -128,7 +122,5 @@ namespace Carespot.DAL.Context
             }
             return null;
         }
-
-
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,11 +24,14 @@ namespace Carespot
     /// </summary>
     public partial class HulpverlenerToevoegen : Window
     {
+        private byte[] img;
+        private byte[] foto;
+
         public HulpverlenerToevoegen()
         {
             InitializeComponent();
             VulComboBox();
-            //cbGeslacht krijgt enum Geslacht {man, vrouw} 
+            //cbGeslacht krijgt enum Geslacht {man, vrouw}
         }
 
         private void VulComboBox()
@@ -47,19 +51,48 @@ namespace Carespot
 
         private void btUploaden_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Title = "Select a picture";
-            ofd.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
-              "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
-              "Portable Network Graphic (*.png)|*.png";
-            if (ofd.ShowDialog() == true)
+            var dlg = new OpenFileDialog
             {
-                ImageSource imageSource = new BitmapImage(new Uri(ofd.FileName));
-                imgProfielfoto.Source = imageSource;
+                InitialDirectory = @"C:\",
+                FilterIndex = 2,
+                RestoreDirectory = true
+            };
+
+            dlg.DefaultExt = ".png";
+            dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+
+            // Display OpenFileDialog by calling ShowDialog method
+            bool? result = dlg.ShowDialog();
+
+            // Get the selected file name and display in a TextBox
+            if (result == true)
+            {
+                // Open document
+                var filename = dlg.FileName;
+
+                var fs = new FileStream(filename, FileMode.Open, FileAccess.Read);
+                var br = new BinaryReader(fs);
+                img = br.ReadBytes((int)fs.Length);
+                Uri imageUri = new Uri(filename);
+                BitmapImage imageBitmap = new BitmapImage(imageUri);
+                imgProfielfoto.Source = imageBitmap;
             }
         }
 
-        private void btnHulpverlenerAanmaken_Click(object sender, RoutedEventArgs e)
+        public static ImageSource ByteToImage(byte[] imageData)
+        {
+            BitmapImage biImg = new BitmapImage();
+            MemoryStream ms = new MemoryStream(imageData);
+            biImg.BeginInit();
+            biImg.StreamSource = ms;
+            biImg.EndInit();
+
+            ImageSource imgSrc = biImg as ImageSource;
+
+            return imgSrc;
+        }
+
+        private void btnHulpverlenerAanmaken_Click_1(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -74,7 +107,16 @@ namespace Carespot
                 var postcode = tbPostcode.Text;
                 var plaats = tbPlaats.Text;
                 var land = tbLand.Text;
-                // var foto = imgProfielfoto.Source.ToString();
+                if (img == null)
+                {
+                    var inf = new GebruikerSQLContext();
+                    var repo = new GebruikerRepository(inf);
+                    foto = repo.RetrieveGebruiker(1039).Foto;
+                }
+                else
+                {
+                    foto = img;
+                }
                 if (!String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(wachtwoord) &&
                     !String.IsNullOrEmpty(wachtwoordOpnieuw) && !String.IsNullOrEmpty(naam) &&
                     !String.IsNullOrEmpty(telNr) && !String.IsNullOrEmpty(adres) && !String.IsNullOrEmpty(huisNummer) &&
@@ -87,7 +129,7 @@ namespace Carespot
                         var g = new Gebruiker
                         {
                             Email = email,
-                            //   Foto = foto,
+                            Foto = foto,
                             Geslacht = geslacht,
                             Huisnummer = huisNummer,
                             Land = land,
@@ -118,7 +160,6 @@ namespace Carespot
             {
                 MessageBox.Show("Er moet een geslacht gekozen zijn.");
             }
-        
             catch (Exception exception)
             {
                 Console.WriteLine(exception);

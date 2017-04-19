@@ -25,6 +25,7 @@ namespace Carespot
     public partial class Beheerderscherm : Window
     {
         private byte[] img;
+        private byte[] foto;
 
         public Beheerderscherm()
         {
@@ -75,7 +76,17 @@ namespace Carespot
                 var naam = tbNaamH.Text;
                 var geslacht = (Gebruiker.GebruikerGeslacht)cbGeslachtH.SelectedItem;
                 var telNr = tbTelefoonH.Text;
-                var foto = img;
+                if (img == null)
+                {
+                    var inf = new GebruikerSQLContext();
+                    var repo = new GebruikerRepository(inf);
+                    foto = repo.RetrieveGebruiker(1039).Foto;
+                }
+                else
+                {
+                    foto = img;
+                }
+
                 var soort = cbSoortH.SelectedItem.ToString();
                 var adres = tbAdres.Text;
                 var nr = tbNummer.Text;
