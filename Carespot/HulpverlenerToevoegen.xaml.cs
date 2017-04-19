@@ -97,7 +97,7 @@ namespace Carespot
             try
             {
                 var email = tbEmail.Text;
-                var wachtwoord = tbWachtwoord.Text;
+                var wachtwoord = pwbWachtwoord.Password;
                 var wachtwoordOpnieuw = tbHerhalen.Text;
                 var naam = tbNaam.Text;
                 var geslacht = (Gebruiker.GebruikerGeslacht)cbGeslacht.SelectedItem;

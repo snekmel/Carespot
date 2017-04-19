@@ -18,7 +18,6 @@
         <Label x:Name="lblEmail" Content="E-mail:" HorizontalAlignment="Left" Margin="68,335,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="0.917,0.67" />
         <Label x:Name="lblTelefoon" Content="Tel nummer:" HorizontalAlignment="Left" Margin="23,370,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="0.917,0.67" />
         <TextBox x:Name="tbmail" HorizontalAlignment="Left" Height="22" Margin="158,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" />
-        <TextBox x:Name="tbWachtwoord" HorizontalAlignment="Left" Height="22" Margin="158,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" />
         <TextBox x:Name="tbHerhalen" HorizontalAlignment="Left" Height="22" Margin="158,163,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" />
         <TextBox x:Name="tbNaam" HorizontalAlignment="Left" Height="22" Margin="158,232,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" />
         <TextBox x:Name="tbEmail" HorizontalAlignment="Left" Height="22" Margin="158,343,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" />
@@ -38,5 +37,6 @@
         <TextBox x:Name="tbLand" HorizontalAlignment="Left" Height="22" Margin="526,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="205" />
         <Label x:Name="lblNummer" Content="Nummer:" HorizontalAlignment="Left" Margin="421,117,0,0" VerticalAlignment="Top" FontSize="18.667" />
         <TextBox x:Name="tbNummer" HorizontalAlignment="Left" Height="22" Margin="526,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="53" />
+        <PasswordBox x:Name="pwbWachtwoord" HorizontalAlignment="Left" Margin="158,117,0,0" VerticalAlignment="Top" Width="241" Height="25"/>
     </Grid>
 </Window>
