@@ -22,14 +22,15 @@ namespace Carespot
     /// </summary>
     public partial class CliëntOverzicht : Window
     {
-        public CliëntOverzicht()
+        private readonly Gebruiker _ingelogdeGebr;
+
+        public CliëntOverzicht(Gebruiker ingelogdegebr)
         {
             InitializeComponent();
-            //laad naam
-            //laad functie
+            _ingelogdeGebr = ingelogdegebr;
             FillLists();
         }
-        //Geef lijst van mijn hulpvragen
+
         //Geef lijst van mogelijke vrijwilligers bij specifieke hulpvraag
         private void imgVoegHulpvraagToe_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -41,9 +42,15 @@ namespace Carespot
             var context = new HulpopdrachtSQLContext();
             var hr = new HulpopdrachtRepository(context);
 
-            lvMijnOpdrachten.DataContext = hr.GetAllHulpopdrachtenByHulpbehoevendeID(4);
+            //Vul lijst met mijn hulpopdrachten
+            List<HulpOpdracht> mijnOpdrachten = new List<HulpOpdracht>();
+            mijnOpdrachten = hr.GetAllHulpopdrachtenByHulpbehoevendeID(_ingelogdeGebr.Id);
 
-          
+            foreach (var hulpopdracht in mijnOpdrachten)
+            {
+                //Voeg toe aan listview
+                lvMijnOpdrachten.Items.Add(hulpopdracht);
+            }
         }
     }
 }
