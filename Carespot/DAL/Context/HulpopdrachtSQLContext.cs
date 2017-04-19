@@ -21,6 +21,7 @@ namespace Carespot.DAL.Context
         public List<HulpOpdracht> GetAllHulpopdrachten()
         {
             var returnList = new List<HulpOpdracht>();
+<<<<<<< HEAD
             try
             {
                 using (connection)
@@ -29,9 +30,22 @@ namespace Carespot.DAL.Context
                     var cmdString = "SELECT * FROM Hulpopdracht";
                     var command = new SqlCommand(cmdString, connection);
                     var reader = command.ExecuteReader();
+=======
+            /*            try
+                        { */
+            using (connection)
+            {
+                connection.Open();
+                var cmdString = "SELECT * FROM Hulpopdracht";
+                var command = new SqlCommand(cmdString, connection);
+                var reader = command.ExecuteReader();
+>>>>>>> 03d0950771d54d24939d25b77f96814ae123956c
 
-                    while (reader.Read())
+                while (reader.Read())
+                {
+                    HulpOpdracht ho = new HulpOpdracht(reader.GetString(2))
                     {
+<<<<<<< HEAD
 
                         HulpOpdracht ho = new HulpOpdracht(reader.GetString(2))
                         {
@@ -79,6 +93,43 @@ namespace Carespot.DAL.Context
                 connection.Close();
             }
  
+=======
+                        Id = reader.GetInt32(0),
+                        IsGeaccepteerd = Convert.ToBoolean(reader.GetInt32(1)),
+                        AanmaakDatum = reader.GetDateTime(3),
+                        Omschrijving = reader.GetString(4),
+                        OpdrachtDatum = reader.GetDateTime(5)
+                    };
+
+                    //Vrijwilliger ophalen
+                    if (!reader.IsDBNull(6))
+                    {
+                        VrijwilligerSQLContext vsc = new VrijwilligerSQLContext();
+                        VrijwilligerRepository vr = new VrijwilligerRepository(vsc);
+                        ho.Vrijwilleger = vr.RetrieveById(reader.GetInt32(6));
+                    }
+
+                    //Hulppbehoevendeophalen
+                    if (!reader.IsDBNull(8))
+                    {
+                        HulpbehoevendeSQLContext hsc = new HulpbehoevendeSQLContext();
+                        HulpbehoevendeRepository hr = new HulpbehoevendeRepository(hsc);
+
+                        ho.Hulpbehoevende = hr.RetrieveHulpbehoevendeById(reader.GetInt32(8));
+                    }
+
+                    returnList.Add(ho);
+                }
+                connection.Close();
+            }
+
+            /*    }
+                catch (Exception e)
+                {
+                    throw e;
+                } */
+
+>>>>>>> 03d0950771d54d24939d25b77f96814ae123956c
             return returnList;
         }
 
@@ -191,9 +242,13 @@ namespace Carespot.DAL.Context
 
                         h.Hulpbehoevende = hr.RetrieveHulpbehoevendeById(reader.GetInt32(8));
 
+<<<<<<< HEAD
                     }
 
                 }
+=======
+                reader.Close();
+>>>>>>> 03d0950771d54d24939d25b77f96814ae123956c
             }
             catch (Exception e)
             {

@@ -34,12 +34,10 @@ namespace Carespot
             InitializeComponent();
             hulpbehoevende = hb;
             lblNaam.Content = hulpbehoevende.Naam;
-            //laadt naam
         }
 
         private void image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            //ga terug naar CliëntOverzicht
             CliëntOverzicht window = new CliëntOverzicht();
             window.Show();
             this.Close();

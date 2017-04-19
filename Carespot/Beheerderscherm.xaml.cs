@@ -31,7 +31,6 @@ namespace Carespot
         {
             InitializeComponent();
             vulComboBox();
-            //vul combobox hulpverlener/beheerder
         }
 
         private void btUploaden_Click(object sender, RoutedEventArgs e)
@@ -70,7 +69,8 @@ namespace Carespot
             try
             {
                 //gebruik gegevens om hulpverlener/beheerder (afhankelijk van de combobox) aan te maken
-                var wachtwoord = tbWachtwoordH.Text;
+
+                var wachtwoord = pwbWachtwoordd.Password;
                 var wachtwoordHerhalen = tbHerhalenH.Text;
                 var email = tbEmailH.Text;
                 var naam = tbNaamH.Text;
@@ -148,12 +148,16 @@ namespace Carespot
 
         private void imgUitloggen_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            //beheerder uitloggen
+            Inlogscherm inlogscherm = new Inlogscherm();
+            inlogscherm.Show();
+            this.Hide();
         }
 
         private void imgGebruikersbeheer_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            //gebruikersoverzicht openen
+            GebruikerBeheer gebruikerBeheer = new GebruikerBeheer();
+            gebruikerBeheer.Show();
+            this.Close();
         }
 
         private void vulComboBox()

@@ -33,8 +33,8 @@ namespace Carespot
             try
             {
                 var email = tbEmail.Text;
-                var wachtwoord = tbWachtwoord.Text;
-                var wachtwoordOpnieuw = tbHerhalen.Text;
+                var wachtwoord = tbWachtwoord.Password;
+                var wachtwoordOpnieuw = tbHerhalen.Password;
                 var naam = tbNaam.Text;
                 var geslacht = (Gebruiker.GebruikerGeslacht)cbGeslacht.SelectedItem;
                 var telNr = tbTelefoon.Text;
@@ -47,7 +47,7 @@ namespace Carespot
                 {
                     var inf = new GebruikerSQLContext();
                     var repo = new GebruikerRepository(inf);
-                    foto = repo.RetrieveGebruiker(1039).Foto;
+                    foto = repo.RetrieveGebruiker(1).Foto;
                 }
                 else
                 {
