@@ -179,7 +179,7 @@ namespace Carespot.DAL.Context
         {
             var id = 0;
             _con.Open();
-            var cmdString = "SELECT TOP 1 g.id FROM Hulpbehoevende AS hb INNER JOIN Hulpverlener AS hv ON hv.gebruikerId = hb.hulpverlenerId INNER JOIN Gebruiker AS g ON g.id = hv.gebruikerId GROUP BY g.id ORDER BY COUNT(hb.gebruikerId) ASC";
+            var cmdString = "SELECT TOP 1 hv.gebruikerId FROM Hulpverlener as hv LEFT JOIN Gebruiker as g on g.id = hv.gebruikerId LEFT JOIN Hulpbehoevende as hb on hb.gebruikerId = g.id GROUP BY hv.gebruikerId ORDER BY COUNT(hb.gebruikerId)";
             var command = new SqlCommand(cmdString, _con);
             var reader = command.ExecuteReader();
             while (reader.Read())

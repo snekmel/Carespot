@@ -42,7 +42,7 @@
         <ComboBox x:Name="cbGeslacht" HorizontalAlignment="Left" Margin="200,296,0,0" VerticalAlignment="Top" Width="120" />
         <CheckBox x:Name="chbHulpbehoevnde" Content="Hulpbehoevende" HorizontalAlignment="Left" Margin="200,333,0,0" VerticalAlignment="Top" />
         <CheckBox x:Name="chbVrijwilliger" Content="Vrijwilliger" HorizontalAlignment="Left" Margin="332,333,0,0" VerticalAlignment="Top" />
-        <PasswordBox x:Name="tbWachtwoord" HorizontalAlignment="Left" Height="22" Margin="200,147,0,0" VerticalAlignment="Top" Width="188" PasswordChar="*" />
-        <PasswordBox x:Name="tbHerhalen" HorizontalAlignment="Left" Height="22" Margin="200,189,0,0" VerticalAlignment="Top" Width="188" PasswordChar="*" />
+        <PasswordBox x:Name="tbWachtwoord" HorizontalAlignment="Left" Height="22" Margin="200,147,0,0" VerticalAlignment="Top" Width="188" />
+        <PasswordBox x:Name="tbHerhalen" HorizontalAlignment="Left" Height="22" Margin="200,189,0,0" VerticalAlignment="Top" Width="188" />
     </Grid>
 </Window>
