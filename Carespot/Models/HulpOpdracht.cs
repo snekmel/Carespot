@@ -1,18 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Carespot.Models
 {
     public class HulpOpdracht
     {
-        public int Id { get; private set; }
-        public string Titel { get; private set; }
-        public bool IsGeaccepteerd { get; private set; }
-        public string Omschrijving { get; private set; }
-        public DateTime AanmaakDatum { get; private set; }
-        public DateTime OpdrachtDatum { get; private set; }
+        public int Id { get;  set; }
+        public string Titel { get;  set; }
+        public bool IsGeaccepteerd { get;  set; }
+        public string Omschrijving { get;  set; }
+        public DateTime AanmaakDatum { get;  set; }
+        public DateTime OpdrachtDatum { get;  set; }
         public Hulpbehoevende Hulpbehoevende { get; set; }
         public Vrijwilliger Vrijwilleger { get; set; }
 
+
+        public HulpOpdracht(string titel)
+        {
+            this.Titel = titel;
+        }
         public HulpOpdracht(int id, bool isGeaccepteerd, string titel, DateTime aanmaakDatum, string omschrijving, DateTime opdrachtDatum)
         {
             Id = id;

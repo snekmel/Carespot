@@ -78,21 +78,31 @@ namespace Carespot.DAL.Context
             GebruikerRepository gr = new GebruikerRepository(gsc);
             Gebruiker g = gr.RetrieveGebruiker(id);
 
-            Vrijwilliger v = new Vrijwilliger();
-            v.Id = g.Id;
-            v.Naam = g.Naam;
-            v.Wachtwoord = g.Wachtwoord;
-            v.Geslacht = g.Geslacht;
-            v.Straat = g.Straat;
-            v.Huisnummer = g.Huisnummer;
-            v.Postcode = g.Postcode;
-            v.Plaats = g.Plaats;
-            v.Land = g.Land;
-            v.Email = g.Email;
-            v.Telefoonnummer = g.Telefoonnummer;
-            v.Foto = g.Foto;
 
-            return v;
+            if (g != null)
+            {
+                Vrijwilliger v = new Vrijwilliger();
+                v.Id = g.Id;
+                v.Naam = g.Naam;
+                v.Wachtwoord = g.Wachtwoord;
+                v.Geslacht = g.Geslacht;
+                v.Straat = g.Straat;
+                v.Huisnummer = g.Huisnummer;
+                v.Postcode = g.Postcode;
+                v.Plaats = g.Plaats;
+                v.Land = g.Land;
+                v.Email = g.Email;
+                v.Telefoonnummer = g.Telefoonnummer;
+                v.Foto = g.Foto;
+
+                return v;
+
+            }
+            else
+            {
+                return null;
+            }
+
         }
 
         public void DeleteVrijwilliger(int id)
