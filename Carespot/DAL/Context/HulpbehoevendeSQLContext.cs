@@ -12,43 +12,6 @@ namespace Carespot.DAL.Context
     {
         private readonly SqlConnection _con = new SqlConnection("Data Source=WIN-SRV-WEB.fhict.local;Initial Catalog=Carespot;User ID=carespot;Password=Test1234;Encrypt=False;TrustServerCertificate=True;MultipleActiveResultSets=true");
 
-        public List<Hulpbehoevende> RetrieveAll()
-        {
-            var returnList = new List<Hulpbehoevende>();
-            try
-            {
-                using (_con)
-                {
-                    _con.Open();
-                    var cmdString = "SELECT * FROM Gebruiker INNER JOIN Hulpbehoevende ON Gebruiker.id = Hulpbehoevende.gebruikerId WHERE Gebruiker.id IN (SELECT gebruikerId FROM Hulpbehoevende)";
-                    var command = new SqlCommand(cmdString, _con);
-                    var reader = command.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        var g = new Hulpbehoevende(reader.GetString(1), reader.GetString(2), reader.GetString(9));
-                        g.Id = reader.GetInt32(0);
-                        g.Geslacht = (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
-                        g.Straat = reader.GetString(4);
-                        g.Huisnummer = reader.GetString(5);
-                        g.Postcode = reader.GetString(6);
-                        g.Plaats = reader.GetString(7);
-                        g.Land = reader.GetString(8);
-                        g.Telefoonnummer = reader.GetString(10);
-                        if (reader[11] != null)
-                            g.Foto = (byte[])reader[11];
-                        returnList.Add(g);
-                    }
-                    _con.Close();
-                }
-            }
-            catch
-            {
-                MessageBox.Show("HulpbehoevendeSQLContext -> Retrieve all");
-            }
-            return returnList;
-        }
-
         public void CreateHulpbehoevende(int gebruikerId, int hulpverlenerId)
         {
             try
@@ -187,6 +150,43 @@ namespace Carespot.DAL.Context
             reader.Close();
             _con.Close();
             return id;
+        }
+
+        public List<Hulpbehoevende> RetrieveAll()
+        {
+            var returnList = new List<Hulpbehoevende>();
+            try
+            {
+                using (_con)
+                {
+                    _con.Open();
+                    var cmdString = "SELECT * FROM Gebruiker INNER JOIN Hulpbehoevende ON Gebruiker.id = Hulpbehoevende.gebruikerId WHERE Gebruiker.id IN (SELECT gebruikerId FROM Hulpbehoevende)";
+                    var command = new SqlCommand(cmdString, _con);
+                    var reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        var g = new Hulpbehoevende(reader.GetString(1), reader.GetString(2), reader.GetString(9));
+                        g.Id = reader.GetInt32(0);
+                        g.Geslacht = (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
+                        g.Straat = reader.GetString(4);
+                        g.Huisnummer = reader.GetString(5);
+                        g.Postcode = reader.GetString(6);
+                        g.Plaats = reader.GetString(7);
+                        g.Land = reader.GetString(8);
+                        g.Telefoonnummer = reader.GetString(10);
+                        if (reader[11] != null)
+                            g.Foto = (byte[])reader[11];
+                        returnList.Add(g);
+                    }
+                    _con.Close();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("HulpbehoevendeSQLContext -> Retrieve all");
+            }
+            return returnList;
         }
 
         public Vrijwilliger RetrieveVrijwilliger(int id)
