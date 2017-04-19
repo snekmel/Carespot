@@ -12,6 +12,43 @@ namespace Carespot.DAL.Context
     {
         private readonly SqlConnection _con = new SqlConnection("Data Source=WIN-SRV-WEB.fhict.local;Initial Catalog=Carespot;User ID=carespot;Password=Test1234;Encrypt=False;TrustServerCertificate=True;MultipleActiveResultSets=true");
 
+        public List<Hulpbehoevende> RetrieveAll()
+        {
+            var returnList = new List<Hulpbehoevende>();
+            try
+            {
+                using (_con)
+                {
+                    _con.Open();
+                    var cmdString = "SELECT * FROM Gebruiker INNER JOIN Hulpbehoevende ON Gebruiker.id = Hulpbehoevende.gebruikerId WHERE Gebruiker.id IN (SELECT gebruikerId FROM Hulpbehoevende)";
+                    var command = new SqlCommand(cmdString, _con);
+                    var reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        var g = new Hulpbehoevende(reader.GetString(1), reader.GetString(2), reader.GetString(9));
+                        g.Id = reader.GetInt32(0);
+                        g.Geslacht = (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
+                        g.Straat = reader.GetString(4);
+                        g.Huisnummer = reader.GetString(5);
+                        g.Postcode = reader.GetString(6);
+                        g.Plaats = reader.GetString(7);
+                        g.Land = reader.GetString(8);
+                        g.Telefoonnummer = reader.GetString(10);
+                        if (reader[11] != null)
+                            g.Foto = (byte[])reader[11];
+                        returnList.Add(g);
+                    }
+                    _con.Close();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("HulpbehoevendeSQLContext -> Retrieve all");
+            }
+            return returnList;
+        }
+
         public void CreateHulpbehoevende(int gebruikerId, int hulpverlenerId)
         {
             try
@@ -27,7 +64,7 @@ namespace Carespot.DAL.Context
             }
             catch
             {
-                MessageBox.Show("woops");
+                MessageBox.Show("HulpbehoevendeSQLContext -> CreateHulpbehoevende");
             }
         }
 
@@ -37,7 +74,7 @@ namespace Carespot.DAL.Context
             var cmdString = "DELETE FROM Gebruiker WHERE id = '" + id + "'";
             var command = new SqlCommand(cmdString, _con);
             command.ExecuteNonQuery();
-            command.CommandText = "DELETE FROM Hulpbehoevende WHERE = '" + id + "'";
+            command.CommandText = "DELETE FROM Hulpbehoevende WHERE gebruikerId = '" + id + "'";
             command.ExecuteNonQuery();
             _con.Close();
         }
@@ -56,7 +93,7 @@ namespace Carespot.DAL.Context
                 hulpBehoevende.Id = reader.GetInt32(0);
                 hulpBehoevende.Naam = reader.GetString(1);
                 hulpBehoevende.Wachtwoord = reader.GetString(2);
-                hulpBehoevende.Geslacht = (Gebruiker.GebruikerGeslacht) Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
+                hulpBehoevende.Geslacht = (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
                 hulpBehoevende.Straat = reader.GetString(4);
                 hulpBehoevende.Huisnummer = reader.GetString(5);
                 hulpBehoevende.Postcode = reader.GetString(6);
@@ -86,7 +123,7 @@ namespace Carespot.DAL.Context
                 hulpverlener.Email = reader.GetString(9);
 
                 hulpverlener.Geslacht =
-                    (Gebruiker.GebruikerGeslacht) Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
+                    (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
                 hulpverlener.Huisnummer = reader.GetString(5);
                 hulpverlener.Id = reader.GetInt32(0);
                 hulpverlener.Land = reader.GetString(8);
@@ -123,7 +160,7 @@ namespace Carespot.DAL.Context
                 hulpbehoevende.Email = reader.GetString(9);
 
                 hulpbehoevende.Geslacht =
-                    (Gebruiker.GebruikerGeslacht) Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
+                    (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
                 hulpbehoevende.Huisnummer = reader.GetString(5);
                 hulpbehoevende.Id = reader.GetInt32(0);
                 hulpbehoevende.Land = reader.GetString(8);
@@ -152,60 +189,6 @@ namespace Carespot.DAL.Context
             return id;
         }
 
-        public List<Vrijwilliger> RetrieveAll()
-        {
-            var returnList = new List<Vrijwilliger>();
-            try
-            {
-                using (_con)
-                {
-                    _con.Open();
-                    var cmdString = "SELECT * FROM Gebruiker INNER JOIN Hulpbehoevende ON Gebruiker.id = Hulpbehoevende.gebruikerId WHERE Gebruiker.id IN (SELECT gebruikerId FROM Hulpbehoevende)";
-                    var command = new SqlCommand(cmdString, _con);
-                    var reader = command.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        var g = new Hulpbehoevende(reader.GetString(1), reader.GetString(2), reader.GetString(9));
-                        g.Id = reader.GetInt32(0);
-                        g.Geslacht = (Gebruiker.GebruikerGeslacht) Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
-                        g.Straat = reader.GetString(4);
-                        g.Huisnummer = reader.GetString(5);
-                        g.Postcode = reader.GetString(6);
-                        g.Plaats = reader.GetString(7);
-                        g.Land = reader.GetString(8);
-                        g.Telefoonnummer = reader.GetString(10);
-                        if (reader[11] != null)
-                            g.Foto = (byte[]) reader[11];
-                        returnList.Add(g);
-                    }
-                    _con.Close();
-                }
-            }
-            catch
-            {
-                MessageBox.Show("HulpbehoevendeSQLContext -> Retrieve all");
-            }
-            return returnList;
-        }
-
-        public void CreateVrijwilliger(int gebruikerId)
-        {
-            try
-            {
-                _con.Open();
-                var query1 = "INSERT INTO Hulpbehoevende (gebruikerId) VALUES (@newID)";
-                var command1 = new SqlCommand(query1, _con);
-                command1.Parameters.AddWithValue("@newID", gebruikerId);
-                command1.ExecuteScalar();
-                _con.Close();
-            }
-            catch
-            {
-                MessageBox.Show("VrijwilligerSqlContext -> Create Vrijwilliger");
-            }
-        }
-
         public Vrijwilliger RetrieveVrijwilliger(int id)
         {
             var gsc = new GebruikerSQLContext();
@@ -227,15 +210,6 @@ namespace Carespot.DAL.Context
             v.Foto = g.Foto;
 
             return v;
-        }
-
-        public void DeleteVrijwilliger(int id)
-        {
-            _con.Open();
-            var cmdString = "DELETE FROM Vrijwilliger WHERE gebruikerId =" + id;
-            var command = new SqlCommand(cmdString, _con);
-            command.ExecuteNonQuery();
-            _con.Close();
         }
     }
 }
