@@ -11,7 +11,6 @@
             <ColumnDefinition Width="217*" />
             <ColumnDefinition Width="90*" />
         </Grid.ColumnDefinitions>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="100" Margin="147,140,0,0" VerticalAlignment="Top" Width="100" />
         <Label x:Name="label" Content="Maak een nieuwe gebruiker aan" HorizontalAlignment="Left" Margin="169,10,0,0" VerticalAlignment="Top" FontSize="26.667" Width="466" />
         <Image x:Name="imgSluiten" HorizontalAlignment="Left" Height="41" Margin="195.6,10,0,0" VerticalAlignment="Top" Width="41" Source="image/cross-mark-on-a-black-circle-background.png" MouseLeftButtonUp="imgSluiten_MouseLeftButtonUp" Grid.Column="1" />
         <Label x:Name="lblWachtwoord" Content="Wachtwoord:" HorizontalAlignment="Left" Margin="54,136,0,0" VerticalAlignment="Top" FontSize="18.667" />
@@ -21,8 +20,7 @@
         <Label x:Name="lblGebruiker" Content="Gebruiker:" HorizontalAlignment="Left" Margin="78,320,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="0.917,0.67" />
         <Label x:Name="lblEmail" Content="E-mail:" HorizontalAlignment="Left" Margin="110,91,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="0.917,0.67" />
         <Label x:Name="lblTelefoon" Content="Tel nummer:" HorizontalAlignment="Left" Margin="65,357,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="0.917,0.67" />
-        <TextBox x:Name="tbWachtwoord" HorizontalAlignment="Left" Height="22" Margin="200,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" />
-        <TextBox x:Name="tbHerhalen" HorizontalAlignment="Left" Height="22" Margin="200,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" />
+
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="7,-27,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" />
         <TextBox x:Name="tbNaam" HorizontalAlignment="Left" Height="22" Margin="200,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" />
         <TextBox x:Name="tbEmail" HorizontalAlignment="Left" Height="22" Margin="200,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" />
@@ -44,5 +42,7 @@
         <ComboBox x:Name="cbGeslacht" HorizontalAlignment="Left" Margin="200,296,0,0" VerticalAlignment="Top" Width="120" />
         <CheckBox x:Name="chbHulpbehoevnde" Content="Hulpbehoevende" HorizontalAlignment="Left" Margin="200,333,0,0" VerticalAlignment="Top" />
         <CheckBox x:Name="chbVrijwilliger" Content="Vrijwilliger" HorizontalAlignment="Left" Margin="332,333,0,0" VerticalAlignment="Top" />
+        <PasswordBox x:Name="tbWachtwoord" HorizontalAlignment="Left" Height="22" Margin="200,147,0,0" VerticalAlignment="Top" Width="188" PasswordChar="*" />
+        <PasswordBox x:Name="tbHerhalen" HorizontalAlignment="Left" Height="22" Margin="200,189,0,0" VerticalAlignment="Top" Width="188" PasswordChar="*" />
     </Grid>
 </Window>

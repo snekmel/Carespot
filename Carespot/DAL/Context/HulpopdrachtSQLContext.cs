@@ -20,7 +20,6 @@ namespace Carespot.DAL.Context
         public List<HulpOpdracht> GetAllHulpopdrachten()
         {
             List<HulpOpdracht> _hulpopdrachten = new List<HulpOpdracht>();
-
             try
             {
                 connection.Open();
@@ -52,9 +51,8 @@ namespace Carespot.DAL.Context
                     }
 
                     HulpOpdracht h = new HulpOpdracht(opdrachtid, isGeaccepteerd, titel, aanmaakDatum, omschrijving, opdrachtDatum);
-                    
 
-            //Haal de passende vrijwilleger op en voeg deze toe aan de hulpopdracht
+                    //Haal de passende vrijwilleger op en voeg deze toe aan de hulpopdracht
                     if (vrijwillegerid != null)
                     {
                         var vsc = new VrijwilligerSQLContext();
@@ -73,16 +71,14 @@ namespace Carespot.DAL.Context
                         Hulpbehoevende hb = repo.RetrieveHulpbehoevendeById(hulpbehoevendeid);
                         h.Hulpbehoevende = hb;
                     }
-                    
-                    _hulpopdrachten.Add(h);
 
+                    _hulpopdrachten.Add(h);
                 }
 
                 reader.Close();
             }
             catch (Exception e)
             {
-
                 throw e;
             }
             finally
@@ -214,7 +210,6 @@ namespace Carespot.DAL.Context
 
                 Hulpbehoevende hb = repo.RetrieveHulpbehoevendeById(hulpbehoevendeid);
                 h.Hulpbehoevende = hb;
-
 
                 reader.Close();
             }
