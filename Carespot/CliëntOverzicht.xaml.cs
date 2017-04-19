@@ -31,6 +31,12 @@ namespace Carespot
             FillLists();
         }
 
+        public CliëntOverzicht()
+        {
+            InitializeComponent();
+            FillLists();
+        }
+
         //Geef lijst van mogelijke vrijwilligers bij specifieke hulpvraag
         private void imgVoegHulpvraagToe_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
