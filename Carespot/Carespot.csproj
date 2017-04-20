@@ -63,6 +63,9 @@
     <Compile Include="DAL\Context\HulpverlenerSQLContext.cs" />
     <Compile Include="DAL\Interfaces\IHulpverlenerContext.cs" />
     <Compile Include="DAL\Repositorys\HulpverlenerRepository.cs" />
+    <Compile Include="GegevensWijzigen.xaml.cs">
+      <DependentUpon>GegevensWijzigen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Reactie.cs" />
     <Compile Include="DAL\Context\BeheerderSQLContext.cs" />
     <Compile Include="DAL\Repositorys\BeheerderRepository.cs" />
@@ -117,6 +120,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GebruikerBeheer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GegevensWijzigen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
