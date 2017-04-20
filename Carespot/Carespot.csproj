@@ -124,8 +124,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GegevensWijzigen.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HulpverlenerHoofdscherm.xaml">
       <SubType>Designer</SubType>
