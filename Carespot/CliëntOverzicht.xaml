@@ -11,10 +11,11 @@
             <ColumnDefinition Width="89*"/>
             <ColumnDefinition Width="307*"/>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="lvVrijwilligers" HorizontalAlignment="Left" Height="600" Margin="53,128,0,0" VerticalAlignment="Top" Width="550" Grid.Column="1">
+        <ListView x:Name="lvReacties" HorizontalAlignment="Left" Height="600" Margin="53,128,0,0" VerticalAlignment="Top" Width="550" Grid.Column="1">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Geselecteerde vrijwilligers" Width="350" />
+                    <GridViewColumn Header="Naam" Width="150" DisplayMemberBinding="{Binding Vrijwilliger.Naam}" />
+                    <GridViewColumn Header="Bericht" Width="395" DisplayMemberBinding="{Binding Bericht}" />
                 </GridView>
             </ListView.View>
         </ListView>
@@ -22,14 +23,14 @@
         <Image x:Name="imgVoegHulpvraagToe" HorizontalAlignment="Left" Height="41" Margin="156,12,0,0" VerticalAlignment="Top" Width="41" Source="image/add-square-button.png" MouseLeftButtonUp="imgVoegHulpvraagToe_MouseLeftButtonUp" Grid.Column="1" />
         <Label x:Name="lblVoegHulpvraagToe" Content="Voeg hulpvraag toe" HorizontalAlignment="Left" Margin="197,15,0,0" VerticalAlignment="Top" FontSize="18" Grid.Column="1" Height="34" Width="166" />
         <Label Content="Mijn opdrachten" HorizontalAlignment="Left" Margin="52,102,0,0" VerticalAlignment="Top" FontSize="14" Height="29" Width="112" />
-        <Label Content="Mogelijke vrijwilligers" HorizontalAlignment="Left" Margin="259,102,0,0" VerticalAlignment="Top" FontSize="14" Grid.Column="1" Height="29" Width="143" />
+        <Label Content="Reacties van vrijwilligers" HorizontalAlignment="Left" Margin="248,102,0,0" VerticalAlignment="Top" FontSize="14" Grid.Column="1" Height="29" Width="162" />
         <Image x:Name="imgGebruiker" HorizontalAlignment="Left" Height="41" Margin="28,22,0,0" VerticalAlignment="Top" Width="41" Source="image/user-shape.png" />
         <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="69,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,0.5" FontSize="16" Height="28" Width="61" />
         <Label x:Name="lblFunctie" Content="Functie" HorizontalAlignment="Left" Margin="69,36,0,0" VerticalAlignment="Top" FontSize="16" Height="27" Width="61" />
-        <ListView x:Name="lvMijnOpdrachten" HorizontalAlignment="Left" Height="600" Margin="28,128,0,0" VerticalAlignment="Top" Width="183" Grid.ColumnSpan="2">
+        <ListView x:Name="lvMijnOpdrachten" HorizontalAlignment="Left" Height="600" Margin="28,128,0,0" VerticalAlignment="Top" Width="183" Grid.ColumnSpan="2" SelectionChanged="lvMijnOpdrachten_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="140" Header=" Opdrachtnaam" DisplayMemberBinding="{Binding Titel}" />
+                    <GridViewColumn Width="177" Header=" Opdrachtnaam" DisplayMemberBinding="{Binding Titel}" />
                 </GridView>
             </ListView.View>
         </ListView>
