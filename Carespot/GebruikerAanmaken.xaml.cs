@@ -77,12 +77,12 @@ namespace Carespot
                             Wachtwoord = wachtwoord,
                             Telefoonnummer = telNr
                         };
-
+                        var id = 0;
                         if (chbHulpbehoevnde.IsChecked == true)
                         {
                             var hlp = new HulpbehoevendeSQLContext();
                             var repohlp = new HulpbehoevendeRepository(hlp);
-                            var id = repo.CreateGebruiker(g);
+                            id = repo.CreateGebruiker(g);
                             var hulpverlener = repohlp.HulpverlenerId();
                             repohlp.CreateHulpbehoevende(id, hulpverlener);
                         }
@@ -90,7 +90,6 @@ namespace Carespot
                         {
                             var vrw = new VrijwilligerSQLContext();
                             var repovrw = new VrijwilligerRepository(vrw);
-                            var id = repo.CreateGebruiker(g);
                             repovrw.CreateVrijwilliger(id);
                         }
                         if (chbHulpbehoevnde.IsChecked == false && chbVrijwilliger.IsChecked == false)
@@ -162,19 +161,6 @@ namespace Carespot
             {
                 cbGeslacht.Items.Add(item);
             }
-        }
-
-        public static ImageSource ByteToImage(byte[] imageData)
-        {
-            BitmapImage biImg = new BitmapImage();
-            MemoryStream ms = new MemoryStream(imageData);
-            biImg.BeginInit();
-            biImg.StreamSource = ms;
-            biImg.EndInit();
-
-            ImageSource imgSrc = biImg as ImageSource;
-
-            return imgSrc;
         }
     }
 }

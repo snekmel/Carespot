@@ -62,6 +62,7 @@
     </Compile>
     <Compile Include="DAL\Context\HulpverlenerSQLContext.cs" />
     <Compile Include="DAL\Interfaces\IHulpverlenerContext.cs" />
+    <Compile Include="DAL\Repositorys\FunctionRepository.cs" />
     <Compile Include="DAL\Repositorys\HulpverlenerRepository.cs" />
     <Compile Include="GegevensWijzigen.xaml.cs">
       <DependentUpon>GegevensWijzigen.xaml</DependentUpon>

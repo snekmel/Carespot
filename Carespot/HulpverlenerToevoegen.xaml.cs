@@ -80,19 +80,6 @@ namespace Carespot
             }
         }
 
-        public static ImageSource ByteToImage(byte[] imageData)
-        {
-            BitmapImage biImg = new BitmapImage();
-            MemoryStream ms = new MemoryStream(imageData);
-            biImg.BeginInit();
-            biImg.StreamSource = ms;
-            biImg.EndInit();
-
-            ImageSource imgSrc = biImg as ImageSource;
-
-            return imgSrc;
-        }
-
         private void btnHulpverlenerAanmaken_Click_1(object sender, RoutedEventArgs e)
         {
             try
