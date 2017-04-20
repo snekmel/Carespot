@@ -8,7 +8,7 @@
         Title="Opdracht" Height="560" Width="500">
     <Grid>
         <TabControl HorizontalAlignment="Left" Height="436" VerticalAlignment="Top" Width="472" Margin="10,82,0,0">
-            <TabItem x:Name="tabOmschrijving" Header="Omschrijving" MouseLeftButtonUp="tabOmschrijving_MouseLeftButtonUp">
+            <TabItem x:Name="tabOmschrijving" Header="Omschrijving" MouseLeftButtonUp="tabOmschrijving_MouseLeftButtonUp" HorizontalAlignment="Right" Width="85">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="7*"/>
@@ -20,7 +20,7 @@
             </TabItem>
             <TabItem x:Name="tabChat" Header="Chat" MouseLeftButtonUp="tabChat_MouseLeftButtonUp">
                 <Grid Background="#FFE5E5E5">
-                    <ListBox HorizontalAlignment="Left" Height="408" VerticalAlignment="Top" Width="466"/>
+                    <ListBox x:Name="chatListbox" HorizontalAlignment="Left" Height="408" VerticalAlignment="Top" Width="466"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabContact" Header="Contacten" MouseLeftButtonUp="tabContact_MouseLeftButtonUp">
@@ -45,8 +45,8 @@
             </TabItem>
         </TabControl>
         <Image x:Name="imgGebruiker" HorizontalAlignment="Left" Height="41" Margin="9,15,0,0" VerticalAlignment="Top" Width="41" Source="image/user-shape.png" />
-        <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="50,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,0.5" FontSize="16" Height="28" Width="61" />
-        <Label x:Name="lblFunctie" Content="Functie" HorizontalAlignment="Left" Margin="50,29,0,0" VerticalAlignment="Top" FontSize="16" Height="27" Width="61" />
+        <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="50,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,0.5" FontSize="16" Height="28" Width="295" />
+        <Label x:Name="lblFunctie" Content="Functie" HorizontalAlignment="Left" Margin="50,29,0,0" VerticalAlignment="Top" FontSize="16" Height="27" Width="295" />
         <Image x:Name="imgSluitAf" HorizontalAlignment="Left" Height="41" Margin="441,15,0,0" VerticalAlignment="Top" Width="41" Source="image/cross-mark-on-a-black-circle-background.png" MouseLeftButtonUp="imgSluitAf_MouseLeftButtonUp"/>
 
     </Grid>

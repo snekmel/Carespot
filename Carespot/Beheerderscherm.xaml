@@ -7,14 +7,12 @@
         mc:Ignorable="d"
         Title="Beheerderscherm" Height="800.5" Width="480" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid Margin="-2,0,2,0">
-        <Image x:Name="image" HorizontalAlignment="Left" Height="100" Margin="140,179,0,0" VerticalAlignment="Top" Width="100" />
         <Label x:Name="lblWachtwoord" Content="Wachtwoord:" HorizontalAlignment="Left" Margin="47,149,0,0" VerticalAlignment="Top" FontSize="16" />
         <Label x:Name="lblHerhalen" Content="Herhalen:" HorizontalAlignment="Left" Margin="72,181,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.917,0.67" />
         <Label x:Name="lblNaam" Content="Naam:" HorizontalAlignment="Left" Margin="92,221,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.917,0.67" />
         <Label x:Name="lblGeslacht" Content="Geslacht:" HorizontalAlignment="Left" Margin="75,257,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.917,0.67" />
         <Label x:Name="lblEmail" Content="E-mail:" HorizontalAlignment="Left" Margin="92,116,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.917,0.67" />
         <Label x:Name="lblTelefoon" Content="Tel nummer:" HorizontalAlignment="Left" Margin="54,290,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.917,0.67" />
-        <TextBox x:Name="tbHerhalenH" HorizontalAlignment="Left" Height="22" Margin="159,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="276" />
         <TextBox x:Name="tbNaamH" HorizontalAlignment="Left" Height="22" Margin="159,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="276" />
         <TextBox x:Name="tbEmailH" HorizontalAlignment="Left" Height="22" Margin="159,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="276" />
         <TextBox x:Name="tbTelefoonH" HorizontalAlignment="Left" Height="22" Margin="159,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="276" />
@@ -39,5 +37,6 @@
         <Label x:Name="lblNummer" Content="Nummer:" HorizontalAlignment="Left" Margin="66,376,0,0" VerticalAlignment="Top" FontSize="16" />
         <TextBox x:Name="tbNummer" HorizontalAlignment="Left" Height="22" Margin="161,389,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="53" />
         <PasswordBox x:Name="pwbWachtwoordd" HorizontalAlignment="Left" Margin="161,155,0,0" VerticalAlignment="Top" Width="274" Height="25" />
+        <PasswordBox x:Name="pwbWachtwoordOpnieuw" HorizontalAlignment="Left" Margin="161,187,0,0" VerticalAlignment="Top" Width="274" Height="25" />
     </Grid>
 </Window>

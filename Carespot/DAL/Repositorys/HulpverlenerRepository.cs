@@ -1,33 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Carespot.DAL.Interfaces;
 using Carespot.Models;
 
 namespace Carespot.DAL.Repositorys
 {
-   public class HulpverlenerRepository
+    public class HulpverlenerRepository
     {
-
-        private IHulpverlenerContext _interface;
+        private readonly IHulpverlenerContext _interface;
 
         public HulpverlenerRepository(IHulpverlenerContext i)
         {
             _interface = i;
-
         }
-
 
         public void CreateHulpverlener(int gebruikerId)
         {
             _interface.CreateHulpverlener(gebruikerId);
         }
 
-        public List<Hulpverlener> RetrieveAllHulpverleners()
+        public List<Hulpverlener> RetrieveAll()
         {
-           return _interface.RetrieveAll();
+            return _interface.RetrieveAll();
         }
 
         public Hulpverlener RetrieveHulpverlener(int id)
@@ -37,8 +30,7 @@ namespace Carespot.DAL.Repositorys
 
         public void DeleteHulpverlener(int id)
         {
-           _interface.DeleteHulpverlener(id);
+            _interface.DeleteHulpverlener(id);
         }
-
     }
 }

@@ -22,7 +22,7 @@ namespace UnitTestCarespot
             var inf = new HulpbehoevendeSQLContext();
             var repo = new HulpbehoevendeRepository(inf);
 
-            var hulpList = repo.HulpbehoevendeList();
+            var hulpList = repo.RetrieveAll();
 
             Hulpbehoevende hb = (Hulpbehoevende)hulpList[0];
 

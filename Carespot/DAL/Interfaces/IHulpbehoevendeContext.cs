@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Carespot.Models;
 
 namespace Carespot.DAL.Interfaces
@@ -17,7 +13,7 @@ namespace Carespot.DAL.Interfaces
 
         void UpdateHulpbehoevende(Hulpbehoevende hulpbehoevende);
 
-        List<Hulpbehoevende> RetrieveAllHulpbehoevende();
+        List<Hulpbehoevende> RetrieveAll();
 
         Hulpbehoevende RetrieveHulpbehoevendeById(int id);
 

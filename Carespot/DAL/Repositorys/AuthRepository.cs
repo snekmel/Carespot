@@ -8,22 +8,21 @@ using Carespot.Models;
 
 namespace Carespot.DAL.Repositorys
 {
-     public static  class AuthRepository
+    public static class AuthRepository
     {
-         public static bool CheckAuth(string email, string password )
+        public static Gebruiker CheckAuth(string email, string password)
         {
-
             GebruikerRepository gr = new GebruikerRepository();
             List<Gebruiker> gebruikers = gr.RetrieveAll();
 
             foreach (Gebruiker g in gebruikers)
-            {           
+            {
                 if (g.Email == email && g.Wachtwoord == password)
                 {
-                    return true;
+                    return g;
                 }
             }
-            return false;
+            return null;
         }
     }
 }

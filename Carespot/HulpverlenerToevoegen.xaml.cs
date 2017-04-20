@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -96,9 +97,9 @@ namespace Carespot
         {
             try
             {
-                var email = tbEmail.Text;
+                var email = tbmail.Text;
                 var wachtwoord = pwbWachtwoordd.Password;
-                var wachtwoordOpnieuw = tbHerhalen.Text;
+                var wachtwoordOpnieuw = pwbWachtwoordOpnieuw.Password;
                 var naam = tbNaam.Text;
                 var geslacht = (Gebruiker.GebruikerGeslacht)cbGeslacht.SelectedItem;
                 var telNr = tbTelefoon.Text;
@@ -117,6 +118,7 @@ namespace Carespot
                 {
                     foto = img;
                 }
+
                 if (!String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(wachtwoord) &&
                     !String.IsNullOrEmpty(wachtwoordOpnieuw) && !String.IsNullOrEmpty(naam) &&
                     !String.IsNullOrEmpty(telNr) && !String.IsNullOrEmpty(adres) && !String.IsNullOrEmpty(huisNummer) &&
@@ -141,10 +143,12 @@ namespace Carespot
                             Telefoonnummer = telNr
                         };
 
-                        var hlpv = new HulpverlenerSQLContext();
-                        var repohulpv = new HulpverlenerRepository(hlpv);
+                        var hlp = new HulpverlenerSQLContext();
+                        var repohlp = new HulpverlenerRepository(hlp);
                         var id = repo.CreateGebruiker(g);
-                        repohulpv.CreateHulpverlener(id);
+                        repohlp.CreateHulpverlener(id);
+                        // repo.CreateHulpbehoevende(naam, wachtwoord, geslacht, adres, huisNummer, postcode, plaats, land, email,
+                        //    telNr, gebruikertype, foto, 3);
                     }
                     else
                     {
@@ -159,11 +163,6 @@ namespace Carespot
             catch (NullReferenceException)
             {
                 MessageBox.Show("Er moet een geslacht gekozen zijn.");
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception);
-                throw;
             }
         }
     }

@@ -14,11 +14,25 @@ namespace Carespot
         public KiesScherm()
         {
             InitializeComponent();
+
+            // Test code---------------------------------
+/*
             HulpopdrachtSQLContext hsc = new HulpopdrachtSQLContext();
        HulpopdrachtRepository hr = new HulpopdrachtRepository(hsc);
 
-            System.Windows.MessageBox.Show(hr.GetAllHulpopdrachten().Count + "");
+            HulpOpdracht ho = hr.GetHulpopdrachtByID(2);
 
+
+            VrijwilligerSQLContext vsc = new VrijwilligerSQLContext();
+            VrijwilligerRepository vr = new VrijwilligerRepository(vsc);
+
+
+           Opdracht opdrachtScherm = new Opdracht(ho.Vrijwilleger, ho);
+            opdrachtScherm.Show();
+
+            System.Windows.MessageBox.Show(hr.GetAllHulpopdrachten().Count + "");
+            */
+            //----------------------------------------
             
         }
 

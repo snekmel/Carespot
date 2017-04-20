@@ -15,7 +15,7 @@ namespace UnitTestCarespot
             var inf = new HulpbehoevendeSQLContext();
             var repo = new HulpbehoevendeRepository(inf);
 
-            var hulpList = repo.HulpbehoevendeList();
+            var hulpList = repo.RetrieveAll();
 
             Assert.AreEqual("Jantje", hulpList[0].Naam);
         }
@@ -26,7 +26,7 @@ namespace UnitTestCarespot
             var inf = new HulpbehoevendeSQLContext();
             var repo = new HulpbehoevendeRepository(inf);
 
-            var hulpList = repo.HulpbehoevendeList();
+            var hulpList = repo.RetrieveAll();
 
             Assert.AreEqual("Pietje", hulpList[0].Hulpverlener.Naam);
         }
@@ -37,7 +37,7 @@ namespace UnitTestCarespot
             var inf = new HulpbehoevendeSQLContext();
             var repo = new HulpbehoevendeRepository(inf);
 
-            var hulpb = repo.HulpbehoevendeList()[0];
+            var hulpb = repo.RetrieveAll()[0];
             hulpb.Naam = "Jantje";
             repo.UpdateHulpbehoevende(hulpb);
 
@@ -50,11 +50,11 @@ namespace UnitTestCarespot
             var inf = new HulpbehoevendeSQLContext();
             var repo = new HulpbehoevendeRepository(inf);
 
-            var hulpverlener = repo.HulpbehoevendeList()[0].Hulpverlener;
+            var hulpverlener = repo.RetrieveAll()[0].Hulpverlener;
 
            // repo.CreateHulpbehoevende("Lance", "Test1234", Gebruiker.GebruikerGeslacht.Man, "Rachelsmolen", "55A", "6587LL", "Eindhoven", "Nederland", "neppe@email.com", "0612345678", Gebruiker.GebruikerType.Hulpbehoevende, "", hulpverlener.Id);
 
-            Assert.AreEqual("Lance", repo.HulpbehoevendeList()[1].Naam);
+            Assert.AreEqual("Lance", repo.RetrieveAll()[1].Naam);
         }
 
         [TestMethod]
