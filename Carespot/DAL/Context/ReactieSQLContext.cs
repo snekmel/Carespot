@@ -69,7 +69,10 @@ namespace Carespot.DAL.Context
 
                     Vrijwilliger v = vr.RetrieveById(vrijwilligerid);
 
-                    Reactie r = new Reactie(v, bericht);
+                    Reactie r = new Reactie(v, bericht)
+                    {
+                        Id = reactieid
+                    };
 
                     _reacties.Add(r);
                 }

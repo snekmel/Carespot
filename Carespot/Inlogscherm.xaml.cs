@@ -41,24 +41,31 @@ namespace Carespot
                         i++;
                         if (gebr.GetType() == typeof(Vrijwilliger))
                         {
-                            MessageBox.Show("Vrijwilliger");
                             gebrVrijwilliger = gebr;
                         }
                         else if (gebr.GetType() == typeof(Hulpbehoevende))
                         {
-                            MessageBox.Show("Hulpbehoevende");
                             gebrHulpbehoevende = gebr;
                         }
+                        else if (gebr.GetType() == typeof(Hulpverlener))
+                        {
+                            var hulpverlenerhoofdscherm = new HulpverlenerHoofdscherm(gebr);
+                            hulpverlenerhoofdscherm.Show();
+                            Close();
+                        }
+                        else if (gebr.GetType() == typeof(Beheerder))
+                        {
+                            var beheerderhoofdscherm = new Beheerderscherm(gebr);
+                            beheerderhoofdscherm.Show();
+                            Close();
+                        }
                     }
-                if (i == 1)
-                {
-                }
-                else if (i > 1)
+                if (i > 1)
                 {
                     var keuzescherm = new Keuzescherm(gebrVrijwilliger, gebrHulpbehoevende);
                     keuzescherm.Show();
+                    Close();
                 }
-                //MessageBox.Show(i + "  " + g);
             }
             else
             {

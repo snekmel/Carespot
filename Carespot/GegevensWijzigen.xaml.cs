@@ -42,12 +42,14 @@ namespace Carespot
         private void btGegevensWijzigen_Click(object sender, RoutedEventArgs e)
         {
             var inf = new GebruikerSQLContext();
+            bool canUpdate = true;
             var repo = new GebruikerRepository(inf);
             if (!String.IsNullOrEmpty(tbEmail.Text) && !String.IsNullOrEmpty(tbNaam.Text) &&
                 !String.IsNullOrEmpty(tbTelefoon.Text) && !String.IsNullOrEmpty(tbAdres.Text) &&
                 !String.IsNullOrEmpty(tbNummer.Text) && !String.IsNullOrEmpty(tbPostcode.Text) && !String.IsNullOrEmpty(tbPlaats.Text) &&
                 !String.IsNullOrEmpty(tbLand.Text))
             {
+                System.Windows.MessageBox.Show(_g.Wachtwoord);
                 _g.Email = tbEmail.Text;
                 _g.Naam = tbNaam.Text;
                 _g.Telefoonnummer = tbTelefoon.Text;
@@ -56,20 +58,54 @@ namespace Carespot
                 _g.Postcode = tbPostcode.Text;
                 _g.Plaats = tbPlaats.Text;
                 _g.Land = tbLand.Text;
-                if (!String.IsNullOrEmpty(pwbWachtwoord.Password) && !String.IsNullOrEmpty(pwbWachtwoordHerhalen.Password))
+
+                  //Wanneer 1 van de 2 leeg is
+                if (String.IsNullOrEmpty(pwbWachtwoord.Password) || String.IsNullOrEmpty(pwbWachtwoordHerhalen.Password))
                 {
-                    if (pwbWachtwoord.Password == pwbWachtwoordHerhalen.Password)
+
+                    if (String.IsNullOrEmpty(pwbWachtwoord.Password) &&
+                        String.IsNullOrEmpty(pwbWachtwoordHerhalen.Password))
                     {
-                        _g.Wachtwoord = pwbWachtwoord.Password;
+                        //allebei is leeg
+                        _g.Wachtwoord = _g.Wachtwoord;
+                        System.Windows.MessageBox.Show("allebei leeg + updaten");
                     }
                     else
                     {
-                        MessageBox.Show("Wachtwoorden komen niet overeen");
+                        //een van de 2 is leeg
+                        System.Windows.MessageBox.Show("Vul allebei de velden in.");
+                        canUpdate = false;
                     }
+
+
+
+                }
+                else
+                {
+                    //allebei gevuld
+                    if (!String.IsNullOrEmpty(pwbWachtwoord.Password) &&
+                        !String.IsNullOrEmpty(pwbWachtwoordHerhalen.Password))
+                    {
+
+                        if (pwbWachtwoord.Password != pwbWachtwoordHerhalen.Password)
+                        {
+                            System.Windows.MessageBox.Show("De wachtwoorden zijn niet gelijk.");
+                            canUpdate = false;
+                        }
+                        else
+                        {
+                            _g.Wachtwoord = pwbWachtwoordHerhalen.Password;
+                        }
+                    }
+               
+                }
+        
+
+                if (cbGeslacht.SelectedItem != null)
+                {
+                    _g.Geslacht = (Gebruiker.GebruikerGeslacht)cbGeslacht.SelectedItem;
                 }
 
-                _g.Wachtwoord = pwbWachtwoord.Password;
-                _g.Geslacht = (Gebruiker.GebruikerGeslacht)cbGeslacht.SelectedItem;
                 if (img == null)
                 {
                 }
@@ -78,7 +114,10 @@ namespace Carespot
                     _g.Foto = img;
                 }
 
-                repo.UpdateGebruiker(_g);
+                if (canUpdate)
+                {
+                    repo.UpdateGebruiker(_g);
+                }
             }
             else
             {
@@ -128,7 +167,7 @@ namespace Carespot
             tbPostcode.Text = _g.Postcode;
             tbPlaats.Text = _g.Plaats;
             tbLand.Text = _g.Land;
-            cbGeslacht.Text = _g.Geslacht.ToString();
+            cbGeslacht.SelectedValue = _g.Geslacht;
             imgProfielfoto.Source = FunctionRepository.ByteToImage(_g.Foto);
         }
 
