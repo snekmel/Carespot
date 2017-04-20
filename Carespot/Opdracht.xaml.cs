@@ -23,7 +23,6 @@ namespace Carespot
     /// </summary>
     public partial class Opdracht : Window
     {
-
         private Gebruiker _loggedInUser;
         private HulpOpdracht _hulpOpdracht;
 
@@ -31,6 +30,7 @@ namespace Carespot
         {
             InitializeComponent();
         }
+
         public Opdracht(Gebruiker g, HulpOpdracht h)
         {
             InitializeComponent();
@@ -47,26 +47,25 @@ namespace Carespot
             lblOpdrachtTitel.Content = _hulpOpdracht.Titel;
             tbOmschrijving.Text = _hulpOpdracht.Omschrijving;
 
-
             //client
             lblNaamCliënt.Content = _hulpOpdracht.Hulpbehoevende.Naam;
             lblTelefoonCliënt.Content = _hulpOpdracht.Hulpbehoevende.Telefoonnummer;
             lblEmailCliënt.Content = _hulpOpdracht.Hulpbehoevende.Email;
-
+            imgGebruiker_Hulpbehoevende.Source = FunctionRepository.ByteToImage(_hulpOpdracht.Hulpbehoevende.Foto);
 
             //Vrijwilliger
             lblNaamVrijwilliger.Content = _hulpOpdracht.Vrijwilleger.Naam;
             lblTelefoonVrijwilliger.Content = _hulpOpdracht.Vrijwilleger.Telefoonnummer;
             lblEmailVrijwilliger.Content = _hulpOpdracht.Vrijwilleger.Email;
-
+            imgGebruiker_Vrijwilliger.Source = FunctionRepository.ByteToImage(_hulpOpdracht.Vrijwilleger.Foto);
 
             //Profesionele begeleider
             lblNaamHulpverlener.Content = _hulpOpdracht.Hulpbehoevende.Hulpverlener.Naam;
             lblTelefoonHulpverlener.Content = _hulpOpdracht.Hulpbehoevende.Hulpverlener.Telefoonnummer;
-           lblEmailHulpverlener.Content = _hulpOpdracht.Hulpbehoevende.Hulpverlener.Email;
-
+            lblEmailHulpverlener.Content = _hulpOpdracht.Hulpbehoevende.Hulpverlener.Email;
+            imgGebruiker_Hulpverlener.Source =
+                FunctionRepository.ByteToImage(_hulpOpdracht.Hulpbehoevende.Hulpverlener.Foto);
         }
-
 
         private void imgSluitAf_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -96,14 +95,10 @@ namespace Carespot
             timer.Start();
         }
 
-        void Tick(object sender, EventArgs e)
+        private void Tick(object sender, EventArgs e)
         {
             //clear list view
             chatListbox.Items.Clear();
-
-
-
-
 
             //haal berichten op
             ChatSQLContext csc = new ChatSQLContext();
@@ -111,17 +106,15 @@ namespace Carespot
             List<ChatBericht> chatBerichten = cr.RetrieveAllChatBerichtenByOpdracht(_hulpOpdracht.Id);
             chatBerichten.Sort();
 
-           GebruikerSQLContext gsc = new GebruikerSQLContext();
+            GebruikerSQLContext gsc = new GebruikerSQLContext();
             GebruikerRepository gr = new GebruikerRepository(gsc);
-            
+
             foreach (ChatBericht chat in chatBerichten)
             {
                 Gebruiker g = gr.RetrieveGebruiker(chat.GebruikerId);
 
-                chatListbox.Items.Add("[" + chat.Tijd +" | " + g.Naam + "] : " + chat.Bericht);
+                chatListbox.Items.Add("[" + chat.Tijd + " | " + g.Naam + "] : " + chat.Bericht);
             }
-
-
         }
 
         private void btnSendChat_Click(object sender, RoutedEventArgs e)
@@ -130,6 +123,12 @@ namespace Carespot
             ChatRepository cr = new ChatRepository(csc);
             cr.CreateChatBericht(DateTime.Now, tbChatBericht.Text, _loggedInUser.Id, _hulpOpdracht.Id);
             tbChatBericht.Text = "";
+        }
+
+        private void imgBeoordeling_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            BeoordelingScherm beoordelingScherm = new BeoordelingScherm(_loggedInUser, _hulpOpdracht.Vrijwilleger);
+            beoordelingScherm.Show();
         }
     }
 }

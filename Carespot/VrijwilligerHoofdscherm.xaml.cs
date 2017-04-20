@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using Carespot.DAL.Repositorys;
 using Carespot.Models;
 
 namespace Carespot
@@ -11,20 +12,13 @@ namespace Carespot
     {
         private Gebruiker _ingelogdeGebruiker;
 
-        public VrijwilligerHoofdscherm()
-        {
-            InitializeComponent();
-            //laad naam gebruiker
-            //laad functie gebruiker
-            //lijst actieve opdrachten ophalen en in listbox zetten
-        }
-
         public VrijwilligerHoofdscherm(Gebruiker ingelogdeGebruiker)
         {
             InitializeComponent();
             _ingelogdeGebruiker = ingelogdeGebruiker;
             //laad naam gebruiker
-            //laad functie gebruiker
+            lblNaam.Content = _ingelogdeGebruiker.Naam;
+            imgGebruiker.Source = FunctionRepository.ByteToImage(_ingelogdeGebruiker.Foto);
             //lijst actieve opdrachten ophalen en in listbox zetten
         }
 
@@ -36,6 +30,8 @@ namespace Carespot
         private void btOpgeven_Click(object sender, RoutedEventArgs e)
         {
             //open scherm: VrijwilligerOpdrachtAannemen
+            VrijwilligerOpdrachtAannemen aannemen = new VrijwilligerOpdrachtAannemen(_ingelogdeGebruiker);
+            aannemen.Show();
         }
     }
 }

@@ -33,10 +33,10 @@ namespace Carespot.DAL.Context
         public void DeleteHulpbehoevende(int id)
         {
             _con.Open();
-            var cmdString = "DELETE FROM Gebruiker WHERE id = '" + id + "'";
+            var cmdString = "DELETE FROM Hulpbehoevende WHERE gebruikerId = '" + id + "'";
             var command = new SqlCommand(cmdString, _con);
             command.ExecuteNonQuery();
-            command.CommandText = "DELETE FROM Hulpbehoevende WHERE gebruikerId = '" + id + "'";
+            command.CommandText = "DELETE FROM Gebruiker WHERE id = '" + id + "'";
             command.ExecuteNonQuery();
             _con.Close();
         }

@@ -7,21 +7,20 @@
         mc:Ignorable="d"
         Title="Hulpvraag" Height="800" Width="800" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <TextBox x:Name="tbTitel" HorizontalAlignment="Left" Height="23" Margin="56,92,0,0" TextWrapping="Wrap" Text="Opdracht titel" VerticalAlignment="Top" Width="530" RenderTransformOrigin="0.2,-0.35"/>
+        <TextBox x:Name="tbTitel" HorizontalAlignment="Left" Height="23" Margin="56,92,0,0" TextWrapping="Wrap" Text="Opdracht titel" VerticalAlignment="Top" Width="530" RenderTransformOrigin="0.2,-0.35" />
         <RichTextBox x:Name="tbBeschrijving" HorizontalAlignment="Left" Height="527" Margin="56,188,0,0" VerticalAlignment="Top" Width="530">
             <FlowDocument>
                 <Paragraph>
-                    <Run Text="Voeg een beschrijving toe"/>
+                    <Run Text="Voeg een beschrijving toe" />
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <Button x:Name="btToevoegen" Content="Voeg toe" HorizontalAlignment="Left" Margin="618,663,0,0" VerticalAlignment="Top" Width="111" Height="52" FontSize="18.667" Click="btToevoegen_Click"/>
-        <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="102,24,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Image HorizontalAlignment="Left" Height="41" Margin="56,24,0,0" VerticalAlignment="Top" Width="41" Source="image/user-shape.png"/>
-        <CheckBox x:Name="chbUrgent" Content="Urgent" HorizontalAlignment="Left" Margin="618,92,0,0" VerticalAlignment="Top" Height="23" Width="80"/>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="41" Margin="717,24,0,0" VerticalAlignment="Top" Width="41" Source="image/cross-mark-on-a-black-circle-background.png" MouseLeftButtonUp="image_MouseLeftButtonUp"/>
-        <DatePicker x:Name="dpOpdrachtDatum" HorizontalAlignment="Left" Margin="247,143,0,0" VerticalAlignment="Top" Height="26" Width="147"/>
-        <Label x:Name="label" Content="Datum voor opdracht:" HorizontalAlignment="Left" Margin="56,137,0,0" VerticalAlignment="Top" FontSize="16"/>
-
+        <Button x:Name="btToevoegen" Content="Voeg toe" HorizontalAlignment="Left" Margin="618,663,0,0" VerticalAlignment="Top" Width="111" Height="52" FontSize="18.667" Click="btToevoegen_Click" />
+        <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="102,24,0,0" VerticalAlignment="Top" FontSize="16" />
+        <Image x:Name="imgProfiel" HorizontalAlignment="Left" Height="41" Margin="56,24,0,0" VerticalAlignment="Top" Width="41" />
+        <CheckBox x:Name="chbUrgent" Content="Urgent" HorizontalAlignment="Left" Margin="618,92,0,0" VerticalAlignment="Top" Height="23" Width="80" />
+        <Image x:Name="image" HorizontalAlignment="Left" Height="41" Margin="717,24,0,0" VerticalAlignment="Top" Width="41" Source="image/cross-mark-on-a-black-circle-background.png" MouseLeftButtonUp="image_MouseLeftButtonUp" />
+        <DatePicker x:Name="dpOpdrachtDatum" HorizontalAlignment="Left" Margin="247,143,0,0" VerticalAlignment="Top" Height="26" Width="147" />
+        <Label x:Name="label" Content="Datum voor opdracht:" HorizontalAlignment="Left" Margin="56,137,0,0" VerticalAlignment="Top" FontSize="16" />
     </Grid>
 </Window>

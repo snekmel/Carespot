@@ -55,8 +55,8 @@ namespace Carespot
                         }
                         else if (gebr.GetType() == typeof(Beheerder))
                         {
-                            var beheerderhoofdscherm = new Beheerderscherm(gebr);
-                            beheerderhoofdscherm.Show();
+                            var beheerderscherm = new GebruikerBeheer(gebr);
+                            beheerderscherm.Show();
                             Close();
                         }
                     }

@@ -29,11 +29,12 @@ namespace Carespot
             InitializeComponent();
             _loggedinUser = g;
             lblNaam.Content = _loggedinUser.Naam;
+            imgProfiel.Source = FunctionRepository.ByteToImage(_loggedinUser.Foto);
         }
 
         private void image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            CliëntOverzicht window = new CliëntOverzicht();
+            CliëntOverzicht window = new CliëntOverzicht(_loggedinUser);
             window.Show();
             this.Close();
         }
@@ -56,8 +57,8 @@ namespace Carespot
             Hulpbehoevende opdrachtEigenaar = hr.RetrieveHulpbehoevendeById(_loggedinUser.Id);
 
             //plaats hulpvraag
-            HulpOpdracht hulpOpdracht = new HulpOpdracht(geaccepteerd , titel, DateTime.Now, omschrijving, opdrachtdatum, opdrachtEigenaar);
-            HulpopdrachtSQLContext hulpOpdrachtContext = new HulpopdrachtSQLContext();            
+            HulpOpdracht hulpOpdracht = new HulpOpdracht(geaccepteerd, titel, DateTime.Now, omschrijving, opdrachtdatum, opdrachtEigenaar);
+            HulpopdrachtSQLContext hulpOpdrachtContext = new HulpopdrachtSQLContext();
             HulpopdrachtRepository hulpOpdrachtRepo = new HulpopdrachtRepository(hulpOpdrachtContext);
             hulpOpdrachtRepo.CreateHulpopdracht(hulpOpdracht);
         }

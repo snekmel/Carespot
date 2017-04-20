@@ -30,20 +30,15 @@ namespace Carespot
             _ingelogdeGebr = ingelogdegebr;
             FillMijnOpdrachtenList();
             imgGebruiker.Source = FunctionRepository.ByteToImage(_ingelogdeGebr.Foto);
-        }
-
-        public CliëntOverzicht()
-        {
-            //DEZE WEGHALEN NADAT INLOGGEN WERKT
-            InitializeComponent();
-            FillMijnOpdrachtenList();
+            lblNaam.Content = _ingelogdeGebr.Naam;
         }
 
         //Geef lijst van mogelijke vrijwilligers bij specifieke hulpvraag
-        private void imgVoegHulpvraagToe_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            //'Hulpvraag' openen
-        }
+        //private void imgVoegHulpvraagToe_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        //{
+        //    var hulpvraag = new Hulpvraagxaml(_ingelogdeGebr);
+        //    hulpvraag.Show();
+        //}
 
         private void FillMijnOpdrachtenList()
         {
@@ -103,6 +98,20 @@ namespace Carespot
             Reactie reactie = b.CommandParameter as Reactie;
 
             //Hier via dal opdracht afwijzen
+        }
+
+        private void imgAddHulpvraag_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var hulpvraag = new Hulpvraagxaml(_ingelogdeGebr);
+            hulpvraag.Show();
+        }
+
+        private void lvMijnOpdrachten_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            HulpOpdracht ho = (HulpOpdracht)lvMijnOpdrachten.SelectedItem;
+
+            Opdracht scherm = new Opdracht(_ingelogdeGebr, ho);
+            scherm.Show();
         }
     }
 }

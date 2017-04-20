@@ -265,7 +265,7 @@
     <Resource Include="image\list.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="image\add-square-button.png" />
+    <Resource Include="image\add-square-button.png" />
     <Resource Include="Sprints.txt" />
     <Resource Include="image\apple-logo.png" />
     <Resource Include="image\archive-black-box.png" />

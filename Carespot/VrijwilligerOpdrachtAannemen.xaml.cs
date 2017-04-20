@@ -22,7 +22,8 @@ namespace Carespot
     /// </summary>
     public partial class VrijwilligerOpdrachtAannemen : Window
     {
-        Gebruiker _ingelogdeGebr;
+        private Gebruiker _ingelogdeGebr;
+
         public VrijwilligerOpdrachtAannemen(Gebruiker ingelogdeGebr)
         {
             InitializeComponent();
@@ -31,6 +32,7 @@ namespace Carespot
             //vul combobox
             vulOpdrachtLijst();
         }
+
         //Geef lijst met beschikbare hulpvragen
         private void image_Copy1_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -59,6 +61,14 @@ namespace Carespot
             {
                 lvOpdrachten.Items.Add(opdracht);
             }
+        }
+
+        private void lvOpdrachten_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            HulpOpdracht ho = (HulpOpdracht)lvOpdrachten.SelectedItem;
+
+            Opdracht scherm = new Opdracht(_ingelogdeGebr, ho);
+            scherm.Show();
         }
     }
 }

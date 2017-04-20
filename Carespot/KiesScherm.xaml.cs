@@ -86,8 +86,8 @@ namespace Carespot
 
         private void VrijwilligerOverzicht_Click(object sender, RoutedEventArgs e)
         {
-            var vrijwilligerHoofdscherm = new VrijwilligerHoofdscherm();
-            vrijwilligerHoofdscherm.Show();
+            //    var vrijwilligerHoofdscherm = new VrijwilligerHoofdscherm();
+            //    vrijwilligerHoofdscherm.Show();
         }
 
         private void OpdrachtAannemen_Click(object sender, RoutedEventArgs e)

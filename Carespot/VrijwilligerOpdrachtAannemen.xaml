@@ -9,17 +9,16 @@
     <Grid>
         <Image x:Name="imgGebruiker" HorizontalAlignment="Left" Height="48" Margin="15,15,0,0" VerticalAlignment="Top" Width="54" Source="image/user-shape.png" />
         <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="69,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,0.5" FontSize="16" Height="28" Width="61" />
-        <Image x:Name="image_Copy1" HorizontalAlignment="Left" Height="48" Margin="514,15,0,0" VerticalAlignment="Top" Width="52" Source="image/cross-mark-on-a-black-circle-background.png" MouseLeftButtonUp="image_Copy1_MouseLeftButtonUp"/>
-        <ComboBox x:Name="cbLocatie" HorizontalAlignment="Left" Margin="69,80,0,0" VerticalAlignment="Top" Width="120"/>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="22" Margin="15,80,0,0" VerticalAlignment="Top" Width="25" Source="image/map-marker.png"/>
-        <ListView x:Name="lvOpdrachten" HorizontalAlignment="Left" Height="415" Margin="16,120,0,0" VerticalAlignment="Top" Width="550">
+        <Image x:Name="image_Copy1" HorizontalAlignment="Left" Height="48" Margin="514,15,0,0" VerticalAlignment="Top" Width="52" Source="image/cross-mark-on-a-black-circle-background.png" MouseLeftButtonUp="image_Copy1_MouseLeftButtonUp" />
+        <ComboBox x:Name="cbLocatie" HorizontalAlignment="Left" Margin="69,80,0,0" VerticalAlignment="Top" Width="120" />
+        <Image x:Name="image" HorizontalAlignment="Left" Height="22" Margin="15,80,0,0" VerticalAlignment="Top" Width="25" Source="image/map-marker.png" />
+        <ListView x:Name="lvOpdrachten" HorizontalAlignment="Left" Height="415" Margin="16,120,0,0" VerticalAlignment="Top" Width="550" MouseDoubleClick="lvOpdrachten_MouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="350" Header="Beschikbare opdrachten" DisplayMemberBinding="{Binding Titel}" />
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="btKiesOpdracht" Content="Reageer" HorizontalAlignment="Left" Margin="436,557,0,0" VerticalAlignment="Top" Width="130" Height="36" Click="btKiesOpdracht_Click"/>
-
+        <Button x:Name="btKiesOpdracht" Content="Reageer" HorizontalAlignment="Left" Margin="436,557,0,0" VerticalAlignment="Top" Width="130" Height="36" Click="btKiesOpdracht_Click" />
     </Grid>
 </Window>
