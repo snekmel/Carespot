@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Carespot"
         mc:Ignorable="d"
-        Title="BeoordelingScherm" Height="393.341" Width="610.714">
+        Title="BeoordelingScherm" Height="393.341" Width="610.714" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid>
         <Label x:Name="LblTitel" Content="Titel: " HorizontalAlignment="Left" Margin="42,40,0,0"
                VerticalAlignment="Top" Width="45" />

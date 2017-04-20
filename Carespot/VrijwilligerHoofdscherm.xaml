@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Carespot"
         mc:Ignorable="d"
-        Title="VrijwilligerHoofdscherm" Height="700" Width="450">
+        Title="VrijwilligerHoofdscherm" Height="700" Width="450" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Image x:Name="imgGebruiker" HorizontalAlignment="Left" Height="41" Margin="28,22,0,0" VerticalAlignment="Top" Width="41" Source="image/user-shape.png" />
         <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="69,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,0.5" FontSize="16" Height="28" Width="61" />

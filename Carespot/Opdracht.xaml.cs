@@ -43,7 +43,6 @@ namespace Carespot
         private void ViewLoader()
         {
             lblNaam.Content = _hulpOpdracht.Hulpbehoevende.Naam;
-            lblFunctie.Content ="Vrijwilliger";
 
             lblOpdrachtTitel.Content = _hulpOpdracht.Titel;
             tbOmschrijving.Text = _hulpOpdracht.Omschrijving;
@@ -62,9 +61,9 @@ namespace Carespot
 
 
             //Profesionele begeleider
-          //  lblNaamHulpverlener.Content = _hulpOpdracht.Hulpbehoevende.Hulpverlener.Naam;
-         //   lblTelefoonHulpverlener.Content = _hulpOpdracht.Hulpbehoevende.Hulpverlener.Telefoonnummer;
-        //    lblEmailHulpverlener.Content = _hulpOpdracht.Hulpbehoevende.Hulpverlener.Email;
+            lblNaamHulpverlener.Content = _hulpOpdracht.Hulpbehoevende.Hulpverlener.Naam;
+            lblTelefoonHulpverlener.Content = _hulpOpdracht.Hulpbehoevende.Hulpverlener.Telefoonnummer;
+           lblEmailHulpverlener.Content = _hulpOpdracht.Hulpbehoevende.Hulpverlener.Email;
 
         }
 
@@ -102,19 +101,35 @@ namespace Carespot
             //clear list view
             chatListbox.Items.Clear();
 
+
+
+
+
             //haal berichten op
             ChatSQLContext csc = new ChatSQLContext();
             ChatRepository cr = new ChatRepository(csc);
             List<ChatBericht> chatBerichten = cr.RetrieveAllChatBerichtenByOpdracht(_hulpOpdracht.Id);
+            chatBerichten.Sort();
 
+           GebruikerSQLContext gsc = new GebruikerSQLContext();
+            GebruikerRepository gr = new GebruikerRepository(gsc);
             
             foreach (ChatBericht chat in chatBerichten)
             {
-                
-                chatListbox.Items.Add(chat.Tijd.ToString() + "|" + chat.Id + " : " + chat.Bericht);
+                Gebruiker g = gr.RetrieveGebruiker(chat.GebruikerId);
+
+                chatListbox.Items.Add("[" + chat.Tijd +" | " + g.Naam + "] : " + chat.Bericht);
             }
 
 
+        }
+
+        private void btnSendChat_Click(object sender, RoutedEventArgs e)
+        {
+            ChatSQLContext csc = new ChatSQLContext();
+            ChatRepository cr = new ChatRepository(csc);
+            cr.CreateChatBericht(DateTime.Now, tbChatBericht.Text, _loggedInUser.Id, _hulpOpdracht.Id);
+            tbChatBericht.Text = "";
         }
     }
 }
