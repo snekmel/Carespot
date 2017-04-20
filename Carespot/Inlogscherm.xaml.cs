@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Windows;
+﻿using System.Windows;
 using Carespot.DAL.Repositorys;
 using Carespot.Models;
 
@@ -27,16 +26,39 @@ namespace Carespot
         {
             //Controleer gegevens en log in, indien er meerdere soorten gebruik binnen die persoon mogelijk zijn, opent eerst het scherm 'Keuzescherm'
             Gebruiker g;
+            Gebruiker gebrVrijwilliger = null;
+            Gebruiker gebrHulpbehoevende = null;
+            var i = 0;
+
             g = AuthRepository.CheckAuth(tbEmail.Text, pbWachtwoord.Password);
             if (g != null)
             {
-                GebruikerRepository gr = new GebruikerRepository();
-                List<Gebruiker> gebruikers = gr.RetrieveAll();
-                foreach (Gebruiker gebr in gebruikers)
+                var gr = new GebruikerRepository();
+                var gebruikers = gr.RetrieveAll();
+                foreach (var gebr in gebruikers)
+                    if (gebr.Id == g.Id)
+                    {
+                        i++;
+                        if (gebr.GetType() == typeof(Vrijwilliger))
+                        {
+                            MessageBox.Show("Vrijwilliger");
+                            gebrVrijwilliger = gebr;
+                        }
+                        else if (gebr.GetType() == typeof(Hulpbehoevende))
+                        {
+                            MessageBox.Show("Hulpbehoevende");
+                            gebrHulpbehoevende = gebr;
+                        }
+                    }
+                if (i == 1)
                 {
                 }
-
-                MessageBox.Show(g.ToString());
+                else if (i > 1)
+                {
+                    var keuzescherm = new Keuzescherm(gebrVrijwilliger, gebrHulpbehoevende);
+                    keuzescherm.Show();
+                }
+                //MessageBox.Show(i + "  " + g);
             }
             else
             {

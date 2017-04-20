@@ -16,24 +16,21 @@ namespace Carespot
             InitializeComponent();
 
             // Test code---------------------------------
-/*
-            HulpopdrachtSQLContext hsc = new HulpopdrachtSQLContext();
-       HulpopdrachtRepository hr = new HulpopdrachtRepository(hsc);
+            /*
+                        HulpopdrachtSQLContext hsc = new HulpopdrachtSQLContext();
+                   HulpopdrachtRepository hr = new HulpopdrachtRepository(hsc);
 
-            HulpOpdracht ho = hr.GetHulpopdrachtByID(2);
+                        HulpOpdracht ho = hr.GetHulpopdrachtByID(2);
 
+                        VrijwilligerSQLContext vsc = new VrijwilligerSQLContext();
+                        VrijwilligerRepository vr = new VrijwilligerRepository(vsc);
 
-            VrijwilligerSQLContext vsc = new VrijwilligerSQLContext();
-            VrijwilligerRepository vr = new VrijwilligerRepository(vsc);
+                       Opdracht opdrachtScherm = new Opdracht(ho.Vrijwilleger, ho);
+                        opdrachtScherm.Show();
 
-
-           Opdracht opdrachtScherm = new Opdracht(ho.Vrijwilleger, ho);
-            opdrachtScherm.Show();
-
-            System.Windows.MessageBox.Show(hr.GetAllHulpopdrachten().Count + "");
-            */
+                        System.Windows.MessageBox.Show(hr.GetAllHulpopdrachten().Count + "");
+                        */
             //----------------------------------------
-            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -44,7 +41,7 @@ namespace Carespot
 
         private void Keuzescherm_Click(object sender, RoutedEventArgs e)
         {
-            var keuzescherm = new Keuzescherm();
+            var keuzescherm = new Keuzescherm(null, null);
             keuzescherm.Show();
         }
 
@@ -83,14 +80,13 @@ namespace Carespot
             GebruikerSQLContext gsc = new GebruikerSQLContext();
             GebruikerRepository gr = new GebruikerRepository(gsc);
 
+            HulpopdrachtSQLContext hsc = new HulpopdrachtSQLContext();
+            HulpopdrachtRepository hr = new HulpopdrachtRepository(hsc);
 
-           HulpopdrachtSQLContext hsc = new HulpopdrachtSQLContext();
-           HulpopdrachtRepository hr = new HulpopdrachtRepository(hsc);
-
-            List<HulpOpdracht> lijst =  hr.GetAllHulpopdrachten();
+            List<HulpOpdracht> lijst = hr.GetAllHulpopdrachten();
             Gebruiker g = gr.RetrieveGebruiker(1);
 
-            Opdracht opdracht = new Opdracht(g,lijst[0]);
+            Opdracht opdracht = new Opdracht(g, lijst[0]);
             opdracht.Show();
         }
 

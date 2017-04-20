@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Carespot.Models;
 
 namespace Carespot
 {
@@ -19,9 +20,14 @@ namespace Carespot
     /// </summary>
     public partial class Keuzescherm : Window
     {
-        public Keuzescherm()
+        private Gebruiker gebrVrijwilliger;
+        private Gebruiker gebrHulpbehoevende;
+
+        public Keuzescherm(Gebruiker vrijwilliger, Gebruiker hulpbehoevende)
         {
             InitializeComponent();
+            gebrVrijwilliger = vrijwilliger;
+            gebrHulpbehoevende = hulpbehoevende;
         }
 
         private void btHulpbehoevende_Click(object sender, RoutedEventArgs e)
