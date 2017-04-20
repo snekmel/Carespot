@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Carespot.DAL.Context;
+using Carespot.DAL.Repositorys;
+using Carespot.Models;
 
 namespace Carespot
 {
@@ -19,15 +22,36 @@ namespace Carespot
     /// </summary>
     public partial class ReactieOpHulpvraag : Window
     {
+
+        private Gebruiker _loggedInUser;
+        private HulpOpdracht _hulpOpdracht;
         public ReactieOpHulpvraag()
         {
             InitializeComponent();
         }
 
+        public ReactieOpHulpvraag(Gebruiker g, HulpOpdracht h)
+        {
+            InitializeComponent();
+            _loggedInUser = g;
+            _hulpOpdracht = h;
+        }
+
         private void btInsturen_Click(object sender, RoutedEventArgs e)
         {
+            if (tbReactie.Text == "Schrijf een bericht..." || tbReactie.Text == "") 
+            {
+                MessageBox.Show("Schrijf eerst een bericht");
+            }
+            else
+            {
+                ReactieSQLContext rsc = new ReactieSQLContext();
+                ReactieRepository rr = new ReactieRepository(rsc);
+                rr.CreateReactie(_loggedInUser.Id, _hulpOpdracht.Id, tbReactie.Text);
+            }
 
         }
+
 
         private void tbReactie_SelectionChanged(object sender, RoutedEventArgs e)
         {

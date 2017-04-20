@@ -18,12 +18,24 @@ namespace Carespot
             // Test code---------------------------------
 
             /*
+
+            /*
+            /*
+
              *
              * Hulpopdracht:
                         HulpopdrachtSQLContext hsc = new HulpopdrachtSQLContext();
                    HulpopdrachtRepository hr = new HulpopdrachtRepository(hsc);
 
                         HulpOpdracht ho = hr.GetHulpopdrachtByID(2);
+
+                        VrijwilligerSQLContext vsc = new VrijwilligerSQLContext();
+                        VrijwilligerRepository vr = new VrijwilligerRepository(vsc);
+
+                       Opdracht opdrachtScherm = new Opdracht(ho.Vrijwilleger, ho);
+                        opdrachtScherm.Show();
+
+                        System.Windows.MessageBox.Show(hr.GetAllHulpopdrachten().Count + "");
 
                         VrijwilligerSQLContext vsc = new VrijwilligerSQLContext();
                         VrijwilligerRepository vr = new VrijwilligerRepository(vsc);
@@ -52,7 +64,7 @@ namespace Carespot
 
         private void Keuzescherm_Click(object sender, RoutedEventArgs e)
         {
-            var keuzescherm = new Keuzescherm();
+            var keuzescherm = new Keuzescherm(null, null);
             keuzescherm.Show();
         }
 
