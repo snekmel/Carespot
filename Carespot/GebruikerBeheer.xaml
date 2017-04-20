@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Carespot"
         mc:Ignorable="d"
-        Title="GebruikerBeheer" Height="800" Width="1000">
+        Title="GebruikerBeheer" Height="800" Width="1000" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid>
         <ListView HorizontalAlignment="Left" Height="684" VerticalAlignment="Top" Width="972" Margin="10,10,0,0">
             <ListView.View>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Carespot"
         mc:Ignorable="d"
-        Title="KiesScherm" Height="250" Width="320">
+        Title="KiesScherm" Height="250" Width="320" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Button Content="Startscenario" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="12,18,0,0" Click="Button_Click"/>
         <Button x:Name="HulpverlenerOverzicht"  Content="HulpverlenerOverzicht" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="162,143,0,0" Click="HulpverlenerOverzicht_Click"/>
