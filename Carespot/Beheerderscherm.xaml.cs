@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Carespot.DAL.Context;
 using Carespot.DAL.Repositorys;
 using Carespot.Models;
@@ -20,16 +11,24 @@ using Microsoft.Win32;
 namespace Carespot
 {
     /// <summary>
-    /// Interaction logic for Beheerderscherm.xaml
+    ///     Interaction logic for Beheerderscherm.xaml
     /// </summary>
     public partial class Beheerderscherm : Window
     {
-        private byte[] img;
+        private Gebruiker _ingelogdeGebruiker;
         private byte[] foto;
+        private byte[] img;
 
         public Beheerderscherm()
         {
             InitializeComponent();
+            vulComboBox();
+        }
+
+        public Beheerderscherm(Gebruiker ingelogdeGebruiker)
+        {
+            InitializeComponent();
+            _ingelogdeGebruiker = ingelogdeGebruiker;
             vulComboBox();
         }
 
@@ -47,7 +46,7 @@ namespace Carespot
             dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
 
             // Display OpenFileDialog by calling ShowDialog method
-            bool? result = dlg.ShowDialog();
+            var result = dlg.ShowDialog();
 
             // Get the selected file name and display in a TextBox
             if (result == true)
@@ -57,9 +56,9 @@ namespace Carespot
 
                 var fs = new FileStream(filename, FileMode.Open, FileAccess.Read);
                 var br = new BinaryReader(fs);
-                img = br.ReadBytes((int)fs.Length);
-                Uri imageUri = new Uri(filename);
-                BitmapImage imageBitmap = new BitmapImage(imageUri);
+                img = br.ReadBytes((int) fs.Length);
+                var imageUri = new Uri(filename);
+                var imageBitmap = new BitmapImage(imageUri);
                 imgProfielfotoH.Source = imageBitmap;
             }
         }
@@ -74,7 +73,7 @@ namespace Carespot
                 var wachtwoordHerhalen = pwbWachtwoordOpnieuw.Password;
                 var email = tbEmailH.Text;
                 var naam = tbNaamH.Text;
-                var geslacht = (Gebruiker.GebruikerGeslacht)cbGeslachtH.SelectedItem;
+                var geslacht = (Gebruiker.GebruikerGeslacht) cbGeslachtH.SelectedItem;
                 var telNr = tbTelefoonH.Text;
                 if (img == null)
                 {
@@ -93,10 +92,9 @@ namespace Carespot
                 var postcode = tbPostcode.Text;
                 var plaats = tbPlaats.Text;
                 var land = tbLand.Text;
-                if (!String.IsNullOrEmpty(wachtwoord) && !String.IsNullOrEmpty(wachtwoordHerhalen)
-                    && !String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(naam) && !String.IsNullOrEmpty(telNr) && !String.IsNullOrEmpty(adres) && !String.IsNullOrEmpty(nr)
-                    && !String.IsNullOrEmpty(postcode) && !String.IsNullOrEmpty(plaats) && !String.IsNullOrEmpty(land))
-                {
+                if (!string.IsNullOrEmpty(wachtwoord) && !string.IsNullOrEmpty(wachtwoordHerhalen)
+                    && !string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(naam) && !string.IsNullOrEmpty(telNr) && !string.IsNullOrEmpty(adres) && !string.IsNullOrEmpty(nr)
+                    && !string.IsNullOrEmpty(postcode) && !string.IsNullOrEmpty(plaats) && !string.IsNullOrEmpty(land))
                     if (wachtwoord == wachtwoordHerhalen)
                     {
                         var inf = new GebruikerSQLContext();
@@ -134,11 +132,8 @@ namespace Carespot
                     {
                         MessageBox.Show("Wachtwoorden komen niet overeen.");
                     }
-                }
                 else
-                {
                     MessageBox.Show("Alle velden moeten ingevuld zijn.");
-                }
             }
             catch (NullReferenceException)
             {
@@ -148,24 +143,22 @@ namespace Carespot
 
         private void imgUitloggen_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            Inlogscherm inlogscherm = new Inlogscherm();
+            var inlogscherm = new Inlogscherm();
             inlogscherm.Show();
-            this.Hide();
+            Hide();
         }
 
         private void imgGebruikersbeheer_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            GebruikerBeheer gebruikerBeheer = new GebruikerBeheer();
+            var gebruikerBeheer = new GebruikerBeheer();
             gebruikerBeheer.Show();
-            this.Close();
+            Close();
         }
 
         private void vulComboBox()
         {
             foreach (var item in Enum.GetValues(typeof(Gebruiker.GebruikerGeslacht)))
-            {
                 cbGeslachtH.Items.Add(item);
-            }
 
             cbSoortH.Items.Add("Hulpverlener");
             cbSoortH.Items.Add("Beheerder");

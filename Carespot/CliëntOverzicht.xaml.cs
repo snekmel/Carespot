@@ -23,13 +23,13 @@ namespace Carespot
     public partial class CliëntOverzicht : Window
     {
         private readonly Gebruiker _ingelogdeGebr;
-        
 
         public CliëntOverzicht(Gebruiker ingelogdegebr)
         {
             InitializeComponent();
             _ingelogdeGebr = ingelogdegebr;
             FillMijnOpdrachtenList();
+            imgGebruiker.Source = FunctionRepository.ByteToImage(_ingelogdeGebr.Foto);
         }
 
         public CliëntOverzicht()
@@ -37,7 +37,6 @@ namespace Carespot
             //DEZE WEGHALEN NADAT INLOGGEN WERKT
             InitializeComponent();
             FillMijnOpdrachtenList();
-
         }
 
         //Geef lijst van mogelijke vrijwilligers bij specifieke hulpvraag
@@ -86,8 +85,24 @@ namespace Carespot
         private void lvMijnOpdrachten_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //Haal de reacties op aan de hand van de geselecteerde hulpopdracht
-            HulpOpdracht geselecteerdeHulpOpdracht = (HulpOpdracht) lvMijnOpdrachten.SelectedItem;
-            FillReactieOpOpdracht(geselecteerdeHulpOpdracht.Id);      
+            HulpOpdracht geselecteerdeHulpOpdracht = (HulpOpdracht)lvMijnOpdrachten.SelectedItem;
+            FillReactieOpOpdracht(geselecteerdeHulpOpdracht.Id);
+        }
+
+        private void AcepteerOpdracht(object sender, RoutedEventArgs e)
+        {
+            Button b = sender as Button;
+            Reactie reactie = b.CommandParameter as Reactie;
+
+            MessageBox.Show(Convert.ToString(reactie.Id));
+        }
+
+        private void AfwijzenOpdracht(object sender, RoutedEventArgs e)
+        {
+            Button b = sender as Button;
+            Reactie reactie = b.CommandParameter as Reactie;
+
+            //Hier via dal opdracht afwijzen
         }
     }
 }

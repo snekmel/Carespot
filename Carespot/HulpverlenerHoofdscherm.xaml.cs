@@ -1,34 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Carespot.DAL.Context;
 using Carespot.DAL.Repositorys;
 using Carespot.Models;
 
 namespace Carespot
 {
     /// <summary>
-    /// Interaction logic for HulpverlenerHoofdscherm.xaml
+    ///     Interaction logic for HulpverlenerHoofdscherm.xaml
     /// </summary>
-    ///
     public partial class HulpverlenerHoofdscherm : Window
     {
+        private readonly Gebruiker _ingelogdeGebruiker;
+
         public HulpverlenerHoofdscherm()
         {
             InitializeComponent();
-            SetProfielImg();
+            //laad naam
+            //laad functie
+        }
+
+        public HulpverlenerHoofdscherm(Gebruiker ingelogdeGebruiker)
+        {
+            InitializeComponent();
+            _ingelogdeGebruiker = ingelogdeGebruiker;
+            profielImg.Source = FunctionRepository.ByteToImage(_ingelogdeGebruiker.Foto);
             //laad naam
             //laad functie
         }
@@ -44,26 +39,6 @@ namespace Carespot
         private void imgUitloggen_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             //hulpverlener uitloggen en terug naar inlogscherm
-        }
-
-        public static ImageSource ByteToImage(byte[] imageData)
-        {
-            BitmapImage biImg = new BitmapImage();
-            MemoryStream ms = new MemoryStream(imageData);
-            biImg.BeginInit();
-            biImg.StreamSource = ms;
-            biImg.EndInit();
-
-            ImageSource imgSrc = biImg as ImageSource;
-
-            return imgSrc;
-        }
-
-        private void SetProfielImg()
-        {
-            var inf = new GebruikerSQLContext();
-            var repo = new GebruikerRepository(inf);
-            profielImg.Source = ByteToImage(repo.RetrieveGebruiker(1039).Foto);
         }
     }
 }
