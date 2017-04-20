@@ -16,7 +16,7 @@ namespace Carespot
             InitializeComponent();
 
             // Test code---------------------------------
-
+/*
             HulpopdrachtSQLContext hsc = new HulpopdrachtSQLContext();
        HulpopdrachtRepository hr = new HulpopdrachtRepository(hsc);
 
@@ -30,7 +30,7 @@ namespace Carespot
            Opdracht opdrachtScherm = new Opdracht(ho.Vrijwilleger, ho);
             opdrachtScherm.Show();
 
-          
+          */
             
             //----------------------------------------
             
