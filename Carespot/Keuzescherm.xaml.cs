@@ -1,27 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Carespot.Models;
 
 namespace Carespot
 {
     /// <summary>
-    /// Interaction logic for Keuzescherm.xaml
+    ///     Interaction logic for Keuzescherm.xaml
     /// </summary>
     public partial class Keuzescherm : Window
     {
-        private Gebruiker gebrVrijwilliger;
-        private Gebruiker gebrHulpbehoevende;
+        private readonly Gebruiker gebrHulpbehoevende;
+        private readonly Gebruiker gebrVrijwilliger;
 
         public Keuzescherm(Gebruiker vrijwilliger, Gebruiker hulpbehoevende)
         {
@@ -32,19 +21,27 @@ namespace Carespot
 
         private void btHulpbehoevende_Click(object sender, RoutedEventArgs e)
         {
+            var cliëntscherm = new CliëntOverzicht(gebrHulpbehoevende);
+            cliëntscherm.Show();
+            Close();
             //log in als hulpbehoevende --> open 'CliëntOverzicht'
+            //MessageBox.Show(gebrHulpbehoevende + " - " + gebrHulpbehoevende.Email);
         }
 
         private void btVrijwilliger_Click(object sender, RoutedEventArgs e)
         {
+            var vrijwilligerscherm = new VrijwilligerHoofdscherm(gebrVrijwilliger);
+            vrijwilligerscherm.Show();
+            Close();
             //log in als vrijwilliger --> open 'VrijwilligerHoofdscherm'
+            //MessageBox.Show(gebrVrijwilliger + " - " + gebrVrijwilliger.Email);
         }
 
         private void imgSluiten_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            Inlogscherm inlog = new Inlogscherm();
+            var inlog = new Inlogscherm();
             inlog.Show();
-            this.Close();
+            Close();
         }
     }
 }

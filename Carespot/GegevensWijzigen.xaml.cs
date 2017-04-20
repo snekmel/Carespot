@@ -56,7 +56,26 @@ namespace Carespot
                 _g.Postcode = tbPostcode.Text;
                 _g.Plaats = tbPlaats.Text;
                 _g.Land = tbLand.Text;
-                if (!String.IsNullOrEmpty(pwbWachtwoord.Password) && !String.IsNullOrEmpty(pwbWachtwoordHerhalen.Password))
+
+                // wanneer allebei leeg behoud wachtwoord
+                if (string.IsNullOrEmpty(pwbWachtwoord.Password) && string.IsNullOrEmpty(pwbWachtwoordHerhalen.Password))
+                {
+                    _g.Wachtwoord = _g.Wachtwoord;
+                }
+                // wanneer een va twee leeg geef bericht
+                if (string.IsNullOrEmpty(pwbWachtwoord.Password) &&
+                    !string.IsNullOrEmpty(pwbWachtwoordHerhalen.Password))
+                {
+                    MessageBox.Show("Wachtwoordvelden moeten allebei ingevuld zijn.");
+                }
+                if (!string.IsNullOrEmpty(pwbWachtwoord.Password) &&
+                   string.IsNullOrEmpty(pwbWachtwoordHerhalen.Password))
+                {
+                    MessageBox.Show("Wachtwoordvelden moeten allebei ingevuld zijn.");
+                }
+                // wanneer allebei gevuld en klopt update wachtwoord
+                if (!string.IsNullOrEmpty(pwbWachtwoord.Password) &&
+                    !string.IsNullOrEmpty(pwbWachtwoordHerhalen.Password))
                 {
                     if (pwbWachtwoord.Password == pwbWachtwoordHerhalen.Password)
                     {
@@ -64,12 +83,14 @@ namespace Carespot
                     }
                     else
                     {
-                        MessageBox.Show("Wachtwoorden komen niet overeen");
+                        MessageBox.Show("Wachtwoorden komen niet overeen.");
                     }
                 }
+                if (cbGeslacht.SelectedItem != null)
+                {
+                    _g.Geslacht = (Gebruiker.GebruikerGeslacht)cbGeslacht.SelectedItem;
+                }
 
-                _g.Wachtwoord = pwbWachtwoord.Password;
-                _g.Geslacht = (Gebruiker.GebruikerGeslacht)cbGeslacht.SelectedItem;
                 if (img == null)
                 {
                 }
@@ -128,7 +149,7 @@ namespace Carespot
             tbPostcode.Text = _g.Postcode;
             tbPlaats.Text = _g.Plaats;
             tbLand.Text = _g.Land;
-            cbGeslacht.Text = _g.Geslacht.ToString();
+            cbGeslacht.SelectedValue = _g.Geslacht;
             imgProfielfoto.Source = FunctionRepository.ByteToImage(_g.Foto);
         }
 
