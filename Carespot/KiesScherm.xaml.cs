@@ -150,6 +150,8 @@ namespace Carespot
         private void Gegevenswijzigen_Click(object sender, RoutedEventArgs e)
         {
             //var gegevenswijzigen = new GegevensWijzigen(null);
+            //var gegevenswijzigen = new GegevensWijzigen();
+            //gegevenswijzigen.Show();
             // var gegevenswijzigen = new GegevensWijzigen(null);
             var inf = new HulpbehoevendeSQLContext();
             var repo = new HulpbehoevendeRepository(inf);
@@ -157,7 +159,6 @@ namespace Carespot
             var gegevenswijzigen = new GegevensWijzigen(h);
             gegevenswijzigen.Show();
         }
-
         private void ReactieOpHulpvraag_Click(object sender, RoutedEventArgs e)
         {
             var reactieOpHulpvraag = new ReactieOpHulpvraag();
