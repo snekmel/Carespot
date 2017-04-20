@@ -63,6 +63,22 @@ namespace Carespot
 
             foreach (var g in gebruikersLijst)
             {
+                if (g.GetType() == typeof(Beheerder))
+                {
+                    g.Type = Gebruiker.GebruikerType.Beheerder;
+                }
+                else if (g.GetType() == typeof(Hulpbehoevende))
+                {
+                    g.Type = Gebruiker.GebruikerType.Hulpbehoevende;
+                }
+                else if (g.GetType() == typeof(Hulpverlener))
+                {
+                    g.Type = Gebruiker.GebruikerType.Hulpverlener;
+                }
+                else if (g.GetType() == typeof(Vrijwilliger))
+                {
+                    g.Type = Gebruiker.GebruikerType.Vrijwilliger;
+                }
                 lvGebruikers.Items.Add(g);
             }       
         }
