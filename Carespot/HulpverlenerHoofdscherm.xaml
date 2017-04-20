@@ -5,14 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Carespot"
         mc:Ignorable="d"
-        Title="HulpverlenerHoofdscherm" Height="500" Width="800">
+        Title="HulpverlenerHoofdscherm" Height="500" Width="800" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="61*"/>
+            <ColumnDefinition Width="38*"/>
+        </Grid.ColumnDefinitions>
         <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="69,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,0.5" FontSize="16" Height="28" Width="61" />
         <Label x:Name="lblFunctie" Content="Functie" HorizontalAlignment="Left" Margin="69,36,0,0" VerticalAlignment="Top" FontSize="16" Height="27" Width="61" />
-        <Image x:Name="imgUitloggen" HorizontalAlignment="Left" Height="41" Margin="713,15,0,0" VerticalAlignment="Top" Width="41" Source="image/sign-out-option.png" MouseLeftButtonUp="imgUitloggen_MouseLeftButtonUp" />
-        <Image x:Name="imgHulpverlenerToevoegen" HorizontalAlignment="Left" Height="41" Margin="635,15,0,0" VerticalAlignment="Top" Width="41" Source="image/cog-wheel-silhouette.png" MouseLeftButtonUp="imgHulpverlenerToevoegen_MouseLeftButtonUp" />
+        <Image x:Name="imgUitloggen" HorizontalAlignment="Left" Height="41" Margin="225.314,15,0,0" VerticalAlignment="Top" Width="41" Source="image/sign-out-option.png" MouseLeftButtonUp="imgUitloggen_MouseLeftButtonUp" Grid.Column="1" />
+        <Image x:Name="imgHulpverlenerToevoegen" HorizontalAlignment="Left" Height="41" Margin="147.314,15,0,0" VerticalAlignment="Top" Width="41" Source="image/cog-wheel-silhouette.png" MouseLeftButtonUp="imgHulpverlenerToevoegen_MouseLeftButtonUp" Grid.Column="1" />
         <ListBox x:Name="lbCliënten" HorizontalAlignment="Left" Height="305" VerticalAlignment="Top" Width="200" Margin="15,139,0,0" />
-        <ListView x:Name="lvOpdrachten" HorizontalAlignment="Left" Height="305" Margin="234,139,0,0" VerticalAlignment="Top" Width="520">
+        <ListView x:Name="lvOpdrachten" HorizontalAlignment="Left" Height="305" Margin="234,139,0,0" VerticalAlignment="Top" Width="520" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Geselecteerde opdrachten" Width="350" />

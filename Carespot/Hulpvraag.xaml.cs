@@ -22,18 +22,13 @@ namespace Carespot
     /// </summary>
     public partial class Hulpvraagxaml : Window
     {
-        Hulpbehoevende hulpbehoevende;
+        private Gebruiker _loggedinUser;
 
-        public Hulpvraagxaml()
+        public Hulpvraagxaml(Gebruiker g)
         {
             InitializeComponent();
-        }
-
-        public Hulpvraagxaml(Hulpbehoevende hb)
-        {
-            InitializeComponent();
-            hulpbehoevende = hb;
-            lblNaam.Content = hulpbehoevende.Naam;
+            _loggedinUser = g;
+            lblNaam.Content = _loggedinUser.Naam;
         }
 
         private void image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -55,8 +50,13 @@ namespace Carespot
 
             bool geaccepteerd = false;
 
+            HulpbehoevendeSQLContext hsc = new HulpbehoevendeSQLContext();
+            HulpbehoevendeRepository hr = new HulpbehoevendeRepository(hsc);
+
+            Hulpbehoevende opdrachtEigenaar = hr.RetrieveHulpbehoevendeById(_loggedinUser.Id);
+
             //plaats hulpvraag
-            HulpOpdracht hulpOpdracht = new HulpOpdracht(geaccepteerd , titel, DateTime.Now, omschrijving, opdrachtdatum, hulpbehoevende);
+            HulpOpdracht hulpOpdracht = new HulpOpdracht(geaccepteerd , titel, DateTime.Now, omschrijving, opdrachtdatum, opdrachtEigenaar);
             HulpopdrachtSQLContext hulpOpdrachtContext = new HulpopdrachtSQLContext();            
             HulpopdrachtRepository hulpOpdrachtRepo = new HulpopdrachtRepository(hulpOpdrachtContext);
             hulpOpdrachtRepo.CreateHulpopdracht(hulpOpdracht);

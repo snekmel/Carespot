@@ -23,18 +23,21 @@ namespace Carespot
     public partial class CliëntOverzicht : Window
     {
         private readonly Gebruiker _ingelogdeGebr;
+        
 
         public CliëntOverzicht(Gebruiker ingelogdegebr)
         {
             InitializeComponent();
             _ingelogdeGebr = ingelogdegebr;
-            FillLists();
+            FillMijnOpdrachtenList();
         }
 
         public CliëntOverzicht()
         {
+            //DEZE WEGHALEN NADAT INLOGGEN WERKT
             InitializeComponent();
-            FillLists();
+            FillMijnOpdrachtenList();
+
         }
 
         //Geef lijst van mogelijke vrijwilligers bij specifieke hulpvraag
@@ -43,20 +46,48 @@ namespace Carespot
             //'Hulpvraag' openen
         }
 
-        private void FillLists()
+        private void FillMijnOpdrachtenList()
         {
+            lvMijnOpdrachten.Items.Clear();
+
             var context = new HulpopdrachtSQLContext();
             var hr = new HulpopdrachtRepository(context);
 
             //Vul lijst met mijn hulpopdrachten
             List<HulpOpdracht> mijnOpdrachten = new List<HulpOpdracht>();
-            mijnOpdrachten = hr.GetAllHulpopdrachtenByHulpbehoevendeID(_ingelogdeGebr.Id);
+            //mijnOpdrachten = hr.GetAllHulpopdrachtenByHulpbehoevendeID(_ingelogdeGebr.Id);
+            mijnOpdrachten = hr.GetAllHulpopdrachtenByHulpbehoevendeID(5);
 
             foreach (var hulpopdracht in mijnOpdrachten)
             {
                 //Voeg toe aan listview
                 lvMijnOpdrachten.Items.Add(hulpopdracht);
             }
+        }
+
+        private void FillReactieOpOpdracht(int hulpopdrachtid)
+        {
+            lvReacties.Items.Clear();
+
+            var context = new ReactieSQLContext();
+            var rr = new ReactieRepository(context);
+
+            //Vul lijst met mijn reacties
+            List<Reactie> reactiesOpOpdracht = new List<Reactie>();
+            reactiesOpOpdracht = rr.GetAllReactiesByHulopdrachtID(hulpopdrachtid);
+
+            foreach (var reactie in reactiesOpOpdracht)
+            {
+                //Voeg toe aan listview
+                lvReacties.Items.Add(reactie);
+            }
+        }
+
+        private void lvMijnOpdrachten_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //Haal de reacties op aan de hand van de geselecteerde hulpopdracht
+            HulpOpdracht geselecteerdeHulpOpdracht = (HulpOpdracht) lvMijnOpdrachten.SelectedItem;
+            FillReactieOpOpdracht(geselecteerdeHulpOpdracht.Id);      
         }
     }
 }
