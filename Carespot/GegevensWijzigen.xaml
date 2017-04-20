@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Carespot"
         mc:Ignorable="d"
-        Title="GegevensWijzigen" Height="500" Width="900">
+        Title="GegevensWijzigen" Height="500" Width="900" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label x:Name="label" Content="Wijzig je gegevens" HorizontalAlignment="Left" Margin="298,19,0,0" VerticalAlignment="Top" FontSize="26.667" Width="238" />
         <Image x:Name="imgSluiten" HorizontalAlignment="Left" Height="41" Margin="813,19,0,0" VerticalAlignment="Top" Width="41" Source="image/cross-mark-on-a-black-circle-background.png" MouseLeftButtonUp="imgSluiten_MouseLeftButtonUp" />

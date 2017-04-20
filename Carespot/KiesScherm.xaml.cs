@@ -16,21 +16,35 @@ namespace Carespot
             InitializeComponent();
 
             // Test code---------------------------------
-/*
-            HulpopdrachtSQLContext hsc = new HulpopdrachtSQLContext();
-       HulpopdrachtRepository hr = new HulpopdrachtRepository(hsc);
-
-            HulpOpdracht ho = hr.GetHulpopdrachtByID(2);
 
 
-            VrijwilligerSQLContext vsc = new VrijwilligerSQLContext();
-            VrijwilligerRepository vr = new VrijwilligerRepository(vsc);
+            /*
+             * 
+             * Hulpopdracht:
+                        HulpopdrachtSQLContext hsc = new HulpopdrachtSQLContext();
+                   HulpopdrachtRepository hr = new HulpopdrachtRepository(hsc);
+
+                        HulpOpdracht ho = hr.GetHulpopdrachtByID(2);
 
 
-           Opdracht opdrachtScherm = new Opdracht(ho.Vrijwilleger, ho);
-            opdrachtScherm.Show();
+                        VrijwilligerSQLContext vsc = new VrijwilligerSQLContext();
+                        VrijwilligerRepository vr = new VrijwilligerRepository(vsc);
 
-            System.Windows.MessageBox.Show(hr.GetAllHulpopdrachten().Count + "");
+
+                       Opdracht opdrachtScherm = new Opdracht(ho.Vrijwilleger, ho);
+                        opdrachtScherm.Show();
+
+                      */
+
+
+            //Maak nieuwe hulpopdracht
+        /*  HulpbehoevendeSQLContext hsc = new HulpbehoevendeSQLContext();
+            HulpbehoevendeRepository hr = new HulpbehoevendeRepository(hsc);
+
+
+            Hulpvraagxaml hulpvraagScherm = new Hulpvraagxaml(hr.RetrieveHulpbehoevendeById(5));
+
+            hulpvraagScherm.Show();
             */
             //----------------------------------------
             
@@ -62,8 +76,8 @@ namespace Carespot
 
         private void Hulpvraag_Click(object sender, RoutedEventArgs e)
         {
-            var hulpvraag = new Hulpvraagxaml();
-            hulpvraag.Show();
+           // var hulpvraag = new Hulpvraagxaml();
+           // hulpvraag.Show();
         }
 
         private void VrijwilligerOverzicht_Click(object sender, RoutedEventArgs e)
@@ -134,6 +148,12 @@ namespace Carespot
         {
             var gegevenswijzigen = new GegevensWijzigen();
             gegevenswijzigen.Show();
+        }
+
+        private void ReactieOpHulpvraag_Click(object sender, RoutedEventArgs e)
+        {
+            var reactieOpHulpvraag = new ReactieOpHulpvraag();
+            reactieOpHulpvraag.Show();
         }
     }
 }

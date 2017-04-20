@@ -55,7 +55,7 @@ namespace Carespot.DAL.Context
                 hulpBehoevende.Id = reader.GetInt32(0);
                 hulpBehoevende.Naam = reader.GetString(1);
                 hulpBehoevende.Wachtwoord = reader.GetString(2);
-                hulpBehoevende.Geslacht = (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
+                hulpBehoevende.Geslacht = (Gebruiker.GebruikerGeslacht) Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
                 hulpBehoevende.Straat = reader.GetString(4);
                 hulpBehoevende.Huisnummer = reader.GetString(5);
                 hulpBehoevende.Postcode = reader.GetString(6);
@@ -92,7 +92,7 @@ namespace Carespot.DAL.Context
                     hulpverlener.Foto = (byte[])reader[11];
                 }
                 hulpverlener.Geslacht =
-                    (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
+                    (Gebruiker.GebruikerGeslacht) Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
                 hulpverlener.Huisnummer = reader.GetString(5);
                 hulpverlener.Straat = reader.GetString(4);
                 hulpverlener.Id = reader.GetInt32(0);
@@ -130,7 +130,7 @@ namespace Carespot.DAL.Context
                 hulpbehoevende.Email = reader.GetString(9);
 
                 hulpbehoevende.Geslacht =
-                    (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
+                    (Gebruiker.GebruikerGeslacht) Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
                 hulpbehoevende.Huisnummer = reader.GetString(5);
                 hulpbehoevende.Id = reader.GetInt32(0);
                 hulpbehoevende.Land = reader.GetString(8);

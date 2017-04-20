@@ -19,7 +19,7 @@ namespace UnitTestCarespot
             var context = new ReactieSQLContext();
             var rr = new ReactieRepository(context);
 
-            rr.CreateReactie(5, 3, "Moet ik je komen helpen ?");
+            rr.CreateReactie(14, 2, "Heb je nog hulp nodig??");
         }
 
         [TestMethod]

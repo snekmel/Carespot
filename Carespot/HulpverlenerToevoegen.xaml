@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Carespot"
         mc:Ignorable="d"
-        Title="HulpverlenerToevoegen" Height="600" Width="750">
+        Title="HulpverlenerToevoegen" Height="600" Width="750" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label x:Name="label" Content="Voeg een nieuwe hulpverlener toe" HorizontalAlignment="Left" Margin="218,10,0,0" VerticalAlignment="Top" FontSize="18.667" Width="466" />
         <Image x:Name="imgSluiten" HorizontalAlignment="Left" Height="41" Margin="682,10,0,0" VerticalAlignment="Top" Width="41" Source="image/cross-mark-on-a-black-circle-background.png" MouseLeftButtonUp="imgSluiten_MouseLeftButtonUp" />
