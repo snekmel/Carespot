@@ -59,7 +59,7 @@ namespace Carespot.DAL.Context
                 using (_con)
                 {
                     string query =
-                        "UPDATE Gebruiker SET naam = @naam, wachtwoord = @wachtwoord, geslacht = @geslacht, straat = @straat, huisnummer = @huisnummer, postcode = @postcode, plaats = @plaats, land = @land, email = @email, telefoonnummer = @telefoonnummer WHERE id =" + g.Id;
+                        "UPDATE Gebruiker SET naam = @naam, wachtwoord = @wachtwoord, geslacht = @geslacht, straat = @straat, huisnummer = @huisnummer, postcode = @postcode, plaats = @plaats, land = @land, email = @email, telefoonnummer = @telefoonnummer, foto = @foto WHERE id =" + g.Id;
                     SqlCommand cmd = new SqlCommand(query, _con);
 
                     _con.Open();
@@ -73,7 +73,7 @@ namespace Carespot.DAL.Context
                     cmd.Parameters.AddWithValue("@land", g.Land);
                     cmd.Parameters.AddWithValue("@email", g.Email);
                     cmd.Parameters.AddWithValue("@telefoonnummer", g.Telefoonnummer);
-                    //foto
+                    cmd.Parameters.AddWithValue("@foto", g.Foto);
                     cmd.ExecuteNonQuery();
                     _con.Close();
                 }
