@@ -30,8 +30,8 @@ namespace Carespot
            Opdracht opdrachtScherm = new Opdracht(ho.Vrijwilleger, ho);
             opdrachtScherm.Show();
 
-            System.Windows.MessageBox.Show(hr.GetAllHulpopdrachten().Count + "");
-            */
+          */
+            
             //----------------------------------------
             
         }
