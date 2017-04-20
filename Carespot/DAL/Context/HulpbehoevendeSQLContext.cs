@@ -128,7 +128,7 @@ namespace Carespot.DAL.Context
             while (reader.Read())
             {
                 hulpbehoevende.Email = reader.GetString(9);
-
+                hulpbehoevende.Wachtwoord = reader.GetString(2);
                 hulpbehoevende.Geslacht =
                     (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
                 hulpbehoevende.Huisnummer = reader.GetString(5);

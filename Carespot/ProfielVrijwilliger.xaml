@@ -22,7 +22,8 @@
         <ListView x:Name="lvRecensies" HorizontalAlignment="Left" Height="440" VerticalAlignment="Top" Width="490" Margin="70.2,119,0,0" Grid.ColumnSpan="3" Grid.Column="1" SelectionChanged="ListView_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Recensies" Width="250"/>
+                    <GridViewColumn Width="100" Header="Cijfer" DisplayMemberBinding="{Binding Cijfer}"/>
+                    <GridViewColumn Width="390" Header="Opmerking" DisplayMemberBinding="{Binding Opmerking}"/>
                 </GridView>
             </ListView.View>
         </ListView>

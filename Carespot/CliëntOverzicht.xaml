@@ -15,7 +15,23 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Naam" Width="150" DisplayMemberBinding="{Binding Vrijwilliger.Naam}" />
-                    <GridViewColumn Header="Bericht" Width="395" DisplayMemberBinding="{Binding Bericht}" />
+                    <GridViewColumn Header="Bericht" Width="350" DisplayMemberBinding="{Binding Bericht}" />
+                    <GridViewColumn Width="25">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="&#10003;" Click="AcepteerOpdracht" CommandParameter="{Binding}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Width="25">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="X" Click="AfwijzenOpdracht" CommandParameter="{Binding}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
                 </GridView>
             </ListView.View>
         </ListView>
