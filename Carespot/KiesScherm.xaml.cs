@@ -149,5 +149,11 @@ namespace Carespot
             var gegevenswijzigen = new GegevensWijzigen();
             gegevenswijzigen.Show();
         }
+
+        private void ReactieOpHulpvraag_Click(object sender, RoutedEventArgs e)
+        {
+            var reactieOpHulpvraag = new ReactieOpHulpvraag();
+            reactieOpHulpvraag.Show();
+        }
     }
 }
