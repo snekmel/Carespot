@@ -24,7 +24,6 @@ namespace Carespot
     {
         private Gebruiker profielGebruiker;
         private Gebruiker ingelogd;
-        private string hbNaam;
 
         public ProfielVrijwilliger(Gebruiker ingelogdeGebuiker, Gebruiker ontvangGebruiker)
         {
@@ -54,26 +53,16 @@ namespace Carespot
 
         public void vulListView()
         {
+            lvRecensies.Items.Clear();
+
             var b = new BeoordelingSQLContext();
             var bRepo = new BeoordelingRepository(b);
             List<Beoordeling> beoordelingLijst = new List<Beoordeling>();
             beoordelingLijst = bRepo.RetrieveBeoordeling(profielGebruiker.Id);
 
-            var hb = new HulpbehoevendeSQLContext();
-            var hbRepo = new HulpbehoevendeRepository(hb);
-            List<Hulpbehoevende> hulpbehoevendeLijst = new List<Hulpbehoevende>();
-            hulpbehoevendeLijst = hbRepo.RetrieveAll();
-
             foreach (var beoordeling in beoordelingLijst)
             {
-                foreach (var h in hulpbehoevendeLijst)
-                {
-                    if (h.Id == beoordeling.HulpbehoevendeId)
-                    {
-                        hbNaam = h.Naam;
-                    }
-                }
-                lvRecensies.Items.Add("Beoordeeld door: " + hbNaam + "cijfer: " + beoordeling.Cijfer + "Opmerking: " + beoordeling.Opmerking);
+                lvRecensies.Items.Add(beoordeling);
             }
         }
     }

@@ -8,6 +8,7 @@ namespace Carespot.Models
 {
     public class Reactie
     {
+        public int Id { get; set; }
         public Vrijwilliger Vrijwilliger { get; private set; }
         public string Bericht { get; private set; }
 

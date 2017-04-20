@@ -92,7 +92,7 @@ namespace Carespot
 
         private void OpdrachtAannemen_Click(object sender, RoutedEventArgs e)
         {
-            var vrijwilligerOpdrachtAannemen = new VrijwilligerOpdrachtAannemen();
+            var vrijwilligerOpdrachtAannemen = new VrijwilligerOpdrachtAannemen(null);
             vrijwilligerOpdrachtAannemen.Show();
         }
 
@@ -149,9 +149,7 @@ namespace Carespot
 
         private void Gegevenswijzigen_Click(object sender, RoutedEventArgs e)
         {
-            //var gegevenswijzigen = new GegevensWijzigen();
-            //gegevenswijzigen.Show();
-            // var gegevenswijzigen = new GegevensWijzigen(null);
+
             var inf = new HulpbehoevendeSQLContext();
             var repo = new HulpbehoevendeRepository(inf);
             var h = repo.RetrieveHulpbehoevendeById(5);
