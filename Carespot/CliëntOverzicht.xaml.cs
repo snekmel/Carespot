@@ -89,5 +89,21 @@ namespace Carespot
             HulpOpdracht geselecteerdeHulpOpdracht = (HulpOpdracht) lvMijnOpdrachten.SelectedItem;
             FillReactieOpOpdracht(geselecteerdeHulpOpdracht.Id);      
         }
+
+        private void AcepteerOpdracht(object sender, RoutedEventArgs e)
+        {
+            Button b = sender as Button;
+            Reactie reactie = b.CommandParameter as Reactie;
+
+            MessageBox.Show(Convert.ToString(reactie.Id));
+        }
+
+        private void AfwijzenOpdracht(object sender, RoutedEventArgs e)
+        {
+            Button b = sender as Button;
+            Reactie reactie = b.CommandParameter as Reactie;
+
+            //Hier via dal opdracht afwijzen
+        }
     }
 }

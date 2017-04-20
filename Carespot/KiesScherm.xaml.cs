@@ -147,7 +147,7 @@ namespace Carespot
 
         private void Gegevenswijzigen_Click(object sender, RoutedEventArgs e)
         {
-            var gegevenswijzigen = new GegevensWijzigen();
+            var gegevenswijzigen = new GegevensWijzigen(null);
             gegevenswijzigen.Show();
         }
 
