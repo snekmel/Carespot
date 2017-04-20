@@ -17,37 +17,31 @@ namespace Carespot
 
             // Test code---------------------------------
 
-
             /*
-             * 
+             *
              * Hulpopdracht:
                         HulpopdrachtSQLContext hsc = new HulpopdrachtSQLContext();
                    HulpopdrachtRepository hr = new HulpopdrachtRepository(hsc);
 
                         HulpOpdracht ho = hr.GetHulpopdrachtByID(2);
 
-
                         VrijwilligerSQLContext vsc = new VrijwilligerSQLContext();
                         VrijwilligerRepository vr = new VrijwilligerRepository(vsc);
-
 
                        Opdracht opdrachtScherm = new Opdracht(ho.Vrijwilleger, ho);
                         opdrachtScherm.Show();
 
                       */
 
-
             //Maak nieuwe hulpopdracht
-        /*  HulpbehoevendeSQLContext hsc = new HulpbehoevendeSQLContext();
-            HulpbehoevendeRepository hr = new HulpbehoevendeRepository(hsc);
+            /*  HulpbehoevendeSQLContext hsc = new HulpbehoevendeSQLContext();
+                HulpbehoevendeRepository hr = new HulpbehoevendeRepository(hsc);
 
+                Hulpvraagxaml hulpvraagScherm = new Hulpvraagxaml(hr.RetrieveHulpbehoevendeById(5));
 
-            Hulpvraagxaml hulpvraagScherm = new Hulpvraagxaml(hr.RetrieveHulpbehoevendeById(5));
-
-            hulpvraagScherm.Show();
-            */
+                hulpvraagScherm.Show();
+                */
             //----------------------------------------
-            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -76,8 +70,8 @@ namespace Carespot
 
         private void Hulpvraag_Click(object sender, RoutedEventArgs e)
         {
-           // var hulpvraag = new Hulpvraagxaml();
-           // hulpvraag.Show();
+            // var hulpvraag = new Hulpvraagxaml();
+            // hulpvraag.Show();
         }
 
         private void VrijwilligerOverzicht_Click(object sender, RoutedEventArgs e)
@@ -97,14 +91,13 @@ namespace Carespot
             GebruikerSQLContext gsc = new GebruikerSQLContext();
             GebruikerRepository gr = new GebruikerRepository(gsc);
 
+            HulpopdrachtSQLContext hsc = new HulpopdrachtSQLContext();
+            HulpopdrachtRepository hr = new HulpopdrachtRepository(hsc);
 
-           HulpopdrachtSQLContext hsc = new HulpopdrachtSQLContext();
-           HulpopdrachtRepository hr = new HulpopdrachtRepository(hsc);
-
-            List<HulpOpdracht> lijst =  hr.GetAllHulpopdrachten();
+            List<HulpOpdracht> lijst = hr.GetAllHulpopdrachten();
             Gebruiker g = gr.RetrieveGebruiker(1);
 
-            Opdracht opdracht = new Opdracht(g,lijst[0]);
+            Opdracht opdracht = new Opdracht(g, lijst[0]);
             opdracht.Show();
         }
 
@@ -146,7 +139,10 @@ namespace Carespot
 
         private void Gegevenswijzigen_Click(object sender, RoutedEventArgs e)
         {
-            var gegevenswijzigen = new GegevensWijzigen();
+            var inf = new HulpbehoevendeSQLContext();
+            var repo = new HulpbehoevendeRepository(inf);
+            var h = repo.RetrieveHulpbehoevendeById(5);
+            var gegevenswijzigen = new GegevensWijzigen(h);
             gegevenswijzigen.Show();
         }
 
