@@ -143,8 +143,8 @@ namespace Carespot
 
         private void HulpverlenerOverzicht_Click(object sender, RoutedEventArgs e)
         {
-            var hulpverlenerHoofdscherm = new HulpverlenerHoofdscherm();
-            hulpverlenerHoofdscherm.Show();
+            //var hulpverlenerHoofdscherm = new HulpverlenerHoofdscherm();
+            //hulpverlenerHoofdscherm.Show();
         }
 
         private void Gegevenswijzigen_Click(object sender, RoutedEventArgs e)
