@@ -60,7 +60,22 @@ namespace Carespot
                             Close();
                         }
                     }
-                if (i > 1)
+                if (i == 1)
+                {
+                    if (gebrHulpbehoevende == null && gebrVrijwilliger != null)
+                    {
+                        var vrijwilligerscherm = new VrijwilligerHoofdscherm(gebrVrijwilliger);
+                        vrijwilligerscherm.Show();
+                        Close();
+                    }
+                    else if (gebrHulpbehoevende != null && gebrVrijwilliger == null)
+                    {
+                        var hulpbehoevendescherm = new CliëntOverzicht(gebrHulpbehoevende);
+                        hulpbehoevendescherm.Show();
+                        Close();
+                    }
+                }
+                else if (i > 1)
                 {
                     var keuzescherm = new Keuzescherm(gebrVrijwilliger, gebrHulpbehoevende);
                     keuzescherm.Show();

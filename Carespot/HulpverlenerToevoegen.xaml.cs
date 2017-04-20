@@ -27,6 +27,7 @@ namespace Carespot
     {
         private byte[] img;
         private byte[] foto;
+        private readonly Gebruiker _ingelogdeGebruiker;
 
         public HulpverlenerToevoegen()
         {
@@ -45,7 +46,7 @@ namespace Carespot
 
         private void imgSluiten_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            HulpverlenerHoofdscherm hhs = new HulpverlenerHoofdscherm();
+            HulpverlenerHoofdscherm hhs = new HulpverlenerHoofdscherm(_ingelogdeGebruiker);
             hhs.Show();
             this.Close();
         }
