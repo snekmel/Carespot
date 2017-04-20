@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using Carespot.DAL.Repositorys;
+using Carespot.Models;
 
 namespace Carespot
 {
@@ -24,10 +26,22 @@ namespace Carespot
         private void btInloggen_Click(object sender, RoutedEventArgs e)
         {
             //Controleer gegevens en log in, indien er meerdere soorten gebruik binnen die persoon mogelijk zijn, opent eerst het scherm 'Keuzescherm'
-            if (AuthRepository.CheckAuth(tbEmail.Text, pbWachtwoord.Password))
-                MessageBox.Show("ey");
+            Gebruiker g;
+            g = AuthRepository.CheckAuth(tbEmail.Text, pbWachtwoord.Password);
+            if (g != null)
+            {
+                GebruikerRepository gr = new GebruikerRepository();
+                List<Gebruiker> gebruikers = gr.RetrieveAll();
+                foreach (Gebruiker gebr in gebruikers)
+                {
+                }
+
+                MessageBox.Show(g.ToString());
+            }
             else
+            {
                 MessageBox.Show("Foute inloggegevens.");
+            }
         }
     }
 }
