@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
+using System.Windows;
 using Carespot.DAL.Interfaces;
 using Carespot.Models;
 
@@ -20,14 +14,14 @@ namespace Carespot.DAL.Context
 
         public int CreateGebruiker(Gebruiker g)
         {
-            int returnId = 0;
+            var returnId = 0;
             try
             {
                 using (_con)
                 {
-                    string query =
+                    var query =
                         "INSERT INTO Gebruiker (naam, wachtwoord, geslacht, straat, huisnummer, postcode, plaats, land, email, telefoonnummer, foto) VALUES(@naam,@wachtwoord,@geslacht,@straat,@huisnummer,@postcode,@plaats,@land,@email,@telefoonnummer,@foto);SELECT CAST(scope_identity() AS int)";
-                    SqlCommand cmd = new SqlCommand(query, _con);
+                    var cmd = new SqlCommand(query, _con);
 
                     _con.Open();
                     cmd.Parameters.AddWithValue("@naam", g.Naam);
@@ -41,13 +35,13 @@ namespace Carespot.DAL.Context
                     cmd.Parameters.AddWithValue("@email", g.Email);
                     cmd.Parameters.AddWithValue("@telefoonnummer", g.Telefoonnummer);
                     cmd.Parameters.AddWithValue("@foto", g.Foto);
-                    returnId = (int)cmd.ExecuteScalar();
+                    returnId = (int) cmd.ExecuteScalar();
                     _con.Close();
                 }
             }
             catch
             {
-                System.Windows.MessageBox.Show("GEBRUIKERSQL CONTEXT -> CREATE GEBRUIKER");
+                MessageBox.Show("GEBRUIKERSQL CONTEXT -> CREATE GEBRUIKER");
             }
             return returnId;
         }
@@ -58,9 +52,9 @@ namespace Carespot.DAL.Context
             {
                 using (_con)
                 {
-                    string query =
+                    var query =
                         "UPDATE Gebruiker SET naam = @naam, wachtwoord = @wachtwoord, geslacht = @geslacht, straat = @straat, huisnummer = @huisnummer, postcode = @postcode, plaats = @plaats, land = @land, email = @email, telefoonnummer = @telefoonnummer, foto = @foto WHERE id =" + g.Id;
-                    SqlCommand cmd = new SqlCommand(query, _con);
+                    var cmd = new SqlCommand(query, _con);
 
                     _con.Open();
                     cmd.Parameters.AddWithValue("@naam", g.Naam);
@@ -80,7 +74,7 @@ namespace Carespot.DAL.Context
             }
             catch
             {
-                System.Windows.MessageBox.Show("GEBRUIKERSQLCONTEXT -> Update Gebruiker");
+                MessageBox.Show("GEBRUIKERSQLCONTEXT -> Update Gebruiker");
             }
         }
 
@@ -93,14 +87,14 @@ namespace Carespot.DAL.Context
                 var command = new SqlCommand(cmdString, _con);
                 var reader = command.ExecuteReader();
 
-                Gebruiker g = new Gebruiker();
+                var g = new Gebruiker();
 
                 while (reader.Read())
                 {
                     g.Id = reader.GetInt32(0);
                     g.Naam = reader.GetString(1);
                     g.Wachtwoord = reader.GetString(2);
-                    g.Geslacht = (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
+                    g.Geslacht = (Gebruiker.GebruikerGeslacht) Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
                     g.Straat = reader.GetString(4);
                     g.Huisnummer = reader.GetString(5);
                     g.Postcode = reader.GetString(6);
@@ -109,16 +103,14 @@ namespace Carespot.DAL.Context
                     g.Email = reader.GetString(9);
                     g.Telefoonnummer = reader.GetString(10);
                     if (reader[11] != null)
-                    {
-                        g.Foto = (byte[])reader[11];
-                    }
+                        g.Foto = (byte[]) reader[11];
                 }
                 _con.Close();
                 return g;
             }
             catch
             {
-                System.Windows.MessageBox.Show("GEBRUIKERSQLCONTEXT -> RETRIEVE GEBRUIKER");
+                MessageBox.Show("GEBRUIKERSQLCONTEXT -> RETRIEVE GEBRUIKER");
             }
             return null;
         }
