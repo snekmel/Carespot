@@ -27,7 +27,7 @@ namespace Carespot.DAL.Context
                     {
                         var g = new Beheerder(reader.GetString(1), reader.GetString(2), reader.GetString(9));
                         g.Id = reader.GetInt32(0);
-                        g.Geslacht = (Gebruiker.GebruikerGeslacht) Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
+                        g.Geslacht = (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
                         g.Straat = reader.GetString(4);
                         g.Huisnummer = reader.GetString(5);
                         g.Postcode = reader.GetString(6);
@@ -35,7 +35,7 @@ namespace Carespot.DAL.Context
                         g.Land = reader.GetString(8);
                         g.Telefoonnummer = reader.GetString(10);
                         if (!reader.IsDBNull(11))
-                            g.Foto = (byte[]) reader[11];
+                            g.Foto = (byte[])reader[11];
                         returnList.Add(g);
                     }
                     _con.Close();
@@ -99,8 +99,10 @@ namespace Carespot.DAL.Context
                 using (_con)
                 {
                     _con.Open();
-                    var cmdString = "DELETE FROM Beheerder WHERE gebruikerId =" + id;
+                    var cmdString = "DELETE FROM Beheerder WHERE gebruikerId = @id";
                     var command = new SqlCommand(cmdString, _con);
+                    command.Parameters.AddWithValue("@id", id);
+
                     command.ExecuteNonQuery();
                     _con.Close();
                 }
