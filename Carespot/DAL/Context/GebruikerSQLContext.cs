@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data.SqlClient;
-using System.Windows;
 using Carespot.DAL.Interfaces;
 using Carespot.Models;
 
@@ -35,15 +34,15 @@ namespace Carespot.DAL.Context
                     cmd.Parameters.AddWithValue("@email", g.Email);
                     cmd.Parameters.AddWithValue("@telefoonnummer", g.Telefoonnummer);
                     cmd.Parameters.AddWithValue("@foto", g.Foto);
-                    returnId = (int) cmd.ExecuteScalar();
+                    returnId = (int)cmd.ExecuteScalar();
                     _con.Close();
+                    return returnId;
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("GEBRUIKERSQL CONTEXT -> CREATE GEBRUIKER");
+                throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
             }
-            return returnId;
         }
 
         public void UpdateGebruiker(Gebruiker g)
@@ -72,9 +71,9 @@ namespace Carespot.DAL.Context
                     _con.Close();
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("GEBRUIKERSQLCONTEXT -> Update Gebruiker");
+                throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
             }
         }
 
@@ -82,37 +81,40 @@ namespace Carespot.DAL.Context
         {
             try
             {
-                _con.Open();
-                var cmdString = "SELECT * FROM Gebruiker g WHERE id=" + id;
-                var command = new SqlCommand(cmdString, _con);
-                var reader = command.ExecuteReader();
-
-                var g = new Gebruiker();
-
-                while (reader.Read())
+                using (_con)
                 {
-                    g.Id = reader.GetInt32(0);
-                    g.Naam = reader.GetString(1);
-                    g.Wachtwoord = reader.GetString(2);
-                    g.Geslacht = (Gebruiker.GebruikerGeslacht) Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
-                    g.Straat = reader.GetString(4);
-                    g.Huisnummer = reader.GetString(5);
-                    g.Postcode = reader.GetString(6);
-                    g.Plaats = reader.GetString(7);
-                    g.Land = reader.GetString(8);
-                    g.Email = reader.GetString(9);
-                    g.Telefoonnummer = reader.GetString(10);
-                    if (reader[11] != null)
-                        g.Foto = (byte[]) reader[11];
+                    _con.Open();
+                    var cmdString = "SELECT * FROM Gebruiker g WHERE id = @id";
+                    var command = new SqlCommand(cmdString, _con);
+                    command.Parameters.AddWithValue("@id", id);
+                    var reader = command.ExecuteReader();
+
+                    var g = new Gebruiker();
+
+                    while (reader.Read())
+                    {
+                        g.Id = reader.GetInt32(0);
+                        g.Naam = reader.GetString(1);
+                        g.Wachtwoord = reader.GetString(2);
+                        g.Geslacht = (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
+                        g.Straat = reader.GetString(4);
+                        g.Huisnummer = reader.GetString(5);
+                        g.Postcode = reader.GetString(6);
+                        g.Plaats = reader.GetString(7);
+                        g.Land = reader.GetString(8);
+                        g.Email = reader.GetString(9);
+                        g.Telefoonnummer = reader.GetString(10);
+                        if (reader[11] != null)
+                            g.Foto = (byte[])reader[11];
+                    }
+                    _con.Close();
+                    return g;
                 }
-                _con.Close();
-                return g;
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("GEBRUIKERSQLCONTEXT -> RETRIEVE GEBRUIKER");
+                throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
             }
-            return null;
         }
     }
 }
