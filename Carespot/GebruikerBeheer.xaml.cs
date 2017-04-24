@@ -1,28 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Carespot.Models;
 using Carespot.DAL.Context;
 using Carespot.DAL.Repositorys;
+using Carespot.Models;
 
 namespace Carespot
 {
     /// <summary>
-    /// Interaction logic for GebruikerBeheer.xaml
+    ///     Interaction logic for GebruikerBeheer.xaml
     /// </summary>
     public partial class GebruikerBeheer : Window
     {
-        Gebruiker _ingelogdeGebruiker;
+        private readonly Gebruiker _ingelogdeGebruiker;
+
         public GebruikerBeheer()
         {
             InitializeComponent();
@@ -40,9 +31,9 @@ namespace Carespot
 
         private void imgGebruiker_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            Gebruiker geselecteerdeGebr = (Gebruiker)lvGebruikers.SelectedItem;
+            var geselecteerdeGebr = (Gebruiker)lvGebruikers.SelectedItem;
             //VerwijderBevestiging openen en geselecteerde gebruiker mee geven
-            VerwijderBevestiging window = new VerwijderBevestiging(_ingelogdeGebruiker, geselecteerdeGebr, this);
+            var window = new VerwijderBevestiging(_ingelogdeGebruiker, geselecteerdeGebr, this);
             window.Show();
         }
 
@@ -58,29 +49,27 @@ namespace Carespot
 
             var context = new GebruikerSQLContext();
             var gRepo = new GebruikerRepository(context);
-            List<Gebruiker> gebruikersLijst = new List<Gebruiker>();
+            var gebruikersLijst = new List<Gebruiker>();
             gebruikersLijst = gRepo.RetrieveAll();
 
             foreach (var g in gebruikersLijst)
             {
                 if (g.GetType() == typeof(Beheerder))
-                {
                     g.Type = Gebruiker.GebruikerType.Beheerder;
-                }
                 else if (g.GetType() == typeof(Hulpbehoevende))
-                {
                     g.Type = Gebruiker.GebruikerType.Hulpbehoevende;
-                }
                 else if (g.GetType() == typeof(Hulpverlener))
-                {
                     g.Type = Gebruiker.GebruikerType.Hulpverlener;
-                }
                 else if (g.GetType() == typeof(Vrijwilliger))
-                {
                     g.Type = Gebruiker.GebruikerType.Vrijwilliger;
-                }
                 lvGebruikers.Items.Add(g);
-            }       
+            }
+        }
+
+        private void imgGebruikerToevoegen_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var beheerscherm = new Beheerderscherm(_ingelogdeGebruiker);
+            beheerscherm.Show();
         }
     }
 }
