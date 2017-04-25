@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Carespot.DAL.Interfaces;
 using Carespot.DAL.Repositorys;
 using Carespot.Models;
@@ -13,8 +10,8 @@ namespace Carespot.DAL.Context
     public class HulpverlenerSQLContext : IHulpverlenerContext
     {
         private readonly SqlConnection _con =
-           new SqlConnection(
-               "Data Source=WIN-SRV-WEB.fhict.local;Initial Catalog=Carespot;User ID=carespot;Password=Test1234;Encrypt=False;TrustServerCertificate=True");
+            new SqlConnection(
+                "Data Source=WIN-SRV-WEB.fhict.local;Initial Catalog=Carespot;User ID=carespot;Password=Test1234;Encrypt=False;TrustServerCertificate=True");
 
         public List<Hulpverlener> RetrieveAll()
         {
@@ -31,7 +28,7 @@ namespace Carespot.DAL.Context
 
                     while (reader.Read())
                     {
-                        Hulpverlener g = new Hulpverlener();
+                        var g = new Hulpverlener();
 
                         g.Naam = reader.GetString(1);
                         g.Wachtwoord = reader.GetString(2);
@@ -47,94 +44,81 @@ namespace Carespot.DAL.Context
                         g.Land = reader.GetString(8);
                         g.Telefoonnummer = reader.GetString(10);
                         if (!reader.IsDBNull(11))
-                        {
                             g.Foto = (byte[]) reader[11];
-
-                        }
-
-
-
                         returnList.Add(g);
-
                     }
                     _con.Close();
-
+                    return returnList;
                 }
             }
-            catch
+            catch (Exception ex)
             {
-             System.Windows.MessageBox.Show("Hulpverlener -> Retrieve all");
-         }
-       
-         return returnList;
+                throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
+            }
+        }
 
-     }
+        public void CreateHulpverlener(int gebruikerId)
+        {
+            try
+            {
+                using (_con)
+                {
+                    _con.Open();
+                    var query1 = "INSERT INTO Hulpverlener (gebruikerId) VALUES (@newID)";
+                    var command1 = new SqlCommand(query1, _con);
+                    command1.Parameters.AddWithValue("@newID", gebruikerId);
+                    command1.ExecuteScalar();
 
-     public void CreateHulpverlener(int gebruikerId)
-     {
-         try
-         {
-             using (_con)
-             {
-                 _con.Open();
-                 string query1 = "INSERT INTO Hulpverlener (gebruikerId) VALUES (@newID)";
-                 SqlCommand command1 = new SqlCommand(query1, _con);
-                 command1.Parameters.AddWithValue("@newID", gebruikerId);
-                 command1.ExecuteScalar();
+                    _con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
+            }
+        }
 
-                 _con.Close();
-             }
+        public Hulpverlener RetrieveHulpverlener(int id)
+        {
+            var gsc = new GebruikerSQLContext();
+            var gr = new GebruikerRepository(gsc);
+            var g = gr.RetrieveGebruiker(id);
 
-         }
-         catch
-         {
-             System.Windows.MessageBox.Show("woops");
-         }
-     }
+            var h = new Hulpverlener();
+            h.Id = g.Id;
+            h.Naam = g.Naam;
+            h.Wachtwoord = g.Wachtwoord;
+            h.Geslacht = g.Geslacht;
+            h.Straat = g.Straat;
+            h.Huisnummer = g.Huisnummer;
+            h.Postcode = g.Postcode;
+            h.Plaats = g.Plaats;
+            h.Land = g.Land;
+            h.Email = g.Email;
+            h.Telefoonnummer = g.Telefoonnummer;
+            h.Foto = g.Foto;
 
-     public Hulpverlener RetrieveHulpverlener(int id)
-     {
-      GebruikerSQLContext gsc = new GebruikerSQLContext();
-      GebruikerRepository gr = new GebruikerRepository(gsc);
-      Gebruiker g = gr.RetrieveGebruiker(id);
+            return h;
+        }
 
-       Hulpverlener h = new Hulpverlener();
-       h.Id = g.Id;
-       h.Naam = g.Naam;
-       h.Wachtwoord = g.Wachtwoord;
-       h.Geslacht = g.Geslacht;
-       h.Straat = g.Straat;
-       h.Huisnummer = g.Huisnummer;
-       h.Postcode = g.Postcode;
-       h.Plaats = g.Plaats;
-       h.Land = g.Land;
-       h.Email = g.Email;
-       h.Telefoonnummer = g.Telefoonnummer;
-       h.Foto = g.Foto;
-
-      return h;
-     }
-
-     public void DeleteHulpverlener(int id)
-     {
-
-         try
-         {
-             using (_con)
-             {
-                 _con.Open();
-                 var cmdString = "DELETE FROM Hulpverlener WHERE gebruikerId =" + id;
-                 var command = new SqlCommand(cmdString, _con);
-                 command.ExecuteNonQuery();
-                 _con.Close();
-             }
-         }
-         catch (Exception e)
-         {
-             System.Windows.MessageBox.Show(e + "");
-         }
-
-     }
- }
+        public void DeleteHulpverlener(int id)
+        {
+            try
+            {
+                using (_con)
+                {
+                    _con.Open();
+                    var cmdString = "DELETE FROM Hulpverlener WHERE gebruikerId = @id";
+                    var command = new SqlCommand(cmdString, _con);
+                    command.Parameters.AddWithValue("@id", id);
+                    command.ExecuteNonQuery();
+                    _con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
+            }
+        }
+    }
 }
- 

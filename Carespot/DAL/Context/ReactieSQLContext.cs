@@ -15,6 +15,7 @@ namespace Carespot.DAL.Context
     {
         private static string connectionString =
            "Data Source=WIN-SRV-WEB.fhict.local;Initial Catalog=Carespot;User ID=carespot;Password=Test1234;Encrypt=False;TrustServerCertificate=True";
+
         private readonly SqlConnection connection = new SqlConnection(connectionString);
 
         public void CreateReactie(int vrijwillegerid, int hulpaanvraagid, string bericht)
@@ -25,15 +26,15 @@ namespace Carespot.DAL.Context
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.CommandText =
-                    "INSERT INTO Reactie (vrijwilligerid, hulpopdrachtid, bericht) VALUES ("+ vrijwillegerid +", "+ hulpaanvraagid +", '"+ bericht +"');";
+                    "INSERT INTO Reactie (vrijwilligerid, hulpopdrachtid, bericht) VALUES (" + vrijwillegerid + ", " + hulpaanvraagid + ", '" + bericht + "');";
                 cmd.CommandType = CommandType.Text;
                 cmd.Connection = connection;
 
                 cmd.ExecuteNonQuery();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw e;
+                throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
             }
             finally
             {
@@ -79,9 +80,9 @@ namespace Carespot.DAL.Context
 
                 reader.Close();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw e;
+                throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
             }
             finally
             {
@@ -90,7 +91,5 @@ namespace Carespot.DAL.Context
 
             return _reacties;
         }
-
     }
 }
-
