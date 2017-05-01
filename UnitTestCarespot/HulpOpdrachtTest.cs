@@ -59,5 +59,14 @@ namespace UnitTestCarespot
 
             Assert.AreEqual("HELP", lijstje[0].Titel);
         }
+
+        [TestMethod]
+        public void TestAcceptReactie()
+        {
+            var context = new HulpopdrachtSQLContext();
+            var hr = new HulpopdrachtRepository(context);
+
+          hr.AcceptReactie(3,6);
+        }
     }
 }

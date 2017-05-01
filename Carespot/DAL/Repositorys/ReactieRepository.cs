@@ -27,5 +27,10 @@ namespace Carespot.DAL.Repositorys
         {
             _context.CreateReactie(vrijwilligerid, hulpopdrachtid, bericht);
         }
+
+        public void DeleteReactie(int reactieid)
+        {
+            _context.DeleteReactie(reactieid);
+        }
     }
 }
