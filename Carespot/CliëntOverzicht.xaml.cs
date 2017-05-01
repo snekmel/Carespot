@@ -33,13 +33,6 @@ namespace Carespot
             lblNaam.Content = _ingelogdeGebr.Naam;
         }
 
-        //Geef lijst van mogelijke vrijwilligers bij specifieke hulpvraag
-        //private void imgVoegHulpvraagToe_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        //{
-        //    var hulpvraag = new Hulpvraagxaml(_ingelogdeGebr);
-        //    hulpvraag.Show();
-        //}
-
         private void FillMijnOpdrachtenList()
         {
             lvMijnOpdrachten.Items.Clear();
@@ -54,7 +47,6 @@ namespace Carespot
 
             foreach (var hulpopdracht in mijnOpdrachten)
             {
-                //Voeg toe aan listview
                 lvMijnOpdrachten.Items.Add(hulpopdracht);
             }
         }
@@ -72,7 +64,6 @@ namespace Carespot
 
             foreach (var reactie in reactiesOpOpdracht)
             {
-                //Voeg toe aan listview
                 lvReacties.Items.Add(reactie);
             }
         }

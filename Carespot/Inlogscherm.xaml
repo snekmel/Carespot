@@ -16,7 +16,7 @@
         <Label x:Name="label1" Content="Email:" HorizontalAlignment="Left" Margin="84,68,0,0" VerticalAlignment="Top" FontSize="18.667" Grid.Column="1" />
         <Label x:Name="label2" Content="Wachtwoord:" Grid.Column="1" HorizontalAlignment="Left" Margin="25,108,0,0" VerticalAlignment="Top" FontSize="18.667" />
         <TextBox x:Name="tbEmail" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="173,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="213" />
-        <PasswordBox x:Name="pbWachtwoord" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="173,120,0,0" VerticalAlignment="Top" Width="213" />
+        <PasswordBox x:Name="pbWachtwoord" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="173,120,0,0" VerticalAlignment="Top" Width="213" KeyDown="pbWachtwoord_KeyDown" />
         <!--<TextBox x:Name="tbWachtwoord" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="173,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="213" />-->
         <Button x:Name="btAanmelden" Content="Registreren" Grid.Column="1" HorizontalAlignment="Left" Margin="213,176,0,0" VerticalAlignment="Top" Width="85" Grid.ColumnSpan="2" Click="btAanmelden_Click" />
         <Button x:Name="btInloggen" Content="Log in" Grid.Column="2" HorizontalAlignment="Left" Margin="81,176,0,0" VerticalAlignment="Top" Width="75" Click="btInloggen_Click" />
