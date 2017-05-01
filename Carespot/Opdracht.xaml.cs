@@ -100,21 +100,28 @@ namespace Carespot
             //clear list view
             chatListbox.Items.Clear();
 
-            //haal berichten op
-            ChatSQLContext csc = new ChatSQLContext();
-            ChatRepository cr = new ChatRepository(csc);
-            List<ChatBericht> chatBerichten = cr.RetrieveAllChatBerichtenByOpdracht(_hulpOpdracht.Id);
-            chatBerichten.Sort();
-
-            GebruikerSQLContext gsc = new GebruikerSQLContext();
-            GebruikerRepository gr = new GebruikerRepository(gsc);
-
-            foreach (ChatBericht chat in chatBerichten)
+            if (CheckAuth())
             {
-                Gebruiker g = gr.RetrieveGebruiker(chat.GebruikerId);
+                ChatSQLContext csc = new ChatSQLContext();
+                ChatRepository cr = new ChatRepository(csc);
+                List<ChatBericht> chatBerichten = cr.RetrieveAllChatBerichtenByOpdracht(_hulpOpdracht.Id);
+                chatBerichten.Sort();
+                GebruikerSQLContext gsc = new GebruikerSQLContext();
+                GebruikerRepository gr = new GebruikerRepository(gsc);
 
-                chatListbox.Items.Add("[" + chat.Tijd + " | " + g.Naam + "] : " + chat.Bericht);
+                foreach (ChatBericht chat in chatBerichten)
+                {
+                    Gebruiker g = gr.RetrieveGebruiker(chat.GebruikerId);
+
+                    chatListbox.Items.Add("[" + chat.Tijd + " | " + g.Naam + "] : " + chat.Bericht);
+                }
             }
+            else
+            {
+                chatListbox.Items.Add("U heeft geen rechten voor deze chat");
+                btnSendChat.IsEnabled = false;
+            }
+   
         }
 
         private void btnSendChat_Click(object sender, RoutedEventArgs e)
@@ -129,6 +136,27 @@ namespace Carespot
         {
             BeoordelingScherm beoordelingScherm = new BeoordelingScherm(_loggedInUser, _hulpOpdracht.Vrijwilleger);
             beoordelingScherm.Show();
+        }
+
+        private bool CheckAuth()
+        {
+            if (_loggedInUser.Id == _hulpOpdracht.Vrijwilleger.Id)
+            {
+                return true;
+            }
+            else if (_loggedInUser.Id == _hulpOpdracht.Hulpbehoevende.Id)
+            {
+                return true;
+            }
+            else if (_loggedInUser.Id == _hulpOpdracht.Hulpbehoevende.Hulpverlener.Id)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
     }
 }
