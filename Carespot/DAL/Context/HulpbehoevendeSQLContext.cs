@@ -59,8 +59,8 @@ namespace Carespot.DAL.Context
         {
             try
             {
-                using (_con)
-                {
+               using (_con)
+               {
                     _con.Open();
                     var cmdString = "SELECT Gebruiker.*, Hulpbehoevende.hulpverlenerId FROM Gebruiker INNER JOIN Hulpbehoevende ON Gebruiker.id = Hulpbehoevende.gebruikerId";
                     var command = new SqlCommand(cmdString, _con);
@@ -68,7 +68,7 @@ namespace Carespot.DAL.Context
                     var hulpbehoevendeList = new List<Hulpbehoevende>();
 
                     while (reader.Read())
-                    {
+                    {           
                         var hulpBehoevende = new Hulpbehoevende();
                         hulpBehoevende.Id = reader.GetInt32(0);
                         hulpBehoevende.Naam = reader.GetString(1);
@@ -82,15 +82,21 @@ namespace Carespot.DAL.Context
                         hulpBehoevende.Email = reader.GetString(9);
                         hulpBehoevende.Telefoonnummer = reader.GetString(10);
                         if (!reader.IsDBNull(11))
-                            hulpBehoevende.Foto = (byte[]) reader[11];
-                        hulpBehoevende.Hulpverlener = RetrieveHulpverlener(reader.GetInt32(12));
+                        {
+                        hulpBehoevende.Foto = (byte[])reader[11];
+                          }
+                            
+
+                        hulpBehoevende.Hulpverlener = RetrieveHulpverlener(reader.GetInt32(13));
                         hulpbehoevendeList.Add(hulpBehoevende);
+                     
                     }
+
                     reader.Close();
                     _con.Close();
 
                     return hulpbehoevendeList;
-                }
+               }
             }
             catch (Exception ex)
             {
@@ -102,8 +108,6 @@ namespace Carespot.DAL.Context
         {
             try
             {
-                using (_con)
-                {
                     var cmdString = "SELECT * FROM Gebruiker AS g WHERE g.id = @id";
                     var command = new SqlCommand(cmdString, _con);
                     command.Parameters.AddWithValue("@id", hulpverlenerId);
@@ -127,10 +131,11 @@ namespace Carespot.DAL.Context
                         hulpverlener.Postcode = reader.GetString(6);
                     }
 
-                    reader.Close();
 
+                    reader.Close();
+               
                     return hulpverlener;
-                }
+               
             }
             catch (Exception ex)
             {

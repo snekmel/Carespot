@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Carespot.DAL.Interfaces;
 using Carespot.Models;
 using System.Data.SqlClient;
+using System.Security.Cryptography.X509Certificates;
 using Carespot.DAL.Repositorys;
 
 namespace Carespot.DAL.Context
@@ -90,6 +91,32 @@ namespace Carespot.DAL.Context
             }
 
             return _reacties;
+
+        }
+
+        public void DeleteReactie(int reactieid)
+        {
+            try
+            {
+                connection.Open();
+
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandText =
+                    "DELETE FROM Reactie WHERE id =" + reactieid + ";";
+                cmd.CommandType = CommandType.Text;
+                cmd.Connection = connection;
+
+                cmd.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
     }
 }

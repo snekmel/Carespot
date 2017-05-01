@@ -99,6 +99,9 @@
     <Compile Include="ReactieOpHulpvraag.xaml.cs">
       <DependentUpon>ReactieOpHulpvraag.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RFIDLogin.xaml.cs">
+      <DependentUpon>RFIDLogin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VerwijderBevestiging.xaml.cs">
       <DependentUpon>VerwijderBevestiging.xaml</DependentUpon>
     </Compile>
@@ -211,6 +214,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ReactieOpHulpvraag.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RFIDLogin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -635,6 +642,9 @@
     <Resource Include="image\angle-arrow-pointing-to-right.png" />
     <Resource Include="image\angle-pointing-to-left.png" />
     <Resource Include="image\user-shape.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image\ring-alt.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

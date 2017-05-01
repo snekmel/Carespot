@@ -36,6 +36,7 @@ namespace Carespot.Models
         public byte[] Foto { get; set; }
         public GebruikerType Type { get; set; }
         public GebruikerGeslacht Geslacht { get; set; }
+        public string Rfid { get;  set; }
 
         public Gebruiker(string naam, string wachtwoord, string email)
         {

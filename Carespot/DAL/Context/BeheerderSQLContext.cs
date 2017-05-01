@@ -36,6 +36,11 @@ namespace Carespot.DAL.Context
                         g.Telefoonnummer = reader.GetString(10);
                         if (!reader.IsDBNull(11))
                             g.Foto = (byte[])reader[11];
+                        if (!reader.IsDBNull(12))
+                        {
+                            g.Rfid = reader.GetString(12);
+                        }
+
                         returnList.Add(g);
                     }
                     _con.Close();
