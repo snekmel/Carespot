@@ -9,7 +9,7 @@
     <Grid>
         <Image x:Name="imgGebruikerToevoegen" HorizontalAlignment="Left" Height="41" Margin="14,7,0,0" VerticalAlignment="Top" Width="41" Source="image/add-square-button.png" MouseLeftButtonUp="imgGebruikerToevoegen_MouseLeftButtonUp" />
         <Image x:Name="imgGebruikerVerwijderen" HorizontalAlignment="Left" Height="41" Margin="104,7,0,0" VerticalAlignment="Top" Width="41" Source="image/trash.png" MouseLeftButtonUp="imgGebruiker_MouseLeftButtonUp" />
-        <Image x:Name="imgSluitAf" HorizontalAlignment="Left" Height="41" Margin="941,7,0,0" VerticalAlignment="Top" Width="41" Source="image/cross-mark-on-a-black-circle-background.png" MouseLeftButtonUp="imgSluitAf_MouseLeftButtonUp" />
+        <Image x:Name="imgSluitAf" HorizontalAlignment="Left" Height="41" Margin="941,7,0,0" VerticalAlignment="Top" Width="41" Source="image/circle-with-an-arrow-pointing-to-left.png" MouseLeftButtonUp="imgSluitAf_MouseLeftButtonUp" />
 
         <ListView x:Name="lvGebruikers" HorizontalAlignment="Left" Height="684" VerticalAlignment="Top" Width="972" Margin="12,70,0,0">
             <ListView.View>

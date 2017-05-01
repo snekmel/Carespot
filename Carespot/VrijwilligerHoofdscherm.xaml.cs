@@ -33,5 +33,12 @@ namespace Carespot
             VrijwilligerOpdrachtAannemen aannemen = new VrijwilligerOpdrachtAannemen(_ingelogdeGebruiker);
             aannemen.Show();
         }
+
+        private void imgGebruiker_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var gegevenswijzigen = new GegevensWijzigen(_ingelogdeGebruiker);
+            gegevenswijzigen.Show();
+            this.Close();
+        }
     }
 }

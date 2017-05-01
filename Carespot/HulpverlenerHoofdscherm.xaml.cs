@@ -46,5 +46,12 @@ namespace Carespot
         {
             //hulpverlener uitloggen en terug naar inlogscherm
         }
+
+        private void profielImg_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var gegevenswijzigen = new GegevensWijzigen(_ingelogdeGebruiker);
+            gegevenswijzigen.Show();
+            this.Close();
+        }
     }
 }

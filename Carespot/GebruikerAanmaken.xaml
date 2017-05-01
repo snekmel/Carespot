@@ -12,7 +12,7 @@
             <ColumnDefinition Width="90*" />
         </Grid.ColumnDefinitions>
         <Label x:Name="label" Content="Maak een nieuwe gebruiker aan" HorizontalAlignment="Left" Margin="169,10,0,0" VerticalAlignment="Top" FontSize="26.667" Width="466" />
-        <Image x:Name="imgSluiten" HorizontalAlignment="Left" Height="41" Margin="195.6,10,0,0" VerticalAlignment="Top" Width="41" Source="image/cross-mark-on-a-black-circle-background.png" MouseLeftButtonUp="imgSluiten_MouseLeftButtonUp" Grid.Column="1" />
+        <Image x:Name="imgSluiten" HorizontalAlignment="Left" Height="41" Margin="195.6,10,0,0" VerticalAlignment="Top" Width="41" Source="image/circle-with-an-arrow-pointing-to-left.png" MouseLeftButtonUp="imgSluiten_MouseLeftButtonUp" Grid.Column="1" />
         <Label x:Name="lblWachtwoord" Content="Wachtwoord:" HorizontalAlignment="Left" Margin="54,136,0,0" VerticalAlignment="Top" FontSize="18.667" />
         <Label x:Name="lblHerhalen" Content="Herhalen:" HorizontalAlignment="Left" Margin="84,176,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="0.917,0.67" />
         <Label x:Name="lblNaam" Content="Naam:" HorizontalAlignment="Left" Margin="112,248,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="0.917,0.67" />

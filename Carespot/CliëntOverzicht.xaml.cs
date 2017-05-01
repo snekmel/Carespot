@@ -104,5 +104,12 @@ namespace Carespot
             Opdracht scherm = new Opdracht(_ingelogdeGebr, ho);
             scherm.Show();
         }
+
+        private void imgGebruiker_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var gegevenswijzigen = new GegevensWijzigen(_ingelogdeGebr);
+            gegevenswijzigen.Show();
+            this.Close();
+        }
     }
 }

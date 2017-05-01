@@ -49,6 +49,6 @@
         </TabControl>
         <Image x:Name="imgGebruiker" HorizontalAlignment="Left" Height="41" Margin="9,15,0,0" VerticalAlignment="Top" Width="41" Source="image/user-shape.png" />
         <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="50,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,0.5" FontSize="16" Height="28" Width="295" />
-        <Image x:Name="imgSluitAf" HorizontalAlignment="Left" Height="41" Margin="441,15,0,0" VerticalAlignment="Top" Width="41" Source="image/cross-mark-on-a-black-circle-background.png" MouseLeftButtonUp="imgSluitAf_MouseLeftButtonUp" />
+        <Image x:Name="imgSluitAf" HorizontalAlignment="Left" Height="41" Margin="441,15,0,0" VerticalAlignment="Top" Width="41" Source="image/circle-with-an-arrow-pointing-to-left.png" MouseLeftButtonUp="imgSluitAf_MouseLeftButtonUp" />
     </Grid>
 </Window>
