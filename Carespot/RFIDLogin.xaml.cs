@@ -1,38 +1,54 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using System.Windows.Threading;
 using Carespot.DAL.Repositorys;
 using Carespot.Models;
 
 namespace Carespot
 {
     /// <summary>
-    ///     Interaction logic for Inlogscherm.xaml
+    /// Interaction logic for RFIDLogin.xaml
     /// </summary>
-    public partial class Inlogscherm : Window
+    public partial class RFIDLogin : Window
     {
-        public Inlogscherm()
+
+        private DispatcherTimer _timer;
+        public RFIDLogin()
         {
             InitializeComponent();
+            RunTimer();
         }
 
-        private void btAanmelden_Click(object sender, RoutedEventArgs e)
+        private void RunTimer()
         {
-            //'GebruikerAanmaken' openen
-            var aanmaken = new GebruikerAanmaken();
-            aanmaken.Show();
-            Close();
+           _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromSeconds(1);
+            _timer.Tick += Tick;
+            _timer.Start();
         }
 
-        private void btInloggen_Click(object sender, RoutedEventArgs e)
+        private void Tick(object sender, EventArgs e)
         {
-            //Controleer gegevens en log in, indien er meerdere soorten gebruik binnen die persoon mogelijk zijn, opent eerst het scherm 'Keuzescherm'
             Gebruiker g;
             Gebruiker gebrVrijwilliger = null;
             Gebruiker gebrHulpbehoevende = null;
             var i = 0;
 
-            g = AuthRepository.CheckAuth(tbEmail.Text, pbWachtwoord.Password);
+             g = AuthRepository.CheckAuthRFID(tbRfid.Text);
             if (g != null)
             {
+                _timer.Stop();
                 var gr = new GebruikerRepository();
                 var gebruikers = gr.RetrieveAll();
                 foreach (var gebr in gebruikers)
@@ -81,18 +97,18 @@ namespace Carespot
                     keuzescherm.Show();
                     Close();
                 }
+
             }
-            else
-            {
-                MessageBox.Show("Foute inloggegevens.");
-            }
+            
         }
 
-        private void BtRfid_OnClick(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            RFIDLogin scherm = new RFIDLogin();
+           
+            Inlogscherm scherm = new Inlogscherm();
             scherm.Show();
             this.Close();
+
         }
     }
 }

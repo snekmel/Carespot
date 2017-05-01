@@ -24,5 +24,20 @@ namespace Carespot.DAL.Repositorys
             }
             return null;
         }
+
+        public static Gebruiker CheckAuthRFID(string rfidCode)
+        {
+            GebruikerRepository gr = new GebruikerRepository();
+            List<Gebruiker> gebruikers = gr.RetrieveAll();
+
+            foreach (Gebruiker g in gebruikers)
+            {
+                if (g.Rfid == rfidCode)
+                {
+                    return g;
+                }
+            }
+            return null;
+        }
     }
 }
