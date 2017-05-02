@@ -59,7 +59,12 @@ namespace Carespot
 
             foreach (var opdracht in opdrachtenLijst)
             {
-                lvOpdrachten.Items.Add(opdracht);
+
+                if (!opdracht.IsGeaccepteerd)
+                {
+                    lvOpdrachten.Items.Add(opdracht);
+                }
+               
             }
         }
 

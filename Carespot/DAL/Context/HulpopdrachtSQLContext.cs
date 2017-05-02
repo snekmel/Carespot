@@ -273,5 +273,40 @@ namespace Carespot.DAL.Context
                 connection.Close();
             }
         }
+
+        public bool IsGeacepteerd(int hulpopdrachtid)
+        {
+            bool isGeacepteerd = false;
+
+            try
+            {
+                connection.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                SqlDataReader reader;
+
+                cmd.CommandText = "SELECT * FROM Hulpopdracht WHERE id = " + hulpopdrachtid + ";";
+                cmd.CommandType = CommandType.Text;
+                cmd.Connection = connection;
+
+                reader = cmd.ExecuteReader();
+
+                reader.Read();
+
+                isGeacepteerd = HulpOpdracht.ConvertIntToBool(reader.GetInt32(1));
+
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+                return isGeacepteerd;
+        }
     }
 }
