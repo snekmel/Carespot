@@ -43,7 +43,7 @@ namespace Carespot
             //Vul lijst met mijn hulpopdrachten
             List<HulpOpdracht> mijnOpdrachten = new List<HulpOpdracht>();
             //mijnOpdrachten = hr.GetAllHulpopdrachtenByHulpbehoevendeID(_ingelogdeGebr.Id);
-            mijnOpdrachten = hr.GetAllHulpopdrachtenByHulpbehoevendeID(5);
+            mijnOpdrachten = hr.GetAllHulpopdrachtenByHulpbehoevendeID(_ingelogdeGebr.Id);
 
             foreach (var hulpopdracht in mijnOpdrachten)
             {

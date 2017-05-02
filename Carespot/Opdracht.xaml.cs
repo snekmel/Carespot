@@ -54,10 +54,13 @@ namespace Carespot
             imgGebruiker_Hulpbehoevende.Source = FunctionRepository.ByteToImage(_hulpOpdracht.Hulpbehoevende.Foto);
 
             //Vrijwilliger
-            lblNaamVrijwilliger.Content = _hulpOpdracht.Vrijwilleger.Naam;
-            lblTelefoonVrijwilliger.Content = _hulpOpdracht.Vrijwilleger.Telefoonnummer;
-            lblEmailVrijwilliger.Content = _hulpOpdracht.Vrijwilleger.Email;
-            imgGebruiker_Vrijwilliger.Source = FunctionRepository.ByteToImage(_hulpOpdracht.Vrijwilleger.Foto);
+            if (_hulpOpdracht.Vrijwilleger != null)
+            {
+                lblNaamVrijwilliger.Content = _hulpOpdracht.Vrijwilleger.Naam;
+                lblTelefoonVrijwilliger.Content = _hulpOpdracht.Vrijwilleger.Telefoonnummer;
+                lblEmailVrijwilliger.Content = _hulpOpdracht.Vrijwilleger.Email;
+                imgGebruiker_Vrijwilliger.Source = FunctionRepository.ByteToImage(_hulpOpdracht.Vrijwilleger.Foto);
+            }
 
             //Profesionele begeleider
             lblNaamHulpverlener.Content = _hulpOpdracht.Hulpbehoevende.Hulpverlener.Naam;
@@ -121,7 +124,6 @@ namespace Carespot
                 chatListbox.Items.Add("U heeft geen rechten voor deze chat");
                 btnSendChat.IsEnabled = false;
             }
-   
         }
 
         private void btnSendChat_Click(object sender, RoutedEventArgs e)
@@ -156,7 +158,6 @@ namespace Carespot
             {
                 return false;
             }
-
         }
     }
 }
