@@ -54,10 +54,13 @@ namespace Carespot
             imgGebruiker_Hulpbehoevende.Source = FunctionRepository.ByteToImage(_hulpOpdracht.Hulpbehoevende.Foto);
 
             //Vrijwilliger
-            lblNaamVrijwilliger.Content = _hulpOpdracht.Vrijwilleger.Naam;
-            lblTelefoonVrijwilliger.Content = _hulpOpdracht.Vrijwilleger.Telefoonnummer;
-            lblEmailVrijwilliger.Content = _hulpOpdracht.Vrijwilleger.Email;
-            imgGebruiker_Vrijwilliger.Source = FunctionRepository.ByteToImage(_hulpOpdracht.Vrijwilleger.Foto);
+            if (_hulpOpdracht.Vrijwilleger != null)
+            {
+                lblNaamVrijwilliger.Content = _hulpOpdracht.Vrijwilleger.Naam;
+                lblTelefoonVrijwilliger.Content = _hulpOpdracht.Vrijwilleger.Telefoonnummer;
+                lblEmailVrijwilliger.Content = _hulpOpdracht.Vrijwilleger.Email;
+                imgGebruiker_Vrijwilliger.Source = FunctionRepository.ByteToImage(_hulpOpdracht.Vrijwilleger.Foto);
+            }
 
             //Profesionele begeleider
             lblNaamHulpverlener.Content = _hulpOpdracht.Hulpbehoevende.Hulpverlener.Naam;
@@ -121,7 +124,6 @@ namespace Carespot
                 chatListbox.Items.Add("U heeft geen rechten voor deze chat");
                 btnSendChat.IsEnabled = false;
             }
-   
         }
 
         private void btnSendChat_Click(object sender, RoutedEventArgs e)
@@ -134,28 +136,39 @@ namespace Carespot
 
         private void imgBeoordeling_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            BeoordelingScherm beoordelingScherm = new BeoordelingScherm(_loggedInUser, _hulpOpdracht.Vrijwilleger);
-            beoordelingScherm.Show();
+
+            if (_hulpOpdracht.Vrijwilleger != null)
+            {
+                BeoordelingScherm beoordelingScherm = new BeoordelingScherm(_loggedInUser, _hulpOpdracht.Vrijwilleger);
+                beoordelingScherm.Show();
+            }
+           
         }
 
         private bool CheckAuth()
         {
-            if (_loggedInUser.Id == _hulpOpdracht.Vrijwilleger.Id)
+
+            if (_hulpOpdracht.Vrijwilleger != null)
+            {
+                if (_loggedInUser.Id == _hulpOpdracht.Vrijwilleger.Id)
+                {
+                    return true;
+                }
+            
+            }
+         
+             if (_loggedInUser.Id == _hulpOpdracht.Hulpbehoevende.Id)
             {
                 return true;
             }
-            else if (_loggedInUser.Id == _hulpOpdracht.Hulpbehoevende.Id)
+
+             if (_loggedInUser.Id == _hulpOpdracht.Hulpbehoevende.Hulpverlener.Id)
             {
                 return true;
             }
-            else if (_loggedInUser.Id == _hulpOpdracht.Hulpbehoevende.Hulpverlener.Id)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+
+
+            return false;
 
         }
     }
