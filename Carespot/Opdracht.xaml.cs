@@ -136,28 +136,40 @@ namespace Carespot
 
         private void imgBeoordeling_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            BeoordelingScherm beoordelingScherm = new BeoordelingScherm(_loggedInUser, _hulpOpdracht.Vrijwilleger);
-            beoordelingScherm.Show();
+
+            if (_hulpOpdracht.Vrijwilleger != null)
+            {
+                BeoordelingScherm beoordelingScherm = new BeoordelingScherm(_loggedInUser, _hulpOpdracht.Vrijwilleger);
+                beoordelingScherm.Show();
+            }
+           
         }
 
         private bool CheckAuth()
         {
-            if (_loggedInUser.Id == _hulpOpdracht.Vrijwilleger.Id)
+
+            if (_hulpOpdracht.Vrijwilleger != null)
+            {
+                if (_loggedInUser.Id == _hulpOpdracht.Vrijwilleger.Id)
+                {
+                    return true;
+                }
+            
+            }
+         
+             if (_loggedInUser.Id == _hulpOpdracht.Hulpbehoevende.Id)
             {
                 return true;
             }
-            else if (_loggedInUser.Id == _hulpOpdracht.Hulpbehoevende.Id)
+
+             if (_loggedInUser.Id == _hulpOpdracht.Hulpbehoevende.Hulpverlener.Id)
             {
                 return true;
             }
-            else if (_loggedInUser.Id == _hulpOpdracht.Hulpbehoevende.Hulpverlener.Id)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+
+
+            return false;
+
         }
     }
 }
