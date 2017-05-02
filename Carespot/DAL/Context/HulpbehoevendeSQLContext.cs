@@ -59,8 +59,8 @@ namespace Carespot.DAL.Context
         {
             try
             {
-               using (_con)
-               {
+                using (_con)
+                {
                     _con.Open();
                     var cmdString = "SELECT Gebruiker.*, Hulpbehoevende.hulpverlenerId FROM Gebruiker INNER JOIN Hulpbehoevende ON Gebruiker.id = Hulpbehoevende.gebruikerId";
                     var command = new SqlCommand(cmdString, _con);
@@ -68,12 +68,12 @@ namespace Carespot.DAL.Context
                     var hulpbehoevendeList = new List<Hulpbehoevende>();
 
                     while (reader.Read())
-                    {           
+                    {
                         var hulpBehoevende = new Hulpbehoevende();
                         hulpBehoevende.Id = reader.GetInt32(0);
                         hulpBehoevende.Naam = reader.GetString(1);
                         hulpBehoevende.Wachtwoord = reader.GetString(2);
-                        hulpBehoevende.Geslacht = (Gebruiker.GebruikerGeslacht) Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
+                        hulpBehoevende.Geslacht = (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
                         hulpBehoevende.Straat = reader.GetString(4);
                         hulpBehoevende.Huisnummer = reader.GetString(5);
                         hulpBehoevende.Postcode = reader.GetString(6);
@@ -83,20 +83,18 @@ namespace Carespot.DAL.Context
                         hulpBehoevende.Telefoonnummer = reader.GetString(10);
                         if (!reader.IsDBNull(11))
                         {
-                        hulpBehoevende.Foto = (byte[])reader[11];
-                          }
-                            
+                            hulpBehoevende.Foto = (byte[])reader[11];
+                        }
 
                         hulpBehoevende.Hulpverlener = RetrieveHulpverlener(reader.GetInt32(13));
                         hulpbehoevendeList.Add(hulpBehoevende);
-                     
                     }
 
                     reader.Close();
                     _con.Close();
 
                     return hulpbehoevendeList;
-               }
+                }
             }
             catch (Exception ex)
             {
@@ -108,34 +106,32 @@ namespace Carespot.DAL.Context
         {
             try
             {
-                    var cmdString = "SELECT * FROM Gebruiker AS g WHERE g.id = @id";
-                    var command = new SqlCommand(cmdString, _con);
-                    command.Parameters.AddWithValue("@id", hulpverlenerId);
-                    var reader = command.ExecuteReader();
-                    var hulpverlener = new Hulpverlener();
+                var cmdString = "SELECT * FROM Gebruiker AS g WHERE g.id = @id";
+                var command = new SqlCommand(cmdString, _con);
+                command.Parameters.AddWithValue("@id", hulpverlenerId);
+                var reader = command.ExecuteReader();
+                var hulpverlener = new Hulpverlener();
 
-                    while (reader.Read())
-                    {
-                        hulpverlener.Email = reader.GetString(9);
-                        hulpverlener.Telefoonnummer = reader.GetString(10);
-                        if (!reader.IsDBNull(11))
-                            hulpverlener.Foto = (byte[]) reader[11];
-                        hulpverlener.Geslacht =
-                            (Gebruiker.GebruikerGeslacht) Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
-                        hulpverlener.Huisnummer = reader.GetString(5);
-                        hulpverlener.Straat = reader.GetString(4);
-                        hulpverlener.Id = reader.GetInt32(0);
-                        hulpverlener.Land = reader.GetString(8);
-                        hulpverlener.Naam = reader.GetString(1);
-                        hulpverlener.Plaats = reader.GetString(7);
-                        hulpverlener.Postcode = reader.GetString(6);
-                    }
+                while (reader.Read())
+                {
+                    hulpverlener.Email = reader.GetString(9);
+                    hulpverlener.Telefoonnummer = reader.GetString(10);
+                    if (!reader.IsDBNull(11))
+                        hulpverlener.Foto = (byte[])reader[11];
+                    hulpverlener.Geslacht =
+                        (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
+                    hulpverlener.Huisnummer = reader.GetString(5);
+                    hulpverlener.Straat = reader.GetString(4);
+                    hulpverlener.Id = reader.GetInt32(0);
+                    hulpverlener.Land = reader.GetString(8);
+                    hulpverlener.Naam = reader.GetString(1);
+                    hulpverlener.Plaats = reader.GetString(7);
+                    hulpverlener.Postcode = reader.GetString(6);
+                }
 
+                reader.Close();
 
-                    reader.Close();
-               
-                    return hulpverlener;
-               
+                return hulpverlener;
             }
             catch (Exception ex)
             {
@@ -193,7 +189,7 @@ namespace Carespot.DAL.Context
                         hulpbehoevende.Email = reader.GetString(9);
                         hulpbehoevende.Wachtwoord = reader.GetString(2);
                         hulpbehoevende.Geslacht =
-                            (Gebruiker.GebruikerGeslacht) Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
+                            (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
                         hulpbehoevende.Huisnummer = reader.GetString(5);
                         hulpbehoevende.Id = reader.GetInt32(0);
                         hulpbehoevende.Straat = reader.GetString(4);
@@ -203,8 +199,14 @@ namespace Carespot.DAL.Context
                         hulpbehoevende.Postcode = reader.GetString(6);
                         hulpbehoevende.Telefoonnummer = reader.GetString(10);
                         if (!reader.IsDBNull(11))
-                            hulpbehoevende.Foto = (byte[]) reader[11];
-                        hulpbehoevende.Hulpverlener = RetrieveHulpverlener(reader.GetInt32(12));
+                        {
+                            hulpbehoevende.Foto = (byte[])reader[11];
+                        }
+                        if (!reader.IsDBNull(12))
+                        {
+                            hulpbehoevende.Rfid = reader.GetString(12);
+                        }
+                        hulpbehoevende.Hulpverlener = RetrieveHulpverlener(reader.GetInt32(13));
                     }
 
                     reader.Close();

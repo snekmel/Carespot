@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="RFIDLogin" Height="157.105" Width="300">
     <Grid>
-        <Button Content="Ga terug" HorizontalAlignment="Left" Margin="98,85,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <TextBox x:Name="tbRfid" HorizontalAlignment="Left" Height="32" Margin="42,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203"/>
+        <Button Content="Ga terug" HorizontalAlignment="Left" Margin="98,85,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" />
+        <Label x:Name="lblRfid" Content="" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="272" />
     </Grid>
 </Window>

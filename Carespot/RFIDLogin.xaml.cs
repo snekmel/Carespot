@@ -26,12 +26,13 @@ namespace Carespot
     {
         private DispatcherTimer _timer;
         private Manager _manager = new Manager();
+        private static string _tag;
 
         public RFIDLogin()
         {
             InitializeComponent();
 
-            //    RunTimer();
+            RunTimer();
         }
 
         private void RunTimer()
@@ -44,67 +45,75 @@ namespace Carespot
 
         private void Tick(object sender, EventArgs e)
         {
-            // Gebruiker g;
-            // Gebruiker gebrVrijwilliger = null;
-            // Gebruiker gebrHulpbehoevende = null;
-            // var i = 0;
-
+            Gebruiker g;
+            Gebruiker gebrVrijwilliger = null;
+            Gebruiker gebrHulpbehoevende = null;
+            var i = 0;
+            lblRfid.Content = "Scan uw tag.";
             Scan();
+            if (_tag != null)
+            {
+                //MessageBox.Show(_tag);
+                g = AuthRepository.CheckAuthRFID(_tag);
 
-            MessageBox.Show("e");
-            // g = AuthRepository.CheckAuthRFID(tbRfid.Text);
-            // if (g != null)
-            // {
-            //     _timer.Stop();
-            //     var gr = new GebruikerRepository();
-            //     var gebruikers = gr.RetrieveAll();
-            //     foreach (var gebr in gebruikers)
-            //         if (gebr.Id == g.Id)
-            //         {
-            //             i++;
-            //             if (gebr.GetType() == typeof(Vrijwilliger))
-            //             {
-            //                 gebrVrijwilliger = gebr;
-            //             }
-            //             else if (gebr.GetType() == typeof(Hulpbehoevende))
-            //             {
-            //                 gebrHulpbehoevende = gebr;
-            //             }
-            //             else if (gebr.GetType() == typeof(Hulpverlener))
-            //             {
-            //                 var hulpverlenerhoofdscherm = new HulpverlenerHoofdscherm(gebr);
-            //                 hulpverlenerhoofdscherm.Show();
-            //                 Close();
-            //             }
-            //             else if (gebr.GetType() == typeof(Beheerder))
-            //             {
-            //                 var beheerderscherm = new GebruikerBeheer(gebr);
-            //                 beheerderscherm.Show();
-            //                 Close();
-            //             }
-            //         }
-            //     if (i == 1)
-            //     {
-            //         if (gebrHulpbehoevende == null && gebrVrijwilliger != null)
-            //         {
-            //             var vrijwilligerscherm = new VrijwilligerHoofdscherm(gebrVrijwilliger);
-            //             vrijwilligerscherm.Show();
-            //             Close();
-            //         }
-            //         else if (gebrHulpbehoevende != null && gebrVrijwilliger == null)
-            //         {
-            //             var hulpbehoevendescherm = new CliëntOverzicht(gebrHulpbehoevende);
-            //             hulpbehoevendescherm.Show();
-            //             Close();
-            //         }
-            //     }
-            //     else if (i > 1)
-            //     {
-            //         var keuzescherm = new Keuzescherm(gebrVrijwilliger, gebrHulpbehoevende);
-            //         keuzescherm.Show();
-            //         Close();
-            //     }
-            // }
+                if (g != null)
+                {
+                    lblRfid.Content = "U wordt ingelogd.";
+                    _timer.Stop();
+                    var gr = new GebruikerRepository();
+                    var gebruikers = gr.RetrieveAll();
+                    foreach (var gebr in gebruikers)
+                        if (gebr.Id == g.Id)
+                        {
+                            i++;
+                            if (gebr.GetType() == typeof(Vrijwilliger))
+                            {
+                                gebrVrijwilliger = gebr;
+                            }
+                            else if (gebr.GetType() == typeof(Hulpbehoevende))
+                            {
+                                gebrHulpbehoevende = gebr;
+                            }
+                            else if (gebr.GetType() == typeof(Hulpverlener))
+                            {
+                                var hulpverlenerhoofdscherm = new HulpverlenerHoofdscherm(gebr);
+                                hulpverlenerhoofdscherm.Show();
+                                Close();
+                            }
+                            else if (gebr.GetType() == typeof(Beheerder))
+                            {
+                                var beheerderscherm = new GebruikerBeheer(gebr);
+                                beheerderscherm.Show();
+                                Close();
+                            }
+                        }
+                    if (i == 1)
+                    {
+                        if (gebrHulpbehoevende == null && gebrVrijwilliger != null)
+                        {
+                            var vrijwilligerscherm = new VrijwilligerHoofdscherm(gebrVrijwilliger);
+                            vrijwilligerscherm.Show();
+                            Close();
+                        }
+                        else if (gebrHulpbehoevende != null && gebrVrijwilliger == null)
+                        {
+                            var hulpbehoevendescherm = new CliëntOverzicht(gebrHulpbehoevende);
+                            hulpbehoevendescherm.Show();
+                            Close();
+                        }
+                    }
+                    else if (i > 1)
+                    {
+                        var keuzescherm = new Keuzescherm(gebrVrijwilliger, gebrHulpbehoevende);
+                        keuzescherm.Show();
+                        Close();
+                    }
+                }
+                else
+                {
+                    lblRfid.Content = "Geen gebruiker gevonden met deze tag.";
+                }
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -118,81 +127,75 @@ namespace Carespot
         {
             try
             {
-                _manager.Attach += new AttachEventHandler(manager_Attach);
-                _manager.Detach += new DetachEventHandler(manager_Detach);
-                _manager.Error += new ErrorEventHandler(manager_Error);
+                RFID rfid = new RFID(); //Declare an RFID object
+
+                //initialize our Phidgets RFID reader and hook the event handlers
+                rfid.Attach += new AttachEventHandler(rfid_Attach);
+                rfid.Detach += new DetachEventHandler(rfid_Detach);
+                rfid.Error += new ErrorEventHandler(rfid_Error);
+
+                rfid.Tag += new TagEventHandler(rfid_Tag);
+                rfid.TagLost += new TagEventHandler(rfid_TagLost);
+                rfid.open();
+
+                //Wait for a Phidget RFID to be attached before doing anything with
+                //the object
+                Console.WriteLine("waiting for attachment...");
+                rfid.waitForAttachment();
+
+                //turn on the antenna and the led to show everything is working
+                rfid.Antenna = true;
+                rfid.LED = true;
+
+                //keep waiting and outputting events until keyboard input is entered
+                Console.WriteLine("Press any key to end...");
+                Console.Read();
+
+                //turn off the led
+                rfid.LED = false;
+
+                //close the phidget and dispose of the object
+                rfid.close();
+                rfid = null;
+                Console.WriteLine("ok");
             }
             catch (PhidgetException ex)
             {
-                printError(ex.Code, ex.Description);
-            }
-
-            // No exception thrown on open
-            _manager.open();
-
-            try
-            {
-                _manager.Attach -= new AttachEventHandler(manager_Attach);
-
-                _manager.Detach -= new DetachEventHandler(manager_Detach);
-                _manager.Error -= new ErrorEventHandler(manager_Error);
-                _manager.close();
-            }
-            catch (PhidgetException ex)
-            {
-                printError(ex.Code, ex.Description);
+                Console.WriteLine(ex.Description);
             }
         }
 
-        private static void manager_Attach(object sender, AttachEventArgs e)
+        private static void rfid_Attach(object sender, AttachEventArgs e)
         {
-            int serialNumber;
-            String name;
-
-            try
-            {
-                serialNumber = e.Device.SerialNumber;
-                name = e.Device.Name;
-                MessageBox.Show(serialNumber.ToString(), name);
-            }
-            catch (PhidgetException ex)
-            {
-                printError(ex.Code, ex.Description);
-            }
+            Console.WriteLine("RFIDReader {0} attached!",
+                                    e.Device.SerialNumber.ToString());
         }
 
-        private static void manager_Detach(object sender, DetachEventArgs e)
+        //detach event handler...display the serial number of the detached RFID phidget
+        private static void rfid_Detach(object sender, DetachEventArgs e)
         {
-            int serialNumber;
-            String name;
-
-            try
-            {
-                serialNumber = e.Device.SerialNumber;
-                name = e.Device.Name;
-                MessageBox.Show(serialNumber.ToString(), name);
-            }
-            catch (PhidgetException ex)
-            {
-                printError(ex.Code, ex.Description);
-            }
+            Console.WriteLine("RFID reader {0} detached!",
+                                    e.Device.SerialNumber.ToString());
         }
 
-        private static void manager_Error(object sender, ErrorEventArgs e)
+        //Error event handler...display the error description string
+        private static void rfid_Error(object sender, ErrorEventArgs e)
         {
-            int number;
-            String name;
-
-            number = (int)e.Code;
-            name = e.Description;
-
-            // The error triggered by the event
-            MessageBox.Show(number.ToString(), name);
+            Console.WriteLine(e.Description);
         }
 
-        private static void printError(int number, String description)
+        //Print the tag code of the scanned tag
+
+        private static void rfid_Tag(object sender, TagEventArgs e)
         {
-            MessageBox.Show(number.ToString(), description);
+            // Console.WriteLine("Tag {0} scanned", e.Tag);
+            // MessageBox.Show(e.Tag);
+            _tag = e.Tag;
+        }
+
+        private static void rfid_TagLost(object sender, TagEventArgs e)
+        {
+            Console.WriteLine("Tag {0} lost", e.Tag);
         }
     }
 }
