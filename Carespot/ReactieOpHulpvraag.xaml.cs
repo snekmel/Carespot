@@ -48,6 +48,7 @@ namespace Carespot
                 ReactieSQLContext rsc = new ReactieSQLContext();
                 ReactieRepository rr = new ReactieRepository(rsc);
                 rr.CreateReactie(_loggedInUser.Id, _hulpOpdracht.Id, tbReactie.Text);
+                MessageBox.Show("Uw reactie is verzonden.");
             }
 
         }
