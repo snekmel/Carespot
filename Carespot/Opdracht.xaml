@@ -18,7 +18,7 @@
                     <TextBox x:Name="tbOmschrijving" HorizontalAlignment="Left" Height="320" Margin="3,41,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="446" Grid.Column="1" />
                 </Grid>
             </TabItem>
-            <TabItem x:Name="tabChat" Header="Chat">
+            <TabItem x:Name="tabChat" Header="Chat" >
                 <Grid Background="#FFE5E5E5">
                     <ListBox x:Name="chatListbox" HorizontalAlignment="Left" Height="362" VerticalAlignment="Top" Width="466" />
                     <TextBox x:Name="tbChatBericht" HorizontalAlignment="Left" Height="23" Margin="10,375,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="356" />
