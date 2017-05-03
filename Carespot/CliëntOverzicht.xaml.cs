@@ -43,10 +43,6 @@ namespace Carespot
 
             //Vul lijst met mijn hulpopdrachten
             List<HulpOpdracht> mijnOpdrachten = new List<HulpOpdracht>();
-<<<<<<< HEAD
-=======
-            //mijnOpdrachten = hr.GetAllHulpopdrachtenByHulpbehoevendeID(_ingelogdeGebr.Id);
->>>>>>> 210f1783ea01dd18daea3ca3dc642138ad3723a2
             mijnOpdrachten = hr.GetAllHulpopdrachtenByHulpbehoevendeID(_ingelogdeGebr.Id);
 
             foreach (var hulpopdracht in mijnOpdrachten)
@@ -70,7 +66,6 @@ namespace Carespot
             {
                 lvReacties.Visibility = Visibility.Hidden;
             }
-
             else
             {
                 lvReacties.Visibility = Visibility.Visible;
@@ -90,9 +85,6 @@ namespace Carespot
             }
         }
 
-
-
-
         private void lvMijnOpdrachten_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //Haal de reacties op aan de hand van de geselecteerde hulpopdracht
@@ -108,7 +100,7 @@ namespace Carespot
             //Update de bijbehorende hulpodpracht
             var contextho = new HulpopdrachtSQLContext();
             var hr = new HulpopdrachtRepository(contextho);
-            hr.AcceptReactie(_geselecteerdeHulpopdracht,reactie.Vrijwilliger.Id);
+            hr.AcceptReactie(_geselecteerdeHulpopdracht, reactie.Vrijwilliger.Id);
 
             //Verwijder de reactie
             var contextreactie = new ReactieSQLContext();
@@ -131,7 +123,6 @@ namespace Carespot
 
             //Herlaad opdrachtenlistview
             FillReactieOpOpdracht(_geselecteerdeHulpopdracht);
-            
         }
 
         private void imgAddHulpvraag_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
