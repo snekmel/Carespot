@@ -79,7 +79,7 @@ namespace Carespot
                 {
                     var inf = new GebruikerSQLContext();
                     var repo = new GebruikerRepository(inf);
-                    foto = repo.RetrieveGebruiker(1039).Foto;
+                    foto = repo.RetrieveGebruiker(1).Foto;
                 }
                 else
                 {
@@ -127,6 +127,9 @@ namespace Carespot
                             var id = repo.CreateGebruiker(g);
                             bhrrepo.CreateBeheerder(id);
                         }
+
+                        CleanForm();
+                        System.Windows.MessageBox.Show("Account is aangemaakt");
                     }
                     else
                     {
@@ -162,6 +165,23 @@ namespace Carespot
 
             cbSoortH.Items.Add("Hulpverlener");
             cbSoortH.Items.Add("Beheerder");
+        }
+
+        private void CleanForm()
+        {
+            tbEmailH.Text = "";
+            pwbWachtwoordOpnieuw.Password = "";
+            pwbWachtwoordd.Password = "";
+            tbNaamH.Text = "";
+            cbGeslachtH.SelectedItem = -1;
+            tbTelefoonH.Text = "";
+            tbAdres.Text = "";
+            tbNummer.Text = "";
+            tbPostcode.Text = "";
+            tbPlaats.Text = "";
+            tbLand.Text = "";
+            //foto
+            cbSoortH.SelectedItem = -1;
         }
     }
 }
