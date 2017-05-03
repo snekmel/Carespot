@@ -31,7 +31,6 @@ namespace Carespot
             profielGebruiker = ontvangGebruiker;
             ingelogd = ingelogdeGebuiker;
             lblNaam.Content = profielGebruiker.Naam;
-            lblRol.Content = profielGebruiker.Type;
             vulListView();
         }
 

@@ -38,11 +38,11 @@
         </ListView>
         <Image x:Name="imgUitloggen" HorizontalAlignment="Left" Height="41" Margin="562,15,0,0" VerticalAlignment="Top" Width="41" Source="image/sign-out-option.png" RenderTransformOrigin="0.463,0.512" Grid.Column="1" />
 
-        <Label x:Name="lblVoegHulpvraagToe" Content="Voeg hulpvraag toe" HorizontalAlignment="Left" Margin="197,15,0,0" VerticalAlignment="Top" FontSize="18" Grid.Column="1" Height="34" Width="166" />
+        <Label x:Name="lblVoegHulpvraagToe" Content="Voeg hulpvraag toe" HorizontalAlignment="Left" Margin="229,15,0,0" VerticalAlignment="Top" FontSize="18" Grid.Column="1" Height="34" Width="166" />
         <Label Content="Mijn opdrachten" HorizontalAlignment="Left" Margin="52,102,0,0" VerticalAlignment="Top" FontSize="14" Height="29" Width="112" />
         <Label Content="Reacties van vrijwilligers" HorizontalAlignment="Left" Margin="248,102,0,0" VerticalAlignment="Top" FontSize="14" Grid.Column="1" Height="29" Width="162" />
         <Image x:Name="imgGebruiker" HorizontalAlignment="Left" Height="41" Margin="28,22,0,0" VerticalAlignment="Top" Width="41" MouseLeftButtonUp="imgGebruiker_MouseLeftButtonUp" />
-        <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="69,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,0.5" FontSize="16" Height="28" Width="233" Grid.ColumnSpan="2" />
+        <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="69,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,0.5" FontSize="16" Height="28" Width="268" Grid.ColumnSpan="2" />
         <ListView x:Name="lvMijnOpdrachten" HorizontalAlignment="Left" Height="600" Margin="28,128,0,0" VerticalAlignment="Top" Width="183" Grid.ColumnSpan="2" SelectionChanged="lvMijnOpdrachten_SelectionChanged" MouseDoubleClick="lvMijnOpdrachten_MouseDoubleClick">
             <ListView.View>
                 <GridView>
@@ -50,6 +50,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Image x:Name="imgAddHulpvraag" Grid.Column="1" HorizontalAlignment="Left" Height="41" Margin="152,10,0,0" VerticalAlignment="Top" Width="45" Source="image/add-square-button.png" MouseLeftButtonUp="imgAddHulpvraag_MouseLeftButtonUp" />
+        <Image x:Name="imgAddHulpvraag" Grid.Column="1" HorizontalAlignment="Left" Height="39" Margin="184,10,0,0" VerticalAlignment="Top" Width="45" Source="image/add-square-button.png" MouseLeftButtonUp="imgAddHulpvraag_MouseLeftButtonUp" />
     </Grid>
 </Window>

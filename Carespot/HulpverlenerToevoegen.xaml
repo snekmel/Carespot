@@ -5,24 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Carespot"
         mc:Ignorable="d"
-        Title="HulpverlenerToevoegen" Height="600" Width="750" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+        Title="HulpverlenerToevoegen" Height="550" Width="750" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label x:Name="label" Content="Voeg een nieuwe hulpverlener toe" HorizontalAlignment="Left" Margin="218,10,0,0" VerticalAlignment="Top" FontSize="18.667" Width="466" />
         <Image x:Name="imgSluiten" HorizontalAlignment="Left" Height="41" Margin="682,10,0,0" VerticalAlignment="Top" Width="41" Source="image/circle-with-an-arrow-pointing-to-left.png" MouseLeftButtonUp="imgSluiten_MouseLeftButtonUp" />
         <Label x:Name="lblemail" Content="E-mail:" HorizontalAlignment="Left" Margin="64,76,0,0" VerticalAlignment="Top" FontSize="18.667" />
         <Label x:Name="lblWachtwoord" Content="Wachtwoord:" HorizontalAlignment="Left" Margin="12,111,0,0" VerticalAlignment="Top" FontSize="18.667" />
         <Label x:Name="lblHerhalen" Content="Herhalen:" HorizontalAlignment="Left" Margin="42,151,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="0.917,0.67" />
-        <Label x:Name="lblNaam" Content="Naam:" HorizontalAlignment="Left" Margin="70,223,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="0.917,0.67" />
-        <Label x:Name="lblGeslacht" Content="Geslacht:" HorizontalAlignment="Left" Margin="49,258,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="0.917,0.67" />
-        <Label x:Name="lblTelefoon" Content="Tel nummer:" HorizontalAlignment="Left" Margin="23,370,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="0.917,0.67" />
+        <Label x:Name="lblNaam" Content="Naam:" HorizontalAlignment="Left" Margin="70,203,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="0.917,0.67" />
+        <Label x:Name="lblGeslacht" Content="Geslacht:" HorizontalAlignment="Left" Margin="49,238,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="0.917,0.67" />
+        <Label x:Name="lblTelefoon" Content="Tel nummer:" HorizontalAlignment="Left" Margin="23,290,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="0.917,0.67" />
         <TextBox x:Name="tbmail" HorizontalAlignment="Left" Height="22" Margin="158,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" />
-        <TextBox x:Name="tbNaam" HorizontalAlignment="Left" Height="22" Margin="158,232,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" />
-        <TextBox x:Name="tbTelefoon" HorizontalAlignment="Left" Height="22" Margin="158,378,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" />
-        <ComboBox x:Name="cbGeslacht" HorizontalAlignment="Left" Margin="158,268,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBox x:Name="tbNaam" HorizontalAlignment="Left" Height="22" Margin="158,212,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" />
+        <TextBox x:Name="tbTelefoon" HorizontalAlignment="Left" Height="22" Margin="158,298,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241" />
+        <ComboBox x:Name="cbGeslacht" HorizontalAlignment="Left" Margin="158,248,0,0" VerticalAlignment="Top" Width="120" />
         <Label x:Name="lblFoto" Content="Foto:" HorizontalAlignment="Left" Margin="451,290,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="0.673,1.446" />
         <Image x:Name="imgProfielfoto" HorizontalAlignment="Left" Height="150" Margin="526,295,0,0" VerticalAlignment="Top" Width="130" />
-        <Button x:Name="btUploaden" Content="Uploaden" HorizontalAlignment="Left" Margin="634,477,0,0" VerticalAlignment="Top" Width="89" Height="27" FontSize="16" Click="btUploaden_Click" />
-        <Button x:Name="btnHulpverlenerAanmaken" Content="Maak aan" HorizontalAlignment="Left" Margin="634,525,0,0" VerticalAlignment="Top" Width="89" Height="27" FontSize="16" Click="btnHulpverlenerAanmaken_Click_1" />
+        <Button x:Name="btUploaden" Content="Uploaden" HorizontalAlignment="Left" Margin="526,479,0,0" VerticalAlignment="Top" Width="89" Height="27" FontSize="16" Click="btUploaden_Click" />
+        <Button x:Name="btnHulpverlenerAanmaken" Content="Maak aan" HorizontalAlignment="Left" Margin="634,479,0,0" VerticalAlignment="Top" Width="89" Height="27" FontSize="16" Click="btnHulpverlenerAanmaken_Click_1" />
         <Label x:Name="lblAdres" Content="Adres:" HorizontalAlignment="Left" Margin="446,76,0,0" VerticalAlignment="Top" FontSize="18.667" />
         <Label x:Name="lblPostcode" Content="Postcode:" HorizontalAlignment="Left" Margin="417,152,0,0" VerticalAlignment="Top" FontSize="18.667" />
         <Label x:Name="lblPlaats" Content="Plaats:" HorizontalAlignment="Left" Margin="444,192,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="0.673,1.446" />
