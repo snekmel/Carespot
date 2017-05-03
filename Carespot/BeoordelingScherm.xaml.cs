@@ -14,15 +14,6 @@ namespace Carespot
         private readonly Gebruiker ingelogdeGebr;
         private readonly Gebruiker ontvangGebr;
 
-        //!!!
-        //!!! DEZE CONSTRUCTOR NOG VERWIJDEREN !!!
-        //!!!
-        public BeoordelingScherm()
-        {
-            InitializeComponent();
-            SldCijfer.ValueChanged += SldCijfer_ValueChanged;
-        }
-
         public BeoordelingScherm(Gebruiker ingelogdeGebuiker, Gebruiker ontvangGebruiker)
         {
             InitializeComponent();
