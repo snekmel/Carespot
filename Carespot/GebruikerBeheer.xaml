@@ -7,17 +7,39 @@
         mc:Ignorable="d"
         Title="GebruikerBeheer" Height="800" Width="1000" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Image x:Name="imgGebruikerToevoegen" HorizontalAlignment="Left" Height="41" Margin="14,7,0,0" VerticalAlignment="Top" Width="41" Source="image/add-square-button.png" MouseLeftButtonUp="imgGebruikerToevoegen_MouseLeftButtonUp" />
-        <Image x:Name="imgGebruikerVerwijderen" HorizontalAlignment="Left" Height="41" Margin="104,7,0,0" VerticalAlignment="Top" Width="41" Source="image/trash.png" MouseLeftButtonUp="imgGebruiker_MouseLeftButtonUp" />
-        <Image x:Name="imgSluitAf" HorizontalAlignment="Left" Height="41" Margin="941,7,0,0" VerticalAlignment="Top" Width="41" Source="image/circle-with-an-arrow-pointing-to-left.png" MouseLeftButtonUp="imgSluitAf_MouseLeftButtonUp" />
+        <Image x:Name="imgGebruikerToevoegen" HorizontalAlignment="Left" Height="41" Margin="697,104,0,0"
+               VerticalAlignment="Top" Width="42" Source="image/add-square-button.png"
+               MouseLeftButtonUp="imgGebruikerToevoegen_MouseLeftButtonUp" />
+        <Image x:Name="imgGebruikerVerwijderen" HorizontalAlignment="Left" Height="41" Margin="933,102,0,0"
+               VerticalAlignment="Top" Width="41" Source="image/trash.png"
+               MouseLeftButtonUp="imgGebruiker_MouseLeftButtonUp" />
+        <Image x:Name="imgSluitAf" HorizontalAlignment="Left" Height="41" Margin="941,7,0,0" VerticalAlignment="Top"
+               Width="41" Source="image/circle-with-an-arrow-pointing-to-left.png"
+               MouseLeftButtonUp="imgSluitAf_MouseLeftButtonUp" />
 
-        <ListView x:Name="lvGebruikers" HorizontalAlignment="Left" Height="684" VerticalAlignment="Top" Width="972" Margin="12,70,0,0">
+        <ListView x:Name="lvGebruikers" HorizontalAlignment="Left" Height="611" VerticalAlignment="Top" Width="300"
+                  Margin="684,150,0,0">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="550" Header="Naam"  DisplayMemberBinding="{Binding Naam}" />
-                    <GridViewColumn Width="350" Header="Functie" DisplayMemberBinding="{Binding Type}" />
+                    <GridViewColumn Width="145" Header="Naam" DisplayMemberBinding="{Binding Naam}" />
+                    <GridViewColumn Width="145" Header="Functie" DisplayMemberBinding="{Binding Type}" />
                 </GridView>
             </ListView.View>
         </ListView>
+        <ListView x:Name="lvOpdrachten" HorizontalAlignment="Left" Height="715" Margin="10,46,0,0"
+                  VerticalAlignment="Top" Width="654" MouseDoubleClick="lvOpdrachten_MouseDoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="200" Header="Titel" DisplayMemberBinding="{Binding Titel}" />
+                    <GridViewColumn Width="250" Header="Omschrijving" DisplayMemberBinding="{Binding Omschrijving}" />
+                    <GridViewColumn Width="94" Header="Aanmaakdatum" DisplayMemberBinding="{Binding AanmaakDatum}" />
+                    <GridViewColumn Width="94" Header="Opdrachtdatum" DisplayMemberBinding="{Binding OpdrachtDatum}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label Content="Opdrachtoverzicht" HorizontalAlignment="Left" Margin="16,10,0,0" VerticalAlignment="Top"
+               FontSize="18" />
+        <Label Content="Gebruikeroverzicht" HorizontalAlignment="Left" Margin="684,59,0,0" VerticalAlignment="Top"
+               FontSize="18" />
     </Grid>
 </Window>

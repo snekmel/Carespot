@@ -42,7 +42,7 @@ namespace Carespot
 
         private void ViewLoader()
         {
-            lblNaam.Content = _hulpOpdracht.Hulpbehoevende.Naam;
+            lblNaam.Content = _loggedInUser.Naam;
 
             lblOpdrachtTitel.Content = _hulpOpdracht.Titel;
             tbOmschrijving.Text = _hulpOpdracht.Omschrijving;
@@ -51,7 +51,7 @@ namespace Carespot
             lblNaamCliënt.Content = _hulpOpdracht.Hulpbehoevende.Naam;
             lblTelefoonCliënt.Content = _hulpOpdracht.Hulpbehoevende.Telefoonnummer;
             lblEmailCliënt.Content = _hulpOpdracht.Hulpbehoevende.Email;
-            imgGebruiker_Hulpbehoevende.Source = FunctionRepository.ByteToImage(_hulpOpdracht.Hulpbehoevende.Foto);
+            imgGebruiker_Hulpbehoevende.Source = FunctionRepository.ByteToImage(_loggedInUser.Foto);
 
             //Vrijwilliger
             if (_hulpOpdracht.Vrijwilleger != null)
@@ -121,17 +121,19 @@ namespace Carespot
 
         private void imgBeoordeling_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-
             if (_hulpOpdracht.Vrijwilleger != null)
             {
                 BeoordelingScherm beoordelingScherm = new BeoordelingScherm(_loggedInUser, _hulpOpdracht.Vrijwilleger);
                 beoordelingScherm.Show();
             }
-           
         }
 
         private bool CheckAuth()
         {
+            if (_loggedInUser.GetType() == typeof(Beheerder))
+            {
+                return true;
+            }
 
             if (_hulpOpdracht.Vrijwilleger != null)
             {
@@ -139,22 +141,19 @@ namespace Carespot
                 {
                     return true;
                 }
-            
             }
-         
-             if (_loggedInUser.Id == _hulpOpdracht.Hulpbehoevende.Id)
+
+            if (_loggedInUser.Id == _hulpOpdracht.Hulpbehoevende.Id)
             {
                 return true;
             }
 
-             if (_loggedInUser.Id == _hulpOpdracht.Hulpbehoevende.Hulpverlener.Id)
+            if (_loggedInUser.Id == _hulpOpdracht.Hulpbehoevende.Hulpverlener.Id)
             {
                 return true;
             }
-
 
             return false;
-
         }
     }
 }
