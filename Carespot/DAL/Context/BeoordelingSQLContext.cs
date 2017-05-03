@@ -16,35 +16,32 @@ namespace Carespot.DAL.Context
             var lb = new List<Beoordeling>();
             try
             {
-                using (_con)
+                _con.Open();
+                var cmdString = "SELECT * FROM Beoordeling WHERE Id = @id";
+                var command = new SqlCommand(cmdString, _con);
+                command.Parameters.AddWithValue("@id", vrijwilligerId);
+                var reader = command.ExecuteReader();
+                Beoordeling b = null;
+                while (reader.Read())
                 {
-                    _con.Open();
-                    var cmdString = "SELECT * FROM Beoordeling WHERE Id = @id";
-                    var command = new SqlCommand(cmdString, _con);
-                    command.Parameters.AddWithValue("@id", vrijwilligerId);
-                    var reader = command.ExecuteReader();
-                    Beoordeling b = null;
-                    while (reader.Read())
+                    b = new Beoordeling();
+                    b.Id = reader.GetInt32(0);
+                    b.Opmerking = reader.GetString(1);
+                    b.Cijfer = reader.GetInt32(2);
+                    if (reader.IsDBNull(3))
                     {
-                        b = new Beoordeling();
-                        b.Id = reader.GetInt32(0);
-                        b.Opmerking = reader.GetString(1);
-                        b.Cijfer = reader.GetInt32(2);
-                        if (reader.IsDBNull(3))
-                        {
-                        }
-                        else
-                        {
-                            b.Reactie = reader.GetString(3);
-                        }
-                        b.VrijwilligerId = reader.GetInt32(4);
-                        b.HulpbehoevendeId = reader.GetInt32(5);
-                        lb.Add(b);
                     }
-                    reader.Close();
-                    _con.Close();
-                    return lb;
+                    else
+                    {
+                        b.Reactie = reader.GetString(3);
+                    }
+                    b.VrijwilligerId = reader.GetInt32(4);
+                    b.HulpbehoevendeId = reader.GetInt32(5);
+                    lb.Add(b);
                 }
+                reader.Close();
+                _con.Close();
+                return lb;
             }
             catch (Exception ex)
             {
@@ -56,19 +53,16 @@ namespace Carespot.DAL.Context
         {
             try
             {
-                using (_con)
-                {
-                    _con.Open();
-                    var cmdString =
-                        "INSERT INTO Beoordeling(opmerking, cijfer, reactie, vrijwilligerId, hulpbehoevendeId) VALUES(@opmerking, @cijfer, NULL, @vrijwilligerId, @hulpbehoevendeId);";
-                    var command = new SqlCommand(cmdString, _con);
-                    command.Parameters.AddWithValue("@opmerking", obj.Opmerking);
-                    command.Parameters.AddWithValue("@cijfer", obj.Cijfer);
-                    command.Parameters.AddWithValue("@vrijwilligerId", obj.VrijwilligerId);
-                    command.Parameters.AddWithValue("@hulpbehoevendeId", obj.HulpbehoevendeId);
-                    command.ExecuteNonQuery();
-                    _con.Close();
-                }
+                _con.Open();
+                var cmdString =
+                    "INSERT INTO Beoordeling(opmerking, cijfer, reactie, vrijwilligerId, hulpbehoevendeId) VALUES(@opmerking, @cijfer, NULL, @vrijwilligerId, @hulpbehoevendeId);";
+                var command = new SqlCommand(cmdString, _con);
+                command.Parameters.AddWithValue("@opmerking", obj.Opmerking);
+                command.Parameters.AddWithValue("@cijfer", obj.Cijfer);
+                command.Parameters.AddWithValue("@vrijwilligerId", obj.VrijwilligerId);
+                command.Parameters.AddWithValue("@hulpbehoevendeId", obj.HulpbehoevendeId);
+                command.ExecuteNonQuery();
+                _con.Close();
             }
             catch (Exception ex)
             {
@@ -80,15 +74,12 @@ namespace Carespot.DAL.Context
         {
             try
             {
-                using (_con)
-                {
-                    _con.Open();
-                    var cmdString = "DELETE FROM Beoordeling WHERE id = @id";
-                    var command = new SqlCommand(cmdString, _con);
-                    command.Parameters.AddWithValue("@id", id);
-                    command.ExecuteNonQuery();
-                    _con.Close();
-                }
+                _con.Open();
+                var cmdString = "DELETE FROM Beoordeling WHERE id = @id";
+                var command = new SqlCommand(cmdString, _con);
+                command.Parameters.AddWithValue("@id", id);
+                command.ExecuteNonQuery();
+                _con.Close();
             }
             catch (Exception ex)
             {
