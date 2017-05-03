@@ -140,6 +140,7 @@ namespace Carespot
         {
             var hulpvraag = new Hulpvraagxaml(_ingelogdeGebr);
             hulpvraag.Show();
+            this.Show();
         }
 
         private void lvMijnOpdrachten_MouseDoubleClick(object sender, MouseButtonEventArgs e)
