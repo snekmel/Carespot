@@ -44,6 +44,21 @@ namespace Carespot
                 cbGeslacht.Items.Add(item);
             }
         }
+        public void CleanForm()
+        {
+            tbmail.Text = "";
+            pwbWachtwoordOpnieuw.Password = "";
+            pwbWachtwoordd.Password = "";
+            tbNaam.Text = "";
+            cbGeslacht.SelectedItem = -1;
+            tbTelefoon.Text = "";
+            tbAdres.Text = "";
+            tbNummer.Text = "";
+            tbPostcode.Text = "";
+            tbPlaats.Text = "";
+            tbLand.Text = "";
+            //foto
+        }
 
         private void imgSluiten_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -136,6 +151,8 @@ namespace Carespot
                         var repohlp = new HulpverlenerRepository(hlp);
                         var id = repo.CreateGebruiker(g);
                         repohlp.CreateHulpverlener(id);
+                        CleanForm();
+                        MessageBox.Show("De hulpverlener is succesvol aangemaakt.");
                         // repo.CreateHulpbehoevende(naam, wachtwoord, geslacht, adres, huisNummer, postcode, plaats, land, email,
                         //    telNr, gebruikertype, foto, 3);
                     }
@@ -153,6 +170,7 @@ namespace Carespot
             {
                 MessageBox.Show("Er moet een geslacht gekozen zijn.");
             }
+
         }
     }
 }
