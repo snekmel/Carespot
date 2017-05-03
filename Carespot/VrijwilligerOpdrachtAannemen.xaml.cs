@@ -31,12 +31,22 @@ namespace Carespot
             _ingelogdeGebr = ingelogdeGebr;
             //vul combobox
             vulOpdrachtLijst();
+            vulComboBox();
+            imgGebruiker.Source = FunctionRepository.ByteToImage(_ingelogdeGebr.Foto);
+            lblNaam.Content = _ingelogdeGebr.Naam;
+        }
+
+        private void vulComboBox()
+        {
+            
         }
 
         //Geef lijst met beschikbare hulpvragen
         private void image_Copy1_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            //'VrijwilligerHoofdscherm' openen
+            var vrijwilliger = new VrijwilligerHoofdscherm(_ingelogdeGebr);
+            vrijwilliger.Show();
+            this.Close();
         }
 
         private void btKiesOpdracht_Click(object sender, RoutedEventArgs e)
