@@ -163,9 +163,9 @@ namespace Carespot
                 rfid = null;
                 Console.WriteLine("ok");
             }
-            catch (PhidgetException ex)
+            catch (Exception ex)
             {
-                Console.WriteLine(ex.Description);
+                MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
             }
         }
 

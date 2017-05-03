@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Carespot"
         mc:Ignorable="d"
-        Title="VrijwilligerHoofdscherm" Height="700" Width="450" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+        Title="Carespot" Height="700" Width="450" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid>
 
         <Image x:Name="imgGebruiker" HorizontalAlignment="Left" Height="41" Margin="28,22,0,0" VerticalAlignment="Top" Width="41" MouseLeftButtonUp="imgGebruiker_MouseLeftButtonUp_1" />

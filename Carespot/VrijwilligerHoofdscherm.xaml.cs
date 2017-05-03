@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 using Carespot.DAL.Context;
@@ -29,15 +30,18 @@ namespace Carespot
         {
             HulpopdrachtSQLContext hsc = new HulpopdrachtSQLContext();
             HulpopdrachtRepository hr = new HulpopdrachtRepository(hsc);
-
-          List<HulpOpdracht> opdrachten =  hr.RetrieveHulpopdrachtByVrijwilligerId(_ingelogdeGebruiker.Id);
-
-            foreach (HulpOpdracht ho in opdrachten)
+            try
             {
-                lvOpdracht.Items.Add(ho);
+                List<HulpOpdracht> opdrachten = hr.RetrieveHulpopdrachtByVrijwilligerId(_ingelogdeGebruiker.Id);
+                foreach (HulpOpdracht ho in opdrachten)
+                {
+                    lvOpdracht.Items.Add(ho);
+                }
             }
-
-
+            catch (Exception ex)
+            {
+                MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
+            }
         }
 
         private void imgLogout_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)

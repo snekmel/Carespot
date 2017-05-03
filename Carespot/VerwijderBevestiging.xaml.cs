@@ -46,19 +46,40 @@ namespace Carespot
             {
                 var hvContext = new HulpverlenerSQLContext();
                 var hulpverlenerRepo = new HulpverlenerRepository(hvContext);
-                hulpverlenerRepo.DeleteHulpverlener(_ontvangGebr.Id);
+                try
+                {
+                    hulpverlenerRepo.DeleteHulpverlener(_ontvangGebr.Id);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
+                }
             }
             else if (_ontvangGebr.Type == Gebruiker.GebruikerType.Hulpbehoevende)
             {
                 var hbContext = new HulpbehoevendeSQLContext();
                 var hulpbehoevendeRepo = new HulpbehoevendeRepository(hbContext);
-                hulpbehoevendeRepo.DeleteHulpbehoevende(_ontvangGebr.Id);
+                try
+                {
+                    hulpbehoevendeRepo.DeleteHulpbehoevende(_ontvangGebr.Id);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
+                }
             }
             else if (_ontvangGebr.Type == Gebruiker.GebruikerType.Vrijwilliger)
             {
                 var vContext = new VrijwilligerSQLContext();
                 var vrijwilligerRepo = new VrijwilligerRepository(vContext);
-                vrijwilligerRepo.DeleteVrijwilliger(_ontvangGebr.Id);
+                try
+                {
+                    vrijwilligerRepo.DeleteVrijwilliger(_ontvangGebr.Id);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
+                }
             }
             _scherm.vulListView();
             this.Close();

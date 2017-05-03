@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Carespot"
         mc:Ignorable="d"
-        Title="VrijwilligerOpdrachtAannemen" Height="650" Width="600" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+        Title="Carespot" Height="650" Width="600" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Image x:Name="imgGebruiker" HorizontalAlignment="Left" Height="48" Margin="15,15,0,0" VerticalAlignment="Top" Width="54" Source="image/user-shape.png" />
         <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="69,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,0.5" FontSize="16" Height="28" Width="333" />

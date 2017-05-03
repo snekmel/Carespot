@@ -47,12 +47,18 @@ namespace Carespot
             {
                 ReactieSQLContext rsc = new ReactieSQLContext();
                 ReactieRepository rr = new ReactieRepository(rsc);
-                rr.CreateReactie(_loggedInUser.Id, _hulpOpdracht.Id, tbReactie.Text);
-                MessageBox.Show("Uw reactie is verzonden.");
+
+                try
+                {
+                    rr.CreateReactie(_loggedInUser.Id, _hulpOpdracht.Id, tbReactie.Text);
+                    MessageBox.Show("Uw reactie is verzonden.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
+                }
             }
-
         }
-
 
         private void tbReactie_SelectionChanged(object sender, RoutedEventArgs e)
         {

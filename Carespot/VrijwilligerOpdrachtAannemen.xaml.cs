@@ -38,7 +38,7 @@ namespace Carespot
 
         private void vulComboBox()
         {
-            
+            //nog geen filters
         }
 
         //Geef lijst met beschikbare hulpvragen
@@ -64,17 +64,24 @@ namespace Carespot
             var context = new HulpopdrachtSQLContext();
             var opdrRepo = new HulpopdrachtRepository(context);
 
-            List<HulpOpdracht> opdrachtenLijst = new List<HulpOpdracht>();
-            opdrachtenLijst = opdrRepo.GetAllHulpopdrachten();
-
-            foreach (var opdracht in opdrachtenLijst)
+            try
             {
+                List<HulpOpdracht> opdrachtenLijst = new List<HulpOpdracht>();
+                opdrachtenLijst = opdrRepo.GetAllHulpopdrachten();
 
-                if (!opdracht.IsGeaccepteerd)
+                foreach (var opdracht in opdrachtenLijst)
                 {
-                    lvOpdrachten.Items.Add(opdracht);
+
+                    if (!opdracht.IsGeaccepteerd)
+                    {
+                        lvOpdrachten.Items.Add(opdracht);
+                    }
+
                 }
-               
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
             }
         }
 
