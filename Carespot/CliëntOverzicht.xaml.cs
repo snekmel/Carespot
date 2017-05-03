@@ -182,6 +182,7 @@ namespace Carespot
         {
             var inlog = new Inlogscherm();
             inlog.Show();
+            this.Close();
 
             
         }
