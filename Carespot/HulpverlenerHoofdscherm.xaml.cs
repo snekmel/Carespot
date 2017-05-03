@@ -20,21 +20,28 @@ namespace Carespot
             _ingelogdeGebruiker = ingelogdeGebruiker;
             profielImg.Source = FunctionRepository.ByteToImage(_ingelogdeGebruiker.Foto);
             lblNaam.Content = ingelogdeGebruiker.Naam;
-            Cliëntenlijst();
+            ViewLoader();
+
+            
         }
 
-        public void Cliëntenlijst()
+        private void ViewLoader()
         {
-            //lvCliënten.Items.Add();
+
+            this.lvCliënten.Items.Clear();
+ 
+            //Haal al de hulpbehoevende die bij de user horen.
+            HulpbehoevendeSQLContext hsc = new HulpbehoevendeSQLContext();
+            HulpbehoevendeRepository hr = new HulpbehoevendeRepository(hsc);
+
+            foreach (Hulpbehoevende hb in hr.RetrieveAllHulpbehoevendeByHulpverlenerId(_ingelogdeGebruiker.Id))
+            {
+                lvCliënten.Items.Add(hb);
+            }
+
+
         }
 
-        public void HulpvraagLijst()
-        {
-            List<HulpOpdracht> Opdrachten = new List<HulpOpdracht>();
-            //Opdrachten = hr.GetAllHulpopdrachtenByHulpbehoevendeID(_ingelogdeGebr.Id);
-        }
-        //Geef lijst met gekoppelde cliënten
-        //Geef lijst met de daarbijhorende hulpvragen
 
         private void imgHulpverlenerToevoegen_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -52,6 +59,33 @@ namespace Carespot
             var gegevenswijzigen = new GegevensWijzigen(_ingelogdeGebruiker);
             gegevenswijzigen.Show();
             this.Close();
+        }
+
+        private void lvCliënten_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {   
+            this.lvOpdrachten.Items.Clear();
+            if ((Hulpbehoevende)lvCliënten.SelectedItem != null)
+            {
+                HulpopdrachtSQLContext hs = new HulpopdrachtSQLContext();
+                HulpopdrachtRepository hor = new HulpopdrachtRepository(hs);
+
+                //Haal de opdrachten op bij de geselecteerde hulpbehoevende
+                Hulpbehoevende hulpbehoevende = (Hulpbehoevende)lvCliënten.SelectedItem;
+         
+                foreach (HulpOpdracht opdracht in hor.GetAllHulpopdrachtenByHulpbehoevendeID(hulpbehoevende.Id))
+                {
+                    lvOpdrachten.Items.Add(opdracht);
+                }
+            }
+
+        }
+
+        private void lvOpdrachten_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            HulpOpdracht ho = (HulpOpdracht)lvOpdrachten.SelectedItem;
+
+            Opdracht scherm = new Opdracht(_ingelogdeGebruiker, ho);
+            scherm.Show();
         }
     }
 }
