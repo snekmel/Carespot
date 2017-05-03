@@ -33,12 +33,13 @@ namespace Carespot
             List<HulpOpdracht> Opdrachten = new List<HulpOpdracht>();
             //Opdrachten = hr.GetAllHulpopdrachtenByHulpbehoevendeID(_ingelogdeGebr.Id);
         }
+
         //Geef lijst met gekoppelde cliënten
         //Geef lijst met de daarbijhorende hulpvragen
 
         private void imgHulpverlenerToevoegen_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            var hulpverlenerToevoegen = new HulpverlenerToevoegen();
+            var hulpverlenerToevoegen = new HulpverlenerToevoegen(_ingelogdeGebruiker);
             hulpverlenerToevoegen.Show();
         }
 
