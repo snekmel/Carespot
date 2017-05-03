@@ -18,46 +18,43 @@ namespace Carespot.DAL.Context
             var returnList = new List<Hulpverlener>();
             try
             {
-                using (_con)
+                _con.Open();
+                var cmdString =
+                    "SELECT * FROM Gebruiker INNER JOIN Hulpverlener ON Gebruiker.id = Hulpverlener.gebruikerId WHERE Gebruiker.id IN(SELECT gebruikerId FROM Hulpverlener)";
+                var command = new SqlCommand(cmdString, _con);
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    _con.Open();
-                    var cmdString =
-                        "SELECT * FROM Gebruiker INNER JOIN Hulpverlener ON Gebruiker.id = Hulpverlener.gebruikerId WHERE Gebruiker.id IN(SELECT gebruikerId FROM Hulpverlener)";
-                    var command = new SqlCommand(cmdString, _con);
-                    var reader = command.ExecuteReader();
+                    var g = new Hulpverlener();
 
-                    while (reader.Read())
+                    g.Naam = reader.GetString(1);
+                    g.Wachtwoord = reader.GetString(2);
+                    g.Email = reader.GetString(9);
+                    g.Id = reader.GetInt32(0);
+                    g.Geslacht =
+                        (Gebruiker.GebruikerGeslacht)
+                        Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
+                    g.Straat = reader.GetString(4);
+                    g.Huisnummer = reader.GetString(5);
+                    g.Postcode = reader.GetString(6);
+                    g.Plaats = reader.GetString(7);
+                    g.Land = reader.GetString(8);
+                    g.Telefoonnummer = reader.GetString(10);
+                    if (!reader.IsDBNull(11))
                     {
-                        var g = new Hulpverlener();
-
-                        g.Naam = reader.GetString(1);
-                        g.Wachtwoord = reader.GetString(2);
-                        g.Email = reader.GetString(9);
-                        g.Id = reader.GetInt32(0);
-                        g.Geslacht =
-                            (Gebruiker.GebruikerGeslacht)
-                            Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
-                        g.Straat = reader.GetString(4);
-                        g.Huisnummer = reader.GetString(5);
-                        g.Postcode = reader.GetString(6);
-                        g.Plaats = reader.GetString(7);
-                        g.Land = reader.GetString(8);
-                        g.Telefoonnummer = reader.GetString(10);
-                        if (!reader.IsDBNull(11))
-                        {
-                            g.Foto = (byte[])reader[11];
-                        }
-
-                        if (!reader.IsDBNull(12))
-                        {
-                            g.Rfid = reader.GetString(12);
-                        }
-
-                        returnList.Add(g);
+                        g.Foto = (byte[])reader[11];
                     }
-                    _con.Close();
-                    return returnList;
+
+                    if (!reader.IsDBNull(12))
+                    {
+                        g.Rfid = reader.GetString(12);
+                    }
+
+                    returnList.Add(g);
                 }
+                _con.Close();
+                return returnList;
             }
             catch (Exception ex)
             {
@@ -69,16 +66,13 @@ namespace Carespot.DAL.Context
         {
             try
             {
-                using (_con)
-                {
-                    _con.Open();
-                    var query1 = "INSERT INTO Hulpverlener (gebruikerId) VALUES (@newID)";
-                    var command1 = new SqlCommand(query1, _con);
-                    command1.Parameters.AddWithValue("@newID", gebruikerId);
-                    command1.ExecuteScalar();
+                _con.Open();
+                var query1 = "INSERT INTO Hulpverlener (gebruikerId) VALUES (@newID)";
+                var command1 = new SqlCommand(query1, _con);
+                command1.Parameters.AddWithValue("@newID", gebruikerId);
+                command1.ExecuteScalar();
 
-                    _con.Close();
-                }
+                _con.Close();
             }
             catch (Exception ex)
             {
@@ -113,15 +107,12 @@ namespace Carespot.DAL.Context
         {
             try
             {
-                using (_con)
-                {
-                    _con.Open();
-                    var cmdString = "DELETE FROM Hulpverlener WHERE gebruikerId = @id";
-                    var command = new SqlCommand(cmdString, _con);
-                    command.Parameters.AddWithValue("@id", id);
-                    command.ExecuteNonQuery();
-                    _con.Close();
-                }
+                _con.Open();
+                var cmdString = "DELETE FROM Hulpverlener WHERE gebruikerId = @id";
+                var command = new SqlCommand(cmdString, _con);
+                command.Parameters.AddWithValue("@id", id);
+                command.ExecuteNonQuery();
+                _con.Close();
             }
             catch (Exception ex)
             {

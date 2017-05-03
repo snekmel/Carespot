@@ -60,11 +60,13 @@ namespace Carespot
                 {
                     lblRfid.Content = "U wordt ingelogd.";
                     _timer.Stop();
+
                     var gr = new GebruikerRepository();
                     var gebruikers = gr.RetrieveAll();
                     foreach (var gebr in gebruikers)
                         if (gebr.Id == g.Id)
                         {
+                            _tag = null;
                             i++;
                             if (gebr.GetType() == typeof(Vrijwilliger))
                             {
@@ -89,6 +91,7 @@ namespace Carespot
                         }
                     if (i == 1)
                     {
+                        _tag = null;
                         if (gebrHulpbehoevende == null && gebrVrijwilliger != null)
                         {
                             var vrijwilligerscherm = new VrijwilligerHoofdscherm(gebrVrijwilliger);
@@ -104,6 +107,7 @@ namespace Carespot
                     }
                     else if (i > 1)
                     {
+                        _tag = null;
                         var keuzescherm = new Keuzescherm(gebrVrijwilliger, gebrHulpbehoevende);
                         keuzescherm.Show();
                         Close();
@@ -111,7 +115,7 @@ namespace Carespot
                 }
                 else
                 {
-                    lblRfid.Content = "Geen gebruiker gevonden met deze tag.";
+                    lblRfid.Content = "Geen gebruiker gevonden met tag : " + _tag;
                 }
             }
         }
@@ -167,8 +171,7 @@ namespace Carespot
 
         private static void rfid_Attach(object sender, AttachEventArgs e)
         {
-            Console.WriteLine("RFIDReader {0} attached!",
-                                    e.Device.SerialNumber.ToString());
+            Console.WriteLine("RFIDReader attached!", e.Device.SerialNumber.ToString());
         }
 
         //detach event handler...display the serial number of the detached RFID phidget

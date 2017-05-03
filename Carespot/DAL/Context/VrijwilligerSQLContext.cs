@@ -14,51 +14,45 @@ namespace Carespot.DAL.Context
     {
         private readonly SqlConnection _con = new SqlConnection("Data Source=WIN-SRV-WEB.fhict.local;Initial Catalog=Carespot;User ID=carespot;Password=Test1234;Encrypt=False;TrustServerCertificate=True");
 
-        public List<Vrijwilliger> RetrieveAll()  
+        public List<Vrijwilliger> RetrieveAll()
         {
             var returnList = new List<Vrijwilliger>();
             try
             {
-                using (_con)
+                _con.Open();
+                var cmdString = "SELECT * FROM Gebruiker INNER JOIN Vrijwilliger ON Gebruiker.id = Vrijwilliger.gebruikerId WHERE Gebruiker.id IN (SELECT gebruikerId FROM Vrijwilliger)";
+                var command = new SqlCommand(cmdString, _con);
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    _con.Open();
-                    var cmdString = "SELECT * FROM Gebruiker INNER JOIN Vrijwilliger ON Gebruiker.id = Vrijwilliger.gebruikerId WHERE Gebruiker.id IN (SELECT gebruikerId FROM Vrijwilliger)";
-                    var command = new SqlCommand(cmdString, _con);
-                    var reader = command.ExecuteReader();
-                   
-                    while (reader.Read())
+                    Vrijwilliger g = new Vrijwilliger(reader.GetString(1), reader.GetString(2), reader.GetString(9));
+                    g.Id = reader.GetInt32(0);
+                    g.Geslacht = (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
+                    g.Straat = reader.GetString(4);
+                    g.Huisnummer = reader.GetString(5);
+                    g.Postcode = reader.GetString(6);
+                    g.Plaats = reader.GetString(7);
+                    g.Land = reader.GetString(8);
+                    g.Telefoonnummer = reader.GetString(10);
+                    if (!reader.IsDBNull(11))
                     {
-                        Vrijwilliger g = new Vrijwilliger(reader.GetString(1), reader.GetString(2), reader.GetString(9));
-                        g.Id = reader.GetInt32(0);
-                        g.Geslacht = (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
-                        g.Straat = reader.GetString(4);
-                        g.Huisnummer = reader.GetString(5);
-                        g.Postcode = reader.GetString(6);
-                        g.Plaats = reader.GetString(7);
-                        g.Land = reader.GetString(8);                     
-                        g.Telefoonnummer = reader.GetString(10);                                       
-                        if (!reader.IsDBNull(11))
-                        {
-                            g.Foto = (byte[])reader[11];
-                        }
-
-                        if (!reader.IsDBNull(12))
-                        {
-                            g.Rfid = reader.GetString(12);
-                        }
-                        returnList.Add(g);
-
+                        g.Foto = (byte[])reader[11];
                     }
-                    _con.Close();
+
+                    if (!reader.IsDBNull(12))
+                    {
+                        g.Rfid = reader.GetString(12);
+                    }
+                    returnList.Add(g);
                 }
-                
+                _con.Close();
             }
             catch
             {
                 System.Windows.MessageBox.Show("VrijwilligerSqlContext -> Retrieve all");
             }
             return returnList;
-
         }
 
         public void CreateVrijwilliger(int gebruikerId)
@@ -84,7 +78,6 @@ namespace Carespot.DAL.Context
             GebruikerRepository gr = new GebruikerRepository(gsc);
             Gebruiker g = gr.RetrieveGebruiker(id);
 
-
             if (g != null)
             {
                 Vrijwilliger v = new Vrijwilliger();
@@ -102,13 +95,11 @@ namespace Carespot.DAL.Context
                 v.Foto = g.Foto;
 
                 return v;
-
             }
             else
             {
                 return null;
             }
-
         }
 
         public void DeleteVrijwilliger(int id)
