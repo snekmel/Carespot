@@ -171,5 +171,12 @@ namespace Carespot
             FillReactieOpOpdracht(_geselecteerdeHulpopdracht);
 
         }
+
+        private void imgUitloggen_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var inlog = new Inlogscherm();
+            inlog.Show();
+            this.Close();
+        }
     }
 }
