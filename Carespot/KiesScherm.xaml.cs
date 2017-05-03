@@ -138,12 +138,6 @@ namespace Carespot
             beheerderscherm.Show();
         }
 
-        private void RecensieScherm_Click(object sender, RoutedEventArgs e)
-        {
-            var beoordelingsScherm = new BeoordelingScherm();
-            beoordelingsScherm.Show();
-        }
-
         private void HulpverlenerOverzicht_Click(object sender, RoutedEventArgs e)
         {
             //var hulpverlenerHoofdscherm = new HulpverlenerHoofdscherm();
