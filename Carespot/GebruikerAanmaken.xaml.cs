@@ -76,13 +76,15 @@ namespace Carespot
                             Telefoonnummer = telNr
                         };
                         var id = 0;
+                        bool gebruikerIsAaangemaakt = false;
                         if (chbHulpbehoevnde.IsChecked == true)
                         {
                             var hlp = new HulpbehoevendeSQLContext();
                             var repohlp = new HulpbehoevendeRepository(hlp);
                             id = repo.CreateGebruiker(g);
                             var hulpverlener = repohlp.HulpverlenerId();
-                            Thread.Sleep(100);
+                            gebruikerIsAaangemaakt = true;
+
                             try
                             {
                                 repohlp.CreateHulpbehoevende(id, hulpverlener);
@@ -111,7 +113,16 @@ namespace Carespot
                             var repovrw = new VrijwilligerRepository(vrw);
                             try
                             {
-                                repovrw.CreateVrijwilliger(id);
+                                if (!gebruikerIsAaangemaakt)
+                                {
+                                    id = repo.CreateGebruiker(g);
+                                    repovrw.CreateVrijwilliger(id);
+                                }
+                                else
+                                {
+                                    repovrw.CreateVrijwilliger(id);
+                                }
+                               
                             }
                             catch (Exception ex)
                             {
