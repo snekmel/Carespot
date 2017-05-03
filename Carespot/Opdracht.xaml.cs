@@ -72,7 +72,7 @@ namespace Carespot
 
         private void imgSluitAf_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            //'VrijwilligerHoofdscherm openen'
+            this.Close();
         }
 
         private void RunTimer()
