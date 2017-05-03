@@ -23,6 +23,7 @@ namespace Carespot
     public partial class CliëntOverzicht : Window
     {
         private readonly Gebruiker _ingelogdeGebr;
+        private int _geselecteerdeHulpopdracht;
 
         public CliëntOverzicht(Gebruiker ingelogdegebr)
         {
@@ -33,8 +34,8 @@ namespace Carespot
             lblNaam.Content = _ingelogdeGebr.Naam;
 
             //Hide label en button standaard
-            btnKoppelingOngedaanMaken.Visibility = Visibility.Visible;
-            lblKoppelingHulpopdracht.Visibility = Visibility.Visible;
+            btnKoppelingOngedaanMaken.Visibility = Visibility.Hidden;
+            lblKoppelingHulpopdracht.Visibility = Visibility.Hidden;
         }
 
         private void FillMijnOpdrachtenList()
@@ -46,8 +47,7 @@ namespace Carespot
 
             //Vul lijst met mijn hulpopdrachten
             List<HulpOpdracht> mijnOpdrachten = new List<HulpOpdracht>();
-            //mijnOpdrachten = hr.GetAllHulpopdrachtenByHulpbehoevendeID(_ingelogdeGebr.Id);
-            mijnOpdrachten = hr.GetAllHulpopdrachtenByHulpbehoevendeID(5);
+            mijnOpdrachten = hr.GetAllHulpopdrachtenByHulpbehoevendeID(_ingelogdeGebr.Id);
 
             foreach (var hulpopdracht in mijnOpdrachten)
             {
@@ -57,22 +57,22 @@ namespace Carespot
 
         private void FillReactieOpOpdracht(int hulpopdrachtid)
         {
+            _geselecteerdeHulpopdracht = hulpopdrachtid;
+
             lvReacties.Items.Clear();
 
-            var context = new ReactieSQLContext();
-            var rr = new ReactieRepository(context);
+            var contextho = new HulpopdrachtSQLContext();
+            var hr = new HulpopdrachtRepository(contextho);
 
-            //Vul lijst met mijn reacties
-            List<Reactie> reactiesOpOpdracht = new List<Reactie>();
-            reactiesOpOpdracht = rr.GetAllReactiesByHulopdrachtID(hulpopdrachtid);
+            bool accepted = hr.IsGeacepteerd(hulpopdrachtid);
 
-            foreach (var reactie in reactiesOpOpdracht)
+            if (accepted)
             {
-<<<<<<< HEAD
                 lvReacties.Visibility = Visibility.Hidden;
 
                 btnKoppelingOngedaanMaken.Visibility = Visibility.Visible;
                 lblKoppelingHulpopdracht.Visibility = Visibility.Visible;
+
             }
             else
             {
@@ -93,9 +93,6 @@ namespace Carespot
                 {
                     lvReacties.Items.Add(reactie);
                 }
-=======
-                lvReacties.Items.Add(reactie);
->>>>>>> d1f5ae25156e851bda86541c856e34d24baecfbc
             }
         }
 
@@ -111,7 +108,18 @@ namespace Carespot
             Button b = sender as Button;
             Reactie reactie = b.CommandParameter as Reactie;
 
-            MessageBox.Show(Convert.ToString(reactie.Id));
+            //Update de bijbehorende hulpodpracht
+            var contextho = new HulpopdrachtSQLContext();
+            var hr = new HulpopdrachtRepository(contextho);
+            hr.AcceptReactie(_geselecteerdeHulpopdracht, reactie.Vrijwilliger.Id);
+
+            //Verwijder de reactie
+            var contextreactie = new ReactieSQLContext();
+            var rr = new ReactieRepository(contextreactie);
+            rr.DeleteReactie(reactie.Id);
+
+            //Herlaad opdrachtenlistview
+            FillReactieOpOpdracht(_geselecteerdeHulpopdracht);
         }
 
         private void AfwijzenOpdracht(object sender, RoutedEventArgs e)
@@ -120,6 +128,12 @@ namespace Carespot
             Reactie reactie = b.CommandParameter as Reactie;
 
             //Hier via dal opdracht afwijzen
+            var context = new ReactieSQLContext();
+            var rr = new ReactieRepository(context);
+            rr.DeleteReactie(reactie.Id);
+
+            //Herlaad opdrachtenlistview
+            FillReactieOpOpdracht(_geselecteerdeHulpopdracht);
         }
 
         private void imgAddHulpvraag_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -134,7 +148,6 @@ namespace Carespot
 
             Opdracht scherm = new Opdracht(_ingelogdeGebr, ho);
             scherm.Show();
-            this.Close();
         }
 
         private void imgGebruiker_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -155,6 +168,7 @@ namespace Carespot
 
             //Herlaad de reactielijst na het vrewijderen van de vijwilliger
             FillReactieOpOpdracht(_geselecteerdeHulpopdracht);
+
         }
     }
 }
