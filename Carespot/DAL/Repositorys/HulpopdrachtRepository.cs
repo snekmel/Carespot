@@ -61,5 +61,10 @@ namespace Carespot.DAL.Repositorys
             return returnList;
         }
 
+        public void VerwijderVrijwilligerVanHulpopdracht(int hulpopdrachtid)
+        {
+            _context.VerwijderVrijwilligerVanHulpopdracht(hulpopdrachtid);
+        }
+
     }
 }

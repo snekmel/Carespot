@@ -11,15 +11,17 @@
             <ColumnDefinition Width="89*" />
             <ColumnDefinition Width="307*" />
         </Grid.ColumnDefinitions>
-        <ListView x:Name="lvReacties" HorizontalAlignment="Left" Height="600" Margin="53,128,0,0" VerticalAlignment="Top" Width="550" Grid.Column="1">
+        <Button x:Name="btnKoppelingOngedaanMaken" Content="Koppeling ongedaan maken" Grid.Column="1" HorizontalAlignment="Left" Margin="187,324,0,0" VerticalAlignment="Top" Width="176" Click="btnKoppelingOngedaanMaken_Click"/>
+        <Label x:Name="lblKoppelingHulpopdracht" Content="Deze hulpopdracht heeft al een vrijwilliger. " Grid.Column="1" HorizontalAlignment="Left" Margin="163,293,0,0" VerticalAlignment="Top" Width="259"/>
+        <ListView x:Name="lvReacties" HorizontalAlignment="Left" Height="600" Margin="50,128,0,0" VerticalAlignment="Top" Width="519" Grid.Column="1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Naam" Width="150" DisplayMemberBinding="{Binding Vrijwilliger.Naam}" />
-                    <GridViewColumn Header="Bericht" Width="350" DisplayMemberBinding="{Binding Bericht}" />
+                    <GridViewColumn Header="Bericht" Width="310" DisplayMemberBinding="{Binding Bericht}" />
                     <GridViewColumn Width="25">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="&#10003;" Click="AcepteerOpdracht" CommandParameter="{Binding}" />
+                                <Button Content="✓" Click="AcepteerOpdracht" CommandParameter="{Binding}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

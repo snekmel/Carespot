@@ -32,6 +32,10 @@ namespace Carespot
             FillMijnOpdrachtenList();
             imgGebruiker.Source = FunctionRepository.ByteToImage(_ingelogdeGebr.Foto);
             lblNaam.Content = _ingelogdeGebr.Naam;
+
+            //Hide label en button standaard
+            btnKoppelingOngedaanMaken.Visibility = Visibility.Visible;
+            lblKoppelingHulpopdracht.Visibility = Visibility.Visible;
         }
 
         private void FillMijnOpdrachtenList()
@@ -65,10 +69,16 @@ namespace Carespot
             if (accepted)
             {
                 lvReacties.Visibility = Visibility.Hidden;
+
+                btnKoppelingOngedaanMaken.Visibility = Visibility.Visible;
+                lblKoppelingHulpopdracht.Visibility = Visibility.Visible;
             }
             else
             {
                 lvReacties.Visibility = Visibility.Visible;
+
+                btnKoppelingOngedaanMaken.Visibility = Visibility.Hidden;
+                lblKoppelingHulpopdracht.Visibility = Visibility.Hidden;
 
                 lvReacties.Items.Clear();
                 var context = new ReactieSQLContext();
@@ -144,6 +154,19 @@ namespace Carespot
             var gegevenswijzigen = new GegevensWijzigen(_ingelogdeGebr);
             gegevenswijzigen.Show();
             this.Close();
+        }
+
+        private void btnKoppelingOngedaanMaken_Click(object sender, RoutedEventArgs e)
+        {
+            //Verwijder vrijwilliger in de hulpopdracht
+
+            var context = new HulpopdrachtSQLContext();
+            var hr = new HulpopdrachtRepository(context);
+
+            hr.VerwijderVrijwilligerVanHulpopdracht(_geselecteerdeHulpopdracht);
+
+            //Herlaad de reactielijst na het vrewijderen van de vijwilliger
+            FillReactieOpOpdracht(_geselecteerdeHulpopdracht);
         }
     }
 }
