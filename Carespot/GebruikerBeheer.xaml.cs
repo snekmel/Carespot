@@ -39,8 +39,6 @@ namespace Carespot
 
         private void imgSluitAf_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            //als hulpverlener ingelogd is ga terug naar HulpverlenerHoofdscherm.
-            //als beheerder ignelgod is ga tertug naar Beheerderscherm
             var inlogscherm = new Inlogscherm();
             inlogscherm.Show();
             Close();
