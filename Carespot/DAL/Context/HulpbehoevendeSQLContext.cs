@@ -74,13 +74,9 @@ namespace Carespot.DAL.Context
                     hulpBehoevende.Email = reader.GetString(9);
                     hulpBehoevende.Telefoonnummer = reader.GetString(10);
                     if (!reader.IsDBNull(11))
-                    {
                         hulpBehoevende.Foto = (byte[])reader[11];
-                    }
                     if (!reader.IsDBNull(12))
-                    {
                         hulpBehoevende.Rfid = reader.GetString(12);
-                    }
                     hulpBehoevende.Hulpverlener = RetrieveHulpverlener(reader.GetInt32(13));
                     hulpbehoevendeList.Add(hulpBehoevende);
                 }
