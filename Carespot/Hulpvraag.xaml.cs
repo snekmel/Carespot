@@ -61,6 +61,9 @@ namespace Carespot
             HulpopdrachtSQLContext hulpOpdrachtContext = new HulpopdrachtSQLContext();
             HulpopdrachtRepository hulpOpdrachtRepo = new HulpopdrachtRepository(hulpOpdrachtContext);
             hulpOpdrachtRepo.CreateHulpopdracht(hulpOpdracht);
+            tbTitel.Text = "";
+            tbBeschrijving.Selection.Text = "";
+            MessageBox.Show("Uw hulpvraag is succesvol aangemaakt.");
         }
     }
 }
