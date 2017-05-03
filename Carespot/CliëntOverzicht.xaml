@@ -36,7 +36,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Image x:Name="imgUitloggen" HorizontalAlignment="Left" Height="41" Margin="562,15,0,0" VerticalAlignment="Top" Width="41" Source="image/sign-out-option.png" RenderTransformOrigin="0.463,0.512" Grid.Column="1" />
+        <Image x:Name="imgUitloggen" HorizontalAlignment="Left" Height="41" Margin="562,15,0,0" VerticalAlignment="Top" Width="41" Source="image/sign-out-option.png" RenderTransformOrigin="0.463,0.512" Grid.Column="1" MouseLeftButtonUp="imgUitloggen_MouseLeftButtonUp" />
 
         <Label x:Name="lblVoegHulpvraagToe" Content="Voeg hulpvraag toe" HorizontalAlignment="Left" Margin="229,15,0,0" VerticalAlignment="Top" FontSize="18" Grid.Column="1" Height="34" Width="166" />
         <Label Content="Mijn opdrachten" HorizontalAlignment="Left" Margin="52,102,0,0" VerticalAlignment="Top" FontSize="14" Height="29" Width="112" />

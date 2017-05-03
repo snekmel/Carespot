@@ -156,5 +156,14 @@ namespace Carespot
             return false;
 
         }
+
+        private void tbChatBericht_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                btnSendChat.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                e.Handled = true;
+            }
+        }
     }
 }

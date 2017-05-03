@@ -36,7 +36,7 @@ namespace Carespot
             //Hide label en button standaard
             btnKoppelingOngedaanMaken.Visibility = Visibility.Hidden;
             lblKoppelingHulpopdracht.Visibility = Visibility.Hidden;
-          
+
         }
 
         private void FillMijnOpdrachtenList()
@@ -102,7 +102,7 @@ namespace Carespot
         private void lvMijnOpdrachten_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //Haal de reacties op aan de hand van de geselecteerde hulpopdracht
-            HulpOpdracht geselecteerdeHulpOpdracht = (HulpOpdracht)lvMijnOpdrachten.SelectedItem;
+            HulpOpdracht geselecteerdeHulpOpdracht = (HulpOpdracht) lvMijnOpdrachten.SelectedItem;
             FillReactieOpOpdracht(geselecteerdeHulpOpdracht.Id);
         }
 
@@ -150,7 +150,7 @@ namespace Carespot
 
         private void lvMijnOpdrachten_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            HulpOpdracht ho = (HulpOpdracht)lvMijnOpdrachten.SelectedItem;
+            HulpOpdracht ho = (HulpOpdracht) lvMijnOpdrachten.SelectedItem;
 
             Opdracht scherm = new Opdracht(_ingelogdeGebr, ho);
             scherm.Show();
@@ -177,6 +177,14 @@ namespace Carespot
 
         }
 
+
+        private void imgUitloggen_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var inlog = new Inlogscherm();
+            inlog.Show();
+
+            
+        }
         private void ReloadForm()
         {
             CliëntOverzicht scherm = new CliëntOverzicht(_ingelogdeGebr);
