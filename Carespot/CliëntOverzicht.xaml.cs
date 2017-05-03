@@ -36,6 +36,7 @@ namespace Carespot
             //Hide label en button standaard
             btnKoppelingOngedaanMaken.Visibility = Visibility.Hidden;
             lblKoppelingHulpopdracht.Visibility = Visibility.Hidden;
+
         }
 
         private void FillMijnOpdrachtenList()
@@ -69,6 +70,7 @@ namespace Carespot
             if (accepted)
             {
                 lvReacties.Visibility = Visibility.Hidden;
+                lblreacties.Visibility = Visibility.Hidden;
 
                 btnKoppelingOngedaanMaken.Visibility = Visibility.Visible;
                 lblKoppelingHulpopdracht.Visibility = Visibility.Visible;
@@ -77,6 +79,7 @@ namespace Carespot
             else
             {
                 lvReacties.Visibility = Visibility.Visible;
+                lblreacties.Visibility = Visibility.Visible;
 
                 btnKoppelingOngedaanMaken.Visibility = Visibility.Hidden;
                 lblKoppelingHulpopdracht.Visibility = Visibility.Hidden;
@@ -99,7 +102,7 @@ namespace Carespot
         private void lvMijnOpdrachten_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //Haal de reacties op aan de hand van de geselecteerde hulpopdracht
-            HulpOpdracht geselecteerdeHulpOpdracht = (HulpOpdracht)lvMijnOpdrachten.SelectedItem;
+            HulpOpdracht geselecteerdeHulpOpdracht = (HulpOpdracht) lvMijnOpdrachten.SelectedItem;
             FillReactieOpOpdracht(geselecteerdeHulpOpdracht.Id);
         }
 
@@ -120,6 +123,7 @@ namespace Carespot
 
             //Herlaad opdrachtenlistview
             FillReactieOpOpdracht(_geselecteerdeHulpopdracht);
+            this.ReloadForm();
         }
 
         private void AfwijzenOpdracht(object sender, RoutedEventArgs e)
@@ -134,6 +138,7 @@ namespace Carespot
 
             //Herlaad opdrachtenlistview
             FillReactieOpOpdracht(_geselecteerdeHulpopdracht);
+            this.ReloadForm();
         }
 
         private void imgAddHulpvraag_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -145,7 +150,7 @@ namespace Carespot
 
         private void lvMijnOpdrachten_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            HulpOpdracht ho = (HulpOpdracht)lvMijnOpdrachten.SelectedItem;
+            HulpOpdracht ho = (HulpOpdracht) lvMijnOpdrachten.SelectedItem;
 
             Opdracht scherm = new Opdracht(_ingelogdeGebr, ho);
             scherm.Show();
@@ -170,6 +175,22 @@ namespace Carespot
             //Herlaad de reactielijst na het vrewijderen van de vijwilliger
             FillReactieOpOpdracht(_geselecteerdeHulpopdracht);
 
+        }
+
+
+        private void imgUitloggen_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var inlog = new Inlogscherm();
+            inlog.Show();
+            this.Close();
+
+            
+        }
+        private void ReloadForm()
+        {
+            CliëntOverzicht scherm = new CliëntOverzicht(_ingelogdeGebr);
+            scherm.Show();
+            this.Close();
         }
     }
 }

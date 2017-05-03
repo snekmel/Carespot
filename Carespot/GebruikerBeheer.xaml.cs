@@ -43,12 +43,13 @@ namespace Carespot
             //als beheerder ignelgod is ga tertug naar Beheerderscherm
             var inlogscherm = new Inlogscherm();
             inlogscherm.Show();
-            this.Close();
+            Close();
         }
 
         public void vulListView()
         {
             lvGebruikers.Items.Clear();
+            lvOpdrachten.Items.Clear();
 
             var context = new GebruikerSQLContext();
             var gRepo = new GebruikerRepository(context);
@@ -67,12 +68,28 @@ namespace Carespot
                     g.Type = Gebruiker.GebruikerType.Vrijwilliger;
                 lvGebruikers.Items.Add(g);
             }
+
+            var opdrcontext = new HulpopdrachtSQLContext();
+            var oRepo = new HulpopdrachtRepository(opdrcontext);
+            var opdrachtLijst = new List<HulpOpdracht>();
+            opdrachtLijst = oRepo.GetAllHulpopdrachten();
+
+            foreach (var o in opdrachtLijst)
+                lvOpdrachten.Items.Add(o);
         }
 
         private void imgGebruikerToevoegen_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             var beheerscherm = new Beheerderscherm(_ingelogdeGebruiker);
             beheerscherm.Show();
+        }
+
+        private void lvOpdrachten_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            HulpOpdracht ho = (HulpOpdracht)lvOpdrachten.SelectedItem;
+
+            Opdracht scherm = new Opdracht(_ingelogdeGebruiker, ho);
+            scherm.Show();
         }
     }
 }

@@ -21,7 +21,7 @@
             <TabItem x:Name="tabChat" Header="Chat" >
                 <Grid Background="#FFE5E5E5">
                     <ListBox x:Name="chatListbox" HorizontalAlignment="Left" Height="362" VerticalAlignment="Top" Width="466" />
-                    <TextBox x:Name="tbChatBericht" HorizontalAlignment="Left" Height="23" Margin="10,375,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="356" />
+                    <TextBox x:Name="tbChatBericht" HorizontalAlignment="Left" Height="23" Margin="10,375,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="356" KeyDown="tbChatBericht_KeyDown" />
                     <Button x:Name="btnSendChat" Content="Verstuur" Height="23" Margin="373,375,10,10" Grid.Column="1" Click="btnSendChat_Click" />
                 </Grid>
             </TabItem>
