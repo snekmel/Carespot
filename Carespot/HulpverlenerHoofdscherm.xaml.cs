@@ -45,7 +45,9 @@ namespace Carespot
 
         private void imgUitloggen_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            //hulpverlener uitloggen en terug naar inlogscherm
+            var inlog = new Inlogscherm();
+            inlog.Show();
+            this.Close();
         }
 
         private void profielImg_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)

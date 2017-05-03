@@ -16,7 +16,7 @@
             </FlowDocument>
         </RichTextBox>
         <Button x:Name="btToevoegen" Content="Voeg toe" HorizontalAlignment="Left" Margin="618,663,0,0" VerticalAlignment="Top" Width="111" Height="52" FontSize="18.667" Click="btToevoegen_Click" />
-        <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="102,24,0,0" VerticalAlignment="Top" FontSize="16" />
+        <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="102,24,0,0" VerticalAlignment="Top" FontSize="16" Width="245" />
         <Image x:Name="imgProfiel" HorizontalAlignment="Left" Height="41" Margin="56,24,0,0" VerticalAlignment="Top" Width="41" />
         <CheckBox x:Name="chbUrgent" Content="Urgent" HorizontalAlignment="Left" Margin="618,92,0,0" VerticalAlignment="Top" Height="23" Width="80" />
         <Image x:Name="image" HorizontalAlignment="Left" Height="41" Margin="717,24,0,0" VerticalAlignment="Top" Width="41" Source="image/circle-with-an-arrow-pointing-to-left.png" MouseLeftButtonUp="image_MouseLeftButtonUp" />

@@ -115,6 +115,9 @@ namespace Carespot
         {
             //    var hulpverlenerToevoegen = new HulpverlenerToevoegen();
             //    hulpverlenerToevoegen.Show();
+
+            //    var hulpverlenerToevoegen = new HulpverlenerToevoegen();
+            //    hulpverlenerToevoegen.Show();
         }
 
         private void GebruikerBeheer_Click(object sender, RoutedEventArgs e)

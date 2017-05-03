@@ -8,7 +8,7 @@
         Title="VrijwilligerOpdrachtAannemen" Height="650" Width="600" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Image x:Name="imgGebruiker" HorizontalAlignment="Left" Height="48" Margin="15,15,0,0" VerticalAlignment="Top" Width="54" Source="image/user-shape.png" />
-        <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="69,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,0.5" FontSize="16" Height="28" Width="61" />
+        <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="69,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,0.5" FontSize="16" Height="28" Width="333" />
         <Image x:Name="image_Copy1" HorizontalAlignment="Left" Height="48" Margin="514,15,0,0" VerticalAlignment="Top" Width="52" Source="image/circle-with-an-arrow-pointing-to-left.png" MouseLeftButtonUp="image_Copy1_MouseLeftButtonUp" />
         <ComboBox x:Name="cbLocatie" HorizontalAlignment="Left" Margin="69,80,0,0" VerticalAlignment="Top" Width="120" />
         <Image x:Name="image" HorizontalAlignment="Left" Height="22" Margin="15,80,0,0" VerticalAlignment="Top" Width="25" Source="image/map-marker.png" />

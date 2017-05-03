@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 using Carespot.DAL.Interfaces;
 using Carespot.DAL.Repositorys;
 using Carespot.Models;
@@ -26,7 +24,7 @@ namespace Carespot.DAL.Context
 
                 while (reader.Read())
                 {
-                    Vrijwilliger g = new Vrijwilliger(reader.GetString(1), reader.GetString(2), reader.GetString(9));
+                    var g = new Vrijwilliger(reader.GetString(1), reader.GetString(2), reader.GetString(9));
                     g.Id = reader.GetInt32(0);
                     g.Geslacht = (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
                     g.Straat = reader.GetString(4);
@@ -36,21 +34,17 @@ namespace Carespot.DAL.Context
                     g.Land = reader.GetString(8);
                     g.Telefoonnummer = reader.GetString(10);
                     if (!reader.IsDBNull(11))
-                    {
                         g.Foto = (byte[])reader[11];
-                    }
 
                     if (!reader.IsDBNull(12))
-                    {
                         g.Rfid = reader.GetString(12);
-                    }
                     returnList.Add(g);
                 }
                 _con.Close();
             }
             catch
             {
-                System.Windows.MessageBox.Show("VrijwilligerSqlContext -> Retrieve all");
+                MessageBox.Show("VrijwilligerSqlContext -> Retrieve all");
             }
             return returnList;
         }
@@ -60,27 +54,27 @@ namespace Carespot.DAL.Context
             try
             {
                 _con.Open();
-                string query1 = "INSERT INTO Vrijwilliger (gebruikerId) VALUES (@newID)";
-                SqlCommand command1 = new SqlCommand(query1, _con);
+                var query1 = "INSERT INTO Vrijwilliger (gebruikerId) VALUES (@newID)";
+                var command1 = new SqlCommand(query1, _con);
                 command1.Parameters.AddWithValue("@newID", gebruikerId);
                 command1.ExecuteScalar();
                 _con.Close();
             }
             catch
             {
-                System.Windows.MessageBox.Show("VrijwilligerSqlContext -> Create Vrijwilliger");
+                MessageBox.Show("VrijwilligerSqlContext -> Create Vrijwilliger");
             }
         }
 
         public Vrijwilliger RetrieveVrijwilliger(int id)
         {
-            GebruikerSQLContext gsc = new GebruikerSQLContext();
-            GebruikerRepository gr = new GebruikerRepository(gsc);
-            Gebruiker g = gr.RetrieveGebruiker(id);
+            var gsc = new GebruikerSQLContext();
+            var gr = new GebruikerRepository(gsc);
+            var g = gr.RetrieveGebruiker(id);
 
             if (g != null)
             {
-                Vrijwilliger v = new Vrijwilliger();
+                var v = new Vrijwilliger();
                 v.Id = g.Id;
                 v.Naam = g.Naam;
                 v.Wachtwoord = g.Wachtwoord;
@@ -96,10 +90,7 @@ namespace Carespot.DAL.Context
 
                 return v;
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
 
         public void DeleteVrijwilliger(int id)

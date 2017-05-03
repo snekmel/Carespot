@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Carespot"
         mc:Ignorable="d"
-        Title="RFIDLogin" Height="157.105" Width="300">
+        Title="RFIDLogin" Height="157.105" Width="300" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Button Content="Ga terug" HorizontalAlignment="Left" Margin="98,85,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" />
         <Label x:Name="lblRfid" Content="" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="272" />
