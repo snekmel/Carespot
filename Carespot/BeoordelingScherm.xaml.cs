@@ -37,7 +37,16 @@ namespace Carespot
 
                 var beoordelingSqlContext = new BeoordelingSQLContext();
                 var beoordelingRepository = new BeoordelingRepository(beoordelingSqlContext);
-                beoordelingRepository.Create(beoordeling);
+
+                try
+                {
+                    beoordelingRepository.Create(beoordeling);
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
+                }
             }
         }
     }

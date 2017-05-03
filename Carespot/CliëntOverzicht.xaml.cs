@@ -65,38 +65,49 @@ namespace Carespot
             var contextho = new HulpopdrachtSQLContext();
             var hr = new HulpopdrachtRepository(contextho);
 
-            bool accepted = hr.IsGeacepteerd(hulpopdrachtid);
-
-            if (accepted)
+            try
             {
-                lvReacties.Visibility = Visibility.Hidden;
-                lblreacties.Visibility = Visibility.Hidden;
+                bool accepted = hr.IsGeacepteerd(hulpopdrachtid);
 
-                btnKoppelingOngedaanMaken.Visibility = Visibility.Visible;
-                lblKoppelingHulpopdracht.Visibility = Visibility.Visible;
-
-            }
-            else
-            {
-                lvReacties.Visibility = Visibility.Visible;
-                lblreacties.Visibility = Visibility.Visible;
-
-                btnKoppelingOngedaanMaken.Visibility = Visibility.Hidden;
-                lblKoppelingHulpopdracht.Visibility = Visibility.Hidden;
-
-                lvReacties.Items.Clear();
-                var context = new ReactieSQLContext();
-                var rr = new ReactieRepository(context);
-
-                //Vul lijst met mijn reacties
-                List<Reactie> reactiesOpOpdracht = new List<Reactie>();
-                reactiesOpOpdracht = rr.GetAllReactiesByHulopdrachtID(hulpopdrachtid);
-
-                foreach (var reactie in reactiesOpOpdracht)
+                if (accepted)
                 {
-                    lvReacties.Items.Add(reactie);
+                    lvReacties.Visibility = Visibility.Hidden;
+                    lblreacties.Visibility = Visibility.Hidden;
+
+                    btnKoppelingOngedaanMaken.Visibility = Visibility.Visible;
+                    lblKoppelingHulpopdracht.Visibility = Visibility.Visible;
+
+                }
+                else
+                {
+                    lvReacties.Visibility = Visibility.Visible;
+                    lblreacties.Visibility = Visibility.Visible;
+
+                    btnKoppelingOngedaanMaken.Visibility = Visibility.Hidden;
+                    lblKoppelingHulpopdracht.Visibility = Visibility.Hidden;
+
+                    lvReacties.Items.Clear();
+                    var context = new ReactieSQLContext();
+                    var rr = new ReactieRepository(context);
+
+                    //Vul lijst met mijn reacties
+                    List<Reactie> reactiesOpOpdracht = new List<Reactie>();
+                    reactiesOpOpdracht = rr.GetAllReactiesByHulopdrachtID(hulpopdrachtid);
+
+                    foreach (var reactie in reactiesOpOpdracht)
+                    {
+                        lvReacties.Items.Add(reactie);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
+            }
+
+           
+
+         
         }
 
         private void lvMijnOpdrachten_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -114,15 +125,24 @@ namespace Carespot
             //Update de bijbehorende hulpodpracht
             var contextho = new HulpopdrachtSQLContext();
             var hr = new HulpopdrachtRepository(contextho);
-            hr.AcceptReactie(_geselecteerdeHulpopdracht, reactie.Vrijwilliger.Id);
 
-            //Verwijder de reactie
-            var contextreactie = new ReactieSQLContext();
-            var rr = new ReactieRepository(contextreactie);
-            rr.DeleteReactie(reactie.Id);
+            try
+            {
+                hr.AcceptReactie(_geselecteerdeHulpopdracht, reactie.Vrijwilliger.Id);
 
-            //Herlaad opdrachtenlistview
-            FillReactieOpOpdracht(_geselecteerdeHulpopdracht);
+                //Verwijder de reactie
+                var contextreactie = new ReactieSQLContext();
+                var rr = new ReactieRepository(contextreactie);
+                rr.DeleteReactie(reactie.Id);
+
+                //Herlaad opdrachtenlistview
+                FillReactieOpOpdracht(_geselecteerdeHulpopdracht);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
+            }
+           
             this.ReloadForm();
         }
 
@@ -134,7 +154,16 @@ namespace Carespot
             //Hier via dal opdracht afwijzen
             var context = new ReactieSQLContext();
             var rr = new ReactieRepository(context);
-            rr.DeleteReactie(reactie.Id);
+
+            try
+            {
+                rr.DeleteReactie(reactie.Id);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
+            }
+           
 
             //Herlaad opdrachtenlistview
             FillReactieOpOpdracht(_geselecteerdeHulpopdracht);
@@ -169,8 +198,15 @@ namespace Carespot
 
             var context = new HulpopdrachtSQLContext();
             var hr = new HulpopdrachtRepository(context);
-
-            hr.VerwijderVrijwilligerVanHulpopdracht(_geselecteerdeHulpopdracht);
+            try
+            {
+                hr.VerwijderVrijwilligerVanHulpopdracht(_geselecteerdeHulpopdracht);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
+            }
+        
 
             //Herlaad de reactielijst na het vrewijderen van de vijwilliger
             FillReactieOpOpdracht(_geselecteerdeHulpopdracht);

@@ -46,7 +46,16 @@ namespace Carespot
                 {
                     var inf = new GebruikerSQLContext();
                     var repo = new GebruikerRepository(inf);
-                    foto = repo.RetrieveGebruiker(1).Foto;
+
+                    try
+                    {
+                        foto = repo.RetrieveGebruiker(1).Foto;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
+                    }
+                   
                 }
                 else
                 {
@@ -81,12 +90,12 @@ namespace Carespot
                         {
                             var hlp = new HulpbehoevendeSQLContext();
                             var repohlp = new HulpbehoevendeRepository(hlp);
-                            id = repo.CreateGebruiker(g);
-                            var hulpverlener = repohlp.HulpverlenerId();
-                            gebruikerIsAaangemaakt = true;
-
+                        
                             try
                             {
+                                id = repo.CreateGebruiker(g);
+                                var hulpverlener = repohlp.HulpverlenerId();
+                                gebruikerIsAaangemaakt = true;
                                 repohlp.CreateHulpbehoevende(id, hulpverlener);
                             
 

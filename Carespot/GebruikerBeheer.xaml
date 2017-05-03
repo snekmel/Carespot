@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Carespot"
         mc:Ignorable="d"
-        Title="GebruikerBeheer" Height="800" Width="1000" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+        Title="Carespot" Height="800" Width="1000" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Image x:Name="imgGebruikerToevoegen" HorizontalAlignment="Left" Height="41" Margin="697,104,0,0"
                VerticalAlignment="Top" Width="42" Source="image/add-square-button.png"

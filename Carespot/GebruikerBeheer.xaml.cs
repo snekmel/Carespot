@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 using Carespot.DAL.Context;
@@ -51,29 +52,44 @@ namespace Carespot
 
             var context = new GebruikerSQLContext();
             var gRepo = new GebruikerRepository(context);
-            var gebruikersLijst = new List<Gebruiker>();
-            gebruikersLijst = gRepo.RetrieveAll();
 
-            foreach (var g in gebruikersLijst)
+
+            try
             {
-                if (g.GetType() == typeof(Beheerder))
-                    g.Type = Gebruiker.GebruikerType.Beheerder;
-                else if (g.GetType() == typeof(Hulpbehoevende))
-                    g.Type = Gebruiker.GebruikerType.Hulpbehoevende;
-                else if (g.GetType() == typeof(Hulpverlener))
-                    g.Type = Gebruiker.GebruikerType.Hulpverlener;
-                else if (g.GetType() == typeof(Vrijwilliger))
-                    g.Type = Gebruiker.GebruikerType.Vrijwilliger;
-                lvGebruikers.Items.Add(g);
+                var gebruikersLijst = new List<Gebruiker>();
+                gebruikersLijst = gRepo.RetrieveAll();
+
+                foreach (var g in gebruikersLijst)
+                {
+                    if (g.GetType() == typeof(Beheerder))
+                        g.Type = Gebruiker.GebruikerType.Beheerder;
+                    else if (g.GetType() == typeof(Hulpbehoevende))
+                        g.Type = Gebruiker.GebruikerType.Hulpbehoevende;
+                    else if (g.GetType() == typeof(Hulpverlener))
+                        g.Type = Gebruiker.GebruikerType.Hulpverlener;
+                    else if (g.GetType() == typeof(Vrijwilliger))
+                        g.Type = Gebruiker.GebruikerType.Vrijwilliger;
+                    lvGebruikers.Items.Add(g);
+                }
+
+
+                var opdrcontext = new HulpopdrachtSQLContext();
+                var oRepo = new HulpopdrachtRepository(opdrcontext);
+
+                var opdrachtLijst = new List<HulpOpdracht>();
+                opdrachtLijst = oRepo.GetAllHulpopdrachten();
+
+                foreach (var o in opdrachtLijst)
+                    lvOpdrachten.Items.Add(o);
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
+            }
+        
 
-            var opdrcontext = new HulpopdrachtSQLContext();
-            var oRepo = new HulpopdrachtRepository(opdrcontext);
-            var opdrachtLijst = new List<HulpOpdracht>();
-            opdrachtLijst = oRepo.GetAllHulpopdrachten();
-
-            foreach (var o in opdrachtLijst)
-                lvOpdrachten.Items.Add(o);
+          
+          
         }
 
         private void imgGebruikerToevoegen_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)

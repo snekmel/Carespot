@@ -54,12 +54,22 @@ namespace Carespot
                 // Open document
                 var filename = dlg.FileName;
 
-                var fs = new FileStream(filename, FileMode.Open, FileAccess.Read);
-                var br = new BinaryReader(fs);
-                img = br.ReadBytes((int) fs.Length);
-                var imageUri = new Uri(filename);
-                var imageBitmap = new BitmapImage(imageUri);
-                imgProfielfotoH.Source = imageBitmap;
+                try
+                {
+                    var fs = new FileStream(filename, FileMode.Open, FileAccess.Read);
+                    var br = new BinaryReader(fs);
+                    img = br.ReadBytes((int)fs.Length);
+                    var imageUri = new Uri(filename);
+                    var imageBitmap = new BitmapImage(imageUri);
+                    imgProfielfotoH.Source = imageBitmap;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
+                }
+
+              
+        
             }
         }
 
@@ -75,11 +85,21 @@ namespace Carespot
                 var naam = tbNaamH.Text;
                 var geslacht = (Gebruiker.GebruikerGeslacht) cbGeslachtH.SelectedItem;
                 var telNr = tbTelefoonH.Text;
+
                 if (img == null)
                 {
                     var inf = new GebruikerSQLContext();
                     var repo = new GebruikerRepository(inf);
-                    foto = repo.RetrieveGebruiker(1).Foto;
+
+                    try
+                    {
+                        foto = repo.RetrieveGebruiker(1).Foto;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
+                    }
+               
                 }
                 else
                 {
@@ -99,6 +119,7 @@ namespace Carespot
                     {
                         var inf = new GebruikerSQLContext();
                         var repo = new GebruikerRepository(inf);
+
                         var g = new Gebruiker
                         {
                             Email = email,
@@ -117,15 +138,33 @@ namespace Carespot
                         {
                             var hlpv = new HulpverlenerSQLContext();
                             var repohulpv = new HulpverlenerRepository(hlpv);
-                            var id = repo.CreateGebruiker(g);
-                            repohulpv.CreateHulpverlener(id);
+
+                            try
+                            {
+                                var id = repo.CreateGebruiker(g);
+                                repohulpv.CreateHulpverlener(id);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
+                            }
+                         
                         }
                         if (soort == "Beheerder")
                         {
                             var bhr = new BeheerderSQLContext();
                             var bhrrepo = new BeheerderRepository(bhr);
-                            var id = repo.CreateGebruiker(g);
-                            bhrrepo.CreateBeheerder(id);
+
+                            try
+                            {
+                                var id = repo.CreateGebruiker(g);
+                                bhrrepo.CreateBeheerder(id);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
+                            }
+                          
                         }
 
                         CleanForm();
