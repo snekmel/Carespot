@@ -66,5 +66,24 @@ namespace Carespot.DAL.Repositorys
             _context.VerwijderVrijwilligerVanHulpopdracht(hulpopdrachtid);
         }
 
+
+        public List<HulpOpdracht> RetrieveHulpopdrachtByVrijwilligerId(int id)
+        {
+            List<HulpOpdracht> returnList = new List<HulpOpdracht>();
+
+            foreach (HulpOpdracht ho in this.GetAllHulpopdrachten())
+            {
+                if (ho.Vrijwilleger != null)
+                {
+                    if (ho.Vrijwilleger.Id == id)
+                    {
+                        returnList.Add(ho);
+                    }
+                }
+              
+            }
+            return returnList;
+        }
+
     }
 }
