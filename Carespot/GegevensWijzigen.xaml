@@ -35,5 +35,6 @@
         <ComboBox x:Name="cbGeslacht" HorizontalAlignment="Left" Margin="166,305,0,0" VerticalAlignment="Top" Width="120" />
         <PasswordBox x:Name="pwbWachtwoord" HorizontalAlignment="Left" Margin="161,155,0,0" VerticalAlignment="Top" Width="193" Height="25" />
         <PasswordBox x:Name="pwbWachtwoordHerhalen" HorizontalAlignment="Left" Margin="161,201,0,0" VerticalAlignment="Top" Width="193" Height="25" />
+        <Button x:Name="btnVerwijderAccount" Content="Verwijder Account" HorizontalAlignment="Left" Margin="31,410,0,0" VerticalAlignment="Top" Width="186" Height="35" Background="#FFE62121" BorderBrush="White" Foreground="White" Click="btnVerwijderAccount_Click" />
     </Grid>
 </Window>

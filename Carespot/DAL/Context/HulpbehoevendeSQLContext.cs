@@ -38,9 +38,9 @@ namespace Carespot.DAL.Context
                 var command = new SqlCommand(cmdString, _con);
                 command.Parameters.AddWithValue("@id", id);
                 command.ExecuteNonQuery();
-                command.CommandText = "DELETE FROM Gebruiker WHERE id = @id";
-                command.Parameters.AddWithValue("@id", id);
-                command.ExecuteNonQuery();
+                // command.CommandText = "DELETE FROM Gebruiker WHERE id = @id";
+                // command.Parameters.AddWithValue("@id", id);
+                // command.ExecuteNonQuery();
                 _con.Close();
             }
             catch (Exception ex)

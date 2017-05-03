@@ -41,6 +41,9 @@ namespace Carespot
         {
             //als hulpverlener ingelogd is ga terug naar HulpverlenerHoofdscherm.
             //als beheerder ignelgod is ga tertug naar Beheerderscherm
+            var inlogscherm = new Inlogscherm();
+            inlogscherm.Show();
+            this.Close();
         }
 
         public void vulListView()

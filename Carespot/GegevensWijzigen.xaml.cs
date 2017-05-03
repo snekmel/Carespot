@@ -37,6 +37,24 @@ namespace Carespot
 
         private void imgSluiten_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            if (_g.GetType() == typeof(Hulpverlener))
+            {
+                var hulpscherm = new HulpverlenerHoofdscherm(_g);
+                hulpscherm.Show();
+                this.Close();
+            }
+            if (_g.GetType() == typeof(Vrijwilliger))
+            {
+                var vrijscherm = new VrijwilligerHoofdscherm(_g);
+                vrijscherm.Show();
+                this.Close();
+            }
+            if (_g.GetType() == typeof(Hulpbehoevende))
+            {
+                var hulpscherm = new CliëntOverzicht(_g);
+                hulpscherm.Show();
+                this.Close();
+            }
         }
 
         private void btGegevensWijzigen_Click(object sender, RoutedEventArgs e)
@@ -59,10 +77,9 @@ namespace Carespot
                 _g.Plaats = tbPlaats.Text;
                 _g.Land = tbLand.Text;
 
-                  //Wanneer 1 van de 2 leeg is
+                //Wanneer 1 van de 2 leeg is
                 if (String.IsNullOrEmpty(pwbWachtwoord.Password) || String.IsNullOrEmpty(pwbWachtwoordHerhalen.Password))
                 {
-
                     if (String.IsNullOrEmpty(pwbWachtwoord.Password) &&
                         String.IsNullOrEmpty(pwbWachtwoordHerhalen.Password))
                     {
@@ -76,9 +93,6 @@ namespace Carespot
                         System.Windows.MessageBox.Show("Vul allebei de velden in.");
                         canUpdate = false;
                     }
-
-
-
                 }
                 else
                 {
@@ -86,7 +100,6 @@ namespace Carespot
                     if (!String.IsNullOrEmpty(pwbWachtwoord.Password) &&
                         !String.IsNullOrEmpty(pwbWachtwoordHerhalen.Password))
                     {
-
                         if (pwbWachtwoord.Password != pwbWachtwoordHerhalen.Password)
                         {
                             System.Windows.MessageBox.Show("De wachtwoorden zijn niet gelijk.");
@@ -97,9 +110,7 @@ namespace Carespot
                             _g.Wachtwoord = pwbWachtwoordHerhalen.Password;
                         }
                     }
-               
                 }
-        
 
                 if (cbGeslacht.SelectedItem != null)
                 {
@@ -176,6 +187,37 @@ namespace Carespot
             foreach (var item in Enum.GetValues(typeof(Gebruiker.GebruikerGeslacht)))
             {
                 cbGeslacht.Items.Add(item);
+            }
+        }
+
+        private void btnVerwijderAccount_Click(object sender, RoutedEventArgs e)
+        {
+            if (_g.GetType() == typeof(Vrijwilliger))
+            {
+                var context = new VrijwilligerSQLContext();
+                var repo = new VrijwilligerRepository(context);
+                repo.DeleteVrijwilliger(_g.Id);
+                var inlogScherm = new Inlogscherm();
+                inlogScherm.Show();
+                this.Close();
+            }
+            if (_g.GetType() == typeof(Hulpbehoevende))
+            {
+                var context = new HulpbehoevendeSQLContext();
+                var repo = new HulpbehoevendeRepository(context);
+                repo.DeleteHulpbehoevende(_g.Id);
+                var inlogScherm = new Inlogscherm();
+                inlogScherm.Show();
+                this.Close();
+            }
+            if (_g.GetType() == typeof(Hulpverlener))
+            {
+                var context = new HulpverlenerSQLContext();
+                var repo = new HulpverlenerRepository(context);
+                repo.DeleteHulpverlener(_g.Id);
+                var inlogScherm = new Inlogscherm();
+                inlogScherm.Show();
+                this.Close();
             }
         }
     }

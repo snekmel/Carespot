@@ -108,16 +108,40 @@ namespace Carespot.DAL.Context
             try
             {
                 _con.Open();
-                var cmdString = "DELETE FROM Hulpverlener WHERE gebruikerId = @id";
+
+                var cmdString = "UPDATE Hulpbehoevende SET hulpverlenerId = @hulpid WHERE hulpverlenerId = @id";
                 var command = new SqlCommand(cmdString, _con);
+                int hulpid = CheckHulpverlener(id);
+                command.Parameters.AddWithValue("@hulpid", hulpid);
                 command.Parameters.AddWithValue("@id", id);
                 command.ExecuteNonQuery();
+
+                var cmdString1 = "DELETE FROM Hulpverlener WHERE gebruikerId = @id";
+                var command1 = new SqlCommand(cmdString1, _con);
+                command1.Parameters.AddWithValue("@id", id);
+                command1.ExecuteNonQuery();
+
                 _con.Close();
             }
             catch (Exception ex)
             {
                 throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
             }
+        }
+
+        private int CheckHulpverlener(int id)
+        {
+            var idt = 0;
+            // _con.Open();
+            var cmdString = "SELECT TOP 1 Gebruiker.id FROM Gebruiker LEFT JOIN Hulpverlener ON Hulpverlener.gebruikerId = Gebruiker.id LEFT JOIN Hulpbehoevende ON Hulpbehoevende.hulpverlenerId = Hulpverlener.gebruikerId WHERE Gebruiker.id IN(SELECT Hulpverlener.gebruikerId FROM Hulpverlener) AND Gebruiker.id != @id  GROUP BY Gebruiker.id ORDER BY COUNT(Hulpbehoevende.gebruikerId) ASC";
+            var command = new SqlCommand(cmdString, _con);
+            command.Parameters.AddWithValue("@id", id);
+            var reader = command.ExecuteReader();
+            while (reader.Read())
+                idt = reader.GetInt32(0);
+            reader.Close();
+            // _con.Close();
+            return idt;
         }
     }
 }

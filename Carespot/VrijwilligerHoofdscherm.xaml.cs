@@ -34,7 +34,7 @@ namespace Carespot
             aannemen.Show();
         }
 
-        private void imgGebruiker_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void imgGebruiker_MouseLeftButtonUp_1(object sender, MouseButtonEventArgs e)
         {
             var gegevenswijzigen = new GegevensWijzigen(_ingelogdeGebruiker);
             gegevenswijzigen.Show();
