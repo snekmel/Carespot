@@ -8,6 +8,22 @@ namespace Carespot.DAL.Repositorys
     {
         private readonly IHulpbehoevendeContext _hulpbehoevendeContext;
 
+        public List<Hulpbehoevende> RetrieveAllHulpbehoevendeByHulpverlenerId(int id)
+        {
+            List<Hulpbehoevende> returnList = new List<Hulpbehoevende>();
+
+            foreach (Hulpbehoevende hb in this.RetrieveAll())
+            {
+                if (hb.Hulpverlener.Id == id)
+                {
+                    returnList.Add(hb);
+                }
+            }
+
+            return returnList;
+        }
+
+
         public HulpbehoevendeRepository(IHulpbehoevendeContext hulpbehoevendeContext)
         {
             _hulpbehoevendeContext = hulpbehoevendeContext;
