@@ -164,5 +164,38 @@ namespace Carespot
                 e.Handled = true;
             }
         }
+
+        private bool CheckAuthDelete()
+        {
+            if (_loggedInUser.GetType() == typeof(Beheerder))
+            {
+                return true;
+            }
+
+            if (_loggedInUser.Id == _hulpOpdracht.Hulpbehoevende.Hulpverlener.Id)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private void imgTrash_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (CheckAuthDelete())
+            {
+                var context = new HulpopdrachtSQLContext();
+                var repo = new HulpopdrachtRepository(context);
+
+                repo.VerwijderVrijwilligerVanHulpopdracht(_hulpOpdracht.Id);
+
+                MessageBox.Show("Vrijwilliger is van de opdracht verwijderd.");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("U kunt de vrijwilliger niet verwijderen.");
+            }
+        }
     }
 }

@@ -18,7 +18,7 @@
                     <TextBox x:Name="tbOmschrijving" HorizontalAlignment="Left" Height="320" Margin="3,41,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="446" Grid.Column="1" />
                 </Grid>
             </TabItem>
-            <TabItem x:Name="tabChat" Header="Chat" >
+            <TabItem x:Name="tabChat" Header="Chat">
                 <Grid Background="#FFE5E5E5">
                     <ListBox x:Name="chatListbox" HorizontalAlignment="Left" Height="362" VerticalAlignment="Top" Width="466" />
                     <TextBox x:Name="tbChatBericht" HorizontalAlignment="Left" Height="23" Margin="10,375,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="356" KeyDown="tbChatBericht_KeyDown" />
@@ -43,7 +43,8 @@
                     <Label x:Name="lblEmailCliënt" Content="E-mail" HorizontalAlignment="Left" Margin="56,42,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="246" />
                     <Label x:Name="lblEmailVrijwilliger" Content="-" HorizontalAlignment="Left" Margin="56,179,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="203" />
                     <Label x:Name="lblEmailHulpverlener" Content="E-mail" HorizontalAlignment="Left" Margin="56,306,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="246" />
-                    <Image x:Name="imgBeoordeling" Grid.Column="1" HorizontalAlignment="Left" Height="62" Margin="218,143,0,0" VerticalAlignment="Top" Width="71" Source="image/star-1.png" MouseLeftButtonUp="imgBeoordeling_MouseLeftButtonUp" />
+                    <Image x:Name="imgBeoordeling" Grid.Column="1" HorizontalAlignment="Left" Height="42" Margin="218,163,0,0" VerticalAlignment="Top" Width="50" Source="image/star-1.png" MouseLeftButtonUp="imgBeoordeling_MouseLeftButtonUp" />
+                    <Image x:Name="imgTrash" Grid.Column="1" HorizontalAlignment="Left" Height="64" Margin="144,143,0,0" VerticalAlignment="Top" Width="69" Source="image/trash.png" MouseLeftButtonUp="imgTrash_MouseLeftButtonUp" />
                 </Grid>
             </TabItem>
         </TabControl>
