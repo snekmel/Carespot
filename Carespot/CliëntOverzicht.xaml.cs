@@ -36,6 +36,7 @@ namespace Carespot
             //Hide label en button standaard
             btnKoppelingOngedaanMaken.Visibility = Visibility.Hidden;
             lblKoppelingHulpopdracht.Visibility = Visibility.Hidden;
+          
         }
 
         private void FillMijnOpdrachtenList()
@@ -69,6 +70,7 @@ namespace Carespot
             if (accepted)
             {
                 lvReacties.Visibility = Visibility.Hidden;
+                lblreacties.Visibility = Visibility.Hidden;
 
                 btnKoppelingOngedaanMaken.Visibility = Visibility.Visible;
                 lblKoppelingHulpopdracht.Visibility = Visibility.Visible;
@@ -77,6 +79,7 @@ namespace Carespot
             else
             {
                 lvReacties.Visibility = Visibility.Visible;
+                lblreacties.Visibility = Visibility.Visible;
 
                 btnKoppelingOngedaanMaken.Visibility = Visibility.Hidden;
                 lblKoppelingHulpopdracht.Visibility = Visibility.Hidden;
@@ -120,6 +123,7 @@ namespace Carespot
 
             //Herlaad opdrachtenlistview
             FillReactieOpOpdracht(_geselecteerdeHulpopdracht);
+            this.ReloadForm();
         }
 
         private void AfwijzenOpdracht(object sender, RoutedEventArgs e)
@@ -134,6 +138,7 @@ namespace Carespot
 
             //Herlaad opdrachtenlistview
             FillReactieOpOpdracht(_geselecteerdeHulpopdracht);
+            this.ReloadForm();
         }
 
         private void imgAddHulpvraag_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -170,6 +175,13 @@ namespace Carespot
             //Herlaad de reactielijst na het vrewijderen van de vijwilliger
             FillReactieOpOpdracht(_geselecteerdeHulpopdracht);
 
+        }
+
+        private void ReloadForm()
+        {
+            CliëntOverzicht scherm = new CliëntOverzicht(_ingelogdeGebr);
+            scherm.Show();
+            this.Close();
         }
     }
 }
