@@ -116,6 +116,12 @@ namespace Carespot.DAL.Context
                 command.Parameters.AddWithValue("@id", id);
                 command.ExecuteNonQuery();
 
+                var cmdStringOpdracht = "UPDATE Hulpopdracht SET hulpverlenerId = @hulpid WHERE hulpverlenerId = @id";
+                var commandOpdracht = new SqlCommand(cmdStringOpdracht, _con);
+                commandOpdracht.Parameters.AddWithValue("@hulpid", hulpid);
+                commandOpdracht.Parameters.AddWithValue("@id", id);
+                commandOpdracht.ExecuteNonQuery();
+
                 var cmdString1 = "DELETE FROM Hulpverlener WHERE gebruikerId = @id";
                 var command1 = new SqlCommand(cmdString1, _con);
                 command1.Parameters.AddWithValue("@id", id);

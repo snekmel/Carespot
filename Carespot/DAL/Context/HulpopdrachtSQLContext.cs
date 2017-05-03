@@ -216,7 +216,7 @@ namespace Carespot.DAL.Context
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.CommandText =
-                    "INSERT INTO Hulpopdracht (isGeaccepteerd, titel, omschrijving, aanmaakDatum, opdrachtDatum, hulpbehoevendeId) VALUES (0, '" + hulpopdracht.Titel + "', '" + hulpopdracht.Omschrijving + "', '" + aanmaakDatum + "', '" + opdrachtDatum + "', '" + hulpopdracht.Hulpbehoevende.Id + "')";
+                    "INSERT INTO Hulpopdracht (isGeaccepteerd, titel, omschrijving, aanmaakDatum, opdrachtDatum, hulpverlenerId, hulpbehoevendeId) VALUES (0, '" + hulpopdracht.Titel + "', '" + hulpopdracht.Omschrijving + "', '" + aanmaakDatum + "', '" + opdrachtDatum + "', '" + hulpopdracht.Hulpbehoevende.Hulpverlener.Id + "', '" + hulpopdracht.Hulpbehoevende.Id + "')";
                 cmd.CommandType = CommandType.Text;
                 cmd.Connection = connection;
 
@@ -301,7 +301,7 @@ namespace Carespot.DAL.Context
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.CommandText =
-                    "UPDATE hulpopdracht SET isGeaccepteerd = 0, vrijwilligerid = NULL WHERE id = "+ hulpopdrachtid + ";";
+                    "UPDATE hulpopdracht SET isGeaccepteerd = 0, vrijwilligerid = NULL WHERE id = " + hulpopdrachtid + ";";
                 cmd.CommandType = CommandType.Text;
                 cmd.Connection = connection;
 
