@@ -88,19 +88,8 @@ namespace Carespot
                             try
                             {
                                 repohlp.CreateHulpbehoevende(id, hulpverlener);
-                                tbNaam.Text = "";
-                                tbEmail.Text = "";
-                                tbWachtwoord.Password = "";
-                                tbHerhalen.Password = "";
-                                cbGeslacht.SelectedItem = -1;
-                                chbHulpbehoevnde.IsChecked = false;
-                                chbVrijwilliger.IsChecked = false;
-                                tbTelefoon.Text = "";
-                                tbAdres.Text = "";
-                                tbNummer.Text = "";
-                                tbPostcode.Text = "";
-                                tbPlaats.Text = "";
-                                tbLand.Text = "";
+                            
+
                             }
                             catch (Exception ex)
                             {
@@ -117,10 +106,13 @@ namespace Carespot
                                 {
                                     id = repo.CreateGebruiker(g);
                                     repovrw.CreateVrijwilliger(id);
+                                 
+
                                 }
                                 else
                                 {
                                     repovrw.CreateVrijwilliger(id);
+                               
                                 }
                                
                             }
@@ -129,11 +121,15 @@ namespace Carespot
                                 MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
                             }
                         }
+
                         if (chbHulpbehoevnde.IsChecked == false && chbVrijwilliger.IsChecked == false)
                             MessageBox.Show("Er moet een gebruikers type aangeklikt zijn.");
 
                         // repo.CreateHulpbehoevende(naam, wachtwoord, geslacht, adres, huisNummer, postcode, plaats, land, email,
                         //    telNr, gebruikertype, foto, 3);
+
+                    CleanForm();
+                    System.Windows.MessageBox.Show("Uw account is aangemaakt.");
                     }
                     else
                     {
@@ -191,6 +187,23 @@ namespace Carespot
         {
             foreach (var item in Enum.GetValues(typeof(Gebruiker.GebruikerGeslacht)))
                 cbGeslacht.Items.Add(item);
+        }
+
+        private void CleanForm()
+        {
+            tbNaam.Text = "";
+            tbEmail.Text = "";
+            tbWachtwoord.Password = "";
+            tbHerhalen.Password = "";
+            cbGeslacht.SelectedItem = -1;
+            chbVrijwilliger.IsChecked = false;
+            chbHulpbehoevnde.IsChecked = false;
+            tbTelefoon.Text = "";
+            tbAdres.Text = "";
+            tbNummer.Text = "";
+            tbPostcode.Text = "";
+            tbPlaats.Text = "";
+            tbLand.Text = "";
         }
     }
 }
