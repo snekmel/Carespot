@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Carespot"
         mc:Ignorable="d"
-        Title="Opdracht" Height="560" Width="500" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+        Title="Carespot" Height="560" Width="500" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid>
         <TabControl HorizontalAlignment="Left" Height="436" VerticalAlignment="Top" Width="472" Margin="10,82,0,0">
             <TabItem x:Name="tabOmschrijving" Header="Omschrijving" HorizontalAlignment="Right" Width="85">

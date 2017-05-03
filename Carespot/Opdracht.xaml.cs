@@ -92,16 +92,25 @@ namespace Carespot
             {
                 ChatSQLContext csc = new ChatSQLContext();
                 ChatRepository cr = new ChatRepository(csc);
-                List<ChatBericht> chatBerichten = cr.RetrieveAllChatBerichtenByOpdracht(_hulpOpdracht.Id);
-                chatBerichten.Sort();
-                GebruikerSQLContext gsc = new GebruikerSQLContext();
-                GebruikerRepository gr = new GebruikerRepository(gsc);
-
-                foreach (ChatBericht chat in chatBerichten)
+                try
                 {
-                    Gebruiker g = gr.RetrieveGebruiker(chat.GebruikerId);
+                    List<ChatBericht> chatBerichten = cr.RetrieveAllChatBerichtenByOpdracht(_hulpOpdracht.Id);
 
-                    chatListbox.Items.Add("[" + chat.Tijd + " | " + g.Naam + "] : " + chat.Bericht);
+                    chatBerichten.Sort();
+                    GebruikerSQLContext gsc = new GebruikerSQLContext();
+                    GebruikerRepository gr = new GebruikerRepository(gsc);
+
+                    foreach (ChatBericht chat in chatBerichten)
+                    {
+                        Gebruiker g = gr.RetrieveGebruiker(chat.GebruikerId);
+
+                        chatListbox.Items.Add("[" + chat.Tijd + " | " + g.Naam + "] : " + chat.Bericht);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
                 }
             }
             else
@@ -115,8 +124,16 @@ namespace Carespot
         {
             ChatSQLContext csc = new ChatSQLContext();
             ChatRepository cr = new ChatRepository(csc);
-            cr.CreateChatBericht(DateTime.Now, tbChatBericht.Text, _loggedInUser.Id, _hulpOpdracht.Id);
-            tbChatBericht.Text = "";
+
+            try
+            {
+                cr.CreateChatBericht(DateTime.Now, tbChatBericht.Text, _loggedInUser.Id, _hulpOpdracht.Id);
+                tbChatBericht.Text = "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
+            }
         }
 
         private void imgBeoordeling_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -186,10 +203,16 @@ namespace Carespot
             {
                 var context = new HulpopdrachtSQLContext();
                 var repo = new HulpopdrachtRepository(context);
+                try
+                {
+                    repo.VerwijderVrijwilligerVanHulpopdracht(_hulpOpdracht.Id);
 
-                repo.VerwijderVrijwilligerVanHulpopdracht(_hulpOpdracht.Id);
-
-                MessageBox.Show("Vrijwilliger is van de opdracht verwijderd.");
+                    MessageBox.Show("Vrijwilliger is van de opdracht verwijderd.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
+                }
                 this.Close();
             }
             else

@@ -56,12 +56,20 @@ namespace Carespot
 
             var b = new BeoordelingSQLContext();
             var bRepo = new BeoordelingRepository(b);
-            List<Beoordeling> beoordelingLijst = new List<Beoordeling>();
-            beoordelingLijst = bRepo.RetrieveBeoordeling(profielGebruiker.Id);
 
-            foreach (var beoordeling in beoordelingLijst)
+            try
             {
-                lvRecensies.Items.Add(beoordeling);
+                List<Beoordeling> beoordelingLijst = new List<Beoordeling>();
+                beoordelingLijst = bRepo.RetrieveBeoordeling(profielGebruiker.Id);
+
+                foreach (var beoordeling in beoordelingLijst)
+                {
+                    lvRecensies.Items.Add(beoordeling);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
             }
         }
     }

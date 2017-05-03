@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Carespot"
         mc:Ignorable="d"
-        Title="Keuzescherm" Height="300" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Carespot" Height="300" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label x:Name="label" Content="Als wie wil je inloggen?" HorizontalAlignment="Left" Margin="20,23,0,0" VerticalAlignment="Top" FontSize="21.333" Width="372"/>
         <Image x:Name="imgSluiten" HorizontalAlignment="Left" Height="41" Margin="412,23,0,0" VerticalAlignment="Top" Width="41" Source="image/circle-with-an-arrow-pointing-to-left.png" MouseLeftButtonUp="imgSluiten_MouseLeftButtonUp"/>

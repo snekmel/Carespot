@@ -43,16 +43,23 @@ namespace Carespot
         {
             lvMijnOpdrachten.Items.Clear();
 
-            var context = new HulpopdrachtSQLContext();
-            var hr = new HulpopdrachtRepository(context);
-
-            //Vul lijst met mijn hulpopdrachten
-            List<HulpOpdracht> mijnOpdrachten = new List<HulpOpdracht>();
-            mijnOpdrachten = hr.GetAllHulpopdrachtenByHulpbehoevendeID(_ingelogdeGebr.Id);
-
-            foreach (var hulpopdracht in mijnOpdrachten)
+            try
             {
-                lvMijnOpdrachten.Items.Add(hulpopdracht);
+                var context = new HulpopdrachtSQLContext();
+                var hr = new HulpopdrachtRepository(context);
+
+                //Vul lijst met mijn hulpopdrachten
+                List<HulpOpdracht> mijnOpdrachten = new List<HulpOpdracht>();
+                mijnOpdrachten = hr.GetAllHulpopdrachtenByHulpbehoevendeID(_ingelogdeGebr.Id);
+
+                foreach (var hulpopdracht in mijnOpdrachten)
+                {
+                    lvMijnOpdrachten.Items.Add(hulpopdracht);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
             }
         }
 
@@ -175,6 +182,7 @@ namespace Carespot
             var hulpvraag = new Hulpvraagxaml(_ingelogdeGebr);
             hulpvraag.Show();
             this.Show();
+            this.Close();
         }
 
         private void lvMijnOpdrachten_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -228,5 +236,6 @@ namespace Carespot
             scherm.Show();
             this.Close();
         }
+
     }
 }
