@@ -12,8 +12,15 @@
         <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="69,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,0.5" FontSize="16" Height="42" Width="263" />
 
         <Image x:Name="imgLogout" HorizontalAlignment="Left" Height="41" Margin="379,15,0,0" VerticalAlignment="Top" Width="41" Source="image/sign-out-option.png" MouseLeftButtonUp="imgLogout_MouseLeftButtonUp" />
-        <ListBox x:Name="lbTaken" HorizontalAlignment="Left" Height="485" VerticalAlignment="Top" Width="405" Margin="15,95,0,0" />
         <Button x:Name="btOpgeven" Content="Meer opdrachten" HorizontalAlignment="Left" Margin="15,604,0,0" VerticalAlignment="Top" Width="405" Height="45" FontSize="21.333" Click="btOpgeven_Click" />
         <Label Content="Mijn opdrachten" HorizontalAlignment="Left" Margin="18,68,0,0" VerticalAlignment="Top" />
+        <ListView x:Name="lvOpdracht" HorizontalAlignment="Left" Height="462" Margin="18,99,0,0" VerticalAlignment="Top" Width="392" MouseDoubleClick="lvOpdracht_MouseDoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="230" Header=" Opdrachtnaam" DisplayMemberBinding="{Binding Titel}" />
+                    <GridViewColumn Width="150" Header=" Aanmaak Datum" DisplayMemberBinding="{Binding AanmaakDatum}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>
