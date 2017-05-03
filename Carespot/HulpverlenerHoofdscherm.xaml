@@ -8,10 +8,10 @@
         Title="HulpverlenerHoofdscherm" Height="500" Width="800" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="61*"/>
-            <ColumnDefinition Width="38*"/>
+            <ColumnDefinition Width="61*" />
+            <ColumnDefinition Width="38*" />
         </Grid.ColumnDefinitions>
-        <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="69,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,0.5" FontSize="16" Height="28" Width="61" />
+        <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="69,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,0.5" FontSize="16" Height="28" Width="191" />
         <Image x:Name="imgUitloggen" HorizontalAlignment="Left" Height="41" Margin="225.314,15,0,0" VerticalAlignment="Top" Width="41" Source="image/sign-out-option.png" MouseLeftButtonUp="imgUitloggen_MouseLeftButtonUp" Grid.Column="1" />
         <Image x:Name="imgHulpverlenerToevoegen" HorizontalAlignment="Left" Height="41" Margin="147.314,15,0,0" VerticalAlignment="Top" Width="41" Source="image/add-square-button.png" MouseLeftButtonUp="imgHulpverlenerToevoegen_MouseLeftButtonUp" Grid.Column="1" />
         <ListView x:Name="lvOpdrachten" HorizontalAlignment="Left" Height="305" Margin="234,139,0,0" VerticalAlignment="Top" Width="520" Grid.ColumnSpan="2">
@@ -26,7 +26,7 @@
         <ListView x:Name="lvCliënten" HorizontalAlignment="Left" Height="305" Margin="10,139,0,0" VerticalAlignment="Top" Width="205">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Hulpbehoevenden" Width="205"/>
+                    <GridViewColumn Header="Hulpbehoevenden" Width="205" />
                 </GridView>
             </ListView.View>
         </ListView>
