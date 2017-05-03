@@ -41,6 +41,7 @@ namespace Carespot
         {
             var hulpverlenerToevoegen = new HulpverlenerToevoegen(_ingelogdeGebruiker);
             hulpverlenerToevoegen.Show();
+            this.Close();
         }
 
         private void imgUitloggen_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
