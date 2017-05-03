@@ -292,5 +292,29 @@ namespace Carespot.DAL.Context
 
             return isGeacepteerd;
         }
+
+        public void VerwijderVrijwilligerVanHulpopdracht(int hulpopdrachtid)
+        {
+            try
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandText =
+                    "UPDATE hulpopdracht SET isGeaccepteerd = 0, vrijwilligerid = NULL WHERE id = "+ hulpopdrachtid + ";";
+                cmd.CommandType = CommandType.Text;
+                cmd.Connection = connection;
+
+                cmd.ExecuteReader();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
     }
 }
