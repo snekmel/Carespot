@@ -54,10 +54,13 @@ namespace Carespot
             imgGebruiker_Hulpbehoevende.Source = FunctionRepository.ByteToImage(_hulpOpdracht.Hulpbehoevende.Foto);
 
             //Vrijwilliger
-            lblNaamVrijwilliger.Content = _hulpOpdracht.Vrijwilleger.Naam;
-            lblTelefoonVrijwilliger.Content = _hulpOpdracht.Vrijwilleger.Telefoonnummer;
-            lblEmailVrijwilliger.Content = _hulpOpdracht.Vrijwilleger.Email;
-            imgGebruiker_Vrijwilliger.Source = FunctionRepository.ByteToImage(_hulpOpdracht.Vrijwilleger.Foto);
+            if (_hulpOpdracht.Vrijwilleger != null)
+            {
+                lblNaamVrijwilliger.Content = _hulpOpdracht.Vrijwilleger.Naam;
+                lblTelefoonVrijwilliger.Content = _hulpOpdracht.Vrijwilleger.Telefoonnummer;
+                lblEmailVrijwilliger.Content = _hulpOpdracht.Vrijwilleger.Email;
+                imgGebruiker_Vrijwilliger.Source = FunctionRepository.ByteToImage(_hulpOpdracht.Vrijwilleger.Foto);
+            }
 
             //Profesionele begeleider
             lblNaamHulpverlener.Content = _hulpOpdracht.Hulpbehoevende.Hulpverlener.Naam;
@@ -100,20 +103,26 @@ namespace Carespot
             //clear list view
             chatListbox.Items.Clear();
 
-            //haal berichten op
-            ChatSQLContext csc = new ChatSQLContext();
-            ChatRepository cr = new ChatRepository(csc);
-            List<ChatBericht> chatBerichten = cr.RetrieveAllChatBerichtenByOpdracht(_hulpOpdracht.Id);
-            chatBerichten.Sort();
-
-            GebruikerSQLContext gsc = new GebruikerSQLContext();
-            GebruikerRepository gr = new GebruikerRepository(gsc);
-
-            foreach (ChatBericht chat in chatBerichten)
+            if (CheckAuth())
             {
-                Gebruiker g = gr.RetrieveGebruiker(chat.GebruikerId);
+                ChatSQLContext csc = new ChatSQLContext();
+                ChatRepository cr = new ChatRepository(csc);
+                List<ChatBericht> chatBerichten = cr.RetrieveAllChatBerichtenByOpdracht(_hulpOpdracht.Id);
+                chatBerichten.Sort();
+                GebruikerSQLContext gsc = new GebruikerSQLContext();
+                GebruikerRepository gr = new GebruikerRepository(gsc);
 
-                chatListbox.Items.Add("[" + chat.Tijd + " | " + g.Naam + "] : " + chat.Bericht);
+                foreach (ChatBericht chat in chatBerichten)
+                {
+                    Gebruiker g = gr.RetrieveGebruiker(chat.GebruikerId);
+
+                    chatListbox.Items.Add("[" + chat.Tijd + " | " + g.Naam + "] : " + chat.Bericht);
+                }
+            }
+            else
+            {
+                chatListbox.Items.Add("U heeft geen rechten voor deze chat");
+                btnSendChat.IsEnabled = false;
             }
         }
 
@@ -127,8 +136,40 @@ namespace Carespot
 
         private void imgBeoordeling_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            BeoordelingScherm beoordelingScherm = new BeoordelingScherm(_loggedInUser, _hulpOpdracht.Vrijwilleger);
-            beoordelingScherm.Show();
+
+            if (_hulpOpdracht.Vrijwilleger != null)
+            {
+                BeoordelingScherm beoordelingScherm = new BeoordelingScherm(_loggedInUser, _hulpOpdracht.Vrijwilleger);
+                beoordelingScherm.Show();
+            }
+           
+        }
+
+        private bool CheckAuth()
+        {
+
+            if (_hulpOpdracht.Vrijwilleger != null)
+            {
+                if (_loggedInUser.Id == _hulpOpdracht.Vrijwilleger.Id)
+                {
+                    return true;
+                }
+            
+            }
+         
+             if (_loggedInUser.Id == _hulpOpdracht.Hulpbehoevende.Id)
+            {
+                return true;
+            }
+
+             if (_loggedInUser.Id == _hulpOpdracht.Hulpbehoevende.Hulpverlener.Id)
+            {
+                return true;
+            }
+
+
+            return false;
+
         }
     }
 }

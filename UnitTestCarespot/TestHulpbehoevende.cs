@@ -52,7 +52,7 @@ namespace UnitTestCarespot
 
             var hulpverlener = repo.RetrieveAll()[0].Hulpverlener;
 
-           // repo.CreateHulpbehoevende("Lance", "Test1234", Gebruiker.GebruikerGeslacht.Man, "Rachelsmolen", "55A", "6587LL", "Eindhoven", "Nederland", "neppe@email.com", "0612345678", Gebruiker.GebruikerType.Hulpbehoevende, "", hulpverlener.Id);
+            // repo.CreateHulpbehoevende("Lance", "Test1234", Gebruiker.GebruikerGeslacht.Man, "Rachelsmolen", "55A", "6587LL", "Eindhoven", "Nederland", "neppe@email.com", "0612345678", Gebruiker.GebruikerType.Hulpbehoevende, "", hulpverlener.Id);
 
             Assert.AreEqual("Lance", repo.RetrieveAll()[1].Naam);
         }
@@ -63,9 +63,9 @@ namespace UnitTestCarespot
             var inf = new HulpbehoevendeSQLContext();
             var repo = new HulpbehoevendeRepository(inf);
 
-            var hulpbehoevende = repo.RetrieveHulpbehoevendeById(8);
+            var hulpbehoevende = repo.RetrieveHulpbehoevendeById(5);
             var hulpverlener = hulpbehoevende.Hulpverlener;
-            Assert.AreEqual("Pietje", hulpverlener.Naam);
+            Assert.AreEqual("hulpje", hulpverlener.Naam);
         }
     }
 }

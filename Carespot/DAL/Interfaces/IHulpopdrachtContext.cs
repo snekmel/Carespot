@@ -14,6 +14,7 @@ namespace Carespot.DAL.Interfaces
         void CreateHulpopdracht(HulpOpdracht hulpodracht);
         List<HulpOpdracht> GetAllHulpopdrachtenByHulpbehoevendeID(int hbid);
         void AcceptReactie(int hulpopdrachtid, int vrijwilligerid);
+        bool IsGeacepteerd(int hulpopdrachtid);
 
     }
 }

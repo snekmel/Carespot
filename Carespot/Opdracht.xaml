@@ -35,13 +35,13 @@
                     <Image x:Name="imgGebruiker_Vrijwilliger" HorizontalAlignment="Left" Height="41" Margin="10,154,0,0" VerticalAlignment="Top" Width="41" />
                     <Image x:Name="imgGebruiker_Hulpverlener" HorizontalAlignment="Left" Height="41" Margin="10,280,0,0" VerticalAlignment="Top" Width="41" />
                     <Label x:Name="lblNaamCliënt" Content="Naam" HorizontalAlignment="Left" Margin="55,10,0,0" VerticalAlignment="Top" Height="26" Width="287" Grid.ColumnSpan="2" />
-                    <Label x:Name="lblNaamVrijwilliger" Content="Naam" HorizontalAlignment="Left" Margin="55,148,0,0" VerticalAlignment="Top" Height="26" Width="227" Grid.ColumnSpan="2" />
+                    <Label x:Name="lblNaamVrijwilliger" Content="-" HorizontalAlignment="Left" Margin="55,148,0,0" VerticalAlignment="Top" Height="26" Width="227" Grid.ColumnSpan="2" />
                     <Label x:Name="lblNaamHulpverlener" Content="Naam" HorizontalAlignment="Left" Margin="56,275,0,0" VerticalAlignment="Top" Height="26" Width="226" Grid.ColumnSpan="2" />
                     <Label x:Name="lblTelefoonCliënt" Content="Telefoonnummer" HorizontalAlignment="Left" Margin="55,28,0,0" VerticalAlignment="Top" Width="274" Height="26" Grid.ColumnSpan="2" />
                     <Label x:Name="lblTelefoonHulpverlener" Content="Telefoonnummer" HorizontalAlignment="Left" Margin="56,291,0,0" VerticalAlignment="Top" Height="26" Width="226" Grid.ColumnSpan="2" />
-                    <Label x:Name="lblTelefoonVrijwilliger" Content="Telefoonnummer" HorizontalAlignment="Left" Margin="56,163,0,0" VerticalAlignment="Top" Height="26" Width="237" Grid.ColumnSpan="2" />
+                    <Label x:Name="lblTelefoonVrijwilliger" Content="-" HorizontalAlignment="Left" Margin="56,163,0,0" VerticalAlignment="Top" Height="26" Width="237" Grid.ColumnSpan="2" />
                     <Label x:Name="lblEmailCliënt" Content="E-mail" HorizontalAlignment="Left" Margin="56,42,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="246" />
-                    <Label x:Name="lblEmailVrijwilliger" Content="E-mail" HorizontalAlignment="Left" Margin="56,179,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="203" />
+                    <Label x:Name="lblEmailVrijwilliger" Content="-" HorizontalAlignment="Left" Margin="56,179,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="203" />
                     <Label x:Name="lblEmailHulpverlener" Content="E-mail" HorizontalAlignment="Left" Margin="56,306,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="246" />
                     <Image x:Name="imgBeoordeling" Grid.Column="1" HorizontalAlignment="Left" Height="62" Margin="218,143,0,0" VerticalAlignment="Top" Width="71" Source="image/star-1.png" MouseLeftButtonUp="imgBeoordeling_MouseLeftButtonUp" />
                 </Grid>

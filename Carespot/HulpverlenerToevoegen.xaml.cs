@@ -29,11 +29,12 @@ namespace Carespot
         private byte[] foto;
         private readonly Gebruiker _ingelogdeGebruiker;
 
-        public HulpverlenerToevoegen()
+        public HulpverlenerToevoegen(Gebruiker ingelogdeGebruiker)
         {
             InitializeComponent();
             VulComboBox();
             //cbGeslacht krijgt enum Geslacht {man, vrouw}
+            _ingelogdeGebruiker = ingelogdeGebruiker;
         }
 
         private void VulComboBox()

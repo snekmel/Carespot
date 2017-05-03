@@ -14,18 +14,15 @@ namespace Carespot.DAL.Context
         {
             try
             {
-                using (_con)
-                {
-                    _con.Open();
-                    var cmdString = "INSERT INTO ChatBericht (datum, bericht, gebruikerId, hulpopdrachtId) VALUES (@datum, @bericht, @gebruikerId, @hulpopdrachtId)";
-                    var command = new SqlCommand(cmdString, _con);
-                    command.Parameters.AddWithValue("@datum", DateTime.Now);
-                    command.Parameters.AddWithValue("@bericht", bericht);
-                    command.Parameters.AddWithValue("@gebruikerId", gebruikerId);
-                    command.Parameters.AddWithValue("@hulpopdrachtId", hulpopdrachtId);
-                    command.ExecuteNonQuery();
-                    _con.Close();
-                }
+                _con.Open();
+                var cmdString = "INSERT INTO ChatBericht (datum, bericht, gebruikerId, hulpopdrachtId) VALUES (@datum, @bericht, @gebruikerId, @hulpopdrachtId)";
+                var command = new SqlCommand(cmdString, _con);
+                command.Parameters.AddWithValue("@datum", DateTime.Now);
+                command.Parameters.AddWithValue("@bericht", bericht);
+                command.Parameters.AddWithValue("@gebruikerId", gebruikerId);
+                command.Parameters.AddWithValue("@hulpopdrachtId", hulpopdrachtId);
+                command.ExecuteNonQuery();
+                _con.Close();
             }
             catch (Exception ex)
             {
@@ -37,15 +34,12 @@ namespace Carespot.DAL.Context
         {
             try
             {
-                using (_con)
-                {
-                    _con.Open();
-                    var cmdString = "DELETE FROM ChatBericht WHERE id = @id";
-                    var command = new SqlCommand(cmdString, _con);
-                    command.Parameters.AddWithValue("@id", id);
-                    command.ExecuteNonQuery();
-                    _con.Close();
-                }
+                _con.Open();
+                var cmdString = "DELETE FROM ChatBericht WHERE id = @id";
+                var command = new SqlCommand(cmdString, _con);
+                command.Parameters.AddWithValue("@id", id);
+                command.ExecuteNonQuery();
+                _con.Close();
             }
             catch (Exception ex)
             {
@@ -57,27 +51,24 @@ namespace Carespot.DAL.Context
         {
             try
             {
-                using (_con)
+                _con.Open();
+                var cmdString = "SELECT * FROM ChatBericht WHERE hulpopdrachtId = @id";
+                var command = new SqlCommand(cmdString, _con);
+                command.Parameters.AddWithValue("@id", id);
+                var reader = command.ExecuteReader();
+                var ReturnList = new List<ChatBericht>();
+
+                while (reader.Read())
                 {
-                    _con.Open();
-                    var cmdString = "SELECT * FROM ChatBericht WHERE hulpopdrachtId = @id";
-                    var command = new SqlCommand(cmdString, _con);
-                    command.Parameters.AddWithValue("@id", id);
-                    var reader = command.ExecuteReader();
-                    var ReturnList = new List<ChatBericht>();
+                    var c = new ChatBericht(reader.GetDateTime(1), reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4));
+                    c.Id = reader.GetInt32(0);
 
-                    while (reader.Read())
-                    {
-                        var c = new ChatBericht(reader.GetDateTime(1), reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4));
-                        c.Id = reader.GetInt32(0);
-
-                        ReturnList.Add(c);
-                    }
-
-                    _con.Close();
-                    reader.Close();
-                    return ReturnList;
+                    ReturnList.Add(c);
                 }
+
+                _con.Close();
+                reader.Close();
+                return ReturnList;
             }
             catch (Exception ex)
             {

@@ -8,26 +8,30 @@
         Title="HulpverlenerHoofdscherm" Height="500" Width="800" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="61*"/>
-            <ColumnDefinition Width="38*"/>
+            <ColumnDefinition Width="61*" />
+            <ColumnDefinition Width="38*" />
         </Grid.ColumnDefinitions>
-        <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="69,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,0.5" FontSize="16" Height="28" Width="61" />
+
+        <Label x:Name="lblNaam" Content="Naam" HorizontalAlignment="Left" Margin="69,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,0.5" FontSize="16" Height="28" Width="208" />
+
         <Image x:Name="imgUitloggen" HorizontalAlignment="Left" Height="41" Margin="225.314,15,0,0" VerticalAlignment="Top" Width="41" Source="image/sign-out-option.png" MouseLeftButtonUp="imgUitloggen_MouseLeftButtonUp" Grid.Column="1" />
         <Image x:Name="imgHulpverlenerToevoegen" HorizontalAlignment="Left" Height="41" Margin="147.314,15,0,0" VerticalAlignment="Top" Width="41" Source="image/add-square-button.png" MouseLeftButtonUp="imgHulpverlenerToevoegen_MouseLeftButtonUp" Grid.Column="1" />
-        <ListView x:Name="lvOpdrachten" HorizontalAlignment="Left" Height="305" Margin="234,139,0,0" VerticalAlignment="Top" Width="520" Grid.ColumnSpan="2">
+        <ListView x:Name="lvOpdrachten" HorizontalAlignment="Left" Height="305" Margin="234,139,0,0" VerticalAlignment="Top" Width="520" Grid.ColumnSpan="2" MouseDoubleClick="lvOpdrachten_MouseDoubleClick">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Geselecteerde opdrachten" Width="350" />
+                    <GridViewColumn Width="250" Header=" Opdrachtnaam" DisplayMemberBinding="{Binding Titel}" />
+                    <GridViewColumn Width="250" Header=" Aanmaakdatum" DisplayMemberBinding="{Binding AanmaakDatum}" />
+
                 </GridView>
             </ListView.View>
         </ListView>
         <Image x:Name="image_Copy2" HorizontalAlignment="Left" Height="41" Margin="95,89,0,0" VerticalAlignment="Top" Width="41" Source="image/group-profile-users.png" />
         <Image x:Name="profielImg" HorizontalAlignment="Left" Height="53" Margin="15,24,0,0" VerticalAlignment="Top" Width="54" MouseLeftButtonUp="profielImg_MouseLeftButtonUp" />
-        <ListView x:Name="lvCliënten" HorizontalAlignment="Left" Height="305" Margin="10,139,0,0" VerticalAlignment="Top" Width="205">
+        <ListView x:Name="lvCliënten" HorizontalAlignment="Left" Height="305" Margin="10,139,0,0" VerticalAlignment="Top" Width="205" SelectionChanged="lvCliënten_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Hulpbehoevenden" Width="205"/>
-                </GridView>
+                    <GridViewColumn Width="200" Header=" Hulpbehoevende" DisplayMemberBinding="{Binding Naam}" />
+            </GridView>
             </ListView.View>
         </ListView>
     </Grid>

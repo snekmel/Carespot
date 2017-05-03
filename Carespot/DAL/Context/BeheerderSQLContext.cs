@@ -16,35 +16,32 @@ namespace Carespot.DAL.Context
             var returnList = new List<Beheerder>();
             try
             {
-                using (_con)
+                _con.Open();
+                var cmdString = "SELECT * FROM Gebruiker INNER JOIN Beheerder ON Gebruiker.id = Beheerder.gebruikerId WHERE Gebruiker.id IN(SELECT gebruikerId FROM Beheerder)";
+                var command = new SqlCommand(cmdString, _con);
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    _con.Open();
-                    var cmdString = "SELECT * FROM Gebruiker INNER JOIN Beheerder ON Gebruiker.id = Beheerder.gebruikerId WHERE Gebruiker.id IN(SELECT gebruikerId FROM Beheerder)";
-                    var command = new SqlCommand(cmdString, _con);
-                    var reader = command.ExecuteReader();
-
-                    while (reader.Read())
+                    var g = new Beheerder(reader.GetString(1), reader.GetString(2), reader.GetString(9));
+                    g.Id = reader.GetInt32(0);
+                    g.Geslacht = (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
+                    g.Straat = reader.GetString(4);
+                    g.Huisnummer = reader.GetString(5);
+                    g.Postcode = reader.GetString(6);
+                    g.Plaats = reader.GetString(7);
+                    g.Land = reader.GetString(8);
+                    g.Telefoonnummer = reader.GetString(10);
+                    if (!reader.IsDBNull(11))
+                        g.Foto = (byte[])reader[11];
+                    if (!reader.IsDBNull(12))
                     {
-                        var g = new Beheerder(reader.GetString(1), reader.GetString(2), reader.GetString(9));
-                        g.Id = reader.GetInt32(0);
-                        g.Geslacht = (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
-                        g.Straat = reader.GetString(4);
-                        g.Huisnummer = reader.GetString(5);
-                        g.Postcode = reader.GetString(6);
-                        g.Plaats = reader.GetString(7);
-                        g.Land = reader.GetString(8);
-                        g.Telefoonnummer = reader.GetString(10);
-                        if (!reader.IsDBNull(11))
-                            g.Foto = (byte[])reader[11];
-                        if (!reader.IsDBNull(12))
-                        {
-                            g.Rfid = reader.GetString(12);
-                        }
-
-                        returnList.Add(g);
+                        g.Rfid = reader.GetString(12);
                     }
-                    _con.Close();
+
+                    returnList.Add(g);
                 }
+                _con.Close();
             }
             catch (Exception ex)
             {
@@ -57,16 +54,13 @@ namespace Carespot.DAL.Context
         {
             try
             {
-                using (_con)
-                {
-                    _con.Open();
-                    var query1 = "INSERT INTO Beheerder (gebruikerId) VALUES (@newID)";
-                    var command1 = new SqlCommand(query1, _con);
-                    command1.Parameters.AddWithValue("@newID", gebruikerId);
-                    command1.ExecuteScalar();
+                _con.Open();
+                var query1 = "INSERT INTO Beheerder (gebruikerId) VALUES (@newID)";
+                var command1 = new SqlCommand(query1, _con);
+                command1.Parameters.AddWithValue("@newID", gebruikerId);
+                command1.ExecuteScalar();
 
-                    _con.Close();
-                }
+                _con.Close();
             }
             catch (Exception ex)
             {
@@ -101,16 +95,13 @@ namespace Carespot.DAL.Context
         {
             try
             {
-                using (_con)
-                {
-                    _con.Open();
-                    var cmdString = "DELETE FROM Beheerder WHERE gebruikerId = @id";
-                    var command = new SqlCommand(cmdString, _con);
-                    command.Parameters.AddWithValue("@id", id);
+                _con.Open();
+                var cmdString = "DELETE FROM Beheerder WHERE gebruikerId = @id";
+                var command = new SqlCommand(cmdString, _con);
+                command.Parameters.AddWithValue("@id", id);
 
-                    command.ExecuteNonQuery();
-                    _con.Close();
-                }
+                command.ExecuteNonQuery();
+                _con.Close();
             }
             catch (Exception ex)
             {

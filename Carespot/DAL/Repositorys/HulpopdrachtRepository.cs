@@ -42,5 +42,24 @@ namespace Carespot.DAL.Repositorys
             _context.AcceptReactie(hulpopdrachtid,vrijwilligerid);
         }
 
+        public bool IsGeacepteerd(int hulpopdrachtid)
+        {
+           return _context.IsGeacepteerd(hulpopdrachtid);
+        }
+
+        public List<HulpOpdracht> RetrieveHulpopdrachtenByHulpbehoevendeId(int id)
+        {
+            List<HulpOpdracht> returnList = new List<HulpOpdracht>();
+
+            foreach (HulpOpdracht ho in this.GetAllHulpopdrachten())
+            {
+                if (ho.Hulpbehoevende.Id == id)
+                {
+                    returnList.Add(ho);
+                }
+            }
+            return returnList;
+        }
+
     }
 }
