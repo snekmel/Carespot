@@ -36,7 +36,6 @@ namespace Carespot
             //Hide label en button standaard
             btnKoppelingOngedaanMaken.Visibility = Visibility.Hidden;
             lblKoppelingHulpopdracht.Visibility = Visibility.Hidden;
-
         }
 
         private void FillMijnOpdrachtenList()
@@ -83,7 +82,6 @@ namespace Carespot
 
                     btnKoppelingOngedaanMaken.Visibility = Visibility.Visible;
                     lblKoppelingHulpopdracht.Visibility = Visibility.Visible;
-
                 }
                 else
                 {
@@ -111,16 +109,12 @@ namespace Carespot
             {
                 MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
             }
-
-           
-
-         
         }
 
         private void lvMijnOpdrachten_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //Haal de reacties op aan de hand van de geselecteerde hulpopdracht
-            HulpOpdracht geselecteerdeHulpOpdracht = (HulpOpdracht) lvMijnOpdrachten.SelectedItem;
+            HulpOpdracht geselecteerdeHulpOpdracht = (HulpOpdracht)lvMijnOpdrachten.SelectedItem;
             FillReactieOpOpdracht(geselecteerdeHulpOpdracht.Id);
         }
 
@@ -149,7 +143,7 @@ namespace Carespot
             {
                 MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
             }
-           
+
             this.ReloadForm();
         }
 
@@ -170,7 +164,6 @@ namespace Carespot
             {
                 MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
             }
-           
 
             //Herlaad opdrachtenlistview
             FillReactieOpOpdracht(_geselecteerdeHulpopdracht);
@@ -187,7 +180,7 @@ namespace Carespot
 
         private void lvMijnOpdrachten_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            HulpOpdracht ho = (HulpOpdracht) lvMijnOpdrachten.SelectedItem;
+            HulpOpdracht ho = (HulpOpdracht)lvMijnOpdrachten.SelectedItem;
 
             Opdracht scherm = new Opdracht(_ingelogdeGebr, ho);
             scherm.Show();
@@ -214,28 +207,23 @@ namespace Carespot
             {
                 MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
             }
-        
 
             //Herlaad de reactielijst na het vrewijderen van de vijwilliger
             FillReactieOpOpdracht(_geselecteerdeHulpopdracht);
-
         }
-
 
         private void imgUitloggen_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             var inlog = new Inlogscherm();
             inlog.Show();
             this.Close();
-
-            
         }
+
         private void ReloadForm()
         {
             CliëntOverzicht scherm = new CliëntOverzicht(_ingelogdeGebr);
             scherm.Show();
             this.Close();
         }
-
     }
 }
