@@ -1,28 +1,18 @@
-﻿using Carespot.DAL.Context;
+﻿using System;
+using System.Windows;
+using System.Windows.Input;
+using Carespot.DAL.Context;
 using Carespot.DAL.Repositorys;
 using Carespot.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Carespot
 {
     /// <summary>
-    /// Interaction logic for Hulpvraagxaml.xaml
+    ///     Interaction logic for Hulpvraagxaml.xaml
     /// </summary>
     public partial class Hulpvraagxaml : Window
     {
-        private Gebruiker _loggedinUser;
+        private readonly Gebruiker _loggedinUser;
 
         public Hulpvraagxaml(Gebruiker g)
         {
@@ -34,36 +24,43 @@ namespace Carespot
 
         private void image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            CliëntOverzicht window = new CliëntOverzicht(_loggedinUser);
+            var window = new CliëntOverzicht(_loggedinUser);
             window.Show();
-            this.Close();
+            Close();
         }
 
         private void btToevoegen_Click(object sender, RoutedEventArgs e)
         {
             tbTitel.SelectAll();
-            string titel = tbTitel.SelectedText;
+            var titel = tbTitel.SelectedText;
 
             tbBeschrijving.SelectAll();
-            string omschrijving = tbBeschrijving.Selection.Text;
+            var omschrijving = tbBeschrijving.Selection.Text;
 
-            DateTime opdrachtdatum = (DateTime)dpOpdrachtDatum.SelectedDate;
+            var opdrachtdatum = (DateTime) dpOpdrachtDatum.SelectedDate;
 
-            bool geaccepteerd = false;
+            var geaccepteerd = false;
 
-            HulpbehoevendeSQLContext hsc = new HulpbehoevendeSQLContext();
-            HulpbehoevendeRepository hr = new HulpbehoevendeRepository(hsc);
+            try
+            {
+                var hsc = new HulpbehoevendeSQLContext();
+                var hr = new HulpbehoevendeRepository(hsc);
 
-            Hulpbehoevende opdrachtEigenaar = hr.RetrieveHulpbehoevendeById(_loggedinUser.Id);
+                var opdrachtEigenaar = hr.RetrieveHulpbehoevendeById(_loggedinUser.Id);
 
-            //plaats hulpvraag
-            HulpOpdracht hulpOpdracht = new HulpOpdracht(geaccepteerd, titel, DateTime.Now, omschrijving, opdrachtdatum, opdrachtEigenaar);
-            HulpopdrachtSQLContext hulpOpdrachtContext = new HulpopdrachtSQLContext();
-            HulpopdrachtRepository hulpOpdrachtRepo = new HulpopdrachtRepository(hulpOpdrachtContext);
-            hulpOpdrachtRepo.CreateHulpopdracht(hulpOpdracht);
-            tbTitel.Text = "";
-            tbBeschrijving.Selection.Text = "";
-            MessageBox.Show("Uw hulpvraag is succesvol aangemaakt.");
+                //plaats hulpvraag
+                var hulpOpdracht = new HulpOpdracht(geaccepteerd, titel, DateTime.Now, omschrijving, opdrachtdatum, opdrachtEigenaar);
+                var hulpOpdrachtContext = new HulpopdrachtSQLContext();
+                var hulpOpdrachtRepo = new HulpopdrachtRepository(hulpOpdrachtContext);
+                hulpOpdrachtRepo.CreateHulpopdracht(hulpOpdracht);
+                tbTitel.Text = "";
+                tbBeschrijving.Selection.Text = "";
+                MessageBox.Show("Uw hulpvraag is succesvol aangemaakt.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
+            }
         }
     }
 }

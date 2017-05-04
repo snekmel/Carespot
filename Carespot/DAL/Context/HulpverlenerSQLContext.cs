@@ -82,25 +82,32 @@ namespace Carespot.DAL.Context
 
         public Hulpverlener RetrieveHulpverlener(int id)
         {
-            var gsc = new GebruikerSQLContext();
-            var gr = new GebruikerRepository(gsc);
-            var g = gr.RetrieveGebruiker(id);
+            try
+            {
+                var gsc = new GebruikerSQLContext();
+                var gr = new GebruikerRepository(gsc);
+                var g = gr.RetrieveGebruiker(id);
 
-            var h = new Hulpverlener();
-            h.Id = g.Id;
-            h.Naam = g.Naam;
-            h.Wachtwoord = g.Wachtwoord;
-            h.Geslacht = g.Geslacht;
-            h.Straat = g.Straat;
-            h.Huisnummer = g.Huisnummer;
-            h.Postcode = g.Postcode;
-            h.Plaats = g.Plaats;
-            h.Land = g.Land;
-            h.Email = g.Email;
-            h.Telefoonnummer = g.Telefoonnummer;
-            h.Foto = g.Foto;
+                var h = new Hulpverlener();
+                h.Id = g.Id;
+                h.Naam = g.Naam;
+                h.Wachtwoord = g.Wachtwoord;
+                h.Geslacht = g.Geslacht;
+                h.Straat = g.Straat;
+                h.Huisnummer = g.Huisnummer;
+                h.Postcode = g.Postcode;
+                h.Plaats = g.Plaats;
+                h.Land = g.Land;
+                h.Email = g.Email;
+                h.Telefoonnummer = g.Telefoonnummer;
+                h.Foto = g.Foto;
 
-            return h;
+                return h;
+            }
+            catch (Exception ex)
+            {
+                throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
+            }
         }
 
         public void DeleteHulpverlener(int id)
@@ -137,17 +144,24 @@ namespace Carespot.DAL.Context
 
         private int CheckHulpverlener(int id)
         {
-            var idt = 0;
-            // _con.Open();
-            var cmdString = "SELECT TOP 1 Gebruiker.id FROM Gebruiker LEFT JOIN Hulpverlener ON Hulpverlener.gebruikerId = Gebruiker.id LEFT JOIN Hulpbehoevende ON Hulpbehoevende.hulpverlenerId = Hulpverlener.gebruikerId WHERE Gebruiker.id IN(SELECT Hulpverlener.gebruikerId FROM Hulpverlener) AND Gebruiker.id != @id  GROUP BY Gebruiker.id ORDER BY COUNT(Hulpbehoevende.gebruikerId) ASC";
-            var command = new SqlCommand(cmdString, _con);
-            command.Parameters.AddWithValue("@id", id);
-            var reader = command.ExecuteReader();
-            while (reader.Read())
-                idt = reader.GetInt32(0);
-            reader.Close();
-            // _con.Close();
-            return idt;
+            try
+            {
+                var idt = 0;
+                // _con.Open();
+                var cmdString = "SELECT TOP 1 Gebruiker.id FROM Gebruiker LEFT JOIN Hulpverlener ON Hulpverlener.gebruikerId = Gebruiker.id LEFT JOIN Hulpbehoevende ON Hulpbehoevende.hulpverlenerId = Hulpverlener.gebruikerId WHERE Gebruiker.id IN(SELECT Hulpverlener.gebruikerId FROM Hulpverlener) AND Gebruiker.id != @id  GROUP BY Gebruiker.id ORDER BY COUNT(Hulpbehoevende.gebruikerId) ASC";
+                var command = new SqlCommand(cmdString, _con);
+                command.Parameters.AddWithValue("@id", id);
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                    idt = reader.GetInt32(0);
+                reader.Close();
+                // _con.Close();
+                return idt;
+            }
+            catch (Exception ex)
+            {
+                throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
+            }
         }
     }
 }

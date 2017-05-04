@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Windows;
 using Carespot.DAL.Interfaces;
 using Carespot.DAL.Repositorys;
 using Carespot.Models;
@@ -26,7 +25,7 @@ namespace Carespot.DAL.Context
                 {
                     var g = new Vrijwilliger(reader.GetString(1), reader.GetString(2), reader.GetString(9));
                     g.Id = reader.GetInt32(0);
-                    g.Geslacht = (Gebruiker.GebruikerGeslacht)Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
+                    g.Geslacht = (Gebruiker.GebruikerGeslacht) Enum.Parse(typeof(Gebruiker.GebruikerGeslacht), reader.GetString(3));
                     g.Straat = reader.GetString(4);
                     g.Huisnummer = reader.GetString(5);
                     g.Postcode = reader.GetString(6);
@@ -34,7 +33,7 @@ namespace Carespot.DAL.Context
                     g.Land = reader.GetString(8);
                     g.Telefoonnummer = reader.GetString(10);
                     if (!reader.IsDBNull(11))
-                        g.Foto = (byte[])reader[11];
+                        g.Foto = (byte[]) reader[11];
 
                     if (!reader.IsDBNull(12))
                         g.Rfid = reader.GetString(12);
@@ -42,9 +41,9 @@ namespace Carespot.DAL.Context
                 }
                 _con.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("VrijwilligerSqlContext -> Retrieve all");
+                throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
             }
             return returnList;
         }
@@ -60,46 +59,60 @@ namespace Carespot.DAL.Context
                 command1.ExecuteScalar();
                 _con.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("VrijwilligerSqlContext -> Create Vrijwilliger");
+                throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
             }
         }
 
         public Vrijwilliger RetrieveVrijwilliger(int id)
         {
-            var gsc = new GebruikerSQLContext();
-            var gr = new GebruikerRepository(gsc);
-            var g = gr.RetrieveGebruiker(id);
-
-            if (g != null)
+            try
             {
-                var v = new Vrijwilliger();
-                v.Id = g.Id;
-                v.Naam = g.Naam;
-                v.Wachtwoord = g.Wachtwoord;
-                v.Geslacht = g.Geslacht;
-                v.Straat = g.Straat;
-                v.Huisnummer = g.Huisnummer;
-                v.Postcode = g.Postcode;
-                v.Plaats = g.Plaats;
-                v.Land = g.Land;
-                v.Email = g.Email;
-                v.Telefoonnummer = g.Telefoonnummer;
-                v.Foto = g.Foto;
+                var gsc = new GebruikerSQLContext();
+                var gr = new GebruikerRepository(gsc);
+                var g = gr.RetrieveGebruiker(id);
 
-                return v;
+                if (g != null)
+                {
+                    var v = new Vrijwilliger();
+                    v.Id = g.Id;
+                    v.Naam = g.Naam;
+                    v.Wachtwoord = g.Wachtwoord;
+                    v.Geslacht = g.Geslacht;
+                    v.Straat = g.Straat;
+                    v.Huisnummer = g.Huisnummer;
+                    v.Postcode = g.Postcode;
+                    v.Plaats = g.Plaats;
+                    v.Land = g.Land;
+                    v.Email = g.Email;
+                    v.Telefoonnummer = g.Telefoonnummer;
+                    v.Foto = g.Foto;
+
+                    return v;
+                }
+                return null;
             }
-            return null;
+            catch (Exception ex)
+            {
+                throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
+            }
         }
 
         public void DeleteVrijwilliger(int id)
         {
-            _con.Open();
-            var cmdString = "DELETE FROM Vrijwilliger WHERE gebruikerId =" + id;
-            var command = new SqlCommand(cmdString, _con);
-            command.ExecuteNonQuery();
-            _con.Close();
+            try
+            {
+                _con.Open();
+                var cmdString = "DELETE FROM Vrijwilliger WHERE gebruikerId =" + id;
+                var command = new SqlCommand(cmdString, _con);
+                command.ExecuteNonQuery();
+                _con.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
+            }
         }
     }
 }

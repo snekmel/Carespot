@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Carespot"
         mc:Ignorable="d"
-        Title="HulpverlenerHoofdscherm" Height="500" Width="800" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+        Title="Carespot" Height="500" Width="800" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="61*" />
@@ -21,7 +21,6 @@
                 <GridView>
                     <GridViewColumn Width="250" Header=" Opdrachtnaam" DisplayMemberBinding="{Binding Titel}" />
                     <GridViewColumn Width="250" Header=" Aanmaakdatum" DisplayMemberBinding="{Binding AanmaakDatum}" />
-
                 </GridView>
             </ListView.View>
         </ListView>
@@ -31,7 +30,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="200" Header=" Hulpbehoevende" DisplayMemberBinding="{Binding Naam}" />
-            </GridView>
+                </GridView>
             </ListView.View>
         </ListView>
     </Grid>

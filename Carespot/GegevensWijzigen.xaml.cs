@@ -127,7 +127,14 @@ namespace Carespot
 
                 if (canUpdate)
                 {
-                    repo.UpdateGebruiker(_g);
+                    try
+                    {
+                        repo.UpdateGebruiker(_g);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
+                    }
                 }
             }
             else
@@ -196,7 +203,15 @@ namespace Carespot
             {
                 var context = new VrijwilligerSQLContext();
                 var repo = new VrijwilligerRepository(context);
-                repo.DeleteVrijwilliger(_g.Id);
+
+                try
+                {
+                    repo.DeleteVrijwilliger(_g.Id);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
+                }
                 var inlogScherm = new Inlogscherm();
                 inlogScherm.Show();
                 this.Close();
@@ -205,7 +220,14 @@ namespace Carespot
             {
                 var context = new HulpbehoevendeSQLContext();
                 var repo = new HulpbehoevendeRepository(context);
-                repo.DeleteHulpbehoevende(_g.Id);
+                try
+                {
+                    repo.DeleteHulpbehoevende(_g.Id);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
+                }
                 var inlogScherm = new Inlogscherm();
                 inlogScherm.Show();
                 this.Close();
@@ -214,7 +236,14 @@ namespace Carespot
             {
                 var context = new HulpverlenerSQLContext();
                 var repo = new HulpverlenerRepository(context);
-                repo.DeleteHulpverlener(_g.Id);
+                try
+                {
+                    repo.DeleteHulpverlener(_g.Id);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
+                }
                 var inlogScherm = new Inlogscherm();
                 inlogScherm.Show();
                 this.Close();

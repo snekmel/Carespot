@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Carespot"
         mc:Ignorable="d"
-        Title="Inlogscherm" Height="250" Width="450" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        Title="Carespot" Height="250" Width="450" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="7*" />
@@ -19,6 +19,6 @@
         <PasswordBox x:Name="pbWachtwoord" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="154,120,0,0" VerticalAlignment="Top" Width="232" KeyDown="pbWachtwoord_KeyDown" />
         <Button x:Name="btAanmelden" Content="Registreren" Grid.Column="1" HorizontalAlignment="Left" Margin="213,176,0,0" VerticalAlignment="Top" Width="85" Grid.ColumnSpan="2" Click="btAanmelden_Click" />
         <Button x:Name="btInloggen" Content="Log in" Grid.Column="2" HorizontalAlignment="Left" Margin="81,176,0,0" VerticalAlignment="Top" Width="75" Click="btInloggen_Click" />
-        <Button x:Name="btRfid" Content="Login met RFID" Grid.Column="1" HorizontalAlignment="Left" Margin="49,176,0,0" VerticalAlignment="Top" Width="95" Click="BtRfid_OnClick"/>
+        <Button x:Name="btRfid" Content="Login met RFID" Grid.Column="1" HorizontalAlignment="Left" Margin="49,176,0,0" VerticalAlignment="Top" Width="95" Click="BtRfid_OnClick" />
     </Grid>
 </Window>

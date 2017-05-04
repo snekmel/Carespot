@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 using Carespot.DAL.Context;
@@ -30,10 +31,16 @@ namespace Carespot
             //Haal al de hulpbehoevende die bij de user horen.
             HulpbehoevendeSQLContext hsc = new HulpbehoevendeSQLContext();
             HulpbehoevendeRepository hr = new HulpbehoevendeRepository(hsc);
-
-            foreach (Hulpbehoevende hb in hr.RetrieveAllHulpbehoevendeByHulpverlenerId(_ingelogdeGebruiker.Id))
+            try
             {
-                lvCliënten.Items.Add(hb);
+                foreach (Hulpbehoevende hb in hr.RetrieveAllHulpbehoevendeByHulpverlenerId(_ingelogdeGebruiker.Id))
+                {
+                    lvCliënten.Items.Add(hb);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
             }
         }
 
@@ -69,9 +76,16 @@ namespace Carespot
                 //Haal de opdrachten op bij de geselecteerde hulpbehoevende
                 Hulpbehoevende hulpbehoevende = (Hulpbehoevende)lvCliënten.SelectedItem;
 
-                foreach (HulpOpdracht opdracht in hor.GetAllHulpopdrachtenByHulpbehoevendeID(hulpbehoevende.Id))
+                try
                 {
-                    lvOpdrachten.Items.Add(opdracht);
+                    foreach (HulpOpdracht opdracht in hor.GetAllHulpopdrachtenByHulpbehoevendeID(hulpbehoevende.Id))
+                    {
+                        lvOpdrachten.Items.Add(opdracht);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
                 }
             }
         }

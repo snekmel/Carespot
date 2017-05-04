@@ -1,8 +1,9 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System;
+using System.Windows;
+using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 using Carespot.DAL.Repositorys;
 using Carespot.Models;
-using System.Windows.Input;
 
 namespace Carespot
 {
@@ -91,24 +92,24 @@ namespace Carespot
                     MessageBox.Show("Foute inloggegevens.");
                 }
             }
-            catch (DatabaseException)
+            catch (Exception ex)
             {
-                MessageBox.Show("Er is geen connectie met de database");
+                MessageBox.Show("Er is iets mis gegaan. Foutomschrijving: " + ex.Message);
             }
         }
 
         private void BtRfid_OnClick(object sender, RoutedEventArgs e)
         {
-            RFIDLogin scherm = new RFIDLogin();
+            var scherm = new RFIDLogin();
             scherm.Show();
-            this.Close();
+            Close();
         }
 
-        private void pbWachtwoord_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        private void pbWachtwoord_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                btInloggen.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                btInloggen.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
                 e.Handled = true;
             }
         }
