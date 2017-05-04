@@ -59,9 +59,9 @@ namespace Carespot.DAL.Context
                 }
                 connection.Close();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw e;
+                throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
             }
 
             return returnList;
@@ -124,9 +124,9 @@ namespace Carespot.DAL.Context
 
                 reader.Close();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw e;
+                throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
             }
             finally
             {
@@ -191,9 +191,9 @@ namespace Carespot.DAL.Context
 
                 reader.Close();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw e;
+                throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
             }
             finally
             {
@@ -224,9 +224,9 @@ namespace Carespot.DAL.Context
 
                 //cmd.ExecuteNonQuery();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw e;
+                throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
             }
             finally
             {
@@ -248,9 +248,9 @@ namespace Carespot.DAL.Context
 
                 cmd.ExecuteReader();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw e;
+                throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
             }
             finally
             {
@@ -281,9 +281,9 @@ namespace Carespot.DAL.Context
 
                 reader.Close();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw e;
+                throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
             }
             finally
             {
@@ -307,9 +307,9 @@ namespace Carespot.DAL.Context
 
                 cmd.ExecuteReader();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw e;
+                throw new DatabaseException("Er ging iets mis bij het ophalen van de gegevens", ex);
             }
             finally
             {
